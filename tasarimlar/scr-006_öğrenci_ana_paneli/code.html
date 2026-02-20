@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Noto+Sans:wght@300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                        "surface-dark": "#162e2a",
+                        "surface-darker": "#0b1a18",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#101817] dark:text-white overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#273a38] bg-surface-darker px-4 py-3 md:px-10 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-white cursor-pointer">
+<div class="size-8 text-primary flex items-center justify-center rounded-lg bg-primary/10">
+<span class="material-symbols-outlined">code_blocks</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">DIGEM</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full group">
+<div class="text-[#9abcb7] flex border-none bg-[#273a38] items-center justify-center pl-4 rounded-l-lg border-r-0 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#273a38] focus:border-none h-full placeholder:text-[#9abcb7] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal transition-all" placeholder="Eğitim ara..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-4 md:gap-8">
+<button class="flex items-center justify-center rounded-full size-10 hover:bg-[#273a38] text-[#9abcb7] hover:text-white transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full border-2 border-surface-darker"></span>
+</button>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-transparent group-hover:border-primary transition-all" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkl9wCvWzT6FUecux2heQ7fnNi0F8oX6QqBOxCYaGmo3AgpmRwppiaW8-BZXNsw8Lv7L3EDu84LC6HQIrIJR1k8lJrJ_5O2xNoLzYhRYVK_0Vp9w-2Fxnvw8W2A3016n0Mhb9hvH9Lf_eAOI7TTBqlwz0Ob65UytDeLPAoulFJovwq9sJ91xpd0jYNKsMq0h2Q2wOqQV9C7Y_5f8-480j8VYhCg5bag9kt-0KZ4GggQ-mF8SRjjwJQidPtvG21Q-yGdZSz8fNCig");'></div>
+<div class="hidden md:flex flex-col">
+<p class="text-sm font-medium text-white group-hover:text-primary transition-colors">Ayşe Yılmaz</p>
+<p class="text-xs text-[#9abcb7]">Seviye 5</p>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 relative">
+<!-- Side Navigation (Desktop) -->
+<aside class="hidden lg:flex w-64 flex-col border-r border-[#273a38] bg-surface-darker sticky top-[65px] h-[calc(100vh-65px)] overflow-y-auto">
+<div class="flex flex-col gap-2 p-4">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary/10 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined fill">home</span>
+<p class="text-sm font-medium leading-normal">Ana Sayfa</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9abcb7] hover:bg-[#273a38] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<p class="text-sm font-medium leading-normal">Derslerim</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9abcb7] hover:bg-[#273a38] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<p class="text-sm font-medium leading-normal">Ödevler</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9abcb7] hover:bg-[#273a38] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<p class="text-sm font-medium leading-normal">Topluluk</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9abcb7] hover:bg-[#273a38] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<p class="text-sm font-medium leading-normal">Liderlik Tablosu</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-4 border-t border-[#273a38]">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9abcb7] hover:bg-[#273a38] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Ayarlar</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9abcb7] hover:bg-[#273a38] hover:text-red-400 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium leading-normal">Çıkış Yap</p>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col p-4 md:p-8 lg:p-10 gap-8 max-w-[1600px] mx-auto w-full">
+<!-- Welcome Header -->
+<div class="flex flex-col gap-1">
+<h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">Hoş Geldin, Ayşe! 👋</h1>
+<p class="text-[#9abcb7]">Bugün öğrenmek için harika bir gün. Kaldığın yerden devam et.</p>
+</div>
+<!-- KPI Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Streak Card -->
+<div class="flex items-center gap-4 p-5 rounded-xl bg-surface-dark border border-[#273a38] shadow-sm hover:border-primary/30 transition-colors group">
+<div class="size-12 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined fill">local_fire_department</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#9abcb7] text-sm font-medium">Günlük Seri</p>
+<p class="text-white text-2xl font-bold">12 Gün</p>
+</div>
+</div>
+<!-- XP Card -->
+<div class="flex items-center gap-4 p-5 rounded-xl bg-surface-dark border border-[#273a38] shadow-sm hover:border-primary/30 transition-colors group">
+<div class="size-12 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-500 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined fill">bolt</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#9abcb7] text-sm font-medium">Toplam XP</p>
+<p class="text-white text-2xl font-bold">4500 XP</p>
+</div>
+</div>
+<!-- Mastery Card -->
+<div class="flex items-center gap-4 p-5 rounded-xl bg-surface-dark border border-[#273a38] shadow-sm hover:border-primary/30 transition-colors group">
+<div class="size-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined fill">donut_large</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#9abcb7] text-sm font-medium">Ustalık Seviyesi</p>
+<p class="text-white text-2xl font-bold">%65</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Center Column: Active Module -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<h3 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">play_circle</span>
+                        Aktif Modül
+                    </h3>
+<!-- Hero Card -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-dark border border-[#273a38] shadow-lg group">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 h-48 w-full bg-cover bg-center" data-alt="Abstract technology background representing computer science" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqnbdJQ0k2u0YEryWIQplBOw8q3bZ5YT_I8Vj8xpVxErBxxZdimLRG172GO1Ucz3WFBGurotUs1Gn4gBt0FUqZ2PD49LdgtcQXWJODlQBYGWSBH__6ZMSnlEbIVgzGZpYDDhUE9ruf7OS_Jk52tT8a-hRRNsxIcpCE5_QPvJetX7pJmdrgG0D5OLw4OYcwwp71iYdLKr6rMNTGZhPYbOFBmt1wUD5R8SdSlptkEdLoTXpTa7tCKvYd6s2xMuMvjpizvzYChn7LFw');">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark via-surface-dark/90 to-transparent"></div>
+</div>
+<div class="relative z-10 p-6 md:p-8 pt-32 flex flex-col gap-4">
+<div class="flex flex-wrap items-end justify-between gap-4">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-primary/20 text-primary w-fit">
+                                        Modül 3
+                                    </span>
+<h2 class="text-2xl md:text-3xl font-bold text-white mt-2">Temel Bilgisayar Bilimleri</h2>
+<p class="text-[#9abcb7] text-base">Bölüm 3: İşletim Sistemleri ve Bellek Yönetimi</p>
+</div>
+<button class="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary/90 text-[#0f2320] px-6 py-3 rounded-lg font-bold transition-all shadow-[0_0_20px_rgba(0,194,168,0.3)] hover:shadow-[0_0_30px_rgba(0,194,168,0.5)] transform hover:-translate-y-0.5">
+<span class="material-symbols-outlined">play_arrow</span>
+                                    Devam Et
+                                </button>
+</div>
+<!-- Progress Section -->
+<div class="mt-4 bg-[#0f2320]/50 rounded-xl p-4 border border-[#273a38]">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium text-white">İlerleme Durumu</span>
+<span class="text-sm font-bold text-primary">%45 Tamamlandı</span>
+</div>
+<div class="w-full bg-[#273a38] rounded-full h-2.5 overflow-hidden">
+<div class="bg-primary h-2.5 rounded-full transition-all duration-1000 ease-out" style="width: 45%"></div>
+</div>
+<div class="mt-3 flex gap-4 text-xs text-[#9abcb7]">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">timer</span>
+<span>25 dk kaldı</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">quiz</span>
+<span>1 Quiz Bekliyor</span>
+</div>
+</div>
+</div>
+<button class="sm:hidden w-full mt-2 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-[#0f2320] px-6 py-3 rounded-lg font-bold transition-all shadow-[0_0_20px_rgba(0,194,168,0.3)]">
+<span class="material-symbols-outlined">play_arrow</span>
+                                Devam Et
+                            </button>
+</div>
+</div>
+<!-- Secondary Section: Quick Access Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+<!-- Upcoming Class -->
+<div class="bg-surface-dark p-5 rounded-xl border border-[#273a38] hover:border-primary/40 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-purple-500/10 rounded-lg text-purple-400">
+<span class="material-symbols-outlined">videocam</span>
+</div>
+<span class="text-xs font-medium text-[#9abcb7] bg-[#273a38] px-2 py-1 rounded">Bugün, 19:00</span>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 group-hover:text-primary transition-colors">Canlı Ders: Python 101</h4>
+<p class="text-sm text-[#9abcb7]">Eğitmen: Dr. Emre Can</p>
+</div>
+<!-- Assignments -->
+<div class="bg-surface-dark p-5 rounded-xl border border-[#273a38] hover:border-primary/40 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-pink-500/10 rounded-lg text-pink-400">
+<span class="material-symbols-outlined">assignment_late</span>
+</div>
+<span class="text-xs font-medium text-pink-400 bg-pink-500/10 px-2 py-1 rounded">2 Gün Kaldı</span>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 group-hover:text-primary transition-colors">Algoritma Ödevi #4</h4>
+<p class="text-sm text-[#9abcb7]">Akış şemaları ve pseudocode</p>
+</div>
+</div>
+</div>
+<!-- Right Sidebar -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- DIGEM Guide Widget -->
+<div class="bg-surface-dark rounded-2xl border border-[#273a38] p-1 overflow-hidden">
+<div class="bg-gradient-to-b from-primary/20 to-transparent p-6 pb-2 text-center rounded-t-xl">
+<h3 class="text-white font-bold tracking-wide text-sm uppercase mb-4 opacity-80">DIGEM REHBERİ</h3>
+<div class="relative mx-auto w-24 h-24 mb-4">
+<div class="absolute inset-0 bg-primary/20 rounded-full animate-pulse"></div>
+<img alt="Male portrait representing a mentor or coach" class="w-24 h-24 rounded-full object-cover border-4 border-surface-dark relative z-10" data-alt="Portrait of a friendly mentor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe3aMlY-ecaY3PoZN8nF-sf-QUdSx-VNccPmibpriHTKIGiIi_w3fTrl9JoubOweXUFAoCdTiriRCVFM06eSRr4eblEoPXHqPMi5Crt-NlbJWKgoX1Ry6UKE8JbgZ3RPcbMUKh3Ef3SXGElLjHm6dJtrBOrxOdTdCVdjCp9XDUKzLvsrmm1eSDo1triMp4OtJRcrJV-6obX4loC0X6OCB1dYrw5jWN05Qow_YX0w8B9RkoEMpyl4ob9JlSHp_MpdLPJNIoFinamw"/>
+<div class="absolute bottom-0 right-1 z-20 bg-primary text-[#0f2320] rounded-full p-1 border-2 border-surface-dark">
+<span class="material-symbols-outlined text-sm font-bold">format_quote</span>
+</div>
+</div>
+</div>
+<div class="px-6 pb-6 pt-2 text-center">
+<p class="text-white font-medium italic text-lg leading-relaxed">
+                                "Harika gidiyorsun! Bugün 2 ders daha tamamlarsan haftalık hedefine ulaşacaksın."
+                            </p>
+<div class="mt-6">
+<button class="w-full py-2.5 rounded-lg border border-[#273a38] text-[#9abcb7] text-sm hover:text-white hover:bg-[#273a38] transition-colors">
+                                    Yeni Hedef Belirle
+                                </button>
+</div>
+</div>
+</div>
+<!-- Recommended/Community Widget -->
+<div class="bg-surface-dark rounded-2xl border border-[#273a38] p-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-white font-bold">Popüler Topluluklar</h3>
+<a class="text-primary text-xs font-medium hover:underline" href="#">Tümünü Gör</a>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 p-2 hover:bg-[#273a38] rounded-lg cursor-pointer transition-colors">
+<div class="size-10 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">JS</div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-medium">JavaScript Severler</p>
+<p class="text-[#9abcb7] text-xs">1.2k Üye</p>
+</div>
+<span class="material-symbols-outlined text-[#9abcb7] ml-auto text-sm">chevron_right</span>
+</div>
+<div class="flex items-center gap-3 p-2 hover:bg-[#273a38] rounded-lg cursor-pointer transition-colors">
+<div class="size-10 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">UX</div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-medium">UI/UX Tasarım</p>
+<p class="text-[#9abcb7] text-xs">850 Üye</p>
+</div>
+<span class="material-symbols-outlined text-[#9abcb7] ml-auto text-sm">chevron_right</span>
+</div>
+<div class="flex items-center gap-3 p-2 hover:bg-[#273a38] rounded-lg cursor-pointer transition-colors">
+<div class="size-10 rounded-lg bg-green-600 flex items-center justify-center text-white font-bold">AI</div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-medium">Yapay Zeka Giriş</p>
+<p class="text-[#9abcb7] text-xs">2.4k Üye</p>
+</div>
+<span class="material-symbols-outlined text-[#9abcb7] ml-auto text-sm">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

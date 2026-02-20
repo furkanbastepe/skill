@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-041 Python Playground</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "editor-bg": "#1e242c",
+                        "console-bg": "#0d1116",
+                        "panel-bg": "#1a222c",
+                        "accent-blue": "#3b82f6",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["Fira Code", "Consolas", "Monaco", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #4b5563;
+            border-radius: 20px;
+        }
+        .line-numbers {
+            counter-reset: line;
+        }
+        .line-numbers > div::before {
+            counter-increment: line;
+            content: counter(line);
+            display: inline-block;
+            width: 2rem;
+            text-align: right;
+            margin-right: 1rem;
+            color: #6b7280;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden flex flex-col h-screen">
+<!-- Top Navigation -->
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#283039] bg-[#111418] px-6 py-3 shrink-0">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Python</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Modules</a>
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary pb-0.5" href="#">Challenges</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Leaderboard</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1e242c] border border-[#283039]">
+<div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-medium text-slate-300">Online</span>
+</div>
+<button class="flex size-9 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-[#1e242c] text-white hover:bg-[#283039] transition-colors border border-[#283039]">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col min-h-0">
+<!-- Challenge Header & Breadcrumbs -->
+<div class="flex-none px-6 py-4 border-b border-[#283039] bg-[#111418]">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-xs font-medium text-[#9dabb9]">
+<a class="hover:text-primary transition-colors" href="#">Core Programming</a>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Module 1: Syntax</a>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-white">SCR-041</span>
+</div>
+<h1 class="text-xl font-bold text-white tracking-tight">Python Syntax Playground: Variables</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#283039] hover:bg-[#323b46] text-white text-sm font-medium transition-colors border border-transparent hover:border-[#4b5563]">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+<span>Reset Code</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-white text-sm font-bold shadow-[0_0_15px_rgba(19,127,236,0.4)] transition-all transform active:scale-95">
+<span class="material-symbols-outlined text-[18px] fill">play_arrow</span>
+<span>Run Code</span>
+</button>
+</div>
+</div>
+</div>
+<!-- IDE Content Grid -->
+<div class="flex-1 flex min-h-0 overflow-hidden bg-[#0d1116]">
+<!-- Left Panel: Instructions & Hints -->
+<div class="hidden lg:flex w-[320px] flex-col border-r border-[#283039] bg-[#161b22] overflow-hidden flex-none">
+<div class="flex items-center px-4 py-3 border-b border-[#283039] bg-[#111418]">
+<span class="material-symbols-outlined text-primary mr-2 text-[20px]">school</span>
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">Instructions</h3>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-5 space-y-6">
+<div class="space-y-3">
+<h4 class="text-white text-lg font-bold">Challenge 4: Variables</h4>
+<p class="text-[#9dabb9] text-sm leading-relaxed">
+                            In Python, variables are containers for storing data values. Unlike other programming languages, Python has no command for declaring a variable.
+                        </p>
+<p class="text-[#9dabb9] text-sm leading-relaxed">
+                            A variable is created the moment you first assign a value to it.
+                        </p>
+</div>
+<div class="p-4 rounded-lg bg-[#1e242c] border border-l-4 border-[#283039] border-l-primary">
+<h5 class="text-white text-sm font-bold mb-2">Your Task</h5>
+<ul class="list-disc pl-4 space-y-2 text-sm text-[#cbd5e1]">
+<li>Create a variable named <code class="bg-[#283039] px-1.5 py-0.5 rounded text-accent-blue font-mono text-xs">score</code>.</li>
+<li>Assign it the integer value <code class="bg-[#283039] px-1.5 py-0.5 rounded text-green-400 font-mono text-xs">100</code>.</li>
+<li>Print the variable using the <code class="bg-[#283039] px-1.5 py-0.5 rounded text-yellow-400 font-mono text-xs">print()</code> function.</li>
+</ul>
+</div>
+<!-- Hints Section -->
+<div class="space-y-3 pt-4 border-t border-[#283039]">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-bold text-[#9dabb9] uppercase tracking-wider">Hints</h3>
+<span class="text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded-full font-bold">2 Available</span>
+</div>
+<details class="group bg-[#1e242c] rounded-lg border border-[#283039] open:border-primary/50 transition-colors">
+<summary class="flex items-center justify-between p-3 cursor-pointer select-none">
+<span class="text-sm font-medium text-white group-open:text-primary">Naming Rules</span>
+<span class="material-symbols-outlined text-[#9dabb9] group-open:rotate-180 transition-transform text-[20px]">keyboard_arrow_down</span>
+</summary>
+<div class="px-3 pb-3 pt-0">
+<p class="text-xs text-[#9dabb9] mb-2">Remember, variable names cannot start with a number and are case-sensitive.</p>
+<div class="bg-[#0d1116] p-2 rounded border border-[#283039] font-mono text-xs text-slate-300">
+<span class="text-red-400"># Incorrect</span><br/>
+                                    1score = 100<br/><br/>
+<span class="text-green-400"># Correct</span><br/>
+                                    score_1 = 100
+                                </div>
+</div>
+</details>
+<details class="group bg-[#1e242c] rounded-lg border border-[#283039] open:border-primary/50 transition-colors">
+<summary class="flex items-center justify-between p-3 cursor-pointer select-none">
+<span class="text-sm font-medium text-white group-open:text-primary">Assignment</span>
+<span class="material-symbols-outlined text-[#9dabb9] group-open:rotate-180 transition-transform text-[20px]">keyboard_arrow_down</span>
+</summary>
+<div class="px-3 pb-3 pt-0">
+<p class="text-xs text-[#9dabb9] mb-2">Use the equals sign <code class="text-white">=</code> to assign a value.</p>
+<div class="bg-[#0d1116] p-2 rounded border border-[#283039] font-mono text-xs text-slate-300">
+                                    my_variable = 10
+                                </div>
+</div>
+</details>
+</div>
+</div>
+</div>
+<!-- Middle Panel: Code Editor -->
+<div class="flex-1 flex flex-col min-w-0 bg-[#1e242c] relative">
+<!-- Editor Tabs -->
+<div class="flex items-center bg-[#111418] border-b border-[#283039] px-2 pt-2 gap-1">
+<div class="flex items-center gap-2 px-4 py-2 bg-[#1e242c] rounded-t-lg text-white text-sm font-medium border-x border-t border-[#283039] border-b-[#1e242c] -mb-px relative z-10">
+<span class="material-symbols-outlined text-[16px] text-blue-400">code</span>
+                        main.py
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 ml-1"></span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 text-[#9dabb9] hover:text-white hover:bg-[#1a2028] rounded-t-lg text-sm font-medium transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-yellow-500">description</span>
+                        README.md
+                    </div>
+</div>
+<!-- Editor Area -->
+<div class="flex-1 overflow-auto custom-scrollbar font-mono text-sm relative" onclick="document.getElementById('code-input').focus()">
+<div class="flex min-h-full">
+<!-- Line Numbers -->
+<div class="py-4 bg-[#161b22] border-r border-[#283039] text-[#4b5563] text-right select-none font-mono text-[13px] leading-6 w-12 flex-none flex flex-col items-center">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+</div>
+<!-- Code Content with Syntax Highlighting Simulation -->
+<div class="flex-1 p-4 text-[13px] leading-6 text-[#e2e8f0] relative">
+<!-- Raw textarea for input (invisible but focusable) -->
+<textarea class="absolute inset-0 w-full h-full opacity-0 z-10 p-4 font-mono text-[13px] leading-6 resize-none focus:outline-none bg-transparent text-transparent caret-white" id="code-input" spellcheck="false"># Write your code below to solve the challenge
+# Create a variable named 'score', assign 100, and print it.
+
+</textarea>
+<!-- Visual Code Layer -->
+<div class="pointer-events-none whitespace-pre font-mono">
+<span class="text-[#6b7280] italic"># Write your code below to solve the challenge</span>
+<span class="text-[#6b7280] italic"># Create a variable named 'score', assign 100, and print it.</span>
+<span class="text-accent-blue">score</span> <span class="text-pink-400">=</span> <span class="text-green-400">100</span>
+<span class="text-yellow-300">print</span>(<span class="text-accent-blue">score</span>)
+<span class="animate-pulse inline-block w-2 h-4 bg-primary align-middle ml-px"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Success Toast (Hidden by default, shown here for demo) -->
+<div class="absolute bottom-6 right-6 z-50 animate-bounce">
+<div class="flex items-center gap-3 bg-[#111418] border border-green-500/30 shadow-[0_4px_20px_rgba(0,0,0,0.5)] rounded-lg p-4 pr-6">
+<div class="flex items-center justify-center size-8 rounded-full bg-green-500/20 text-green-400">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-sm">Great Job!</h4>
+<p class="text-[#9dabb9] text-xs">Logic verified. Ready for the next step?</p>
+</div>
+<button class="ml-2 text-white/50 hover:text-white">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Panel: Output Console -->
+<div class="w-full md:w-[350px] flex flex-col border-l border-[#283039] bg-[#0d1116] flex-none">
+<div class="flex items-center justify-between px-4 py-3 border-b border-[#283039] bg-[#111418]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#9dabb9] text-[20px]">terminal</span>
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">Output</h3>
+</div>
+<button class="text-[#9dabb9] hover:text-white text-xs font-medium px-2 py-1 rounded hover:bg-[#283039] transition-colors">Clear</button>
+</div>
+<div class="flex-1 p-4 font-mono text-sm overflow-y-auto custom-scrollbar">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-[#9dabb9] text-xs mb-2 opacity-50">
+<span>python3 main.py</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-[#283039]">14ms</span>
+</div>
+<!-- Output Lines -->
+<div class="text-white font-medium">100</div>
+<!-- Success Message in Console -->
+<div class="mt-4 pt-4 border-t border-[#283039] border-dashed">
+<div class="text-green-400 text-xs font-bold mb-1">
+<span class="material-symbols-outlined align-middle text-[14px] mr-1">check</span>
+                                TEST PASSED
+                            </div>
+<div class="text-[#9dabb9] text-xs">All test cases passed successfully.</div>
+</div>
+<!-- Example Error Message (Commented out, but ready for error state) -->
+<!-- 
+                        <div class="text-red-400 mt-4">
+                            Traceback (most recent call last):<br>
+                            File "main.py", line 4, in &lt;module&gt;<br>
+                            NameError: name 'scor' is not defined
+                        </div> 
+                        -->
+</div>
+</div>
+<!-- Console Input (Interactive shell feel) -->
+<div class="p-3 border-t border-[#283039] bg-[#111418]">
+<div class="flex items-center gap-2">
+<span class="text-green-500 font-bold">➜</span>
+<input class="bg-transparent border-none text-white text-sm w-full focus:ring-0 placeholder:text-[#9dabb9]/30 font-mono p-0" placeholder="Type here to test snippet..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Instructions Toggle (Visible only on small screens) -->
+<div class="lg:hidden fixed bottom-6 left-6 z-40">
+<button class="flex items-center justify-center size-12 rounded-full bg-primary text-white shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined">school</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rozetler ve İlerleme - Öğrenci Paneli</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for radial lines and pulse effects that are hard to do with just utility classes */
+        .radial-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, #273a38 0%, #00c2a8 50%, #273a38 100%);
+            transform-origin: left center;
+            z-index: 0;
+        }
+        
+        .glow-pulse {
+            box-shadow: 0 0 0 0 rgba(0, 194, 168, 0.7);
+            animation: pulse-teal 2s infinite;
+        }
+
+        @keyframes pulse-teal {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 194, 168, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(0, 194, 168, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 194, 168, 0);
+            }
+        }
+
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-x-hidden text-slate-900 dark:text-white transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#273a38] bg-white/90 dark:bg-[#101817]/90 backdrop-blur-md px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">military_tech</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">Rozetler ve İlerleme</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Ana Sayfa</a>
+<a class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dersler</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Rozetler</a>
+<a class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Profil</a>
+</div>
+<div class="flex items-center gap-4">
+<!-- XP Bar visible in header -->
+<div class="hidden md:flex flex-col items-end w-32 gap-1">
+<div class="flex justify-between w-full text-xs font-medium text-slate-500 dark:text-[#9abcb7]">
+<span>Lv. 12</span>
+<span>1250 / 1500 XP</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-slate-200 dark:bg-[#395652] overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-[#273a38] mx-2 hidden md:block"></div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="text-right hidden md:block">
+<p class="text-sm font-bold leading-none dark:text-white">Ahmet Yılmaz</p>
+<p class="text-xs text-slate-500 dark:text-[#9abcb7]">Öğrenci</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20 group-hover:ring-primary transition-all" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQuxKo7-Cx8t7vH_Wq3wjm223z4XCMiPsOXJTe2WEXN5CmyfYKpzVdnzC0YwMklx_CZ_05-EmEGuPMyIPjb8Oleihaz7gbLgEpbgkF_H_HPRbusNjse-GvZ2UNB49e4L772mTtfPq4DoqgAqZ6xR0MUXfU4QCNBKCKbTMQ_2G-IHkFVWHz_1bxTLDkKDmCrdN9rwmxY8gPkgm9CsTxkgJw3lI2CNti9-ZGwL9NNWb6KBfY-GPtA89t-dLeTDn84XnQTMNcLKqzPh4R");'></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow p-4 lg:p-8 flex justify-center">
+<div class="w-full max-w-7xl flex flex-col gap-6">
+<!-- Hero / Stats Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="lg:col-span-2 bg-white dark:bg-[#172a27] rounded-xl p-6 border border-slate-200 dark:border-[#273a38] flex flex-col justify-center relative overflow-hidden group">
+<div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"></div>
+<h1 class="text-3xl lg:text-4xl font-bold mb-2 tracking-tight">Yetenek Ağacı</h1>
+<p class="text-slate-500 dark:text-[#9abcb7] max-w-md">Gelişimini takip et, yeni yeteneklerin kilidini aç ve rozet koleksiyonunu genişlet.</p>
+</div>
+<div class="bg-white dark:bg-[#172a27] rounded-xl p-6 border border-slate-200 dark:border-[#273a38] flex flex-col justify-between">
+<div class="flex items-center gap-3 text-slate-500 dark:text-[#9abcb7] mb-4">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="text-sm font-medium uppercase tracking-wider">Kazanılan Rozetler</span>
+</div>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-bold text-slate-900 dark:text-white">12</span>
+<span class="text-lg text-slate-400 dark:text-[#5c7a76] mb-1">/ 50</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#172a27] rounded-xl p-6 border border-slate-200 dark:border-[#273a38] flex flex-col justify-between">
+<div class="flex items-center gap-3 text-slate-500 dark:text-[#9abcb7] mb-4">
+<span class="material-symbols-outlined">lock_open</span>
+<span class="text-sm font-medium uppercase tracking-wider">Sıradaki Hedef</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xl font-bold text-slate-900 dark:text-white">Algoritma Ustası</span>
+<span class="text-xs text-primary font-medium">Tamamlanmak Üzere (%85)</span>
+</div>
+</div>
+</div>
+<!-- Content Split: Map & Badges -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full min-h-[600px]">
+<!-- Left Panel: Radial Progression Map -->
+<div class="lg:col-span-7 flex flex-col bg-white dark:bg-[#172a27] rounded-xl border border-slate-200 dark:border-[#273a38] relative overflow-hidden h-[600px] lg:h-auto">
+<div class="p-6 border-b border-slate-200 dark:border-[#273a38] flex justify-between items-center z-10 bg-white/50 dark:bg-[#172a27]/50 backdrop-blur-sm">
+<h3 class="font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">hub</span>
+                            Öğrenme Haritası
+                        </h3>
+<div class="flex gap-2">
+<button class="size-8 rounded-full bg-slate-100 dark:bg-[#273a38] flex items-center justify-center hover:bg-primary/20 text-slate-600 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<button class="size-8 rounded-full bg-slate-100 dark:bg-[#273a38] flex items-center justify-center hover:bg-primary/20 text-slate-600 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<!-- Map Visualization Area -->
+<div class="relative w-full h-full bg-[#f0f4f4] dark:bg-[#0f2320] flex items-center justify-center overflow-hidden">
+<!-- Abstract Grid Background -->
+<div class="absolute inset-0 opacity-10 dark:opacity-20" style="background-image: radial-gradient(#00c2a8 1px, transparent 1px); background-size: 40px 40px;">
+</div>
+<!-- Central Node -->
+<div class="absolute z-20 flex flex-col items-center justify-center">
+<div class="size-24 rounded-full bg-slate-900 dark:bg-[#101817] border-4 border-primary shadow-[0_0_30px_rgba(0,194,168,0.3)] flex items-center justify-center relative glow-pulse z-20">
+<div class="size-20 rounded-full bg-cover bg-center" data-alt="User avatar central node" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQUrliOHUeu6bWNstl6R_ESFfjaOP1URIOdVOvaApeDWnlF9Wjn-_3oToBvw-_MfMEN6eBCGhqg1ptbw9Jo7BfJk16ncMw-33aFhZHD2Fxvi-QPwFvtPf4-Qxh3CwXGm6kTwQO4r8u4Z5E5YV2Mcl2drXbba9sDwpjZcFSXqjUoMaTBDtrlUvzyqJF4Pi9Q3Zkz4xLWtCq5v8q5jXeea2-OZoC8G9erkA2aMTSiTHiKcT0atn23te7-qL1s1Frop2fg7dXNhsEYJYT');"></div>
+<div class="absolute -bottom-3 bg-primary text-[#101817] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Sen</div>
+</div>
+</div>
+<!-- Orbiting Nodes & Lines -->
+<!-- Node 1: Completed -->
+<div class="absolute" style="transform: translate(-140px, -80px);">
+<div class="absolute top-1/2 left-1/2 w-40 h-0.5 bg-primary -z-10 origin-right -translate-y-1/2 translate-x-12 rotate-[30deg]"></div>
+<div class="group relative cursor-pointer">
+<div class="size-16 rounded-full bg-primary flex items-center justify-center shadow-lg transform transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[#101817] text-3xl">calculate</span>
+</div>
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-slate-900 dark:bg-[#273a38] px-3 py-1 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-xs font-bold text-primary">Matematik 101</span>
+</div>
+</div>
+</div>
+<!-- Node 2: Completed -->
+<div class="absolute" style="transform: translate(140px, -80px);">
+<div class="absolute top-1/2 right-1/2 w-40 h-0.5 bg-primary -z-10 origin-left -translate-y-1/2 -translate-x-12 -rotate-[30deg]"></div>
+<div class="group relative cursor-pointer">
+<div class="size-16 rounded-full bg-primary flex items-center justify-center shadow-lg transform transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[#101817] text-3xl">code</span>
+</div>
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-slate-900 dark:bg-[#273a38] px-3 py-1 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-xs font-bold text-primary">Python Temelleri</span>
+</div>
+</div>
+</div>
+<!-- Node 3: In Progress (Active) -->
+<div class="absolute" style="transform: translate(0px, 150px);">
+<div class="absolute bottom-full left-1/2 w-0.5 h-32 bg-gradient-to-t from-slate-400 to-primary -z-10 -translate-x-1/2"></div>
+<div class="group relative cursor-pointer">
+<div class="size-20 rounded-full bg-slate-800 dark:bg-[#273a38] border-2 border-primary border-dashed flex items-center justify-center shadow-lg transform transition-transform group-hover:scale-105">
+<div class="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin"></div>
+<span class="material-symbols-outlined text-white text-3xl">terminal</span>
+</div>
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-slate-900 dark:bg-[#273a38] px-3 py-1 rounded-lg whitespace-nowrap">
+<span class="text-xs font-bold text-white">Veri Yapıları</span>
+<span class="block text-[10px] text-center text-primary">%45</span>
+</div>
+</div>
+</div>
+<!-- Node 4: Locked -->
+<div class="absolute" style="transform: translate(-180px, 100px);">
+<div class="absolute bottom-full left-full w-40 h-0.5 bg-slate-300 dark:bg-[#273a38] -z-10 origin-bottom-left -rotate-[45deg]"></div>
+<div class="group relative cursor-pointer opacity-50 hover:opacity-100 transition-opacity">
+<div class="size-14 rounded-full bg-slate-200 dark:bg-[#1a2c29] border-2 border-slate-300 dark:border-[#395652] flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5c7a76] text-2xl">lock</span>
+</div>
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-slate-900 dark:bg-[#273a38] px-3 py-1 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-30 pointer-events-none">
+<span class="text-xs font-bold text-white">İleri Analiz</span>
+<span class="block text-[10px] text-slate-400">Gereksinim: Veri Yapıları</span>
+</div>
+</div>
+</div>
+<!-- Node 5: Locked -->
+<div class="absolute" style="transform: translate(180px, 100px);">
+<div class="absolute bottom-full right-full w-40 h-0.5 bg-slate-300 dark:bg-[#273a38] -z-10 origin-bottom-right rotate-[45deg]"></div>
+<div class="group relative cursor-pointer opacity-50 hover:opacity-100 transition-opacity">
+<div class="size-14 rounded-full bg-slate-200 dark:bg-[#1a2c29] border-2 border-slate-300 dark:border-[#395652] flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5c7a76] text-2xl">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Badge Wall -->
+<div class="lg:col-span-5 flex flex-col gap-4">
+<!-- Filters -->
+<div class="bg-white dark:bg-[#172a27] rounded-xl p-2 border border-slate-200 dark:border-[#273a38] flex flex-wrap gap-1">
+<button class="flex-1 px-4 py-2 rounded-lg bg-primary text-[#101817] text-sm font-bold shadow-md transition-transform active:scale-95">
+                            Tümü
+                        </button>
+<button class="flex-1 px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#273a38] text-slate-600 dark:text-[#9abcb7] text-sm font-medium transition-colors">
+                            Kazanılan
+                        </button>
+<button class="flex-1 px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#273a38] text-slate-600 dark:text-[#9abcb7] text-sm font-medium transition-colors">
+                            Kilitli
+                        </button>
+<button class="flex-1 px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#273a38] text-slate-600 dark:text-[#9abcb7] text-sm font-medium transition-colors">
+                            Nadir
+                        </button>
+</div>
+<!-- Badge Grid Container -->
+<div class="bg-white dark:bg-[#172a27] rounded-xl border border-slate-200 dark:border-[#273a38] flex-1 p-6 overflow-y-auto max-h-[600px] custom-scrollbar">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+<!-- Earned Badge Card -->
+<div class="aspect-square relative group cursor-pointer perspective-1000">
+<div class="w-full h-full bg-[#f0f9f8] dark:bg-[#1f3532] rounded-2xl border-2 border-primary/30 group-hover:border-primary flex flex-col items-center justify-center p-3 transition-all duration-300 transform group-hover:-translate-y-1 shadow-lg group-hover:shadow-primary/20">
+<div class="relative mb-2">
+<div class="absolute inset-0 bg-primary blur-lg opacity-20 rounded-full"></div>
+<div class="relative size-14 bg-gradient-to-br from-yellow-300 to-yellow-600 rounded-full flex items-center justify-center border-2 border-white dark:border-[#101817] shadow-inner">
+<span class="material-symbols-outlined text-white text-3xl drop-shadow-md">bolt</span>
+</div>
+</div>
+<h4 class="text-xs font-bold text-center dark:text-white leading-tight">Hızlı Çözücü</h4>
+<span class="text-[10px] text-primary mt-1 font-medium">12 Haz</span>
+</div>
+</div>
+<!-- Earned Badge Card -->
+<div class="aspect-square relative group cursor-pointer perspective-1000">
+<div class="w-full h-full bg-[#f0f9f8] dark:bg-[#1f3532] rounded-2xl border-2 border-primary/30 group-hover:border-primary flex flex-col items-center justify-center p-3 transition-all duration-300 transform group-hover:-translate-y-1 shadow-lg group-hover:shadow-primary/20">
+<div class="relative mb-2">
+<div class="absolute inset-0 bg-primary blur-lg opacity-20 rounded-full"></div>
+<div class="relative size-14 bg-gradient-to-br from-purple-400 to-indigo-600 rounded-full flex items-center justify-center border-2 border-white dark:border-[#101817] shadow-inner">
+<span class="material-symbols-outlined text-white text-3xl drop-shadow-md">psychology</span>
+</div>
+</div>
+<h4 class="text-xs font-bold text-center dark:text-white leading-tight">Zihin Ustası</h4>
+<span class="text-[10px] text-primary mt-1 font-medium">10 Haz</span>
+</div>
+</div>
+<!-- Earned Badge Card -->
+<div class="aspect-square relative group cursor-pointer perspective-1000">
+<div class="w-full h-full bg-[#f0f9f8] dark:bg-[#1f3532] rounded-2xl border-2 border-primary/30 group-hover:border-primary flex flex-col items-center justify-center p-3 transition-all duration-300 transform group-hover:-translate-y-1 shadow-lg group-hover:shadow-primary/20">
+<div class="relative mb-2">
+<div class="absolute inset-0 bg-primary blur-lg opacity-20 rounded-full"></div>
+<div class="relative size-14 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center border-2 border-white dark:border-[#101817] shadow-inner">
+<span class="material-symbols-outlined text-white text-3xl drop-shadow-md">check_circle</span>
+</div>
+</div>
+<h4 class="text-xs font-bold text-center dark:text-white leading-tight">Tam Puan</h4>
+<span class="text-[10px] text-primary mt-1 font-medium">05 Haz</span>
+</div>
+</div>
+<!-- Locked Badge Card -->
+<div class="aspect-square relative group cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-full h-full bg-slate-100 dark:bg-[#1a2524] rounded-2xl border-2 border-dashed border-slate-300 dark:border-[#395652] flex flex-col items-center justify-center p-3">
+<div class="relative size-14 bg-slate-200 dark:bg-[#273a38] rounded-full flex items-center justify-center mb-2 grayscale">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5c7a76] text-3xl">lock</span>
+</div>
+<h4 class="text-xs font-bold text-center text-slate-500 dark:text-[#9abcb7] leading-tight">Kod Mimarisi</h4>
+<!-- Tooltip on hover -->
+<div class="absolute bottom-full mb-2 bg-slate-900 dark:bg-black text-white text-xs p-2 rounded w-32 text-center shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
+                                        5 Proje Görevini Tamamla
+                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-black"></div>
+</div>
+</div>
+</div>
+<!-- Locked Badge Card -->
+<div class="aspect-square relative group cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-full h-full bg-slate-100 dark:bg-[#1a2524] rounded-2xl border-2 border-dashed border-slate-300 dark:border-[#395652] flex flex-col items-center justify-center p-3">
+<div class="relative size-14 bg-slate-200 dark:bg-[#273a38] rounded-full flex items-center justify-center mb-2 grayscale">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5c7a76] text-3xl">lock</span>
+</div>
+<h4 class="text-xs font-bold text-center text-slate-500 dark:text-[#9abcb7] leading-tight">Hata Avcısı</h4>
+<!-- Tooltip on hover -->
+<div class="absolute bottom-full mb-2 bg-slate-900 dark:bg-black text-white text-xs p-2 rounded w-32 text-center shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
+                                        10 Hata Ayıklama Görevi Çöz
+                                    </div>
+</div>
+</div>
+<!-- Locked Badge Card -->
+<div class="aspect-square relative group cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-full h-full bg-slate-100 dark:bg-[#1a2524] rounded-2xl border-2 border-dashed border-slate-300 dark:border-[#395652] flex flex-col items-center justify-center p-3">
+<div class="relative size-14 bg-slate-200 dark:bg-[#273a38] rounded-full flex items-center justify-center mb-2 grayscale">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5c7a76] text-3xl">lock</span>
+</div>
+<h4 class="text-xs font-bold text-center text-slate-500 dark:text-[#9abcb7] leading-tight">Topluluk Lideri</h4>
+</div>
+</div>
+<!-- Locked Badge Card -->
+<div class="aspect-square relative group cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-full h-full bg-slate-100 dark:bg-[#1a2524] rounded-2xl border-2 border-dashed border-slate-300 dark:border-[#395652] flex flex-col items-center justify-center p-3">
+<div class="relative size-14 bg-slate-200 dark:bg-[#273a38] rounded-full flex items-center justify-center mb-2 grayscale">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5c7a76] text-3xl">lock</span>
+</div>
+<h4 class="text-xs font-bold text-center text-slate-500 dark:text-[#9abcb7] leading-tight">Yardımsever</h4>
+</div>
+</div>
+<!-- Locked Badge Card -->
+<div class="aspect-square relative group cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-full h-full bg-slate-100 dark:bg-[#1a2524] rounded-2xl border-2 border-dashed border-slate-300 dark:border-[#395652] flex flex-col items-center justify-center p-3">
+<div class="relative size-14 bg-slate-200 dark:bg-[#273a38] rounded-full flex items-center justify-center mb-2 grayscale">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5c7a76] text-3xl">lock</span>
+</div>
+<h4 class="text-xs font-bold text-center text-slate-500 dark:text-[#9abcb7] leading-tight">Maratoncu</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Detail Modal (Overlay Example) - Hidden by default, can be toggled by JS in real app, showing here as a static overlay for design demo if needed.
+         I will render a "Selected Item" area at the bottom right instead of a modal to keep it single-page flow without JS triggers -->
+<!-- Fixed "Toast" or Notification style Milestone Card (Simulating interaction) -->
+<div class="fixed bottom-6 right-6 max-w-sm w-full bg-white dark:bg-[#172a27] rounded-xl shadow-2xl border border-primary p-4 animate-[slideIn_0.5s_ease-out] hidden lg:block">
+<div class="flex items-start gap-4">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold dark:text-white">Yeni Başarım Kilidi Açıldı!</h4>
+<p class="text-xs text-slate-500 dark:text-[#9abcb7] mt-1">"Veri Yapıları" modülündeki performansınla 'Kod Mimarisi' rozetine bir adım daha yaklaştın.</p>
+<div class="mt-3 flex gap-2">
+<button class="text-xs bg-primary text-[#101817] px-3 py-1.5 rounded-full font-bold hover:bg-primary/90 transition-colors">İncele</button>
+<button class="text-xs bg-transparent text-slate-500 dark:text-[#9abcb7] px-3 py-1.5 rounded-full font-medium hover:text-white transition-colors">Kapat</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

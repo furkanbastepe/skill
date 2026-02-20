@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirvanaOS - Module Launcher</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#55ca02",
+                        "background-light": "#f7f8f5",
+                        "background-dark": "#17230f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for cyberpunk feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #141810;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2f3a27;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #55ca02;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .card-glow:hover {
+            box-shadow: 0 0 20px rgba(var(--glow-color), 0.15);
+            border-color: rgba(var(--glow-color), 0.4);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0c08] text-white font-display min-h-screen flex items-center justify-center p-4 md:p-8 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=2564&amp;auto=format&amp;fit=crop')] bg-cover bg-center" data-alt="Abstract dark digital landscape background">
+<!-- Main OS Window -->
+<div class="relative w-full max-w-[1200px] bg-[#141810]/95 backdrop-blur-xl rounded-xl border border-[#2f3a27] shadow-2xl flex flex-col overflow-hidden max-h-[90vh]">
+<!-- Window Title Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#2f3a27] px-6 py-3 bg-[#141810]">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<h2 class="text-white text-sm font-bold tracking-wide uppercase opacity-80">NirvanaOS <span class="mx-2 opacity-30">|</span> Learning Hub</h2>
+</div>
+<!-- Window Controls -->
+<div class="flex gap-2">
+<button class="flex size-8 cursor-pointer items-center justify-center rounded-lg hover:bg-[#2f3a27] transition-colors text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-[18px]">minimize</span>
+</button>
+<button class="flex size-8 cursor-pointer items-center justify-center rounded-lg hover:bg-[#2f3a27] transition-colors text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-[18px]">check_box_outline_blank</span>
+</button>
+<button class="flex size-8 cursor-pointer items-center justify-center rounded-lg hover:bg-red-500/20 hover:text-red-400 transition-colors text-white/70">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="flex flex-1 flex-col overflow-y-auto p-6 md:p-10 lg:p-12 relative">
+<!-- Background Decorative Elements -->
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[80px] translate-y-1/4 -translate-x-1/4 pointer-events-none"></div>
+<!-- Page Header -->
+<div class="flex flex-col gap-2 mb-10 relative z-10">
+<h1 class="text-white text-4xl md:text-5xl font-black tracking-tight flex items-center gap-4">
+<span class="bg-gradient-to-br from-primary to-emerald-400 text-transparent bg-clip-text">📚</span> 
+                    Eğitim Modülleri
+                </h1>
+<p class="text-white/60 text-lg font-medium pl-1">Modül seç ve öğrenmeye başla</p>
+</div>
+<!-- Modules Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+<!-- Card 1: Temel Bilgisayar (Green) -->
+<!-- CSS Variable for glow color: 85, 202, 2 -->
+<div class="group glass-panel rounded-xl p-6 flex flex-col justify-between h-full min-h-[320px] transition-all duration-300 card-glow cursor-pointer relative overflow-hidden" style="--glow-color: 85, 202, 2;">
+<!-- Accent Line -->
+<div class="absolute top-0 left-0 w-full h-1 bg-[#58CC02] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex flex-col gap-6">
+<div class="flex items-start justify-between">
+<div class="size-16 rounded-2xl bg-[#58CC02]/10 flex items-center justify-center border border-[#58CC02]/20 group-hover:bg-[#58CC02]/20 transition-colors">
+<span class="text-4xl">🖥️</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-[#58CC02]/10 border border-[#58CC02]/20 text-[#58CC02] text-xs font-bold uppercase tracking-wider">
+                                Devam Et
+                            </span>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-white mb-2 group-hover:text-[#58CC02] transition-colors">Temel Bilgisayar</h3>
+<p class="text-white/50 text-sm leading-relaxed">Donanım, yazılım ve işletim sistemlerinin temellerini öğrenin.</p>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex justify-between text-sm font-medium mb-2 text-white/80">
+<span>İlerleme</span>
+<span>40%</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+<div class="bg-[#58CC02] h-2 rounded-full" style="width: 40%"></div>
+</div>
+<p class="text-xs text-white/40 mt-3 font-mono">8/20 Ders Tamamlandı</p>
+</div>
+</div>
+<!-- Card 2: Temel Ofis (Orange) -->
+<!-- CSS Variable for glow color: 255, 107, 53 -->
+<div class="group glass-panel rounded-xl p-6 flex flex-col justify-between h-full min-h-[320px] transition-all duration-300 card-glow cursor-pointer relative overflow-hidden" style="--glow-color: 255, 107, 53;">
+<div class="absolute top-0 left-0 w-full h-1 bg-[#FF6B35] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex flex-col gap-6">
+<div class="flex items-start justify-between">
+<div class="size-16 rounded-2xl bg-[#FF6B35]/10 flex items-center justify-center border border-[#FF6B35]/20 group-hover:bg-[#FF6B35]/20 transition-colors">
+<span class="text-4xl">💼</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs font-bold uppercase tracking-wider group-hover:bg-[#FF6B35]/10 group-hover:text-[#FF6B35] group-hover:border-[#FF6B35]/20 transition-all">
+                                Başla
+                            </span>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-white mb-2 group-hover:text-[#FF6B35] transition-colors">Temel Ofis</h3>
+<p class="text-white/50 text-sm leading-relaxed">Dokümanlar, tablolar ve sunumlar ile profesyonel dünyaya adım atın.</p>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex justify-between text-sm font-medium mb-2 text-white/80">
+<span>İlerleme</span>
+<span>0%</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+<div class="bg-[#FF6B35] h-2 rounded-full" style="width: 0%"></div>
+</div>
+<p class="text-xs text-white/40 mt-3 font-mono">0/10 Ders Tamamlandı</p>
+</div>
+</div>
+<!-- Card 3: Temel Programlama (Purple) -->
+<!-- CSS Variable for glow color: 124, 77, 255 -->
+<div class="group glass-panel rounded-xl p-6 flex flex-col justify-between h-full min-h-[320px] transition-all duration-300 card-glow cursor-pointer relative overflow-hidden" style="--glow-color: 124, 77, 255;">
+<div class="absolute top-0 left-0 w-full h-1 bg-[#7C4DFF] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex flex-col gap-6">
+<div class="flex items-start justify-between">
+<div class="size-16 rounded-2xl bg-[#7C4DFF]/10 flex items-center justify-center border border-[#7C4DFF]/20 group-hover:bg-[#7C4DFF]/20 transition-colors">
+<span class="text-4xl">🐍</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-[#7C4DFF]/10 border border-[#7C4DFF]/20 text-[#7C4DFF] text-xs font-bold uppercase tracking-wider">
+                                Devam Et
+                            </span>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-white mb-2 group-hover:text-[#7C4DFF] transition-colors">Temel Programlama</h3>
+<p class="text-white/50 text-sm leading-relaxed">Algoritmik düşünme yapısı ve Python ile kodlamaya giriş.</p>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex justify-between text-sm font-medium mb-2 text-white/80">
+<span>İlerleme</span>
+<span>15%</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+<div class="bg-[#7C4DFF] h-2 rounded-full" style="width: 15%"></div>
+</div>
+<p class="text-xs text-white/40 mt-3 font-mono">3/22 Ders Tamamlandı</p>
+</div>
+</div>
+</div>
+<!-- Footer Status Bar -->
+<div class="mt-12 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 font-mono">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-primary animate-pulse"></div>
+<span>System Status: Online</span>
+</div>
+<div class="mt-2 md:mt-0">
+                    NirvanaOS v2.4.0 • Build 20241027
+                </div>
+</div>
+</div>
+</div>
+</body></html>

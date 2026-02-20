@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Python Lesson Runner - NirvanaOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#55ca02",
+                        "background-light": "#f7f8f5",
+                        "background-dark": "#17230f", // Dark olive/black base
+                        "os-bg": "#0a0c08", // Even darker for the OS desktop background
+                        "window-bg": "#121a10", // Slightly lighter for the window
+                        "card-bg": "#1c2619", // Step card background
+                        "code-bg": "#1e1e2e", // Specific code block bg requested
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'gradient-primary': 'linear-gradient(135deg, #55ca02 0%, #3e9401 100%)',
+                        'gradient-glow': 'radial-gradient(circle at center, rgba(85, 202, 2, 0.15) 0%, rgba(0,0,0,0) 70%)',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(85, 202, 2, 0.3), 0 0 20px rgba(85, 202, 2, 0.1)',
+                        'window': '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for Code Block */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e1e2e;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3e9401;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #55ca02;
+        }
+    </style>
+</head>
+<body class="bg-os-bg text-white font-display min-h-screen flex items-center justify-center p-4 md:p-8 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&amp;w=2070&amp;auto=format&amp;fit=crop')] bg-cover bg-center bg-no-repeat bg-blend-overlay bg-black/80" data-alt="Abstract dark cyber technology background with subtle grid">
+<!-- NirvanaOS Window Container -->
+<div class="relative w-full max-w-5xl h-[85vh] flex flex-col bg-window-bg border border-white/5 rounded-lg shadow-window overflow-hidden backdrop-blur-sm">
+<!-- Window Controls / Header (Mac-like dots for OS feel) -->
+<div class="h-8 bg-black/20 flex items-center px-4 gap-2 border-b border-white/5 shrink-0">
+<div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+<div class="ml-4 text-xs text-white/30 font-mono tracking-widest uppercase">NirvanaOS // Lesson Runner_v1.0</div>
+</div>
+<!-- Progress Bar Section -->
+<div class="relative w-full h-1.5 bg-white/5">
+<div class="absolute top-0 left-0 h-full bg-gradient-primary shadow-[0_0_10px_#55ca02]" style="width: 40%;"></div>
+</div>
+<!-- Main Layout: Sidebar/Header + Content -->
+<div class="flex flex-col h-full overflow-hidden">
+<!-- Breadcrumbs & Step Counter -->
+<div class="flex items-center justify-between px-6 py-4 md:px-8 md:py-6 shrink-0">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-sm text-primary/60 font-mono">
+<a class="hover:text-primary transition-colors" href="#">Courses</a>
+<span class="text-white/20">/</span>
+<a class="hover:text-primary transition-colors" href="#">Python Basics</a>
+<span class="text-white/20">/</span>
+<span class="text-white/90">Introduction</span>
+</div>
+<h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-2">
+                        🐍 Merhaba Python!
+                    </h1>
+</div>
+<div class="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-primary text-xl">data_usage</span>
+<span class="font-mono text-primary font-bold">4/10</span>
+</div>
+</div>
+<!-- Content Scrollable Area -->
+<div class="flex-1 overflow-y-auto px-6 pb-6 md:px-8 md:pb-8 custom-scrollbar">
+<!-- Main Step Card -->
+<div class="relative bg-card-bg border border-white/5 rounded-xl p-6 md:p-8 shadow-lg">
+<!-- Floating XP Badge -->
+<div class="absolute top-6 right-6 md:top-8 md:right-8 animate-pulse">
+<div class="flex items-center gap-1 bg-primary/10 border border-primary/30 px-3 py-1 rounded-full shadow-neon">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span>
+<span class="text-primary text-xs font-bold font-mono tracking-wider">+10 XP</span>
+</div>
+</div>
+<!-- Step Title -->
+<h2 class="text-xl md:text-2xl font-bold text-white mb-4 pr-24">print() Fonksiyonu</h2>
+<!-- Instructional Text -->
+<div class="text-gray-300 leading-relaxed space-y-4 max-w-3xl">
+<p>
+                            Python programlama dilinde, yazdığımız kodların sonuçlarını görebilmek için ekrana çıktı vermemiz gerekir. Bunun için <code class="text-primary bg-primary/10 px-1.5 py-0.5 rounded font-mono text-sm">print()</code> fonksiyonunu kullanırız.
+                        </p>
+<p>
+                            Bu fonksiyon, parantezleri içine yazdığınız metni (string) veya değeri konsola yazdırır. Metin ifadeleri her zaman tırnak işaretleri (" " veya ' ') içinde yazılmalıdır.
+                        </p>
+</div>
+<!-- Code Block -->
+<div class="mt-8 relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-green-800 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+<div class="relative rounded-xl bg-code-bg border border-white/10 overflow-hidden font-mono text-sm shadow-2xl">
+<!-- Code Header -->
+<div class="flex items-center justify-between px-4 py-2 bg-black/20 border-b border-white/5">
+<span class="text-white/40 text-xs">main.py</span>
+<button class="text-white/40 hover:text-white transition-colors flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy
+                                </button>
+</div>
+<!-- Code Content -->
+<div class="p-6 overflow-x-auto custom-scrollbar">
+<pre><code class="language-python"><span class="text-[#c678dd]"># Ekrana 'Merhaba Dünya' yazdıralım</span>
+<span class="text-[#e5c07b]">print</span>(<span class="text-primary">"Merhaba Dünya!"</span>)
+
+<span class="text-[#c678dd]"># Sayıları yazdırmak için tırnak gerekmez</span>
+<span class="text-[#e5c07b]">print</span>(<span class="text-[#d19a66]">2024</span>)</code></pre>
+</div>
+</div>
+</div>
+<!-- Output Console Simulation -->
+<div class="mt-6 p-4 rounded-lg bg-black/40 border-l-4 border-primary/50 font-mono text-sm text-gray-400">
+<div class="flex items-center gap-2 mb-2 text-xs uppercase tracking-widest text-white/30">
+<span class="material-symbols-outlined text-[14px]">terminal</span> Output
+                        </div>
+<div class="text-white">Merhaba Dünya!</div>
+<div class="text-white">2024</div>
+</div>
+</div>
+</div>
+<!-- Footer / Action Bar -->
+<div class="p-6 md:p-8 pt-2 border-t border-white/5 bg-window-bg/95 backdrop-blur flex flex-col md:flex-row items-center justify-between gap-4 shrink-0 z-10">
+<button class="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 hover:bg-white/5 text-gray-300 transition-all font-medium group">
+<span class="material-symbols-outlined text-yellow-400 group-hover:animate-bounce">lightbulb</span>
+<span>İpucu</span>
+</button>
+<div class="flex w-full md:w-auto gap-4">
+<button class="w-full md:w-auto flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-gradient-primary text-white font-bold shadow-neon hover:shadow-[0_0_20px_rgba(85,202,2,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+<span>Sonraki</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

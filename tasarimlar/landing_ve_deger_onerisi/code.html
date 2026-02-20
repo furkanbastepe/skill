@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dijital Gençlik Merkezi - Landing</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101817",
+                        "surface-dark": "#1b2826",
+                        "surface-border": "#273a38",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .shimmer {
+            background: linear-gradient(to right, #1b2826 0%, #273a38 50%, #1b2826 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-border bg-background-dark/80 backdrop-blur-md px-4 sm:px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">hub</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">Dijital Gençlik Merkezi</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-gray-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Hakkımızda</a>
+<a class="text-gray-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Eğitimler</a>
+<a class="text-gray-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Merkezler</a>
+<a class="text-gray-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">İletişim</a>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:brightness-110 transition-all">
+<span class="truncate">Kayıt Ol</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-surface-dark border border-surface-border text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-surface-border transition-all">
+<span class="truncate">Giriş Yap</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Hero Section -->
+<div class="@container">
+<div class="flex flex-col gap-6 py-10 lg:py-20 lg:flex-row lg:items-center">
+<div class="flex flex-col gap-6 lg:w-1/2 lg:pr-12">
+<div class="flex flex-col gap-4 text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+<span class="material-symbols-outlined text-primary text-sm">rocket_launch</span>
+<span class="text-primary text-xs font-bold uppercase tracking-wider">Erken Erişim Başladı</span>
+</div>
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] sm:text-5xl lg:text-6xl">
+                            Geleceğin <span class="text-primary">Yetenekleri</span> Bugün Başlıyor
+                        </h1>
+<h2 class="text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
+                            UNDP ve Belediyeler işbirliğiyle hazırlanan yeni nesil dijital yetkinlik merkezi. Zorunlu çekirdek modüllerle temeli at, oyunlaştırılmış eğitimlerle kariyerine yön ver.
+                        </h2>
+</div>
+<div class="flex flex-wrap gap-4 mt-2">
+<button class="flex items-center justify-center rounded-full h-12 px-8 bg-primary text-background-dark text-base font-bold hover:brightness-110 hover:shadow-[0_0_20px_rgba(0,194,168,0.4)] transition-all">
+                            Hemen Başla
+                        </button>
+<button class="flex items-center justify-center rounded-full h-12 px-8 bg-surface-dark border border-surface-border text-white text-base font-bold hover:bg-surface-border transition-all gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                            Tanıtımı İzle
+                        </button>
+</div>
+<!-- Impact Metrics Strip -->
+<div class="flex gap-8 mt-6 pt-6 border-t border-surface-border">
+<div>
+<p class="text-2xl font-bold text-white">5K+</p>
+<p class="text-xs text-gray-500 uppercase tracking-wider">Öğrenci</p>
+</div>
+<div>
+<p class="text-2xl font-bold text-white">12</p>
+<p class="text-xs text-gray-500 uppercase tracking-wider">Belediye</p>
+</div>
+<div>
+<p class="text-2xl font-bold text-white">%85</p>
+<p class="text-xs text-gray-500 uppercase tracking-wider">İstihdam</p>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-1/2 mt-8 lg:mt-0 relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-dark border border-surface-border shadow-2xl">
+<img alt="Students collaborating on digital projects in a modern tech environment with holographic overlays" class="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt7q1-mjQLLzK1hqZf2CUAzhINOT6npD-VQMJlVocz2nMXU-hTn5-5iWjwNHMC4taKpKqFXeNHZWphyuLh8K0vDqSLVwasX6cfUgd8M2XxuL4woO6XAHLoFH73qXeo3xymKQqovOahGFUAQtqlpEzQkUG9F7-Hr2fcS1thCH2HUA201ywQ0W6aIDKq_LxCTUq9kQu3QOGWBParGuXx8knjNGSgyjqPt5uGmFFhJXZS7qp5ZJK4dC2E47kTKjIMvUvUZs8zxQ7XzZdM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+<!-- Floating UI Element Mockup -->
+<div class="absolute bottom-6 left-6 right-6 bg-background-dark/90 backdrop-blur border border-surface-border p-4 rounded-xl flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-white font-bold">Python Temelleri</span>
+<span class="text-primary">Tamamlandı</span>
+</div>
+<div class="h-2 w-full bg-surface-border rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Value Pillars (How it works) -->
+<div class="py-16 border-t border-surface-border/50">
+<div class="flex flex-col gap-4 mb-10 text-center items-center">
+<h2 class="text-white text-3xl md:text-4xl font-black tracking-tight max-w-[720px]">
+                    Nasıl Çalışır?
+                </h2>
+<p class="text-gray-400 text-base max-w-[600px]">
+                    Kariyer yolculuğuna başlamadan önce bilmen gerekenler. Sistemimiz, seni adım adım geleceğe hazırlar.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="group relative p-6 rounded-2xl bg-surface-dark border border-surface-border hover:border-primary/50 transition-colors duration-300">
+<div class="absolute top-6 right-6 p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-background-dark transition-all duration-300">
+<span class="material-symbols-outlined">stadia_controller</span>
+</div>
+<div class="mt-8 mb-4">
+<h3 class="text-xl font-bold text-white mb-2">Oyunlaştırılmış Öğrenme</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            Sıkıcı dersler yok. XP kazanarak öğren, seviye atla, rozetlerini topla ve liderlik tablosunda yüksel.
+                        </p>
+</div>
+<div class="w-full h-1 bg-surface-border rounded-full overflow-hidden mt-4">
+<div class="h-full bg-primary w-1/3 group-hover:w-full transition-all duration-700 ease-out"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative p-6 rounded-2xl bg-surface-dark border border-surface-border hover:border-primary/50 transition-colors duration-300">
+<div class="absolute top-6 right-6 p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-background-dark transition-all duration-300">
+<span class="material-symbols-outlined">lock_open</span>
+</div>
+<div class="mt-8 mb-4">
+<h3 class="text-xl font-bold text-white mb-2">Zorunlu Çekirdek Modüller</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            Önce temeli sağlam at. Dijital okuryazarlık ve siber güvenlik modüllerini tamamla, ileri seviye eğitimlerin kilidini aç.
+                        </p>
+</div>
+<div class="w-full h-1 bg-surface-border rounded-full overflow-hidden mt-4">
+<div class="h-full bg-primary w-1/3 group-hover:w-full transition-all duration-700 ease-out delay-75"></div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative p-6 rounded-2xl bg-surface-dark border border-surface-border hover:border-primary/50 transition-colors duration-300">
+<div class="absolute top-6 right-6 p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-background-dark transition-all duration-300">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div class="mt-8 mb-4">
+<h3 class="text-xl font-bold text-white mb-2">Sertifikalı Gelecek</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            Aldığın eğitimleri blokzincir tabanlı, doğrulanmış sertifikalarla kanıtla ve CV'ne ekle.
+                        </p>
+</div>
+<div class="w-full h-1 bg-surface-border rounded-full overflow-hidden mt-4">
+<div class="h-full bg-primary w-1/3 group-hover:w-full transition-all duration-700 ease-out delay-150"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Career Path Preview (Gamified Grid) -->
+<div class="py-16">
+<div class="flex justify-between items-end mb-8 px-2">
+<div>
+<h2 class="text-white text-2xl md:text-3xl font-bold mb-2">Eğitim Yolculuğun</h2>
+<p class="text-gray-400 text-sm">Başlamak için ilk adımı at, diğerlerinin kilidini aç.</p>
+</div>
+<button class="hidden md:flex text-primary text-sm font-bold items-center gap-1 hover:gap-2 transition-all">
+                    Tümünü Gör <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Active / Unlocked Card -->
+<div class="relative group bg-surface-dark border border-primary/40 rounded-2xl p-5 hover:bg-surface-border/50 transition-all cursor-pointer overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary border border-primary/20">
+                            Açık
+                        </span>
+</div>
+<h3 class="text-white text-lg font-bold mb-1">Dijital Okuryazarlık 101</h3>
+<p class="text-gray-400 text-xs mb-4 line-clamp-2">Temel bilgisayar kullanımı, internet güvenliği ve bilgiye erişim yöntemleri.</p>
+<div class="flex items-center gap-2 mb-3">
+<div class="flex -space-x-2">
+<img alt="User avatar" class="w-6 h-6 rounded-full border border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiAU-jaHbUWT9gfQ4fxqgREPQCdrkiHq0DMs6z17db5CQzwmzJbt5wOYH4is_k5z27yxAt2rZI8jAJeeDoQhQ1DCTQeodtRLDnw4lhs8zmIx2lBLzQm2gATlIm_OFw5K1z9rfn5tsBzHQYvBrlqnVWCf5PT70joPYxHWodQf3Yf7MfnQhKq0sNj7Po7uQBjdvjrkqUdSctZKQ8Cq1sWCPRLFBpajbxQ3Fd47-WkLWhBBG5EPqao0xF4MJQ3uL3kHLAQ1I2zoSsKIQv"/>
+<img alt="User avatar" class="w-6 h-6 rounded-full border border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC57XsnY1GvC2Oqvui5Cu7pX17lAeisFfqH3z-aTRhXqyfw4z_hU4fmlkVIpYNtYVicsK1HO3PktAKkqJrpS0h_9hvNt2zR76fARne_HMA9r24hzDoAGThVBi7XszXMU1Tc2W6B4Q37lJ0GSSO7ZfmHUNzl9Epm5AUF2ohEmQcNOX5GqEg6kORZAix7cLniLHGUzFJc_g5P_xayrQUfPwav1UTC1wvI8DB270IkasXDnlPIvnwM5abap4E0HEvEJWv-xf9_9h-N6GBd"/>
+<img alt="User avatar" class="w-6 h-6 rounded-full border border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Jas2B7EZm028heZyGkfUx1zciVkJXAiox9PRMBS5rA1NYfbAsK3eN5_kmqJ8MXh-AIsMStannN8TuAAF2X-AJB9A3Ou2WzG5OZU-0g89_TikoHMn3IERArdPIqNkZhopyv1XPwcq7_-914HVZ7_7Z3wXAfQaf82utKIzpHuA2xm7XN69u1Pq2fk9L8YDkapn0Lg0bq0-fXbm8F3Tgfp025dS8_NNuQ37IcaDhHBkfgOtWAKTQsCpN_pwkWOJeAO7-4181Q3n1_PY"/>
+</div>
+<span class="text-[10px] text-gray-500">+120 kişi alıyor</span>
+</div>
+<button class="w-full py-2 rounded-lg bg-primary text-background-dark font-bold text-sm hover:opacity-90 transition-opacity">
+                        Derse Başla
+                    </button>
+</div>
+<!-- Locked Card 1 -->
+<div class="relative group bg-surface-dark border border-surface-border rounded-2xl p-5 opacity-70 hover:opacity-100 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-gray-800 rounded-lg text-gray-500">
+<span class="material-symbols-outlined">code</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-gray-800 text-gray-400 border border-gray-700">
+<span class="material-symbols-outlined text-[12px]">lock</span> Kilitli
+                        </span>
+</div>
+<h3 class="text-gray-300 text-lg font-bold mb-1">Web Geliştirme Temelleri</h3>
+<p class="text-gray-500 text-xs mb-4">HTML, CSS ve JavaScript dünyasına giriş yap.</p>
+<div class="w-full h-8 bg-gray-800/50 rounded-lg border border-dashed border-gray-700 flex items-center justify-center">
+<span class="text-[10px] text-gray-500">Önce Dijital Okuryazarlığı Tamamla</span>
+</div>
+</div>
+<!-- Locked Card 2 -->
+<div class="relative group bg-surface-dark border border-surface-border rounded-2xl p-5 opacity-70 hover:opacity-100 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-gray-800 rounded-lg text-gray-500">
+<span class="material-symbols-outlined">brush</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-gray-800 text-gray-400 border border-gray-700">
+<span class="material-symbols-outlined text-[12px]">lock</span> Kilitli
+                        </span>
+</div>
+<h3 class="text-gray-300 text-lg font-bold mb-1">UI/UX Tasarım Giriş</h3>
+<p class="text-gray-500 text-xs mb-4">Kullanıcı deneyimi ve arayüz tasarımı prensipleri.</p>
+<div class="w-full h-8 bg-gray-800/50 rounded-lg border border-dashed border-gray-700 flex items-center justify-center">
+<span class="text-[10px] text-gray-500">Önce Dijital Okuryazarlığı Tamamla</span>
+</div>
+</div>
+<!-- Locked Card 3 -->
+<div class="relative group bg-surface-dark border border-surface-border rounded-2xl p-5 opacity-70 hover:opacity-100 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-gray-800 rounded-lg text-gray-500">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-gray-800 text-gray-400 border border-gray-700">
+<span class="material-symbols-outlined text-[12px]">lock</span> Kilitli
+                        </span>
+</div>
+<h3 class="text-gray-300 text-lg font-bold mb-1">Dijital Pazarlama</h3>
+<p class="text-gray-500 text-xs mb-4">Sosyal medya yönetimi ve SEO stratejileri.</p>
+<div class="w-full h-8 bg-gray-800/50 rounded-lg border border-dashed border-gray-700 flex items-center justify-center">
+<span class="text-[10px] text-gray-500">Önce Dijital Okuryazarlığı Tamamla</span>
+</div>
+</div>
+<!-- Locked Card 4 -->
+<div class="relative group bg-surface-dark border border-surface-border rounded-2xl p-5 opacity-70 hover:opacity-100 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-gray-800 rounded-lg text-gray-500">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-gray-800 text-gray-400 border border-gray-700">
+<span class="material-symbols-outlined text-[12px]">lock</span> Kilitli
+                        </span>
+</div>
+<h3 class="text-gray-300 text-lg font-bold mb-1">Girişimcilik 101</h3>
+<p class="text-gray-500 text-xs mb-4">İş fikri geliştirme ve proje yönetimi.</p>
+<div class="w-full h-8 bg-gray-800/50 rounded-lg border border-dashed border-gray-700 flex items-center justify-center">
+<span class="text-[10px] text-gray-500">Önce Dijital Okuryazarlığı Tamamla</span>
+</div>
+</div>
+<!-- Skeleton Loading State (Example) -->
+<div class="relative group bg-surface-dark border border-surface-border rounded-2xl p-5 overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="w-8 h-8 rounded-lg shimmer"></div>
+<div class="w-16 h-6 rounded shimmer"></div>
+</div>
+<div class="w-3/4 h-6 rounded shimmer mb-2"></div>
+<div class="w-full h-3 rounded shimmer mb-2"></div>
+<div class="w-1/2 h-3 rounded shimmer mb-6"></div>
+<div class="w-full h-8 rounded shimmer"></div>
+</div>
+</div>
+</div>
+<!-- Center Photos Placeholder -->
+<div class="py-16 border-t border-surface-border/50">
+<h2 class="text-white text-3xl font-bold mb-8 text-center">Merkezlerimizden Kareler</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[500px]">
+<div class="col-span-2 row-span-2 relative rounded-2xl overflow-hidden group">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="A group of young diverse people brainstorming in a modern office with colorful sticky notes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqhjqvnbkncG7q4JZgT2SZkYzn1802nZFkLBk3QEROrAsPogpSSA2RIr680OCaCtXQlq1v27eZ8KgmDscz35FPRyaKdoKtu-RUaPqE5aMaGSibu-Vy9L6dZUAF1Xnbs4neUj4AXqZ3W7d2k7HNpBfj8G1rLxS3E9zJPxaYM6jQgJ1CbdjV_HSXbC926LBJXjLVDx--3jOWWlG3N1f4tqxjwbxwyZHZIhH4mV55i0LQhJWbJiz3I4woqrm6sugo41eLYXhYgj9Nu4ky"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+<div class="flex items-center gap-2 text-white mb-1">
+<span class="material-symbols-outlined text-primary" data-location="istanbul">location_on</span>
+<span class="font-bold">İstanbul / Şişli</span>
+</div>
+<p class="text-gray-300 text-sm">Kodlama Atölyesi</p>
+</div>
+</div>
+<div class="col-span-1 row-span-1 relative rounded-2xl overflow-hidden group">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="Close up of hands typing on a laptop with code on screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKncw3C_VVFREPosHfDxQ2O3UZEB2BjP-HqXOdplsH7xoquncpkGdlC9wns1--1_5qmSg7QeqQ5niTBCTbbMZ0Mt2phOeHqYJd8UKJZe17KV57Ydko1hAPZMf5lM3oXInsNRoj25l4cF8950iFFIi4A3eY_LTneh9TfM6eUTihI-rHu0y8u93uLCp5Pb8aqKchuxuc4AnehqjOPttrFRon2IdY1NqrWwOIIePU8vI39cAxWyW5GMt1UMrToC_3SwIBQX0GueAdPv9e"/>
+</div>
+<div class="col-span-1 row-span-1 relative rounded-2xl overflow-hidden group">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="A young woman presenting her ideas in front of a whiteboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSGbY7Dz8cI39L0bKc8ERqOjVdvksDGrgopWPGQH07dVjUSbQSpnVwX_SsKkQ7Lu_Ty9jq4Be9lHiFcZR36z5zChsZ3rE75YyTeVAh-xMjRQTfiKpNEswlkBAjpwYuk1kSWUn8AAqYF-OBADWod1ixsDiXj9IY45q3MCZRu58xpTZ5J_JfAzTGuz68osytASc4iRGKHOjMWGxMJvaTPgR03AtuWkRYERtXYTKTx0AO_R96lmJZiGJkG0sms0A99z8fZl5Y2tqJmx2V"/>
+</div>
+<div class="col-span-2 row-span-1 relative rounded-2xl overflow-hidden group">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="A group of students smiling and looking at a tablet together" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzWKB9PhNHjFOHO3MDEjgCtZpyPl9Kp1JIYGvHbMT9vNKo7Es1fBUmbcSeltbBH-JEJPM-ul_hG5lklP7rWLXA04rTJTkhXuJRaLJfqQxGlhf2o1OGPvisiq2Iq1r31GNTGhVZGu9IVCvrBB_gS5vZbLkPjcC-14L8Hb-xQDvN3gLUgLG1xNB3nziiRwZRIvv1-5J7HStUi0WF-75RQsxUfliNHZLuyWtLaXymb_2-GOu_N8pkNdb2Ug534joyL1tzW5pRUjMLex3e"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+<div class="flex items-center gap-2 text-white mb-1">
+<span class="material-symbols-outlined text-primary" data-location="ankara">location_on</span>
+<span class="font-bold">Ankara / Çankaya</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Final CTA -->
+<div class="py-20 flex flex-col items-center text-center">
+<div class="bg-gradient-to-b from-surface-dark to-background-dark border border-surface-border p-8 md:p-12 rounded-3xl max-w-4xl w-full relative overflow-hidden">
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+<h2 class="text-3xl md:text-5xl font-black text-white mb-6 relative z-10">Kariyerine Yön Vermeye Hazır Mısın?</h2>
+<p class="text-gray-400 text-lg mb-8 max-w-xl mx-auto relative z-10">
+                    Binlerce genç gibi sen de yeteneklerini keşfet, geliştir ve sertifikalandır. Tamamen ücretsiz.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+<button class="flex items-center justify-center rounded-full h-14 px-10 bg-primary text-background-dark text-lg font-bold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(0,194,168,0.3)]">
+                        Hemen Kayıt Ol
+                    </button>
+<button class="flex items-center justify-center rounded-full h-14 px-10 bg-transparent border border-surface-border text-white text-lg font-bold hover:bg-surface-border transition-colors">
+                        Sıkça Sorulan Sorular
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-surface-border bg-background-dark py-12 px-4">
+<div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<span class="text-white font-bold text-lg">Dijital Gençlik Merkezi</span>
+</div>
+<div class="text-gray-500 text-sm">
+                © 2023 UNDP &amp; Belediyeler İşbirliği Projesi. Tüm hakları saklıdır.
+            </div>
+<div class="flex gap-4">
+<a class="text-gray-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
+</div>
+</div>
+</footer>
+<!-- Toast Notification (Success/Error Simulation) -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2">
+<!-- Success Toast -->
+<div class="flex items-center gap-3 bg-surface-dark border border-primary/30 p-4 rounded-xl shadow-2xl translate-y-20 opacity-0 animate-[slideIn_0.5s_ease-out_1s_forwards]">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<div>
+<h4 class="text-white text-sm font-bold">Sistem Çevrimiçi</h4>
+<p class="text-gray-400 text-xs">Eğitim kataloğu güncellendi.</p>
+</div>
+</div>
+</div>
+<style>
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</body></html>

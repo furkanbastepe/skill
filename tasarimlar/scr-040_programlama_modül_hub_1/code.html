@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-040 Programlama Modül Hub - DIGEM Akademi</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "primary-dark": "#0b5cb5",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "card-dark": "#1a2632",
+              "border-dark": "#283039",
+              "text-secondary": "#9dabb9",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"],
+              "body": ["Lexend", "sans-serif"],
+            },
+            borderRadius: {
+                "DEFAULT": "0.25rem", 
+                "lg": "0.5rem", 
+                "xl": "0.75rem", 
+                "2xl": "1rem",
+                "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<div class="w-full bg-[#111418] border-b border-border-dark sticky top-0 z-50">
+<div class="px-4 sm:px-10 flex items-center justify-between py-3 max-w-[1440px] mx-auto w-full">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">terminal</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">DIGEM Akademi</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium" href="#">Dashboard</a>
+<a class="text-white text-sm font-medium border-b-2 border-primary pb-0.5" href="#">Derslerim</a>
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium" href="#">Liderlik Tablosu</a>
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium" href="#">Topluluk</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search -->
+<div class="hidden lg:flex w-64 h-10 bg-[#283039] rounded-lg items-center px-3 border border-transparent focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary !text-[20px]">search</span>
+<input class="bg-transparent border-none text-sm text-white placeholder-text-secondary focus:ring-0 w-full h-full ml-2" placeholder="Ara..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg bg-[#283039] text-white hover:bg-[#3b4754] transition-colors">
+<span class="material-symbols-outlined !text-[20px]">notifications</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg bg-[#283039] text-white hover:bg-[#3b4754] transition-colors">
+<span class="material-symbols-outlined !text-[20px]">settings</span>
+</button>
+<div class="size-10 rounded-full bg-cover bg-center ml-2 border-2 border-[#283039]" data-alt="User profile picture showing a smiling person" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARHH8YsbQCu-bTNNavmNNgVBWOF3N5GOuUApzI9fF933QLEvPG6xE9HbZxs6XfYruViJrU_FfZ7bKs6jG32KBXKGC8PgKnUcDQSRNpJ__k9aey8C-keKmSu_RPkvlKY21OSeJT5XynSRR4qziU-He0iwwPlSEdu7O6dzSxCFl8JW3a71akeA7boCMCx4gn1nVHz_nh8c5Cvk8aByxLcB5xl0wlDlnoVc3FJqsDVUYNrUOfUlVN3jAH-78AQB9JI5cQYyJDRRQJ-Q');"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Layout -->
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Header / Hero Section -->
+<header class="mb-10">
+<div class="flex flex-col lg:flex-row gap-6 lg:items-end justify-between mb-6">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 rounded text-xs font-bold bg-primary/20 text-primary border border-primary/30 uppercase tracking-wider">Modül 1</span>
+<span class="text-text-secondary text-sm">Python Temelleri</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight">SCR-040: Temel Programlama</h1>
+<p class="text-text-secondary max-w-2xl text-base md:text-lg">Python söz dizimi, mantıksal operatörler ve robotik kodlama temellerini öğrenin. Final projesi için hazırlanın.</p>
+</div>
+<div class="flex flex-col items-end gap-2 min-w-[300px]">
+<div class="flex justify-between w-full text-sm font-medium mb-1">
+<span class="text-white flex items-center gap-2">
+<span class="material-symbols-outlined !text-[18px] text-yellow-500">bolt</span>
+                            Robot Arena Hazırlığı
+                        </span>
+<span class="text-primary font-bold">75%</span>
+</div>
+<div class="w-full h-3 bg-[#283039] rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-blue-400 w-[75%] rounded-full relative">
+<div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+</div>
+</div>
+<span class="text-xs text-text-secondary">Final meydan okumasına az kaldı!</span>
+</div>
+</div>
+</header>
+<!-- Two Column Layout: Roadmap & Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: The Roadmap (8 cols) -->
+<div class="lg:col-span-8 relative">
+<!-- Vertical Line Connector -->
+<div class="absolute left-8 top-8 bottom-8 w-0.5 bg-[#283039] z-0"></div>
+<!-- Unit 1: Completed -->
+<div class="relative z-10 flex gap-6 mb-8 group cursor-pointer">
+<div class="flex-shrink-0 size-16 rounded-2xl bg-[#1e2933] border-2 border-emerald-500/50 flex items-center justify-center text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+<span class="material-symbols-outlined !text-[32px]">check_circle</span>
+</div>
+<div class="flex-1 bg-card-dark border border-border-dark rounded-xl p-5 hover:border-emerald-500/30 transition-all">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">01. Python Syntax</h3>
+<span class="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">TAMAMLANDI</span>
+</div>
+<p class="text-text-secondary text-sm mb-4">Değişkenler, veri tipleri ve temel operatörler.</p>
+<div class="flex items-center gap-4 text-xs text-text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">schedule</span> 45 dk</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">military_tech</span> 150 XP</span>
+</div>
+</div>
+</div>
+<!-- Unit 2: Completed -->
+<div class="relative z-10 flex gap-6 mb-8 group cursor-pointer">
+<div class="flex-shrink-0 size-16 rounded-2xl bg-[#1e2933] border-2 border-emerald-500/50 flex items-center justify-center text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+<span class="material-symbols-outlined !text-[32px]">check_circle</span>
+</div>
+<div class="flex-1 bg-card-dark border border-border-dark rounded-xl p-5 hover:border-emerald-500/30 transition-all">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">02. Mantık ve Dallanma</h3>
+<span class="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">TAMAMLANDI</span>
+</div>
+<p class="text-text-secondary text-sm mb-4">If, Elif, Else yapıları ve karar mekanizmaları.</p>
+<div class="flex items-center gap-4 text-xs text-text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">schedule</span> 60 dk</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">military_tech</span> 200 XP</span>
+</div>
+</div>
+</div>
+<!-- Unit 3: In Progress (Active) -->
+<div class="relative z-10 flex gap-6 mb-8">
+<div class="flex-shrink-0 size-16 rounded-2xl bg-primary border-4 border-primary/30 flex items-center justify-center text-white shadow-[0_0_20px_rgba(19,127,236,0.4)] animate-pulse">
+<span class="material-symbols-outlined !text-[32px] fill-current">play_arrow</span>
+</div>
+<div class="flex-1 bg-gradient-to-br from-card-dark to-[#1e2933] border border-primary rounded-xl p-6 shadow-lg relative overflow-hidden">
+<!-- Background decoration -->
+<div class="absolute -right-10 -top-10 size-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex justify-between items-start mb-3 relative z-10">
+<h3 class="text-xl font-bold text-white">03. Döngüler (Loops)</h3>
+<span class="text-xs font-bold text-white bg-primary px-3 py-1 rounded-full animate-pulse">DEVAM EDİYOR</span>
+</div>
+<p class="text-text-secondary text-sm mb-5 relative z-10">For ve While döngüleri ile tekrarlayan işlemleri otomatize etme sanatı.</p>
+<div class="flex flex-wrap gap-3 mb-5 relative z-10">
+<div class="bg-[#111418] px-3 py-1.5 rounded text-xs text-text-secondary border border-border-dark font-mono">for i in range(10):</div>
+<div class="bg-[#111418] px-3 py-1.5 rounded text-xs text-text-secondary border border-border-dark font-mono">while True:</div>
+</div>
+<div class="flex items-center justify-between mt-2 relative z-10">
+<div class="flex items-center gap-4 text-xs text-text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">schedule</span> 90 dk</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">military_tech</span> 300 XP</span>
+</div>
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-lg text-sm font-bold transition-colors flex items-center gap-2">
+                                Devam Et
+                                <span class="material-symbols-outlined !text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Unit 4: Locked -->
+<div class="relative z-10 flex gap-6 mb-8 opacity-60">
+<div class="flex-shrink-0 size-16 rounded-2xl bg-[#1e2933] border border-border-dark flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined !text-[32px]">lock</span>
+</div>
+<div class="flex-1 bg-card-dark border border-border-dark rounded-xl p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-text-secondary">04. Fonksiyonlar</h3>
+<span class="material-symbols-outlined text-text-secondary !text-[20px]">lock</span>
+</div>
+<p class="text-text-secondary text-sm mb-2">Kod bloklarını yeniden kullanılabilir hale getirme.</p>
+<div class="h-1.5 w-full bg-[#111418] rounded-full overflow-hidden mt-3">
+<div class="w-0 bg-text-secondary h-full"></div>
+</div>
+</div>
+</div>
+<!-- Unit 5: Locked -->
+<div class="relative z-10 flex gap-6 mb-8 opacity-60">
+<div class="flex-shrink-0 size-16 rounded-2xl bg-[#1e2933] border border-border-dark flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined !text-[32px]">lock</span>
+</div>
+<div class="flex-1 bg-card-dark border border-border-dark rounded-xl p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-text-secondary">05. Hata Ayıklama (Debugging)</h3>
+<span class="material-symbols-outlined text-text-secondary !text-[20px]">lock</span>
+</div>
+<p class="text-text-secondary text-sm mb-2">Hataları bulma ve düzeltme teknikleri.</p>
+<div class="h-1.5 w-full bg-[#111418] rounded-full overflow-hidden mt-3">
+<div class="w-0 bg-text-secondary h-full"></div>
+</div>
+</div>
+</div>
+<!-- Unit 6: Locked -->
+<div class="relative z-10 flex gap-6 mb-8 opacity-60">
+<div class="flex-shrink-0 size-16 rounded-2xl bg-[#1e2933] border border-border-dark flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined !text-[32px]">lock</span>
+</div>
+<div class="flex-1 bg-card-dark border border-border-dark rounded-xl p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-text-secondary">06. Robot Lab</h3>
+<span class="material-symbols-outlined text-text-secondary !text-[20px]">lock</span>
+</div>
+<p class="text-text-secondary text-sm mb-2">Öğrendiklerinizi sanal robot üzerinde test edin.</p>
+<div class="h-1.5 w-full bg-[#111418] rounded-full overflow-hidden mt-3">
+<div class="w-0 bg-text-secondary h-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Stats (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Streak Card -->
+<div class="bg-card-dark border border-border-dark rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-white font-bold text-base">Kodlama Serisi</h4>
+<span class="material-symbols-outlined text-orange-500 !text-[24px]">local_fire_department</span>
+</div>
+<div class="flex items-end gap-2 mb-2">
+<span class="text-4xl font-black text-white">7</span>
+<span class="text-text-secondary font-medium mb-1">Gün</span>
+</div>
+<p class="text-xs text-text-secondary mb-4">Seriyi bozmamak için bugün 1 ders tamamla!</p>
+<div class="flex justify-between gap-1">
+<!-- Days circles -->
+<div class="size-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">Pzt</div>
+<div class="size-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">Sal</div>
+<div class="size-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">Çar</div>
+<div class="size-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">Per</div>
+<div class="size-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">Cum</div>
+<div class="size-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">Cmt</div>
+<div class="size-8 rounded-full bg-[#283039] text-text-secondary flex items-center justify-center text-xs font-bold border border-dashed border-text-secondary">Paz</div>
+</div>
+</div>
+<!-- XP Card -->
+<div class="bg-card-dark border border-border-dark rounded-xl p-6 relative overflow-hidden">
+<div class="absolute right-[-20px] top-[-20px] size-32 bg-purple-500/10 rounded-full blur-2xl"></div>
+<h4 class="text-white font-bold text-base mb-2 relative z-10">Toplam XP</h4>
+<div class="flex items-center gap-3 relative z-10">
+<span class="material-symbols-outlined text-yellow-400 !text-[32px]">stars</span>
+<span class="text-3xl font-black text-white tracking-tight">1,250</span>
+</div>
+<div class="mt-3 text-xs text-text-secondary relative z-10">Sonraki seviyeye 250 XP kaldı.</div>
+</div>
+<!-- Boss Mission Card (Locked) -->
+<div class="bg-gradient-to-b from-[#1a2632] to-[#0f1216] border border-red-500/20 rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="bg-red-500/10 border border-red-500/20 px-3 py-1 rounded text-red-500 text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined !text-[14px]">lock</span>
+                            Final Görevi
+                        </div>
+</div>
+<div class="flex flex-col items-center text-center relative z-10 mb-4">
+<div class="size-20 bg-[#111418] rounded-full flex items-center justify-center border-2 border-red-900/50 mb-3 shadow-[0_0_30px_rgba(220,38,38,0.1)]">
+<span class="material-symbols-outlined text-red-700 !text-[40px]">smart_toy</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-1">Robot Arena Boss</h3>
+<p class="text-text-secondary text-xs">Bu kilidi açmak için 5. seviyeye ulaşman gerekiyor.</p>
+</div>
+<button class="w-full py-3 rounded-lg bg-[#283039] text-text-secondary font-bold text-sm cursor-not-allowed border border-transparent hover:border-red-900/30 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined !text-[18px]">lock</span>
+                        Erişim Kısıtlandı
+                    </button>
+</div>
+<!-- Quick Help -->
+<div class="bg-primary/10 border border-primary/20 rounded-xl p-5">
+<h4 class="text-primary font-bold text-sm mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined !text-[18px]">help</span>
+                        Takıldın mı?
+                    </h4>
+<p class="text-text-secondary text-xs mb-3">Topluluk forumunda diğer öğrencilere sorabilir veya mentor desteği alabilirsin.</p>
+<a class="text-white text-xs font-medium underline decoration-primary decoration-2 underline-offset-4 hover:text-primary transition-colors" href="#">Topluluğa Git</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button for Mobile -->
+<div class="lg:hidden fixed bottom-6 right-6 z-50">
+<button class="size-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:bg-primary-dark transition-colors">
+<span class="material-symbols-outlined !text-[28px]">play_arrow</span>
+</button>
+</div>
+</body></html>

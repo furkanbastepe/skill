@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-017 İstasyon ve Kiosk Yönetimi - DIGEM</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ab8a1",
+                        "primary-dark": "#089482",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102220",
+                        "surface-dark": "#172d2a",
+                        "surface-highlight": "#1f3b37",
+                        "text-secondary": "#9cbab6",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for table */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #102220; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #283937; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b5451; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation (Mock) -->
+<header class="h-16 border-b border-[#283937] bg-surface-dark px-6 flex items-center justify-between shrink-0">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold">D</div>
+<span class="font-bold text-lg tracking-tight">DIGEM Admin</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-text-secondary hover:text-white transition-colors rounded-full hover:bg-[#283937]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="Trainer Profile Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLpA4k96p9ZXKZOzLR2iNBvlnSStTFbe6Y__HlCx47_TSA9m24VrNe5p0KegSArkF2skDIsBcebn04-k1Y3B3y7Wz_RNBjamN6SbAh2bmRKJGO5pC9cWL5i3oO_K_GAW12GC8nX3WjwJXl00uWjwKOovfdvth2fXn2a1zSuRYMCffUHEAXp6R1PIgr7IOUThGFlrh72DCDwjs-AlNMty8FOBdEQxYc5Zn0JYsF4ap_GICETSVb5du7S83iQ0Z1f_ZDgM5EE3TNvQ"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Header & Filters Section -->
+<div class="px-6 py-6 border-b border-[#283937] bg-background-dark shrink-0 z-10">
+<!-- Breadcrumbs -->
+<div class="flex gap-2 items-center text-sm mb-4">
+<a class="text-text-secondary hover:text-primary transition-colors" href="#">Kontrol Paneli</a>
+<span class="text-text-secondary">/</span>
+<span class="text-white font-medium">Donanım Yönetimi</span>
+</div>
+<!-- Title & Description -->
+<div class="flex justify-between items-start mb-6">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-bold tracking-tight text-white">İstasyon ve Kiosk Yönetimi</h1>
+<p class="text-text-secondary text-sm max-w-2xl">Merkezdeki tüm fiziksel donanımların durumunu anlık olarak izleyin, bakım moduna alın veya öğrenci atamalarını yönetin.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Yeni Cihaz Ekle</span>
+</button>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-surface-dark border border-[#283937] rounded-xl p-4 flex items-center justify-between group hover:border-primary/40 transition-colors">
+<div>
+<p class="text-text-secondary text-sm font-medium mb-1">Aktif Cihazlar</p>
+<p class="text-2xl font-bold text-white">12<span class="text-text-secondary text-lg font-normal">/15</span></p>
+</div>
+<div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="bg-surface-dark border border-[#283937] rounded-xl p-4 flex items-center justify-between group hover:border-yellow-500/40 transition-colors">
+<div>
+<p class="text-text-secondary text-sm font-medium mb-1">Bakım Bekleyen</p>
+<p class="text-2xl font-bold text-white">2</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-400">
+<span class="material-symbols-outlined">build</span>
+</div>
+</div>
+<div class="bg-surface-dark border border-[#283937] rounded-xl p-4 flex items-center justify-between group hover:border-red-500/40 transition-colors">
+<div>
+<p class="text-text-secondary text-sm font-medium mb-1">Çevrimdışı</p>
+<p class="text-2xl font-bold text-white">1</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-400">
+<span class="material-symbols-outlined">wifi_off</span>
+</div>
+</div>
+</div>
+<!-- Search & Filters Toolbar -->
+<div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface-dark p-2 rounded-lg border border-[#283937]">
+<div class="flex items-center gap-2 w-full sm:w-auto flex-1">
+<div class="relative w-full max-w-md">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px]">search</span>
+<input class="w-full bg-[#102220] border-none rounded-md py-2 pl-10 pr-4 text-sm text-white focus:ring-1 focus:ring-primary placeholder-text-secondary/50" placeholder="Cihaz ID, IP Adresi veya Öğrenci Ara..." type="text"/>
+</div>
+</div>
+<div class="flex gap-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 no-scrollbar">
+<button class="whitespace-nowrap flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary/20 text-primary text-sm font-medium border border-primary/30">
+<span class="material-symbols-outlined text-[18px] fill-1">filter_list</span>
+                            Tümü
+                        </button>
+<button class="whitespace-nowrap flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-[#283937] text-text-secondary text-sm font-medium transition-colors">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            Aktif
+                        </button>
+<button class="whitespace-nowrap flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-[#283937] text-text-secondary text-sm font-medium transition-colors">
+<span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                            Bakımda
+                        </button>
+<button class="whitespace-nowrap flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-[#283937] text-text-secondary text-sm font-medium transition-colors">
+<span class="w-2 h-2 rounded-full bg-red-400"></span>
+                            Çevrimdışı
+                        </button>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="flex-1 overflow-auto custom-scrollbar px-6 pb-6 pt-2">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 z-10 bg-background-dark shadow-sm shadow-[#000000]/50">
+<tr class="text-xs font-medium text-text-secondary uppercase tracking-wider border-b border-[#283937]">
+<th class="px-4 py-3 w-12">
+<input class="rounded border-[#3b5451] bg-[#283937] text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</th>
+<th class="px-4 py-3">Durum</th>
+<th class="px-4 py-3">Cihaz ID</th>
+<th class="px-4 py-3">Sağlık</th>
+<th class="px-4 py-3">Atanan Öğrenci</th>
+<th class="px-4 py-3">Bakım Notu</th>
+<th class="px-4 py-3 text-right">Son Görülme</th>
+<th class="px-4 py-3 w-10"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#283937] text-sm">
+<!-- Row 1: Selected / Active -->
+<tr class="group bg-surface-highlight/50 hover:bg-surface-highlight transition-colors cursor-pointer border-l-2 border-primary">
+<td class="px-4 py-3">
+<input checked="" class="rounded border-[#3b5451] bg-[#283937] text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+</span>
+<span class="text-emerald-400 font-medium">Aktif</span>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="font-medium text-white">KIOSK-004</div>
+<div class="text-xs text-text-secondary">IP: 192.168.1.104</div>
+</td>
+<td class="px-4 py-3">
+<div class="flex flex-col gap-1 w-24">
+<div class="flex justify-between text-xs text-text-secondary">
+<span>CPU</span>
+<span>12%</span>
+</div>
+<div class="h-1 w-full bg-[#283937] rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[12%]"></div>
+</div>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-300 text-xs font-bold border border-indigo-500/30">
+                                        AY
+                                    </div>
+<div>
+<div class="text-white font-medium">Ahmet Yılmaz</div>
+<div class="text-xs text-text-secondary">Oturum: 24dk</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-3 text-text-secondary truncate max-w-[150px]">
+                                Dokunmatik ekran kalibre edildi.
+                            </td>
+<td class="px-4 py-3 text-right text-text-secondary font-mono text-xs">
+                                Şimdi
+                            </td>
+<td class="px-4 py-3 text-right">
+<button class="text-text-secondary hover:text-white p-1 rounded hover:bg-[#283937]">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Warning -->
+<tr class="group hover:bg-surface-highlight/30 transition-colors cursor-pointer border-l-2 border-transparent hover:border-[#283937]">
+<td class="px-4 py-3">
+<input class="rounded border-[#3b5451] bg-[#283937] text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<span class="h-2.5 w-2.5 rounded-full bg-yellow-500"></span>
+<span class="text-yellow-400 font-medium">Bakımda</span>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="font-medium text-white">KIOSK-007</div>
+<div class="text-xs text-text-secondary">IP: 192.168.1.107</div>
+</td>
+<td class="px-4 py-3">
+<span class="text-xs text-text-secondary italic">Veri alınamıyor</span>
+</td>
+<td class="px-4 py-3">
+<span class="text-text-secondary">-</span>
+</td>
+<td class="px-4 py-3 text-text-secondary truncate max-w-[150px]">
+                                Güç kaynağı arızası bildirildi.
+                            </td>
+<td class="px-4 py-3 text-right text-text-secondary font-mono text-xs">
+                                4g önce
+                            </td>
+<td class="px-4 py-3 text-right">
+<button class="text-text-secondary hover:text-white p-1 rounded hover:bg-[#283937]">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Offline -->
+<tr class="group hover:bg-surface-highlight/30 transition-colors cursor-pointer border-l-2 border-transparent hover:border-[#283937]">
+<td class="px-4 py-3">
+<input class="rounded border-[#3b5451] bg-[#283937] text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<span class="h-2.5 w-2.5 rounded-full bg-red-500"></span>
+<span class="text-red-400 font-medium">Çevrimdışı</span>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="font-medium text-white">PC-LAB-02</div>
+<div class="text-xs text-text-secondary">IP: 192.168.1.202</div>
+</td>
+<td class="px-4 py-3">
+<span class="text-xs text-text-secondary italic">Bağlantı yok</span>
+</td>
+<td class="px-4 py-3">
+<span class="text-text-secondary">-</span>
+</td>
+<td class="px-4 py-3 text-text-secondary truncate max-w-[150px]">
+                                Ağ kablosu kontrol edilmeli.
+                            </td>
+<td class="px-4 py-3 text-right text-text-secondary font-mono text-xs">
+                                2s önce
+                            </td>
+<td class="px-4 py-3 text-right">
+<button class="text-text-secondary hover:text-white p-1 rounded hover:bg-[#283937]">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- More Active Rows -->
+<tr class="group hover:bg-surface-highlight/30 transition-colors cursor-pointer border-l-2 border-transparent hover:border-[#283937]">
+<td class="px-4 py-3">
+<input class="rounded border-[#3b5451] bg-[#283937] text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+<span class="text-emerald-400 font-medium">Aktif</span>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="font-medium text-white">KIOSK-002</div>
+<div class="text-xs text-text-secondary">IP: 192.168.1.102</div>
+</td>
+<td class="px-4 py-3">
+<div class="flex flex-col gap-1 w-24">
+<div class="flex justify-between text-xs text-text-secondary">
+<span>CPU</span>
+<span>45%</span>
+</div>
+<div class="h-1 w-full bg-[#283937] rounded-full overflow-hidden">
+<div class="h-full bg-yellow-500 w-[45%]"></div>
+</div>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-300 text-xs font-bold border border-pink-500/30">
+                                        EK
+                                    </div>
+<div>
+<div class="text-white font-medium">Elif Kara</div>
+<div class="text-xs text-text-secondary">Oturum: 5dk</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-3 text-text-secondary truncate max-w-[150px]">
+                                -
+                            </td>
+<td class="px-4 py-3 text-right text-text-secondary font-mono text-xs">
+                                1dk önce
+                            </td>
+<td class="px-4 py-3 text-right">
+<button class="text-text-secondary hover:text-white p-1 rounded hover:bg-[#283937]">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-highlight/30 transition-colors cursor-pointer border-l-2 border-transparent hover:border-[#283937]">
+<td class="px-4 py-3">
+<input class="rounded border-[#3b5451] bg-[#283937] text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+<span class="text-emerald-400 font-medium">Aktif</span>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="font-medium text-white">KIOSK-005</div>
+<div class="text-xs text-text-secondary">IP: 192.168.1.105</div>
+</td>
+<td class="px-4 py-3">
+<div class="flex flex-col gap-1 w-24">
+<div class="flex justify-between text-xs text-text-secondary">
+<span>CPU</span>
+<span>8%</span>
+</div>
+<div class="h-1 w-full bg-[#283937] rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[8%]"></div>
+</div>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 text-xs font-bold border border-blue-500/30">
+                                        MD
+                                    </div>
+<div>
+<div class="text-white font-medium">Mehmet Demir</div>
+<div class="text-xs text-text-secondary">Oturum: 1s 12dk</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-3 text-text-secondary truncate max-w-[150px]">
+                                Yazılım güncellemesi planlandı.
+                            </td>
+<td class="px-4 py-3 text-right text-text-secondary font-mono text-xs">
+                                Şimdi
+                            </td>
+<td class="px-4 py-3 text-right">
+<button class="text-text-secondary hover:text-white p-1 rounded hover:bg-[#283937]">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Another Warning -->
+<tr class="group hover:bg-surface-highlight/30 transition-colors cursor-pointer border-l-2 border-transparent hover:border-[#283937]">
+<td class="px-4 py-3">
+<input class="rounded border-[#3b5451] bg-[#283937] text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<span class="h-2.5 w-2.5 rounded-full bg-yellow-500"></span>
+<span class="text-yellow-400 font-medium">Bakımda</span>
+</div>
+</td>
+<td class="px-4 py-3">
+<div class="font-medium text-white">KIOSK-009</div>
+<div class="text-xs text-text-secondary">IP: 192.168.1.109</div>
+</td>
+<td class="px-4 py-3">
+<span class="text-xs text-text-secondary italic">Güvenli Mod</span>
+</td>
+<td class="px-4 py-3">
+<span class="text-text-secondary">-</span>
+</td>
+<td class="px-4 py-3 text-text-secondary truncate max-w-[150px]">
+                                Disk temizliği yapılıyor.
+                            </td>
+<td class="px-4 py-3 text-right text-text-secondary font-mono text-xs">
+                                15dk önce
+                            </td>
+<td class="px-4 py-3 text-right">
+<button class="text-text-secondary hover:text-white p-1 rounded hover:bg-[#283937]">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-3 bg-surface-dark border-t border-[#283937] flex items-center justify-between shrink-0">
+<span class="text-sm text-text-secondary">Toplam <span class="text-white font-medium">15</span> cihazdan <span class="text-white font-medium">1-6</span> arası gösteriliyor</span>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded bg-[#283937] text-text-secondary cursor-not-allowed opacity-50">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-1 rounded bg-[#283937] text-white hover:bg-primary/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Sidebar / Details Panel -->
+<aside class="w-96 border-l border-[#283937] bg-surface-dark flex flex-col shrink-0 overflow-y-auto custom-scrollbar">
+<div class="p-6 flex flex-col h-full">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold text-white">Cihaz Detayları</h2>
+<button class="text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Selected Device Info -->
+<div class="flex items-start gap-4 mb-6">
+<div class="w-16 h-16 rounded-lg bg-[#283937] border border-[#3b5451] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-4xl text-primary">computer</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white leading-tight">KIOSK-004</h3>
+<p class="text-sm text-text-secondary mb-1">Dell Optiplex 3080</p>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            Online
+                        </span>
+</div>
+</div>
+<!-- Quick Actions Grid -->
+<div class="grid grid-cols-2 gap-3 mb-6">
+<button class="flex flex-col items-center justify-center p-3 rounded-lg bg-[#283937] hover:bg-primary/20 hover:text-primary hover:border-primary/50 border border-transparent transition-all group">
+<span class="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">restart_alt</span>
+<span class="text-xs font-medium">Yeniden Başlat</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg bg-[#283937] hover:bg-primary/20 hover:text-primary hover:border-primary/50 border border-transparent transition-all group">
+<span class="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">lock_reset</span>
+<span class="text-xs font-medium">Şifre Sıfırla</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg bg-[#283937] hover:bg-primary/20 hover:text-primary hover:border-primary/50 border border-transparent transition-all group">
+<span class="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">screenshot_monitor</span>
+<span class="text-xs font-medium">Ekran Görüntüsü</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg bg-[#283937] hover:bg-yellow-500/20 hover:text-yellow-500 hover:border-yellow-500/50 border border-transparent transition-all group">
+<span class="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">build_circle</span>
+<span class="text-xs font-medium">Bakıma Al</span>
+</button>
+</div>
+<div class="h-px bg-[#283937] w-full mb-6"></div>
+<!-- Technical Specs / Monitoring -->
+<div class="space-y-4 mb-6">
+<h4 class="text-sm font-semibold text-text-secondary uppercase tracking-wider">Sistem Durumu</h4>
+<div class="space-y-1">
+<div class="flex justify-between text-sm">
+<span class="text-text-secondary">İşlemci (CPU)</span>
+<span class="text-white font-medium">12%</span>
+</div>
+<div class="h-1.5 w-full bg-[#283937] rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[12%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-sm">
+<span class="text-text-secondary">Bellek (RAM)</span>
+<span class="text-white font-medium">4.2 GB / 16 GB</span>
+</div>
+<div class="h-1.5 w-full bg-[#283937] rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[26%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-sm">
+<span class="text-text-secondary">Disk Kullanımı</span>
+<span class="text-white font-medium">85%</span>
+</div>
+<div class="h-1.5 w-full bg-[#283937] rounded-full overflow-hidden">
+<div class="h-full bg-yellow-500 w-[85%]"></div>
+</div>
+</div>
+</div>
+<!-- Active Session -->
+<div class="bg-[#283937]/50 rounded-xl p-4 border border-[#3b5451] mb-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+<h4 class="text-sm font-semibold text-white">Aktif Oturum</h4>
+</div>
+<div class="flex items-center gap-3 mb-3">
+<img class="w-10 h-10 rounded-full object-cover border border-[#3b5451]" data-alt="Student Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIw7ZdwBGyZ3welgCm-4gnyrguECXM85EoBb12p2aiAOxYiX8lPSmQSgTX6XovqwM10DQgyW7VBZi6Q5EjzUun7fPXCpzouUNqkPJ03YUhwgTpbACz2iU9HDPZp4BpPfeSddW3WzDdYzqHB_oLbaXdB4VooO2NzZCY0KrkmF8miy-OFqZ3UsbTubicP4IqixcRA9PIeWe6Z2PVI81VGuO8VcyYKVp93tOnQvhcrWPW9WChbkTfBJjuU94Lx2DzhxIhicMxBh68NQ"/>
+<div>
+<p class="text-sm font-medium text-white">Ahmet Yılmaz</p>
+<p class="text-xs text-text-secondary">Öğrenci No: 2023004</p>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs text-text-secondary bg-[#102220] p-2 rounded">
+<span>Başlangıç: 14:30</span>
+<span>Süre: 24dk</span>
+</div>
+<button class="w-full mt-3 py-2 text-xs font-medium text-red-400 bg-red-400/10 hover:bg-red-400/20 rounded border border-red-400/20 transition-colors">
+                        Oturumu Zorla Kapat
+                    </button>
+</div>
+<!-- Token Generation -->
+<div class="mt-auto">
+<button class="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-medium shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">key</span>
+                        Erişim Jetonu Oluştur
+                    </button>
+<p class="text-center text-xs text-text-secondary mt-2">Bu işlem 15 dakika geçerli geçici bir erişim kodu oluşturur.</p>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

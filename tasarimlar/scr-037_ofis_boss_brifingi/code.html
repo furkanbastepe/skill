@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-037 Ofis Boss Brifingi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c242c",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased min-h-screen flex flex-col overflow-x-hidden selection:bg-primary/30">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 py-4 bg-white dark:bg-[#151c24]">
+<div class="flex items-center gap-4">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">diamond</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">DIGEM | Ofis Boss</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors text-slate-500 dark:text-slate-400" href="#">Dashboard</a>
+<a class="text-sm font-medium text-primary" href="#">Missions</a>
+<a class="text-sm font-medium hover:text-primary transition-colors text-slate-500 dark:text-slate-400" href="#">Team</a>
+<a class="text-sm font-medium hover:text-primary transition-colors text-slate-500 dark:text-slate-400" href="#">Resources</a>
+</div>
+<div class="flex items-center gap-4 border-l border-slate-200 dark:border-slate-800 pl-6">
+<button class="relative p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border-2 border-slate-200 dark:border-slate-700" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBRZi9_T2E8FNlyk6tAP1S8nN-as0cR-XCq5qSysVwoUrCUX36rrTmFAJypC09RfRXicPHTbJdIgm5O6HUuOUZcUhGonhIR9MlW60hnAwxGwnXe-1WfjpppNcQBM483Spe16p5WTJBBJthTUbrA2B1WRIOzyNR-q3PshWdkr0xYvjex091RqKOTqA2vrJDisMyDUbr0eyV6woPgJwH9J5mlM8xq-YbJUkmqHYMRgRqIpUg4BlT0dJRuNOSBFNEodJdc6Wl_6ReA-Q");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-1 flex justify-center py-6 px-4 md:px-8 lg:px-12">
+<div class="max-w-[1200px] w-full flex flex-col gap-6">
+<!-- Hero Section -->
+<section class="flex flex-col lg:flex-row justify-between gap-6 p-6 md:p-8 rounded-xl bg-surface-dark dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 relative overflow-hidden group">
+<!-- Decorative background gradient -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent pointer-events-none"></div>
+<div class="flex flex-col gap-4 relative z-10 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/20 w-fit">
+<span class="material-symbols-outlined text-primary text-sm">flag</span>
+<span class="text-primary text-xs font-bold uppercase tracking-wider">Mission SCR-037</span>
+</div>
+<div>
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tight mb-2">Ofis Boss Brifingi</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">
+                            Project Kickoff: You are stepping into the role of the Office Manager. Your goal is to synthesize team inputs, analyze the budget, and prepare the quarterly executive summary.
+                        </p>
+</div>
+<div class="flex flex-wrap gap-4 mt-2">
+<div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800/50">
+<span class="material-symbols-outlined text-yellow-500">military_tech</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Level: Expert</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800/50">
+<span class="material-symbols-outlined text-blue-400">group</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Role: Manager</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-start lg:items-end justify-center gap-4 relative z-10 min-w-[200px]">
+<div class="text-left lg:text-right">
+<p class="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Time Remaining</p>
+<p class="text-3xl font-bold font-mono">72:00:00</p>
+</div>
+<button class="flex w-full lg:w-auto cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-blue-600 transition-all text-white font-bold shadow-lg shadow-blue-500/20 active:scale-95">
+<span class="material-symbols-outlined">play_arrow</span>
+<span>Start Mission</span>
+</button>
+</div>
+</section>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Mission Progress</p>
+<span class="material-symbols-outlined text-slate-400">incomplete_circle</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-3xl font-bold">0%</p>
+<span class="text-xs text-slate-500 mb-1.5">Pending Start</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 2%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Team Morale</p>
+<span class="material-symbols-outlined text-green-500">sentiment_satisfied</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-3xl font-bold">100%</p>
+<span class="text-xs text-green-500 mb-1.5 font-medium">+ Stable</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-green-500 h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Available Budget</p>
+<span class="material-symbols-outlined text-slate-400">account_balance_wallet</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-3xl font-bold">$12k</p>
+<span class="text-xs text-slate-500 mb-1.5">For Q4 Allocation</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-slate-600 h-full rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Task Column -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">assignment</span>
+                        Mission Objectives
+                    </h2>
+<!-- Task 1 -->
+<div class="p-5 rounded-xl bg-white dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors group">
+<div class="flex flex-col md:flex-row gap-5 items-start">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-lg font-bold">1. Operations Report</h3>
+<span class="px-2 py-1 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 uppercase tracking-wide">Writing</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">
+                                    Synthesize team inputs into a cohesive executive summary. Focus on tone, clarity, and professional synthesis of conflicting reports.
+                                </p>
+<div class="flex items-center gap-4 text-sm text-slate-400">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">attachment</span>
+<span>Template.docx</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span>45 min est.</span>
+</div>
+</div>
+</div>
+<button class="shrink-0 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-medium transition-colors">
+                                View Details
+                            </button>
+</div>
+</div>
+<!-- Task 2 -->
+<div class="p-5 rounded-xl bg-white dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors group">
+<div class="flex flex-col md:flex-row gap-5 items-start">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-lg font-bold">2. Budget Data Analysis</h3>
+<span class="px-2 py-1 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 uppercase tracking-wide">Data</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">
+                                    Review the raw Q3 spending sheet. Identify discrepancies and reallocate the remaining $12k for Q4 priorities accurately.
+                                </p>
+<div class="flex items-center gap-4 text-sm text-slate-400">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">table_chart</span>
+<span>Q3_Data.xlsx</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span>60 min est.</span>
+</div>
+</div>
+</div>
+<button class="shrink-0 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-medium transition-colors">
+                                View Details
+                            </button>
+</div>
+</div>
+<!-- Task 3 -->
+<div class="p-5 rounded-xl bg-white dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors group">
+<div class="flex flex-col md:flex-row gap-5 items-start">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+<span class="material-symbols-outlined">co_present</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-lg font-bold">3. Q4 Presentation Design</h3>
+<span class="px-2 py-1 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 uppercase tracking-wide">Design</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">
+                                    Create a visual roadmap for the next quarter. Ensure visual communication aligns with the brand guidelines.
+                                </p>
+<div class="flex items-center gap-4 text-sm text-slate-400">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">slideshow</span>
+<span>Deck.pptx</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span>30 min est.</span>
+</div>
+</div>
+</div>
+<button class="shrink-0 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-medium transition-colors">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+<!-- Sidebar / Criteria -->
+<div class="flex flex-col gap-6">
+<!-- Collaboration Score Widget -->
+<div class="p-6 rounded-xl bg-white dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 flex flex-col gap-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Success Criteria</h3>
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium">Team Collaboration</span>
+<span class="text-sm font-bold text-primary">Required &gt; 80%</span>
+</div>
+<div class="relative pt-2">
+<!-- Gamified Gauge visual -->
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden flex">
+<div class="w-1/3 bg-red-400 h-full"></div>
+<div class="w-1/3 bg-yellow-400 h-full"></div>
+<div class="w-1/3 bg-green-400 h-full relative">
+<div class="absolute inset-y-0 right-0 w-px bg-white/50"></div>
+</div>
+</div>
+<div class="flex justify-between text-[10px] text-slate-400 mt-1 font-mono">
+<span>POOR</span>
+<span>AVG</span>
+<span>EXCELLENT</span>
+</div>
+</div>
+<div class="space-y-3 mt-2">
+<div class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-green-500 text-[18px] mt-0.5">check_circle</span>
+<span>Report Accuracy Verified</span>
+</div>
+<div class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-[18px] mt-0.5">radio_button_unchecked</span>
+<span>No Budget Overruns</span>
+</div>
+<div class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-[18px] mt-0.5">radio_button_unchecked</span>
+<span>All Deliverables Submitted</span>
+</div>
+</div>
+</div>
+<!-- Deliverables Checklist -->
+<div class="p-6 rounded-xl bg-white dark:bg-[#151c24] border border-slate-200 dark:border-slate-800 flex flex-col gap-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Deliverables</h3>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold">Final_Report.pdf</span>
+<span class="text-[10px] text-slate-500 uppercase">Pending</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300">upload</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<div class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">table_view</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold">Budget_v2.xlsx</span>
+<span class="text-[10px] text-slate-500 uppercase">Pending</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300">upload</span>
+</div>
+</div>
+</div>
+<!-- Resources -->
+<div class="p-6 rounded-xl bg-gradient-to-br from-primary/20 to-transparent border border-primary/20 flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+<h3 class="text-sm font-bold text-primary">Mission Assets</h3>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Download the raw files needed to complete this mission.</p>
+<button class="w-full py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/80 transition-colors">
+                            Download Package (.zip)
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

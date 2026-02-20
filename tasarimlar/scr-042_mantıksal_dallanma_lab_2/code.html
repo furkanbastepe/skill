@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-042 Mantıksal Dallanma Lab</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1e2936",
+                        "surface-darker": "#151e26",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for code block */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #151e26; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+        
+        /* Flowchart connector lines simulation */
+        .connector-line {
+            position: absolute;
+            background-color: #475569;
+            z-index: 0;
+            transition: all 0.3s ease;
+        }
+        .connector-line.active {
+            background-color: #137fec;
+            box-shadow: 0 0 8px rgba(19, 127, 236, 0.4);
+        }
+        
+        /* Syntax Highlighting Mock */
+        .token-keyword { color: #c678dd; }
+        .token-function { color: #61afef; }
+        .token-string { color: #98c379; }
+        .token-number { color: #d19a66; }
+        .token-comment { color: #5c6370; font-style: italic; }
+        .token-operator { color: #56b6c2; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-hidden h-screen flex flex-col">
+<!-- Navbar -->
+<header class="flex shrink-0 items-center justify-between whitespace-nowrap border-b border-solid border-slate-800 bg-background-dark px-6 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[24px]">account_tree</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM | Mantıksal Dallanma Lab</h2>
+<div class="text-xs text-slate-400 font-medium">SCR-042: If-Else Visualization</div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="hidden md:flex items-center gap-2 mr-4 bg-surface-dark px-3 py-1.5 rounded-lg border border-slate-700">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-mono text-slate-300">SYSTEM: ONLINE</span>
+</div>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary hover:bg-primary-dark transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[18px] mr-2">play_arrow</span>
+<span class="truncate">Simülasyonu Çalıştır</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-9 w-9 bg-surface-dark border border-slate-700 hover:bg-slate-700 transition-colors text-white">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-9 w-9 bg-surface-dark border border-slate-700 hover:bg-slate-700 transition-colors text-white">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<div class="h-9 w-[1px] bg-slate-700 mx-1"></div>
+<button class="flex items-center gap-2 pl-1 pr-3 rounded-lg hover:bg-surface-dark transition-colors">
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-purple-500 to-primary flex items-center justify-center text-xs font-bold border border-white/10">JD</div>
+<span class="text-sm font-medium text-slate-200 hidden lg:block">John Doe</span>
+</button>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Panel: Control & Flowchart -->
+<section class="flex-1 flex flex-col min-w-[320px] border-r border-slate-800 bg-background-dark relative">
+<!-- Controls Header -->
+<div class="p-5 border-b border-slate-800 bg-surface-darker">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-white text-lg font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span>
+                        Girdi Değişkenleri
+                    </h3>
+<span class="text-xs px-2 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700">Live Update</span>
+</div>
+<div class="space-y-6">
+<!-- Variable X Input -->
+<div class="group">
+<div class="flex justify-between items-end mb-2">
+<label class="text-sm font-medium text-slate-300">Sıcaklık Değeri (x)</label>
+<span class="text-primary font-mono font-bold text-lg bg-primary/10 px-2 rounded">24°C</span>
+</div>
+<div class="relative h-6 flex items-center">
+<div class="absolute w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[24%]"></div>
+</div>
+<!-- Thumb -->
+<div class="absolute left-[24%] -ml-3 w-6 h-6 rounded-full bg-white border-4 border-primary shadow-lg cursor-pointer hover:scale-110 transition-transform"></div>
+</div>
+<div class="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
+<span>0</span>
+<span>50</span>
+<span>100</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Flowchart Canvas -->
+<div class="flex-1 relative overflow-auto bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-fixed bg-surface-dark">
+<!-- Grid background effect -->
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#475569 1px, transparent 1px), linear-gradient(90deg, #475569 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="absolute inset-0 flex flex-col items-center py-12 min-h-[600px]">
+<!-- START Node -->
+<div class="z-10 w-32 h-10 rounded-full bg-slate-700 border-2 border-slate-500 flex items-center justify-center text-sm font-bold text-white shadow-lg mb-8 relative">
+                        BAŞLA
+                        <!-- Line down -->
+<div class="connector-line active w-0.5 h-8 top-full left-1/2 -translate-x-1/2"></div>
+</div>
+<!-- INPUT Node -->
+<div class="z-10 w-40 h-12 -skew-x-12 bg-slate-800 border-2 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)] flex items-center justify-center text-sm font-medium text-blue-100 mb-8 relative">
+<div class="skew-x-12">Giriş: x = 24</div>
+<!-- Line down -->
+<div class="connector-line active w-0.5 h-8 top-full left-1/2 -translate-x-1/2"></div>
+</div>
+<!-- DECISION Node (Diamond) -->
+<div class="z-10 w-32 h-32 relative mb-16">
+<div class="absolute inset-0 bg-slate-800 border-2 border-primary rotate-45 rounded shadow-[0_0_20px_rgba(19,127,236,0.4)] flex items-center justify-center">
+<div class="-rotate-45 text-center">
+<span class="text-xs text-slate-400 block mb-1">Koşul</span>
+<span class="font-bold text-white">x &gt; 25?</span>
+</div>
+</div>
+<!-- Line Left (False) -->
+<div class="connector-line active h-0.5 w-24 top-1/2 right-full"></div>
+<div class="absolute top-1/2 right-[110%] -mt-6 text-xs font-bold text-primary bg-background-dark px-1 rounded">HAYIR</div>
+<!-- Line Right (True) -->
+<div class="connector-line h-0.5 w-24 top-1/2 left-full opacity-30"></div>
+<div class="absolute top-1/2 left-[110%] -mt-6 text-xs font-bold text-slate-600">EVET</div>
+</div>
+<div class="flex w-full max-w-lg justify-between px-10 -mt-8">
+<!-- PROCESS Node (False Path) - ACTIVE -->
+<div class="flex flex-col items-center w-40">
+<!-- Vertical line connector from horizontal -->
+<div class="connector-line active w-0.5 h-8 -mt-8 mb-0"></div>
+<div class="z-10 w-full h-14 bg-slate-800 border-2 border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.3)] flex items-center justify-center text-sm text-white rounded relative">
+<span class="text-green-400 mr-2 material-symbols-outlined text-[18px]">check_circle</span>
+<span>Durum: Normal</span>
+</div>
+<!-- Line to merge -->
+<div class="connector-line active w-0.5 h-12 top-full"></div>
+</div>
+<!-- PROCESS Node (True Path) - INACTIVE -->
+<div class="flex flex-col items-center w-40 opacity-40">
+<!-- Vertical line connector from horizontal -->
+<div class="connector-line w-0.5 h-8 -mt-8 mb-0"></div>
+<div class="z-10 w-full h-14 bg-slate-800 border-2 border-red-500 flex items-center justify-center text-sm text-white rounded relative">
+<span class="text-red-400 mr-2 material-symbols-outlined text-[18px]">warning</span>
+<span>Uyarı Ver!</span>
+</div>
+<!-- Line to merge -->
+<div class="connector-line w-0.5 h-12 top-full"></div>
+</div>
+</div>
+<!-- Merge & End -->
+<div class="mt-8 relative flex flex-col items-center">
+<div class="w-64 h-0.5 bg-slate-700 relative mb-8">
+<!-- Active path incoming from left -->
+<div class="absolute left-0 top-0 h-full w-1/2 bg-primary shadow-[0_0_8px_rgba(19,127,236,0.6)]"></div>
+<!-- Vertical line down to End -->
+<div class="absolute left-1/2 top-0 h-8 w-0.5 bg-primary -translate-x-1/2"></div>
+</div>
+<div class="z-10 w-32 h-10 rounded-full bg-slate-900 border-2 border-slate-600 flex items-center justify-center text-sm font-bold text-slate-400">
+                            BİTİR
+                        </div>
+</div>
+</div>
+</div>
+<!-- Legend overlay -->
+<div class="absolute bottom-4 left-4 bg-surface-darker/90 backdrop-blur border border-slate-700 p-3 rounded-lg shadow-xl">
+<div class="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-2">Gösterge</div>
+<div class="flex items-center gap-2 mb-1.5">
+<div class="w-3 h-3 bg-primary rounded-sm shadow-[0_0_5px_rgba(19,127,236,0.8)]"></div>
+<span class="text-xs text-slate-300">Aktif Yol</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-slate-600 rounded-sm"></div>
+<span class="text-xs text-slate-400">Pasif Yol</span>
+</div>
+</div>
+</section>
+<!-- Right Panel: Code Editor -->
+<section class="flex flex-col w-[45%] min-w-[300px] bg-[#1e1e1e] border-l border-slate-800">
+<!-- Tabs -->
+<div class="flex items-center bg-[#252526] border-b border-black/20 overflow-x-auto">
+<div class="flex items-center px-4 py-2.5 bg-[#1e1e1e] border-t-2 border-primary text-slate-200 text-sm font-mono cursor-pointer min-w-[120px]">
+<span class="material-symbols-outlined text-[16px] text-yellow-400 mr-2">code</span>
+                    logic_lab.py
+                    <span class="ml-auto material-symbols-outlined text-[14px] opacity-0 hover:opacity-100">close</span>
+</div>
+<div class="flex items-center px-4 py-2.5 bg-[#2d2d2d] text-slate-500 text-sm font-mono cursor-pointer hover:bg-[#333] border-t-2 border-transparent transition-colors min-w-[120px]">
+                    config.json
+                </div>
+</div>
+<!-- Code Area -->
+<div class="flex-1 relative overflow-hidden font-mono text-sm leading-6">
+<!-- Line Numbers -->
+<div class="absolute left-0 top-0 bottom-0 w-12 bg-[#1e1e1e] border-r border-slate-800 text-slate-600 text-right pr-3 pt-4 select-none">
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+<div>9</div>
+<div>10</div>
+<div>11</div>
+<div>12</div>
+<div>13</div>
+</div>
+<!-- Code Content -->
+<div class="absolute left-12 right-0 top-0 bottom-0 p-4 pt-4 bg-[#1e1e1e] text-[#abb2bf] overflow-auto custom-scrollbar">
+<div class="opacity-50"><span class="token-comment"># Isı kontrol sistemi simülasyonu</span></div>
+<div class="mb-2"><span class="token-comment"># Kullanıcıdan alınan sıcaklık değerine göre durum belirle</span></div>
+<div><span class="token-keyword">def</span> <span class="token-function">kontrol_et</span>(sicaklik):</div>
+<!-- Line 5: Variable Assignment -->
+<div class="bg-primary/10 -mx-4 px-4 border-l-2 border-primary">
+<span class="ml-4">x</span> <span class="token-operator">=</span> sicaklik <span class="token-comment"># Şu anki değer: 24</span>
+</div>
+<div><span class="ml-4"> </span></div>
+<!-- Line 7: IF statement -->
+<div class="relative group">
+<span class="ml-4"><span class="token-keyword">if</span> x <span class="token-operator">&gt;</span> <span class="token-number">25</span>:</span>
+<span class="absolute right-0 top-0 text-[10px] text-red-400 opacity-0 group-hover:opacity-100 pr-2 transition-opacity">False</span>
+</div>
+<!-- Line 8: True block -->
+<div class="opacity-40">
+<span class="ml-8"><span class="token-function">print</span>(<span class="token-string">"⚠️ UYARI: Sıcaklık çok yüksek!"</span>)</span>
+</div>
+<!-- Line 9: ELSE statement -->
+<div class="bg-primary/20 -mx-4 px-4 border-l-2 border-primary relative">
+<span class="ml-4"><span class="token-keyword">else</span>:</span>
+<span class="absolute right-0 top-1/2 -translate-y-1/2 mr-2 flex items-center gap-1">
+<span class="block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-[10px] text-green-400 font-bold tracking-wider">ACTIVE</span>
+</span>
+</div>
+<!-- Line 10: False block -->
+<div class="bg-primary/10 -mx-4 px-4 border-l-2 border-primary/50">
+<span class="ml-8"><span class="token-function">print</span>(<span class="token-string">"✅ DURUM: Sıcaklık normal seviyede."</span>)</span>
+</div>
+<div><span class="ml-4"> </span></div>
+<div><span class="ml-4 token-comment"># Fonksiyonu çalıştır</span></div>
+<div><span class="ml-4"><span class="token-function">kontrol_et</span>(<span class="token-number">24</span>)</span></div>
+</div>
+</div>
+<!-- Terminal / Output -->
+<div class="h-40 border-t border-slate-700 bg-[#151e26] flex flex-col">
+<div class="flex justify-between items-center px-4 py-2 bg-[#1e2936] border-b border-slate-800">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Terminal Çıktısı</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-[14px] text-slate-500 cursor-pointer hover:text-white">delete</span>
+<span class="material-symbols-outlined text-[14px] text-slate-500 cursor-pointer hover:text-white">expand_less</span>
+</div>
+</div>
+<div class="p-4 font-mono text-sm overflow-auto">
+<div class="text-slate-500 mb-1">$ python logic_lab.py</div>
+<div class="text-green-400 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+                        ✅ DURUM: Sıcaklık normal seviyede.
+                    </div>
+<div class="text-slate-500 mt-2 animate-pulse">_</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Overlay Toast for Instruction -->
+<div class="fixed bottom-8 right-8 z-50 max-w-sm animate-bounce-in">
+<div class="bg-surface-dark border-l-4 border-primary text-white px-4 py-3 rounded shadow-2xl flex items-start gap-3">
+<div class="bg-primary/20 p-1.5 rounded-full text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</div>
+<div>
+<p class="font-bold text-sm">Görev:</p>
+<p class="text-sm text-slate-300 mt-1">Sıcaklık değerini 25°C üzerine çıkararak "Uyarı" mesajını tetikleyin.</p>
+</div>
+<button class="text-slate-400 hover:text-white ml-2">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</body></html>

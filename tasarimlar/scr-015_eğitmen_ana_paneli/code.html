@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-015 Instructor Dashboard - DIGEM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Noto+Sans:wght@300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#05bda4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111817",
+                        "card-dark": "#1b2726",
+                        "card-dark-hover": "#22302e",
+                        "border-dark": "#273a37",
+                        "text-secondary": "#9bbbb7",
+                        "accent-red": "#ef4444",
+                        "accent-orange": "#f97316",
+                        "accent-green": "#0bda4d"
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-hidden">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- SideNavBar Component (Reused and adapted) -->
+<aside class="flex w-72 flex-col border-r border-border-dark bg-background-dark h-full shrink-0 overflow-y-auto no-scrollbar">
+<div class="flex flex-col h-full justify-between p-4">
+<div class="flex flex-col gap-8">
+<!-- Profile/Brand Area -->
+<div class="flex gap-3 items-center px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-12 shrink-0 bg-primary/20 border border-primary/30" data-alt="Profile picture of the instructor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDf40cUH1qkt1P2JcrU5pSlpuCPJ89fNjwpa9tmpUsoCMnZ-30mYgAaCoDDKuDqcRiObiBTK53OHJr1GmcDjh90TDIudEfhWh0jm7ykBEzRlqfWndIBydqkY8bH3rtZ2EH_yRRsEXdvP3FhMAfSyxT9KZSC9wIvBqKsDtYuVbYIItqG8B9rY8ZyVmMTa2skeuT6h46IQhEb-qnDYWUfb7bdfsRq39-4Gbf8oTF8BjQ9UVQY9UywQEW9-2SycvkJaf_w2Q8W3iZvBA");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-lg font-bold tracking-tight">DIGEM</h1>
+<p class="text-text-secondary text-xs font-normal">Instructor Portal</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-border-dark text-white group transition-colors" href="#">
+<span class="material-symbols-outlined text-primary">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-card-dark-hover hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<p class="text-sm font-medium">Courses</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-card-dark-hover hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium">Students</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-card-dark-hover hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<p class="text-sm font-medium">Reports</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-card-dark-hover hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</nav>
+</div>
+<!-- Bottom Action -->
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span>Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Header & Action Bar -->
+<header class="flex flex-wrap items-center justify-between gap-4 px-8 py-6 bg-background-dark border-b border-border-dark shrink-0 z-10">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-bold tracking-tight text-white">Trainer Dashboard</h1>
+<p class="text-text-secondary text-sm">Welcome back, Sarah. Here's what's happening today.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border-dark bg-card-dark hover:bg-card-dark-hover text-white text-sm font-semibold transition-colors">
+<span class="material-symbols-outlined text-[20px]">campaign</span>
+                        Broadcast Announcement
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-background-dark text-sm font-bold shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+                        Open Live View
+                    </button>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-8 no-scrollbar">
+<div class="flex flex-col gap-8 max-w-7xl mx-auto">
+<!-- KPI Cards Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-card-dark border border-border-dark rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute right-[-20px] top-[-20px] opacity-5 rotate-12 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-white">check_circle</span>
+</div>
+<div class="flex items-center justify-between">
+<p class="text-text-secondary text-sm font-medium uppercase tracking-wider">Completion Rate</p>
+<span class="bg-accent-green/10 text-accent-green text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +5%
+                                </span>
+</div>
+<div>
+<h3 class="text-4xl font-bold text-white tracking-tight">78%</h3>
+<p class="text-text-secondary text-xs mt-1">vs. last week average</p>
+</div>
+<div class="w-full bg-border-dark h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full w-[78%]"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-card-dark border border-border-dark rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute right-[-20px] top-[-20px] opacity-5 rotate-12 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-white">group</span>
+</div>
+<div class="flex items-center justify-between">
+<p class="text-text-secondary text-sm font-medium uppercase tracking-wider">Active Learners</p>
+<span class="bg-accent-green/10 text-accent-green text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12
+                                </span>
+</div>
+<div>
+<h3 class="text-4xl font-bold text-white tracking-tight">124</h3>
+<p class="text-text-secondary text-xs mt-1">Currently online</p>
+</div>
+<div class="flex -space-x-2 mt-2">
+<img alt="Student avatar 1" class="inline-block h-8 w-8 rounded-full ring-2 ring-card-dark" data-alt="Student avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuaV0XVDPWGoGpWQBnLiusoU6tTkzqKrzkNVU67js7HGPtpRKvv2gIs2GRuopEozkBaN8k2DagREp2Liva58Bdeb715r3dLgW62c5YXHFZ6wQp7BIy0kqyyZSO1q8CZXz8xkO0VesDMgT7w3fgHyuuxHw6CL9v5e7oTxt-GpWIC2yk8383qnwoPy7J1Cli71nCcBRO6SNySY9j9PGROAgKj3bzDwe61cc2PSLsnllHOqi6g9ewzAVq-4eaoPDhcKXebK7XZCy6xA"/>
+<img alt="Student avatar 2" class="inline-block h-8 w-8 rounded-full ring-2 ring-card-dark" data-alt="Student avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy79kswiXUdePfXIYNIhvrlzoUI_5f-DzvDgsZ3E6RQl6YrBhWoKCXw5B9PcTrJFitkY1Pc1iwa1aiyPXavj_f0A_5H5P7f1HpCGySGzGcxehLVJWd61o5-LABs7DXcKSSwtWzOifjckJgm05u8tmqO2J1N7RXJnXP9ovCD7sM1sVku_TEohpkUgXfZrgn1Q6QYoD4XrPeqT8YzhTFXX85ipe_c7r6Z9iaMm5FJqyiS0cmQpk3obKTsOn8tinUWbdmdkTjrin_eQ"/>
+<img alt="Student avatar 3" class="inline-block h-8 w-8 rounded-full ring-2 ring-card-dark" data-alt="Student avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt_I2XAWljZfgN8jK9Ul3GezmUfxPg0TPJLp23UCSrfR3ICYN20nGqgubIjKOAmdixLa1RHZ-5cHnPP_ilRSd5poz41vF_yxXamsjoV_-qBa5YxnJMPLVfk4PSuskJ0EUEefIu7ym8S37Vb8OIHCeC3Bmt6mxoo6oRtrkstSRWVzintnrLm85oJtYwe0cxEOQzGUGba2LZJvMK6S7tmVK9coyx7GUhCt-7aoYAheH5uvqSsXjbAJo6yZ4QY3GV6wEeUA33t039zQ"/>
+<div class="flex items-center justify-center h-8 w-8 rounded-full ring-2 ring-card-dark bg-border-dark text-xs text-white font-medium">+121</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-card-dark border border-border-dark rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group hover:border-accent-orange/50 transition-colors">
+<div class="absolute right-[-20px] top-[-20px] opacity-5 rotate-12 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-accent-orange">warning</span>
+</div>
+<div class="flex items-center justify-between">
+<p class="text-text-secondary text-sm font-medium uppercase tracking-wider">Struggling Clusters</p>
+<span class="bg-accent-orange/10 text-accent-orange text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+                                    Needs Attention
+                                </span>
+</div>
+<div>
+<h3 class="text-4xl font-bold text-white tracking-tight">3 Groups</h3>
+<p class="text-text-secondary text-xs mt-1">Below 40% threshold</p>
+</div>
+<div class="w-full bg-border-dark h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-accent-orange h-full rounded-full w-[30%]"></div>
+</div>
+</div>
+</div>
+<!-- Bottleneck Analytics Header -->
+<div class="flex items-end justify-between border-b border-border-dark pb-4 mt-4">
+<div>
+<h2 class="text-2xl font-bold text-white tracking-tight">Bottleneck Analytics</h2>
+<p class="text-text-secondary text-sm mt-1">Real-time insight into class progression friction points.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-lg text-xs font-medium bg-border-dark text-white hover:bg-card-dark-hover transition">All Classes</button>
+<button class="px-3 py-1.5 rounded-lg text-xs font-medium text-text-secondary hover:text-white hover:bg-card-dark-hover transition">My Groups</button>
+</div>
+</div>
+<!-- Bottleneck Analytics List -->
+<div class="flex flex-col gap-6">
+<!-- Class Item 1: Severe Issue -->
+<div class="bg-card-dark border border-border-dark rounded-xl p-6 flex flex-col lg:flex-row gap-6 relative overflow-hidden">
+<!-- Left Indicator Strip -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-accent-orange"></div>
+<div class="flex-1 min-w-[280px]">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-accent-orange/20 text-accent-orange uppercase tracking-wide border border-accent-orange/20">High Alert</span>
+<h3 class="text-xl font-bold text-white">Python 101 - Group A</h3>
+</div>
+<p class="text-text-secondary text-sm mb-4">Warning: 15 students delayed in 'Nested Loops'. Expected completion was 2 days ago.</p>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<img alt="Student avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-card-dark grayscale opacity-70" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJAu_Ji3XN-1bLb6BEv2hy-1LDj5mWepSB8ug4VvN_k5rTJhdIFUmkk3Wzp48YDpbWHjLZKuOUZIUk-m5MgU1KShkQ43bj-_pABjjyxYC8HlSGcNDTucgzsI7I7KMt-qGTi5jnNqAKTKVlEXTIm2TxGcNoaBfRBQ_jb4fqZG_RnvxziVDVWZXiFQh1euyvA0A8g_Zh880BMW6eJlv_1myZxuVEmBIrxb7FwTJKxVDwhoNQI02vwZVGK-dQqWoncyfLj1KAdkzgBA"/>
+<img alt="Student avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-card-dark grayscale opacity-70" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZVrOY-UnFlwtYt8lzbZlZu5Ro6N1FnQgZnHk_6SqiiPUvMxgZGkfC0ZYniC-TS39jG3Kk005fUtMp8IqeLHKy126kRqZVKV7stw3Is_tm7dTVpX03EnORLdbkzUGgmEfzA7yVh4_33SZkQNW8UsWQ83xU0SqjmUtnsasF4DwfpPZQKXyB3C2XWT5Gc2s7lgj3KTauYpHxuN5NGm8_168Ix4vneAoN2QOJzJ-ZgrYZu4uNnuQBgv_nCR5R0MkbYtWLDvL5uwLLtg"/>
+<span class="flex items-center justify-center h-8 w-8 rounded-full ring-2 ring-card-dark bg-border-dark text-xs text-white font-medium">+13</span>
+</div>
+<button class="text-primary text-sm font-bold hover:underline decoration-primary underline-offset-4">View Students</button>
+</div>
+</div>
+<!-- Pipeline Visualization -->
+<div class="flex-[2] flex flex-col justify-center">
+<div class="flex justify-between text-xs text-text-secondary mb-2 px-1">
+<span>Unit 1: Basics</span>
+<span>Unit 2: Data Types</span>
+<span class="text-accent-orange font-bold">Unit 3: Loops (Bottleneck)</span>
+<span>Unit 4: Functions</span>
+</div>
+<div class="flex w-full h-12 rounded-lg overflow-hidden border border-border-dark bg-background-dark relative">
+<!-- Unit 1 -->
+<div class="h-full bg-primary/20 border-r border-background-dark flex items-center justify-center relative group w-[25%]">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary"></div>
+<span class="material-symbols-outlined text-primary text-opacity-50 group-hover:text-opacity-100 transition">check_circle</span>
+</div>
+<!-- Unit 2 -->
+<div class="h-full bg-primary/20 border-r border-background-dark flex items-center justify-center relative group w-[25%]">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary"></div>
+<span class="material-symbols-outlined text-primary text-opacity-50 group-hover:text-opacity-100 transition">check_circle</span>
+</div>
+<!-- Unit 3 (Stuck) -->
+<div class="h-full bg-accent-orange/10 border-r border-background-dark flex items-center justify-center relative group w-[35%] cursor-pointer hover:bg-accent-orange/20 transition">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-accent-orange"></div>
+<div class="flex items-center gap-1 text-accent-orange">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="text-xs font-bold">40% Stuck</span>
+</div>
+</div>
+<!-- Unit 4 (Empty) -->
+<div class="h-full flex items-center justify-center w-[15%]">
+<span class="text-border-dark text-xs">Upcoming</span>
+</div>
+</div>
+</div>
+<!-- Action -->
+<div class="flex flex-col justify-center items-end min-w-[120px]">
+<button class="px-4 py-2 bg-border-dark hover:bg-primary hover:text-background-dark text-white rounded-lg text-sm font-medium transition-colors w-full text-center">
+                                    View Details
+                                </button>
+</div>
+</div>
+<!-- Class Item 2: Smooth Sailing -->
+<div class="bg-card-dark border border-border-dark rounded-xl p-6 flex flex-col lg:flex-row gap-6 relative overflow-hidden">
+<!-- Left Indicator Strip -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary"></div>
+<div class="flex-1 min-w-[280px]">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/20 text-primary uppercase tracking-wide border border-primary/20">On Track</span>
+<h3 class="text-xl font-bold text-white">Web Dev 202 - Group B</h3>
+</div>
+<p class="text-text-secondary text-sm mb-4">Class is performing well. 95% of students have completed 'CSS Grid' ahead of schedule.</p>
+<div class="flex items-center gap-4">
+<span class="text-xs text-text-secondary">Next milestone: JavaScript DOM (Friday)</span>
+</div>
+</div>
+<!-- Pipeline Visualization -->
+<div class="flex-[2] flex flex-col justify-center">
+<div class="flex justify-between text-xs text-text-secondary mb-2 px-1">
+<span>HTML Basics</span>
+<span>CSS Flexbox</span>
+<span class="text-primary font-bold">CSS Grid</span>
+<span>Responsive Design</span>
+</div>
+<div class="flex w-full h-12 rounded-lg overflow-hidden border border-border-dark bg-background-dark relative">
+<!-- Unit 1 -->
+<div class="h-full bg-primary/20 border-r border-background-dark flex items-center justify-center relative w-[25%]">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary"></div>
+<span class="material-symbols-outlined text-primary text-opacity-50">check_circle</span>
+</div>
+<!-- Unit 2 -->
+<div class="h-full bg-primary/20 border-r border-background-dark flex items-center justify-center relative w-[25%]">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary"></div>
+<span class="material-symbols-outlined text-primary text-opacity-50">check_circle</span>
+</div>
+<!-- Unit 3 Active -->
+<div class="h-full bg-primary/10 border-r border-background-dark flex items-center justify-center relative w-[30%]">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary/60"></div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px] animate-pulse">laptop_chromebook</span>
+<span class="text-xs font-bold">Active</span>
+</div>
+</div>
+<!-- Unit 4 -->
+<div class="h-full flex items-center justify-center w-[20%]">
+<span class="text-border-dark text-xs">Upcoming</span>
+</div>
+</div>
+</div>
+<!-- Action -->
+<div class="flex flex-col justify-center items-end min-w-[120px]">
+<button class="px-4 py-2 bg-border-dark hover:bg-primary hover:text-background-dark text-white rounded-lg text-sm font-medium transition-colors w-full text-center">
+                                    View Details
+                                </button>
+</div>
+</div>
+<!-- Class Item 3: Minor Issues -->
+<div class="bg-card-dark border border-border-dark rounded-xl p-6 flex flex-col lg:flex-row gap-6 relative overflow-hidden">
+<!-- Left Indicator Strip -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-yellow-500"></div>
+<div class="flex-1 min-w-[280px]">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-500/20 text-yellow-500 uppercase tracking-wide border border-yellow-500/20">Minor Delay</span>
+<h3 class="text-xl font-bold text-white">Intro to AI - Group C</h3>
+</div>
+<p class="text-text-secondary text-sm mb-4">5 students have not started 'Neural Networks Intro'. Check-in recommended.</p>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<img alt="Student avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-card-dark grayscale opacity-70" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXb25sPJdd_ivRfBIBMxRhioMneGRE_02g2U7SJj2ZsbUcqasWHWUtqLy-VD0_tC6O5VoERXAU4VCXuDVJQNS8nq1m74Xb4MArIDFfIbUr3jOoNPQHn10CzWFxNtqVQ-SWTHDY_3kir5o6wLFBTUra_BVIqUCJlkrfbSrfcZbRqKb6h8oxfXDVlFedqGoS2PQJ78_th5rM0xPdlvffPwtOPZHsBgPpEZTeQIt2iSzBVtBHjbt0PjJjfJDAx85cMLXKtRNG9ifIrg"/>
+<img alt="Student avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-card-dark grayscale opacity-70" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe0xawEoriekjEFz4UVw4qcKpIa_n2kk91t5bdBwcPEbPAMeVZsJ8TNmd6Yx4z_szZckW3oE3dpUUWdl__wdhVBDIS_FcI7r4J-weCPG8_bc4Oi8uxy9WVKnpkr2vfmByUAOOsrwVuSqrUHxwk-x8soAbuF55VP-UmHUjLUFlw8-eNpR5ExRxl3C7yVsK6XvLHiFapnOADwrPfstcOUdzjCNMez1fj_-snigYXvSUz-YEw2t4rUEjQQ0J9ZhPYdDDMPTyGZ6t2Gg"/>
+<span class="flex items-center justify-center h-8 w-8 rounded-full ring-2 ring-card-dark bg-border-dark text-xs text-white font-medium">+3</span>
+</div>
+<button class="text-primary text-sm font-bold hover:underline decoration-primary underline-offset-4">Remind All</button>
+</div>
+</div>
+<!-- Pipeline Visualization -->
+<div class="flex-[2] flex flex-col justify-center">
+<div class="flex justify-between text-xs text-text-secondary mb-2 px-1">
+<span>History of AI</span>
+<span>Machine Learning</span>
+<span class="text-yellow-500 font-bold">Neural Networks</span>
+<span>Ethics in AI</span>
+</div>
+<div class="flex w-full h-12 rounded-lg overflow-hidden border border-border-dark bg-background-dark relative">
+<!-- Unit 1 -->
+<div class="h-full bg-primary/20 border-r border-background-dark flex items-center justify-center relative w-[25%]">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary"></div>
+<span class="material-symbols-outlined text-primary text-opacity-50">check_circle</span>
+</div>
+<!-- Unit 2 -->
+<div class="h-full bg-primary/20 border-r border-background-dark flex items-center justify-center relative w-[25%]">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary"></div>
+<span class="material-symbols-outlined text-primary text-opacity-50">check_circle</span>
+</div>
+<!-- Unit 3 Slow -->
+<div class="h-full bg-yellow-500/10 border-r border-background-dark flex items-center justify-center relative w-[25%]">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-yellow-500"></div>
+<div class="flex items-center gap-1 text-yellow-500">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-xs font-bold">Slow Start</span>
+</div>
+</div>
+<!-- Unit 4 -->
+<div class="h-full flex items-center justify-center w-[25%]">
+<span class="text-border-dark text-xs">Upcoming</span>
+</div>
+</div>
+</div>
+<!-- Action -->
+<div class="flex flex-col justify-center items-end min-w-[120px]">
+<button class="px-4 py-2 bg-border-dark hover:bg-primary hover:text-background-dark text-white rounded-lg text-sm font-medium transition-colors w-full text-center">
+                                    View Details
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pusula Flux - LMS Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Noto+Sans:wght@300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b6cee",
+                        "primary-glow": "#2b6cee", 
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b",
+                        "surface-darker": "#111827",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(43, 108, 238, 0.5), 0 0 20px rgba(43, 108, 238, 0.3)',
+                        'card-glow': '0 0 0 1px rgba(255, 255, 255, 0.05), 0 4px 6px -1px rgba(0, 0, 0, 0.5)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation / Status Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-surface-darker/80 backdrop-blur-md">
+<div class="px-4 h-16 flex items-center justify-between max-w-7xl mx-auto">
+<!-- Logo Section -->
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center bg-primary/20 rounded-lg">
+<span class="material-symbols-outlined text-primary">explore</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white hidden sm:block">PUSULA <span class="text-primary font-normal">Flux</span></h1>
+</div>
+<!-- Gamification Status Bar -->
+<div class="flex items-center gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2">
+<!-- XP -->
+<div class="flex items-center gap-2 bg-slate-100 dark:bg-surface-dark px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-amber-400 text-[20px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div class="flex flex-col sm:flex-row sm:items-baseline gap-1">
+<span class="text-xs sm:text-sm font-bold">12,450</span>
+<span class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">XP</span>
+</div>
+</div>
+<!-- Level -->
+<div class="flex items-center gap-2 bg-slate-100 dark:bg-surface-dark px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-purple-400 text-[20px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<div class="flex flex-col sm:flex-row sm:items-baseline gap-1">
+<span class="text-xs sm:text-sm font-bold">Lvl 12</span>
+</div>
+</div>
+<!-- Streak -->
+<div class="hidden sm:flex items-center gap-2 bg-slate-100 dark:bg-surface-dark px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-orange-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="text-sm font-bold">14</span>
+</div>
+<!-- Hearts -->
+<div class="flex items-center gap-2 bg-slate-100 dark:bg-surface-dark px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-red-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-sm font-bold">5</span>
+</div>
+</div>
+<!-- Profile -->
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-slate-800">
+<div class="relative group cursor-pointer">
+<div class="size-9 rounded-full bg-slate-200 dark:bg-surface-dark overflow-hidden ring-2 ring-primary/50">
+<img alt="User profile picture showing a young student" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyHLORyOVwppnE76iGePeDQSgLAL-I3obf0Sqd-TDT6eN-AE-9vOuq7R3KXZ34Cvo6evpLLiTN31AV80bQNYMuLuRwydeYQo-5z-MKlxZa5hbcgTHTmeTIsqdQRaLiC-opeev2t6PmAxY78tgOcLZhlxMLIjaHnPJA5O1ByZJVig5GIqE4B7i2ZwM6QCnWUytPc5WEH6ZqO_e_bqrE9F3FzuxDCrlsW0gt23ugknQbGvkX1ozv6mO7pma9kH9nWNznB3KzhOthvVc"/>
+</div>
+<div class="absolute bottom-0 right-0 size-2.5 bg-green-500 border-2 border-white dark:border-surface-darker rounded-full"></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-1 max-w-7xl mx-auto w-full p-4 lg:p-6 gap-6 relative">
+<!-- Left Sidebar (Desktop) -->
+<nav class="hidden lg:flex w-64 flex-col gap-8 shrink-0">
+<!-- Navigation Menu -->
+<div class="flex flex-col gap-2">
+<p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider px-3 mb-2">Command Center</p>
+<a class="group flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-neon transition-all" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-medium">My Path</span>
+</a>
+<a class="group flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-surface-dark rounded-xl transition-all hover:text-primary dark:hover:text-primary" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">swords</span>
+<span class="font-medium">Arena</span>
+</a>
+<a class="group flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-surface-dark rounded-xl transition-all hover:text-primary dark:hover:text-primary" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">group</span>
+<span class="font-medium">Buddy</span>
+<span class="ml-auto bg-primary/20 text-primary text-[10px] font-bold px-1.5 py-0.5 rounded">NEW</span>
+</a>
+<a class="group flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-surface-dark rounded-xl transition-all hover:text-primary dark:hover:text-primary" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">public</span>
+<span class="font-medium">SDG Missions</span>
+</a>
+</div>
+<!-- Daily Quest Widget -->
+<div class="bg-gradient-to-br from-surface-dark to-surface-darker rounded-2xl p-4 border border-slate-700/50 shadow-card-glow mt-auto relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-amber-400">emoji_events</span>
+</div>
+<h3 class="text-sm font-bold text-white mb-1">Daily Quest</h3>
+<p class="text-xs text-slate-400 mb-3">Complete 2 simulations</p>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-400 h-full rounded-full w-1/2"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="text-[10px] text-slate-500">1/2 Done</span>
+<span class="text-[10px] text-amber-400 font-bold">+50 XP</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 min-w-0 flex flex-col gap-6">
+<!-- Welcome Header -->
+<div class="flex flex-col gap-1">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white">Ready to resume, Cadet?</h2>
+<p class="text-slate-500 dark:text-slate-400">Your mission critical skills are needed on the network.</p>
+</div>
+<!-- Hero Card: Current Module -->
+<div class="relative w-full rounded-2xl overflow-hidden bg-surface-darker shadow-neon group">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:opacity-50 transition-opacity duration-700" data-alt="Abstract cyber security visualization with blue network nodes and code" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOHMALUpy0Pu_jHkC78Sq9rwgmOnXdoi_qVWeA9cQn-sXgwSUDVeuPlU5ds0np5zTKeNftmcEkrvIznJjBjlLQQnh6mI9ouUFCSAuN1wkENibQe3syyQZqQhG0zzw_Kte_Rp700E7c6OxM3YNrHqqqhLG9b1WqwajCa8ZedCD6q4tjO_pJR-091UMW4t0OPQfdn0SglC_I-JoqflSfd5aSY20gknejwOePZsQp0wwXIVDgNGEJfPetWAImdtL8weseI8e10PdouXI');"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-darker via-surface-darker/90 to-transparent"></div>
+<div class="relative p-6 sm:p-8 md:p-10 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between h-full min-h-[280px]">
+<div class="flex flex-col gap-4 max-w-xl">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-md bg-primary/20 text-primary text-xs font-bold border border-primary/30 uppercase tracking-wide">In Progress</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-700/50 text-slate-300 text-xs font-bold border border-slate-600/50">B2-L3</span>
+</div>
+<h3 class="text-2xl sm:text-4xl font-extrabold text-white leading-tight">Cyber Security Basics: Firewall Defense</h3>
+<p class="text-slate-300 text-sm sm:text-base max-w-md">Master the fundamentals of network traffic filtering and protect the infrastructure from incoming threats.</p>
+<div class="w-full max-w-sm mt-2">
+<div class="flex justify-between text-xs font-medium text-slate-400 mb-1.5">
+<span>Progress</span>
+<span class="text-primary">65%</span>
+</div>
+<div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+<div class="h-full bg-primary w-[65%] shadow-[0_0_10px_rgba(43,108,238,0.8)] relative overflow-hidden">
+<div class="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+</div>
+</div>
+<button class="relative shrink-0 overflow-hidden rounded-xl bg-primary px-8 py-4 text-white font-bold tracking-wide shadow-neon hover:scale-105 active:scale-95 transition-all duration-300 group/btn">
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
+<span class="relative flex items-center gap-2">
+                            START SIMULATION
+                            <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+</span>
+</button>
+</div>
+</div>
+<!-- Module Roadmap Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Module Roadmap</h3>
+<a class="text-sm font-medium text-primary hover:text-primary-glow transition-colors" href="#">View Full Map</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Track B (Basic) -->
+<div class="bg-white dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-4 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="relative size-16 shrink-0">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-slate-200 dark:text-slate-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-emerald-500 drop-shadow-[0_0_2px_rgba(16,185,129,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="85, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-xl font-bold text-emerald-500">B</span>
+</div>
+</div>
+<div class="flex flex-col">
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Basic Skills</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Digital Literacy &amp; Safety</p>
+<span class="text-xs font-bold text-emerald-500 mt-1">85% Complete</span>
+</div>
+</div>
+<!-- Track O (Office) -->
+<div class="bg-white dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-4 hover:border-primary/50 transition-colors cursor-pointer group shadow-neon border-primary/30">
+<div class="relative size-16 shrink-0">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-slate-200 dark:text-slate-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary drop-shadow-[0_0_2px_rgba(43,108,238,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="40, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-xl font-bold text-primary">O</span>
+</div>
+</div>
+<div class="flex flex-col">
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Office Suite</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Docs, Sheets &amp; Slides</p>
+<span class="text-xs font-bold text-primary mt-1">40% Complete</span>
+</div>
+</div>
+<!-- Track L (Logic) -->
+<div class="bg-white dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-4 opacity-70 hover:opacity-100 transition-opacity cursor-not-allowed">
+<div class="relative size-16 shrink-0 flex items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-full">
+<span class="material-symbols-outlined text-slate-400 text-2xl">lock</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-bold text-slate-900 dark:text-white">Logic &amp; Code</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Algorithms &amp; Python</p>
+<span class="text-xs font-medium text-slate-500 mt-1">Locked (Lvl 15 req)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile Navigation (Bottom) -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 bg-surface-darker/90 backdrop-blur-md border-t border-slate-800 p-2 z-50 flex justify-around items-center">
+<a class="flex flex-col items-center p-2 text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center p-2 text-slate-400" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px] mt-1">Path</span>
+</a>
+<div class="relative -top-5">
+<button class="bg-primary text-white rounded-full p-4 shadow-neon border-4 border-surface-darker">
+<span class="material-symbols-outlined text-2xl">play_arrow</span>
+</button>
+</div>
+<a class="flex flex-col items-center p-2 text-slate-400" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] mt-1">Buddy</span>
+</a>
+<a class="flex flex-col items-center p-2 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] mt-1">Profile</span>
+</a>
+</div>
+</main>
+<!-- Right Sidebar (Widgets) -->
+<aside class="hidden xl:flex w-80 flex-col gap-6 shrink-0">
+<!-- Buddy Widget -->
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-5 border border-slate-200 dark:border-slate-800 flex flex-col gap-4 shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-lg">S</div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-surface-dark rounded-full"></div>
+</div>
+<div>
+<h4 class="text-sm font-bold dark:text-white">Selin</h4>
+<p class="text-xs text-slate-400">Learning Buddy</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="bg-slate-100 dark:bg-surface-darker rounded-xl p-3 relative">
+<div class="absolute -left-1.5 top-4 size-3 bg-slate-100 dark:bg-surface-darker rotate-45"></div>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Don't forget the logic gate quiz! You need it for the next badge 🚀</p>
+</div>
+<button class="w-full py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    Reply
+                </button>
+</div>
+<!-- SDG Impact Counter -->
+<div class="bg-gradient-to-br from-[#00c4cc] to-[#4c9f38] rounded-2xl p-5 text-white shadow-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 -mr-4 -mt-4 w-24 h-24 bg-white/20 rounded-full blur-2xl"></div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined">public</span>
+<h4 class="text-sm font-bold tracking-wide uppercase opacity-90">SDG Impact</h4>
+</div>
+<div class="flex flex-col gap-1 mb-4">
+<span class="text-4xl font-extrabold">3</span>
+<span class="text-sm font-medium opacity-90">Virtual Trees Planted</span>
+</div>
+<div class="flex items-center gap-2 text-xs bg-black/20 p-2 rounded-lg backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm">info</span>
+<span>Based on your activity streaks</span>
+</div>
+</div>
+<!-- Mentor Messages -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-1">
+<h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Mentor Messages</h4>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-primary/50 cursor-pointer transition-colors group">
+<div class="flex gap-3">
+<div class="mt-1 size-2 rounded-full bg-primary shrink-0"></div>
+<div class="flex flex-col gap-1">
+<h5 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary">Career Workshop Tomorrow</h5>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Join us for a live session on building your digital portfolio with industry experts.</p>
+<span class="text-[10px] text-slate-500 mt-1">2 hours ago</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-primary/50 cursor-pointer transition-colors group opacity-70 hover:opacity-100">
+<div class="flex gap-3">
+<div class="mt-1 size-2 rounded-full bg-transparent border border-slate-500 shrink-0"></div>
+<div class="flex flex-col gap-1">
+<h5 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary">New Resources Added</h5>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Check the library for updated Python cheat sheets.</p>
+<span class="text-[10px] text-slate-500 mt-1">Yesterday</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

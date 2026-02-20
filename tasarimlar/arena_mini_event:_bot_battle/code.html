@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite - Bot Battle Arena</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922", // Adjusted to match the requested dark mode
+                        "surface-dark": "#18232c",
+                        "accent-red": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for cyber aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #137fec; 
+        }
+
+        /* Glowing Grid Effect */
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(19, 127, 236, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(19, 127, 236, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+        }
+        
+        .pulse-glow {
+            animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(19, 127, 236, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(19, 127, 236, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(19, 127, 236, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#283039] bg-[#111418] px-6 py-3 z-20">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">token</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-tight">PUSULA Lite</h2>
+<span class="text-xs text-slate-400 font-normal">Gamified Simulation v2.4</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2 px-3 py-1 rounded bg-slate-800 border border-slate-700">
+<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-bold text-slate-300">SERVER ONLINE</span>
+</div>
+<button class="flex items-center gap-2 overflow-hidden rounded-lg h-9 px-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-base">person</span>
+<span class="truncate">Operator_01</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col lg:flex-row h-[calc(100vh-64px)] overflow-hidden">
+<!-- Left Panel: Configuration -->
+<aside class="w-full lg:w-[320px] xl:w-[360px] bg-surface-dark border-r border-[#283039] flex flex-col z-10 overflow-y-auto">
+<div class="p-6 border-b border-[#283039]">
+<h1 class="text-2xl font-bold text-white mb-1">Bot Config</h1>
+<p class="text-slate-400 text-sm">Allocate resources to your unit.</p>
+</div>
+<div class="flex-1 p-6 flex flex-col gap-8">
+<!-- Total Points Counter -->
+<div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700 text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="text-xs font-bold text-primary uppercase tracking-wider block mb-1">Available Energy</span>
+<div class="text-4xl font-black text-white">0 / 100</div>
+<div class="w-full bg-slate-700 h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary h-full w-full rounded-full shadow-[0_0_10px_rgba(19,127,236,0.6)]"></div>
+</div>
+</div>
+<!-- Sliders -->
+<div class="space-y-6">
+<!-- Speed -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<label class="flex items-center gap-2 text-sm font-medium text-slate-300">
+<span class="material-symbols-outlined text-primary text-lg">bolt</span>
+                                Speed
+                            </label>
+<span class="text-white font-bold font-mono">40</span>
+</div>
+<input class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="40"/>
+</div>
+<!-- Attack -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<label class="flex items-center gap-2 text-sm font-medium text-slate-300">
+<span class="material-symbols-outlined text-accent-red text-lg">swords</span>
+                                Attack
+                            </label>
+<span class="text-white font-bold font-mono">40</span>
+</div>
+<input class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-accent-red" max="100" min="0" type="range" value="40"/>
+</div>
+<!-- Defense -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<label class="flex items-center gap-2 text-sm font-medium text-slate-300">
+<span class="material-symbols-outlined text-green-500 text-lg">shield</span>
+                                Defense
+                            </label>
+<span class="text-white font-bold font-mono">20</span>
+</div>
+<input class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-green-500" max="100" min="0" type="range" value="20"/>
+</div>
+</div>
+<!-- Presets -->
+<div>
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Strategy Presets</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-3 py-2 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-300 hover:text-white transition-all text-left">
+                            Aggressor
+                        </button>
+<button class="px-3 py-2 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-300 hover:text-white transition-all text-left">
+                            Guardian
+                        </button>
+<button class="px-3 py-2 rounded bg-primary/20 hover:bg-primary/30 border border-primary/40 text-xs text-primary font-bold transition-all text-left">
+                            Speedster
+                        </button>
+<button class="px-3 py-2 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-300 hover:text-white transition-all text-left">
+                            Balanced
+                        </button>
+</div>
+</div>
+</div>
+<!-- Deploy Action -->
+<div class="p-6 mt-auto border-t border-[#283039] bg-[#111418]">
+<button class="w-full h-14 bg-primary hover:bg-blue-600 text-white font-bold rounded-lg flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(19,127,236,0.4)] transition-all hover:shadow-[0_0_30px_rgba(19,127,236,0.6)] group">
+<span class="material-symbols-outlined group-hover:animate-ping">rocket_launch</span>
+<span class="text-lg tracking-wide">DEPLOY &amp; BATTLE</span>
+</button>
+</div>
+</aside>
+<!-- Center Panel: The Arena -->
+<section class="flex-1 relative bg-black flex flex-col">
+<!-- Top HUD -->
+<div class="absolute top-0 left-0 right-0 p-4 z-10 flex justify-between items-start bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
+<div class="flex gap-4 items-center pointer-events-auto">
+<!-- Player Stats HUD -->
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-primary flex items-center justify-center text-white shadow-[0_0_15px_rgba(19,127,236,0.5)]">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div>
+<div class="text-white text-sm font-bold">Unit: BL-01</div>
+<div class="w-24 h-1.5 bg-slate-800 rounded-full mt-1">
+<div class="w-[85%] h-full bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<div class="bg-slate-900/80 border border-slate-700 px-4 py-1 rounded-full backdrop-blur-sm text-xs font-mono text-slate-300">
+                        SIMULATION TIME: 00:42.85
+                    </div>
+</div>
+<div class="flex gap-4 items-center pointer-events-auto">
+<!-- Enemy Stats HUD -->
+<div class="flex items-center gap-3 text-right">
+<div>
+<div class="text-white text-sm font-bold">Boss: RED-X</div>
+<div class="w-24 h-1.5 bg-slate-800 rounded-full mt-1 ml-auto">
+<div class="w-[45%] h-full bg-accent-red rounded-full"></div>
+</div>
+</div>
+<div class="size-10 rounded bg-accent-red flex items-center justify-center text-white shadow-[0_0_15px_rgba(239,68,68,0.5)]">
+<span class="material-symbols-outlined">skull</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main 3D/Grid Viewport -->
+<div class="flex-1 relative overflow-hidden cyber-grid flex items-center justify-center group">
+<!-- Arena Floor Decoration -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(19,127,236,0.15)_0%,_transparent_70%)]"></div>
+<!-- Grid Visuals - Mocking a 3D isometric perspective or top-down view -->
+<div class="relative w-[600px] h-[600px] border border-primary/20 rounded-xl bg-slate-900/20 backdrop-blur-sm shadow-[0_0_50px_rgba(0,0,0,0.5)] transform lg:scale-90 xl:scale-100 transition-transform">
+<!-- Decorative Corners -->
+<div class="absolute -top-1 -left-1 size-4 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute -top-1 -right-1 size-4 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute -bottom-1 -left-1 size-4 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute -bottom-1 -right-1 size-4 border-b-2 border-r-2 border-primary"></div>
+<!-- Enemy Bot -->
+<div class="absolute top-[30%] right-[30%] size-12 rounded-full bg-accent-red shadow-[0_0_30px_rgba(239,68,68,0.8)] flex items-center justify-center z-10 animate-pulse">
+<span class="material-symbols-outlined text-white text-2xl">local_fire_department</span>
+<!-- Damage Number -->
+<div class="absolute -top-10 text-xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] animate-bounce">-128</div>
+</div>
+<!-- Laser Beam -->
+<div class="absolute top-[48%] left-[25%] w-[45%] h-1 bg-gradient-to-r from-primary via-cyan-300 to-transparent transform -rotate-12 opacity-80 shadow-[0_0_15px_#22d3ee]"></div>
+<!-- Player Bot -->
+<div class="absolute bottom-[30%] left-[20%] size-12 rounded-full bg-primary shadow-[0_0_30px_rgba(19,127,236,0.8)] flex items-center justify-center z-10 ring-4 ring-primary/20">
+<span class="material-symbols-outlined text-white text-2xl">smart_toy</span>
+<!-- Shield Effect -->
+<div class="absolute -inset-2 rounded-full border border-cyan-400/50 opacity-60"></div>
+</div>
+<!-- Particle debris (mock) -->
+<div class="absolute top-[32%] right-[32%] size-2 bg-yellow-400 rounded-full shadow-[0_0_10px_yellow]"></div>
+<div class="absolute top-[28%] right-[28%] size-1 bg-orange-500 rounded-full shadow-[0_0_10px_orange]"></div>
+<!-- Grid Coordinates overlay -->
+<div class="absolute bottom-2 right-4 font-mono text-xs text-slate-500">POS: [12, 08]</div>
+</div>
+</div>
+<!-- Bottom Controls / Status -->
+<div class="h-16 border-t border-[#283039] bg-surface-dark px-6 flex items-center justify-between z-20">
+<div class="flex gap-4">
+<button class="p-2 rounded hover:bg-slate-700 text-slate-400 hover:text-white">
+<span class="material-symbols-outlined">pause</span>
+</button>
+<button class="p-2 rounded hover:bg-slate-700 text-slate-400 hover:text-white">
+<span class="material-symbols-outlined">fast_forward</span>
+</button>
+<button class="p-2 rounded hover:bg-slate-700 text-slate-400 hover:text-white">
+<span class="material-symbols-outlined">restart_alt</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-400">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                    Running Simulation...
+                </div>
+<div class="flex gap-4">
+<button class="p-2 rounded hover:bg-slate-700 text-slate-400 hover:text-white">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Panel: Info & Logs -->
+<aside class="w-full lg:w-[320px] bg-surface-dark border-l border-[#283039] flex flex-col z-10 overflow-hidden">
+<!-- Tabs -->
+<div class="flex border-b border-[#283039]">
+<button class="flex-1 py-4 text-sm font-bold text-primary border-b-2 border-primary bg-slate-800/50">
+                    Live Log
+                </button>
+<button class="flex-1 py-4 text-sm font-bold text-slate-400 hover:text-slate-200 hover:bg-slate-800/30 transition-colors">
+                    Leaderboard
+                </button>
+</div>
+<!-- Log Content -->
+<div class="flex-1 overflow-y-auto p-4 font-mono text-xs space-y-3 bg-[#0d131a]">
+<div class="text-slate-500 border-b border-slate-800 pb-2 mb-2">-- BATTLE INITIATED --</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:01]</span>
+<span class="text-cyan-400">SYS:</span>
+<span class="text-slate-300">Unit BL-01 activated shields.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:03]</span>
+<span class="text-primary">BL-01:</span>
+<span class="text-slate-300">Moved to (12, 04).</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:05]</span>
+<span class="text-accent-red">RED-X:</span>
+<span class="text-slate-300">Fired Plasma Bolt. Missed.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:08]</span>
+<span class="text-primary">BL-01:</span>
+<span class="text-yellow-400">CRITICAL HIT!</span>
+<span class="text-slate-300">Dealt 128 DMG to RED-X.</span>
+</div>
+<div class="flex gap-2 opacity-50">
+<span class="text-slate-600">[00:09]</span>
+<span class="text-accent-red">RED-X:</span>
+<span class="text-slate-300">Calculating counter-measure...</span>
+</div>
+<!-- Fade out effect for older logs implicitly by scroll -->
+</div>
+<!-- Mini Leaderboard (Static Preview) -->
+<div class="h-1/3 border-t border-[#283039] bg-surface-dark flex flex-col">
+<div class="p-3 border-b border-[#283039] flex justify-between items-center bg-slate-800/30">
+<h3 class="text-xs font-bold text-white uppercase tracking-wider">Top Agents</h3>
+<button class="text-primary text-xs hover:underline">View All</button>
+</div>
+<div class="overflow-y-auto p-2">
+<div class="flex items-center justify-between p-2 rounded hover:bg-slate-800/50 cursor-pointer group">
+<div class="flex items-center gap-3">
+<span class="text-yellow-500 font-bold font-mono text-sm w-4">1</span>
+<div class="size-6 rounded-full bg-slate-700 overflow-hidden relative">
+<!-- Avatar placeholder -->
+<div class="absolute inset-0 flex items-center justify-center text-[10px] text-white">JD</div>
+</div>
+<span class="text-sm text-slate-200">J_Doe_99</span>
+</div>
+<span class="text-xs font-mono text-primary font-bold">12800 pts</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded hover:bg-slate-800/50 cursor-pointer group">
+<div class="flex items-center gap-3">
+<span class="text-slate-400 font-bold font-mono text-sm w-4">2</span>
+<div class="size-6 rounded-full bg-slate-700 overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center text-[10px] text-white">AK</div>
+</div>
+<span class="text-sm text-slate-200">Akira_X</span>
+</div>
+<span class="text-xs font-mono text-slate-400 group-hover:text-primary">11540 pts</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded hover:bg-slate-800/50 cursor-pointer group bg-slate-800/20 border border-slate-700/50">
+<div class="flex items-center gap-3">
+<span class="text-slate-500 font-bold font-mono text-sm w-4">3</span>
+<div class="size-6 rounded-full bg-primary overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center text-[10px] text-white">ME</div>
+</div>
+<span class="text-sm text-white font-bold">You</span>
+</div>
+<span class="text-xs font-mono text-slate-400">0 pts</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

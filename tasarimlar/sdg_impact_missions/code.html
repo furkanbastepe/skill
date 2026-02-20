@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SDG Impact Missions - PUSULA</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#895af6",
+                        "primary-hover": "#764edb",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#161023",
+                        "surface-dark": "#211834",
+                        "surface-darker": "#1d152d",
+                        "accent-green": "#4cd964",
+                        "accent-blue": "#007aff",
+                        "accent-orange": "#ff9500",
+                        "accent-red": "#ff3b30",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem", 
+                        "xl": "2rem",
+                        "2xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(137, 90, 246, 0.3)',
+                        'card': '0 10px 30px rgba(0, 0, 0, 0.5)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>/* Custom scrollbar for better aesthetic */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px
+    }
+::-webkit-scrollbar-track {
+    background: #161023
+    }
+::-webkit-scrollbar-thumb {
+    background: #2e2249;
+    border-radius: 4px
+    }
+.map-bg {
+    background-color: #161023;
+    background-image: linear-gradient(rgba(22, 16, 35, 0.85), rgba(22, 16, 35, 0.85)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuBHo_nzXQxJdF1RS3zeJB9CC_soRIhusTAkRuFpfe79TtrwDUW20J4S-ACXvgqYW82iV3AbPyIjgXnyXYdVe7RCkaB46PV0sBaFLDKYHmFKQL18WRrOzq6hhwxWJqUJqGMXTEMXSy4aKMgGouCQRXZsXMHtDSdIGGZRMm-zHYH8G_PJ5RUV22MrmfptBjpRWiIVgvb0hbHYjzH5hNyeiC68fQLOxYFg9Yv3UeaytBuD3_Y29knHUfQIAOaUVnDOt5A8ADGJZNtZ4PA);
+    background-size: cover;
+    background-position: center
+    }
+/* Floating Animation */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+        } 50% {
+        transform: translateY(-10px);
+        } 100% {
+        transform: translateY(0px);
+        }
+    }
+.float-animation {
+    animation: float 6s ease-in-out infinite
+    }
+.float-animation-delay-1 {
+    animation: float 7s ease-in-out infinite;
+    animation-delay: 1s
+    }
+.float-animation-delay-2 {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 2s
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-dark bg-background-dark/95 backdrop-blur-md px-10 py-3 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">explore</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">PUSULA</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9 hidden md:flex">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary pb-0.5" href="#">Missions</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Leaderboard</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Community</a>
+</div>
+<div class="flex gap-3">
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-surface-dark hover:bg-surface-darker transition-colors text-white border border-white/5">
+<span class="material-symbols-outlined text-slate-300">notifications</span>
+</button>
+<button class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-surface-dark hover:bg-surface-darker transition-colors text-white gap-2 px-1 pr-4 border border-white/5">
+<div class="size-8 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-xs font-bold">EM</div>
+<span class="text-sm font-bold">Lvl 12</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Layout: Map Container -->
+<main class="flex-1 relative w-full h-full overflow-hidden">
+<!-- Background Map -->
+<!-- In a real implementation, this would be an interactive map library like Leaflet or Mapbox -->
+<div class="absolute inset-0 z-0 bg-background-dark w-full h-full">
+<div class="w-full h-full opacity-40 mix-blend-overlay" data-alt="Stylized dark map texture with glowing street lines" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtgGQNbeL6w5V4GEHlRblB3dxw3jddcygsumnQeLKzHUPJRFd_ohYWSSIPni3FtqtKjZSm8hOqzmpeHG2073wHif3JmbykCXVoZ4n_iWmJHeuWz1HDudBB4e8yAhtggue42zarH3Yt4IVSYJkVf6ya13kMlK1I_HBzK60zA2a1uOWTTATAjHGgCFilXoqNo_6x7s4xr3T2vu7t_hG0C47uXHHPQzUyYnLbFX1xXsExZHORrP9QicMMlf_5UlnDJYHwKp4EPcFL5hE'); background-size: cover; background-position: center;"></div>
+<!-- Radial gradient overlay for depth -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-background-dark/80 via-transparent to-transparent"></div>
+</div>
+<!-- UI Overlay Layer -->
+<div class="absolute inset-0 z-10 flex flex-col pointer-events-none">
+<!-- Top Controls: Header & Filters -->
+<div class="pt-8 px-6 md:px-12 pointer-events-auto">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white drop-shadow-lg">
+                            SDG Impact Missions
+                        </h1>
+<p class="text-slate-300 text-lg max-w-xl drop-shadow-md">
+                            Explore impactful tasks across Eskisehir. Solve local challenges to unlock global rewards.
+                        </p>
+</div>
+<!-- Search & Location -->
+<div class="flex items-center gap-3 bg-surface-dark/80 backdrop-blur-md p-1.5 rounded-full border border-white/10 shadow-lg">
+<div class="pl-4 text-slate-400">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="bg-transparent border-none text-white placeholder-slate-400 focus:ring-0 text-sm w-48" placeholder="Search areas..." type="text"/>
+<div class="h-6 w-px bg-white/10"></div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary hover:bg-primary-hover text-white transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">my_location</span>
+<span>Eskisehir</span>
+</button>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex gap-3 mt-8 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-5 py-2.5 rounded-full bg-white text-background-dark font-bold text-sm shadow-glow transition-transform hover:scale-105">
+                        All Missions
+                    </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-dark/90 backdrop-blur-sm text-slate-300 border border-white/10 hover:border-accent-green hover:text-accent-green font-medium text-sm transition-all flex items-center gap-2 group">
+<span class="w-2 h-2 rounded-full bg-accent-green group-hover:shadow-[0_0_8px_#4cd964]"></span>
+                        Environment
+                    </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-dark/90 backdrop-blur-sm text-slate-300 border border-white/10 hover:border-accent-blue hover:text-accent-blue font-medium text-sm transition-all flex items-center gap-2 group">
+<span class="w-2 h-2 rounded-full bg-accent-blue group-hover:shadow-[0_0_8px_#007aff]"></span>
+                        Economy
+                    </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-dark/90 backdrop-blur-sm text-slate-300 border border-white/10 hover:border-accent-red hover:text-accent-red font-medium text-sm transition-all flex items-center gap-2 group">
+<span class="w-2 h-2 rounded-full bg-accent-red group-hover:shadow-[0_0_8px_#ff3b30]"></span>
+                        Education
+                    </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-dark/90 backdrop-blur-sm text-slate-300 border border-white/10 hover:border-accent-orange hover:text-accent-orange font-medium text-sm transition-all flex items-center gap-2 group">
+<span class="w-2 h-2 rounded-full bg-accent-orange group-hover:shadow-[0_0_8px_#ff9500]"></span>
+                        Equality
+                    </button>
+</div>
+</div>
+<!-- Map Interactive Area (Placeholder for absolute positioning of cards) -->
+<div class="flex-1 relative w-full h-full pointer-events-none">
+<!-- Mission Card 1: SDG 13 -->
+<div class="absolute top-[10%] left-[20%] w-[320px] pointer-events-auto float-animation z-20">
+<div class="relative group">
+<!-- Pin Connector -->
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-gradient-to-t from-transparent to-accent-green/50"></div>
+<div class="absolute -bottom-9 left-1/2 -translate-x-1/2 w-2 h-2 bg-accent-green rounded-full shadow-[0_0_10px_#4cd964]"></div>
+<div class="bg-surface-dark border border-white/10 p-5 rounded-2xl shadow-card backdrop-blur-md hover:border-accent-green/50 transition-colors">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-[#3F7E44] flex items-center justify-center text-white font-bold text-xs shadow-lg ring-2 ring-white/10">
+<span class="material-symbols-outlined text-[20px]">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-accent-green font-bold">SDG 13</span>
+<span class="text-xs text-slate-400">Tepebaşı District</span>
+</div>
+</div>
+<div class="px-2 py-1 rounded bg-white/5 border border-white/5 text-[10px] font-bold text-slate-300">
+                                    HARD
+                                </div>
+</div>
+<h3 class="text-white font-bold text-lg mb-2 leading-tight">Yeşil Veri Analisti</h3>
+<p class="text-slate-400 text-sm mb-4 leading-snug">Analyze local air quality data to propose green zones.</p>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-white/5">
+<div class="flex items-center gap-1.5 text-primary font-bold">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>500 XP</span>
+</div>
+<button class="bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2 px-4 rounded-full transition-colors">
+                                    Start Mission
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Mission Card 2: SDG 8 -->
+<div class="absolute top-[40%] right-[15%] w-[300px] pointer-events-auto float-animation-delay-1 z-20">
+<div class="relative group">
+<!-- Pin Connector -->
+<div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-0.5 h-12 bg-gradient-to-t from-transparent to-accent-blue/50"></div>
+<div class="absolute -bottom-13 left-1/2 -translate-x-1/2 w-2 h-2 bg-accent-blue rounded-full shadow-[0_0_10px_#007aff]"></div>
+<div class="bg-surface-dark border border-white/10 p-5 rounded-2xl shadow-card backdrop-blur-md hover:border-accent-blue/50 transition-colors">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-[#A21942] flex items-center justify-center text-white font-bold text-xs shadow-lg ring-2 ring-white/10">
+<span class="material-symbols-outlined text-[20px]">trending_up</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-accent-blue font-bold">SDG 8</span>
+<span class="text-xs text-slate-400">Odunpazarı</span>
+</div>
+</div>
+<div class="px-2 py-1 rounded bg-white/5 border border-white/5 text-[10px] font-bold text-slate-300">
+                                    EASY
+                                </div>
+</div>
+<h3 class="text-white font-bold text-lg mb-2 leading-tight">Freelance Basics 101</h3>
+<p class="text-slate-400 text-sm mb-4 leading-snug">Setup your digital profile for the gig economy.</p>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-white/5">
+<div class="flex items-center gap-1.5 text-primary font-bold">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>200 XP</span>
+</div>
+<button class="bg-surface-darker border border-primary text-primary hover:bg-primary hover:text-white text-xs font-bold py-2 px-4 rounded-full transition-colors">
+                                    View Details
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Mission Card 3: SDG 4 -->
+<div class="absolute bottom-[25%] left-[35%] w-[300px] pointer-events-auto float-animation-delay-2 z-20 hidden md:block">
+<div class="relative group">
+<!-- Pin Connector -->
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-gradient-to-t from-transparent to-accent-red/50"></div>
+<div class="absolute -bottom-9 left-1/2 -translate-x-1/2 w-2 h-2 bg-accent-red rounded-full shadow-[0_0_10px_#ff3b30]"></div>
+<div class="bg-surface-dark border border-white/10 p-5 rounded-2xl shadow-card backdrop-blur-md hover:border-accent-red/50 transition-colors">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-[#C5192D] flex items-center justify-center text-white font-bold text-xs shadow-lg ring-2 ring-white/10">
+<span class="material-symbols-outlined text-[20px]">school</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-accent-red font-bold">SDG 4</span>
+<span class="text-xs text-slate-400">University Zone</span>
+</div>
+</div>
+<div class="px-2 py-1 rounded bg-white/5 border border-white/5 text-[10px] font-bold text-slate-300">
+                                    EXPERT
+                                </div>
+</div>
+<h3 class="text-white font-bold text-lg mb-2 leading-tight">Python for Data</h3>
+<p class="text-slate-400 text-sm mb-4 leading-snug">Advanced workshop on data science libraries.</p>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-white/5">
+<div class="flex items-center gap-1.5 text-primary font-bold">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>800 XP</span>
+</div>
+<button class="bg-surface-darker border border-primary text-primary hover:bg-primary hover:text-white text-xs font-bold py-2 px-4 rounded-full transition-colors">
+                                    Locked
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Navigation Controls -->
+<div class="absolute bottom-32 right-8 flex flex-col gap-3 pointer-events-auto">
+<button class="size-12 rounded-full bg-surface-dark text-white border border-white/10 shadow-lg hover:bg-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-12 rounded-full bg-surface-dark text-white border border-white/10 shadow-lg hover:bg-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-12 rounded-full bg-surface-dark text-white border border-white/10 shadow-lg hover:bg-primary transition-colors flex items-center justify-center mt-2">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+</div>
+</div>
+<!-- Bottom Global Impact Bar -->
+<div class="w-full bg-surface-dark/95 backdrop-blur-lg border-t border-white/10 px-6 md:px-12 py-4 pointer-events-auto">
+<div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="size-12 rounded-full bg-gradient-to-br from-primary to-purple-800 flex items-center justify-center shrink-0 shadow-glow">
+<span class="material-symbols-outlined text-white">public</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Global Impact Counter</span>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-white">12,450</span>
+<span class="text-sm text-slate-400">Missions Completed</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full md:max-w-xl flex flex-col gap-2">
+<div class="flex justify-between text-xs font-bold text-slate-400 uppercase">
+<span>City Goal</span>
+<span>82%</span>
+</div>
+<div class="w-full h-2.5 bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-accent-blue w-[82%] relative">
+<div class="absolute inset-0 bg-white/20 animate-[pulse_2s_infinite]"></div>
+</div>
+</div>
+</div>
+<div class="hidden md:flex -space-x-3">
+<img alt="Community member avatar" class="w-10 h-10 rounded-full border-2 border-surface-dark object-cover" data-alt="Portrait of a young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHcw38zLF75rxaI7EAfXhB4mJhKXiDFSbozch6zEPjRFFRsU7ACGTA8_RKg1Dp5V9vqBxG2Jpy_ZlclansOmq4nxqE2K1vh71RnBBoB9S3SAUWGsKgdE4BhYkjxok8g3AnlrKmFMzEB2LqmYS08l3PX1Udkew74ASKEBYaSbQAHXy_ugR3VaPIlBcbkIHpGR7uHwWLxZvd9xgDuua2W_5I-bM2yfjji4Qa3RWv5YKpnW5Ku5q_o6Hw0bL0eD_gk7M5pOU0RUBrmFk"/>
+<img alt="Community member avatar" class="w-10 h-10 rounded-full border-2 border-surface-dark object-cover" data-alt="Portrait of a young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzDCyz-6VDlwzPF3VRcSjpg1EjZD98bunKnxmje5p44lvNRLUDNDNvKdw49-rPpSxMQZxHbsXVFMrmCErzRJa8d90MhE2HwIhs9kWtsg7esAOcCmAHX0dOq6p_iC6it8MsO-nO2mT74MxPeDVPi1ftlj6VNar0i5UmNqIdAEqKWvdQ5R7lM78hlKXMHoF11aaspltRD6ZjRnADc8-hPRuBg5PQN1lzITgOwcB7TxVoyALgAZ8gJ3axTy_xs9NCGNn_C22j03tk9BA"/>
+<img alt="Community member avatar" class="w-10 h-10 rounded-full border-2 border-surface-dark object-cover" data-alt="Portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWMK7wkxMQr4Kle-2JgLB4o2c3NFuUJvP1Vsj7Cc8nRSLiaWN4amtuF2DVS-0WOz-XkDBf4-qXQnKdrTjET0_hUozsoVq2T205NK_s3TFtpr5dXlNwFjoVN_-w5OYhmmoOCFr5hRYA5HP49KuHsNU8A_F-_2dqigrStkOoGTo1h3GgO7F1cLFTYNzdKv3DGPKPaE5osMU02szvA2PITkhS7-pAcm_-pP6PTAyFa3p9MuCYfoOULnWl3rSuWaPfdNndBDT2dO3XVj0"/>
+<div class="w-10 h-10 rounded-full border-2 border-surface-dark bg-surface-darker flex items-center justify-center text-xs font-bold text-slate-400">
+                            +4k
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

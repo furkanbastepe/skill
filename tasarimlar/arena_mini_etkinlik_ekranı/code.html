@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite v2.1 - Arena Mini Etkinlik</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "primary-dark": "#0a47c2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a2130",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for logs */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1a2130;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b4354;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+        
+        /* Grid pattern background */
+        .grid-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Neon Glow Utility */
+        .neon-glow {
+            box-shadow: 0 0 10px rgba(13, 89, 242, 0.5), 0 0 20px rgba(13, 89, 242, 0.3);
+        }
+
+        .bot-cell {
+            position: relative;
+        }
+        .bot-cell::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: #0d59f2;
+            border-radius: 2px;
+            opacity: 0.6;
+            box-shadow: 0 0 8px #0d59f2;
+        }
+        
+        .bot-enemy::after {
+            background: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-16 border-b border-[#282e39] bg-surface-dark/95 backdrop-blur-sm flex items-center justify-between px-6 z-20 shrink-0">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold leading-none tracking-tight">PUSULA Lite v2.1</h1>
+<div class="flex gap-2 text-[10px] text-slate-400 mt-1 uppercase tracking-wider font-semibold">
+<span>UNDP</span> • <span>Eskişehir BB</span> • <span>TBB</span>
+</div>
+</div>
+</div>
+<div class="h-6 w-px bg-[#282e39] mx-2"></div>
+<h2 class="text-slate-300 text-sm font-medium hidden md:block">Arena Mini Etkinlik Ekranı</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-6 mr-4">
+<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#">Ana Sayfa</a>
+<a class="text-white text-sm font-medium transition-colors" href="#">Arena</a>
+<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#">Sıralama</a>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-9 w-32 bg-[#282e39] rounded flex items-center px-3 gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-lg">monetization_on</span>
+<span class="text-xs font-bold text-white">1,250 Coin</span>
+</div>
+<button class="relative p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full border border-surface-dark"></span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center ring-2 ring-[#282e39]" data-alt="User profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0qcMMO16t9Me1zDrRnIir9RXOpPQQ6avxgK1iDOKqMTNEDp6IE5S1bfiUu6-0NhSvE1FrJ2XhBHNAzpqrztjmdRg87NclgeVM5oR1aWHnOKdHcKyMRCeGt3JvwWtZlhgDvappkjDxeIkHCuvtJQULvyqIm23osnA1opOQrlLMZIzdLtQzYBaQBcq2U6jHU6rooSeSuIa0D_a3fi30tCjFu1h0T3Qdoop5Msxh5Zj2io8UqNxkRkhlzi-x7cJB1fRlETdMTTQQDfc')"></div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex overflow-hidden relative">
+<!-- Ambient Background Glow -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute top-[30%] right-[10%] w-[30%] h-[30%] rounded-full bg-purple-600/5 blur-[100px]"></div>
+</div>
+<!-- Left Panel: Strategy -->
+<aside class="w-80 bg-[#151b26] border-r border-[#282e39] flex flex-col z-10 shrink-0 overflow-y-auto custom-scrollbar">
+<div class="p-6">
+<h3 class="text-white text-xl font-bold mb-1">Savaş Stratejisi</h3>
+<p class="text-slate-400 text-xs mb-6">Botunuzun özelliklerini ayarlayın. Toplam 100 puanı aşamazsınız.</p>
+<!-- Stats Summary -->
+<div class="bg-[#1e2532] rounded-xl p-4 mb-8 border border-[#282e39]">
+<div class="flex justify-between items-end mb-2">
+<span class="text-slate-300 text-sm font-medium">Kalan Puan</span>
+<span class="text-primary text-2xl font-bold">20</span>
+</div>
+<div class="w-full bg-[#282e39] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="text-[10px] text-slate-500">Kullanılan: 80</span>
+<span class="text-[10px] text-slate-500">Maks: 100</span>
+</div>
+</div>
+<!-- Sliders -->
+<div class="space-y-8">
+<!-- Speed -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-white text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-cyan-400 text-lg">speed</span>
+                                Hız (Speed)
+                            </label>
+<span class="bg-[#282e39] px-2 py-0.5 rounded text-white text-xs font-bold">40</span>
+</div>
+<input class="w-full h-1.5 bg-[#282e39] rounded-lg appearance-none cursor-pointer accent-cyan-400" max="100" min="0" type="range" value="40"/>
+</div>
+<!-- Attack -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-white text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-red-400 text-lg">swords</span>
+                                Saldırı (Attack)
+                            </label>
+<span class="bg-[#282e39] px-2 py-0.5 rounded text-white text-xs font-bold">30</span>
+</div>
+<input class="w-full h-1.5 bg-[#282e39] rounded-lg appearance-none cursor-pointer accent-red-400" max="100" min="0" type="range" value="30"/>
+</div>
+<!-- Defense -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-white text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-lg">shield</span>
+                                Savunma (Defense)
+                            </label>
+<span class="bg-[#282e39] px-2 py-0.5 rounded text-white text-xs font-bold">10</span>
+</div>
+<input class="w-full h-1.5 bg-[#282e39] rounded-lg appearance-none cursor-pointer accent-emerald-400" max="100" min="0" type="range" value="10"/>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-10">
+<button class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] neon-glow flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:animate-pulse">rocket_launch</span>
+                        ARENAYA GİR
+                    </button>
+<p class="text-center text-[10px] text-slate-500 mt-3">Savaş başladığında özellikler değiştirilemez.</p>
+</div>
+</div>
+<!-- Mini Status Footer -->
+<div class="mt-auto p-4 border-t border-[#282e39] bg-[#121720]">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs text-slate-300 font-mono">Sistem Çevrimiçi</span>
+</div>
+</div>
+</aside>
+<!-- Center: Arena Visualization -->
+<section class="flex-1 flex flex-col relative bg-[#101622] overflow-hidden">
+<!-- Top Bar over Arena -->
+<div class="h-14 flex items-center justify-between px-6 border-b border-[#282e39]/50">
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-xs text-slate-300">Sizin Botunuz</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-red-500"></span>
+<span class="text-xs text-slate-300">Düşman</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-[#282e39] border border-slate-600"></span>
+<span class="text-xs text-slate-300">Engel</span>
+</div>
+</div>
+<div class="text-xs font-mono text-slate-500">GRID: 20x20 // SECTOR: A-1</div>
+</div>
+<!-- The Grid -->
+<div class="flex-1 flex items-center justify-center p-8 overflow-auto grid-bg relative">
+<!-- Grid Container -->
+<div class="relative bg-[#151b26] border border-[#282e39] rounded-lg shadow-2xl p-1 neon-glow">
+<!-- Coordinate Labels (Top) -->
+<div class="flex mb-1 ml-6">
+<div class="flex-1 grid grid-cols-[repeat(20,minmax(0,1fr))] w-[500px] sm:w-[600px] text-[10px] text-slate-500 font-mono text-center">
+<span>A</span><span>B</span><span>C</span><span>D</span><span>E</span>
+<span>F</span><span>G</span><span>H</span><span>I</span><span>J</span>
+<span>K</span><span>L</span><span>M</span><span>N</span><span>O</span>
+<span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span>
+</div>
+</div>
+<div class="flex">
+<!-- Coordinate Labels (Left) -->
+<div class="grid grid-rows-[repeat(20,minmax(0,1fr))] h-[500px] sm:h-[600px] text-[10px] text-slate-500 font-mono pr-2 items-center">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+<span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+<span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+<span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+</div>
+<!-- Actual 20x20 Grid -->
+<div class="grid grid-cols-[repeat(20,minmax(0,1fr))] grid-rows-[repeat(20,minmax(0,1fr))] w-[500px] h-[500px] sm:w-[600px] sm:h-[600px] bg-[#1a2130] border border-[#282e39] gap-px relative">
+<!-- Background grid lines are handled by gap-px showing the bg color -->
+<!-- Cells (Simplified for rendering efficiency, mostly empty divs) -->
+<!-- Example Cells -->
+<div class="bg-[#121720] hover:bg-[#1e2532] transition-colors duration-200"></div> <!-- 1,1 -->
+<div class="bg-[#121720] hover:bg-[#1e2532] transition-colors duration-200"></div>
+<div class="bg-[#121720] hover:bg-[#1e2532] transition-colors duration-200"></div>
+<div class="bg-[#121720] bot-cell"></div> <!-- Friendly Bot at 1,4 -->
+<div class="bg-[#121720] hover:bg-[#1e2532] transition-colors duration-200"></div>
+<!-- Just filling some random spots to simulate grid content -->
+<!-- Row 1 filler -->
+<div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div>
+<div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div>
+<div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div><div class="bg-[#121720]"></div>
+<!-- Obstacle -->
+<div class="bg-[#282e39] col-start-8 row-start-5 col-span-1 row-span-1 border border-slate-600/30"></div>
+<div class="bg-[#282e39] col-start-9 row-start-5 col-span-1 row-span-1 border border-slate-600/30"></div>
+<div class="bg-[#282e39] col-start-8 row-start-6 col-span-1 row-span-1 border border-slate-600/30"></div>
+<!-- Enemy Bot -->
+<div class="bg-[#121720] bot-enemy col-start-15 row-start-12"></div>
+<!-- Enemy Bot -->
+<div class="bg-[#121720] bot-enemy col-start-4 row-start-16"></div>
+<!-- Another Friendly Bot -->
+<div class="bg-[#121720] bot-cell col-start-18 row-start-3"></div>
+<!-- Particle Overlay (Abstract representation) -->
+<div class="absolute top-[20%] left-[20%] size-20 rounded-full bg-primary/10 blur-xl pointer-events-none animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Stats Bar for Arena -->
+<div class="bg-[#151b26] border-t border-[#282e39] px-6 py-3 flex justify-between items-center z-10">
+<div class="flex gap-8">
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold tracking-wider">Aktif Bot</p>
+<p class="text-white text-lg font-bold">14/20</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold tracking-wider">Tur</p>
+<p class="text-white text-lg font-bold">5</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold tracking-wider">Süre</p>
+<p class="text-white text-lg font-bold font-mono">02:45</p>
+</div>
+</div>
+<button class="text-xs text-primary font-bold hover:underline">Tam Ekran İzle</button>
+</div>
+</section>
+<!-- Right Panel: Info & Logs -->
+<aside class="w-80 bg-[#151b26] border-l border-[#282e39] flex flex-col z-10 shrink-0">
+<!-- Tabs -->
+<div class="flex border-b border-[#282e39]">
+<button class="flex-1 py-3 text-sm font-bold text-white border-b-2 border-primary bg-[#1e2532]">
+                    Liderlik Tablosu
+                </button>
+<button class="flex-1 py-3 text-sm font-medium text-slate-400 hover:text-white transition-colors">
+                    Canlı Log
+                </button>
+</div>
+<!-- Content Area -->
+<div class="flex-1 flex flex-col overflow-hidden">
+<!-- Leaderboard Section (Active) -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-2">
+<!-- Top 3 -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-[#1e2532] border border-yellow-500/20 shadow-lg relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-yellow-500"></div>
+<div class="flex-none font-bold text-yellow-500 text-lg w-6 text-center">1</div>
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBC6fnIDlQS46SjfqRNlGL3CbOLVrQ-uaNXjOfxtQ3Kda1rl0I4fqfJrd9Xk4HL7EiSKzPbmDmJOTDi-Xz79RhHgkjBsuDKAKplswAVN3W16QEByJOyp85jVUbJYy_lrZM2Nf3wG1IDSES0daykeubuOxN0IS7jKRHmgs5W6af4Q5ET5UUbL8k6iKV5xX67jC_vJBwt6CMykvDqsUHIvxN7j-QfGB0Ob3jSCZrry9NhAXuZfn0l52ZztZX0eR_s1gdlK18ZUfIYWao')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-white truncate">Canan Yılmaz</p>
+<p class="text-[10px] text-slate-400">Eskişehir Teknoloji Lisesi</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-white">1,540</p>
+<p class="text-[10px] text-slate-500">Puan</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-[#1e2532] border border-[#282e39] group">
+<div class="flex-none font-bold text-slate-300 text-lg w-6 text-center">2</div>
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzXfKozxamM7lx_6cV6cX2_AcCLsURD-2aozJ6MULA9lBzHmjm3oChb-Eid8cTHKPzzeQ_5BWn-zj307jgYEXrKJZQSaWZgLCYTyHEmcMoUND9YFQjfZt_HRVgGc2NcSw9uTg5WlzE72gLz1NJV1wyxduPsS3GkC14xFgv4dbC9CMXM5tL0NPMXdI65Cp4LG5o7GsDFjelqTGdeCu2Krbrrxf2r4KbehbzI-OZX1RsCjDlo-Y_Dsp1-cpthd_EIxDG9zmu9YKFr2w')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-white truncate">Burak Demir</p>
+<p class="text-[10px] text-slate-400">Atatürk Anadolu</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-white">1,420</p>
+<p class="text-[10px] text-slate-500">Puan</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-[#1e2532] border border-[#282e39] group">
+<div class="flex-none font-bold text-slate-300 text-lg w-6 text-center">3</div>
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBWSIars6RYRp39zEQRj_0DEVfDUvo8WyM3wGdon0Xf5yXchg-S5WyZEomrJ9Pyxt3EdCpGQ3ayL8qXmBKju-DSKb3dACgfsz8BbW_MlW6U6JfTAQaVDAKrurQ8sCri1u7xKom1T6MbT042BziADXkwRKuM8aV1TDxX0vknENgCcb3ap7R8T0rNrF5Aa6Z7y2JxtZvzdMnhCisPSeRDDTcak1Ts_7tI9PWmBWPVd2ueaKsbBeoiP2LY8j0iuBw5Ds5OBXFvfDsrVbE')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-white truncate">Elif Kaya</p>
+<p class="text-[10px] text-slate-400">Fen Lisesi</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-white">1,380</p>
+<p class="text-[10px] text-slate-500">Puan</p>
+</div>
+</div>
+<!-- Rest of list -->
+<div class="pt-2 space-y-1">
+<div class="flex items-center gap-3 p-2 rounded hover:bg-[#1e2532] transition-colors">
+<span class="text-xs font-mono text-slate-500 w-6 text-center">4</span>
+<p class="text-xs text-slate-300 flex-1">Mehmet Öztürk</p>
+<span class="text-xs font-mono text-slate-400">1,200</span>
+</div>
+<div class="flex items-center gap-3 p-2 rounded hover:bg-[#1e2532] transition-colors">
+<span class="text-xs font-mono text-slate-500 w-6 text-center">5</span>
+<p class="text-xs text-slate-300 flex-1">Ayşe Yılmaz</p>
+<span class="text-xs font-mono text-slate-400">1,150</span>
+</div>
+<div class="flex items-center gap-3 p-2 rounded hover:bg-[#1e2532] transition-colors">
+<span class="text-xs font-mono text-slate-500 w-6 text-center">6</span>
+<p class="text-xs text-slate-300 flex-1">Oğuzhan Koç</p>
+<span class="text-xs font-mono text-slate-400">1,100</span>
+</div>
+<div class="flex items-center gap-3 p-2 rounded hover:bg-[#1e2532] transition-colors">
+<span class="text-xs font-mono text-slate-500 w-6 text-center">7</span>
+<p class="text-xs text-slate-300 flex-1">Zeynep Tekin</p>
+<span class="text-xs font-mono text-slate-400">980</span>
+</div>
+<div class="flex items-center gap-3 p-2 rounded bg-primary/10 border border-primary/30">
+<span class="text-xs font-mono text-primary w-6 text-center font-bold">8</span>
+<p class="text-xs text-primary flex-1 font-bold">Siz</p>
+<span class="text-xs font-mono text-primary font-bold">950</span>
+</div>
+</div>
+</div>
+<!-- Live Log (Simulated as visible bottom section for context) -->
+<div class="h-1/3 border-t border-[#282e39] flex flex-col bg-[#121720]">
+<div class="px-4 py-2 border-b border-[#282e39] bg-[#1e2532] flex justify-between items-center">
+<span class="text-xs font-bold text-slate-300">CANLI LOG</span>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-2 font-mono text-[10px]">
+<div class="flex gap-2">
+<span class="text-slate-500">[14:05:22]</span>
+<span class="text-slate-300"><span class="text-primary font-bold">Canan_Bot</span> (G-4) hareket etti.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-500">[14:05:20]</span>
+<span class="text-slate-300"><span class="text-red-400 font-bold">Burak_Bot</span> saldırı başlattı! <span class="text-slate-500">(-15 HP)</span></span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-500">[14:05:15]</span>
+<span class="text-slate-300"><span class="text-emerald-400 font-bold">Elif_Bot</span> savunma moduna geçti.</span>
+</div>
+<div class="flex gap-2 opacity-50">
+<span class="text-slate-500">[14:05:10]</span>
+<span class="text-slate-300">Sistem: Yeni tur başladı (Tur 5).</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-014 Müdahale Planlayıcı</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2beed4",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#10221f",
+                        "surface-dark": "#1a2c29",
+                        "surface-light": "#283936",
+                        "text-secondary": "#9db9b5",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #10221f; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283936; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b5450; 
+        }
+        
+        .glass-effect {
+            background: rgba(40, 57, 54, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(43, 238, 212, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white font-display overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-light px-6 py-3 bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Rehber</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-white text-sm font-medium leading-normal" href="#">Öğrenciler</a>
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Müdahale Planları</a>
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Raporlar</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-light text-white hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-light text-white hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-xl">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col lg:flex-row h-[calc(100vh-65px)] overflow-hidden">
+<!-- Left Panel: Builder Wizard -->
+<div class="flex-1 flex flex-col overflow-y-auto lg:border-r border-surface-light bg-background-dark p-6 lg:p-10 gap-8">
+<!-- Breadcrumbs & Header -->
+<div>
+<div class="flex items-center gap-2 mb-4 text-sm">
+<a class="text-text-secondary hover:text-primary transition-colors" href="#">Öğrenciler</a>
+<span class="text-text-secondary">/</span>
+<span class="text-white font-medium">Ahmet Yılmaz</span>
+<span class="text-text-secondary">/</span>
+<span class="text-primary">Müdahale Planlayıcı</span>
+</div>
+<h1 class="text-3xl lg:text-4xl font-black tracking-tight mb-2">Müdahale Planlayıcı</h1>
+<p class="text-text-secondary text-base lg:text-lg">Ahmet için kişiselleştirilmiş kurtarma planını oluşturun.</p>
+</div>
+<!-- Student Profile Summary -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-surface-dark border border-surface-light">
+<div class="size-14 rounded-full bg-surface-light bg-cover bg-center shrink-0" data-alt="Portrait of a young male student looking focused" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbnOVqDuDM_QbMx8T88s24krhglobh7W3taPFqWxB6RJiHzlDyyi7dopmQ4qplIZRcFXW1Ig41x0ELh4B1Nd0WWLGxAAK6ARLGsqrXfE7Jelpnvj-mCGQBbjPvPghc8Eehh77eZtkkncym9bNXVI2_1Y5NEmbVW3lAJ-9W60ZQ7Oeseadw8mMJULm_NIjJdwJfwVXkLEi67OjFX_A_aKIrPFQTm60wpDm5XvxxG38rIB9untZ8uxJKJSXcV9o-l4xQ4CYf7ea1ug');"></div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold">Ahmet Yılmaz</h3>
+<span class="px-2 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/20">Risk Seviyesi: Yüksek</span>
+</div>
+<p class="text-text-secondary text-sm">Python Temelleri - %45 Tamamlandı • Son Giriş: 3 gün önce</p>
+</div>
+</div>
+<!-- Wizard Steps -->
+<div class="flex flex-col gap-8">
+<!-- Step 1: Diagnose -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="flex items-center justify-center size-7 rounded-full bg-primary text-background-dark text-sm font-bold">1</span>
+                            Kök Neden Analizi
+                        </h2>
+<span class="text-sm text-text-secondary">Engeli belirleyin</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<button class="p-3 rounded-lg border border-primary bg-primary/10 text-primary font-medium text-center transition-all hover:bg-primary/20 ring-1 ring-primary shadow-[0_0_15px_-5px_rgba(43,238,212,0.3)]">
+<span class="material-symbols-outlined block text-2xl mb-1">psychology</span>
+                            Odaklanma
+                        </button>
+<button class="p-3 rounded-lg border border-surface-light bg-surface-dark text-text-secondary hover:text-white hover:border-text-secondary transition-all">
+<span class="material-symbols-outlined block text-2xl mb-1">schedule</span>
+                            Devamsızlık
+                        </button>
+<button class="p-3 rounded-lg border border-surface-light bg-surface-dark text-text-secondary hover:text-white hover:border-text-secondary transition-all">
+<span class="material-symbols-outlined block text-2xl mb-1">terminal</span>
+                            Teknik Zorluk
+                        </button>
+<button class="p-3 rounded-lg border border-surface-light bg-surface-dark text-text-secondary hover:text-white hover:border-text-secondary transition-all">
+<span class="material-symbols-outlined block text-2xl mb-1">sentiment_dissatisfied</span>
+                            Motivasyon
+                        </button>
+</div>
+</section>
+<!-- Step 2: Goal -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="flex items-center justify-center size-7 rounded-full bg-surface-light text-white text-sm font-bold">2</span>
+                            Hedef Belirleme
+                        </h2>
+<span class="text-sm text-text-secondary">Mikro-hedef seçin</span>
+</div>
+<div class="flex flex-col gap-3">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined">search</span>
+<input class="w-full bg-surface-dark border border-surface-light rounded-lg py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder-gray-600 transition-all" placeholder="Hedef şablonlarında ara..." type="text"/>
+</div>
+<div class="flex flex-col gap-2 mt-2">
+<div class="group cursor-pointer border border-primary bg-primary/5 rounded-lg p-4 transition-all relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-white mb-1 group-hover:text-primary transition-colors">Modül Tekrarı &amp; Quiz</h4>
+<p class="text-sm text-text-secondary">Son işlenen 2 modülü tekrar et ve bölüm sonu testini %80 başarıyla tamamla.</p>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</div>
+<div class="group cursor-pointer border border-surface-light bg-surface-dark rounded-lg p-4 hover:border-text-secondary transition-all">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-white mb-1">Proje Taslağı Sunumu</h4>
+<p class="text-sm text-text-secondary">Yarım kalan proje için temel yapıtaşlarını kodla ve bir taslak sun.</p>
+</div>
+<span class="material-symbols-outlined text-surface-light group-hover:text-text-secondary">radio_button_unchecked</span>
+</div>
+</div>
+<div class="group cursor-pointer border border-surface-light bg-surface-dark rounded-lg p-4 hover:border-text-secondary transition-all">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-white mb-1">Birebir Mentörlük Seansı</h4>
+<p class="text-sm text-text-secondary">Eksik konuları belirlemek için 30 dakikalık bir mentör görüşmesi planla.</p>
+</div>
+<span class="material-symbols-outlined text-surface-light group-hover:text-text-secondary">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 3: Timeline -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="flex items-center justify-center size-7 rounded-full bg-surface-light text-white text-sm font-bold">3</span>
+                            Zaman Çizelgesi
+                        </h2>
+<span class="text-sm text-text-secondary">Son tarih belirle</span>
+</div>
+<div class="flex flex-wrap gap-3 mb-4">
+<button class="px-4 py-2 rounded-full border border-surface-light bg-surface-dark text-sm hover:border-primary hover:text-primary transition-all">3 Gün</button>
+<button class="px-4 py-2 rounded-full border border-primary bg-primary text-background-dark font-bold text-sm shadow-[0_0_10px_rgba(43,238,212,0.4)]">1 Hafta</button>
+<button class="px-4 py-2 rounded-full border border-surface-light bg-surface-dark text-sm hover:border-primary hover:text-primary transition-all">2 Hafta</button>
+<button class="px-4 py-2 rounded-full border border-surface-light bg-surface-dark text-sm hover:border-primary hover:text-primary transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-base">calendar_month</span>
+                            Özel Tarih
+                        </button>
+</div>
+<div class="flex items-center gap-4 bg-surface-dark p-4 rounded-lg border border-surface-light">
+<div class="flex-1">
+<label class="block text-xs uppercase text-text-secondary font-bold tracking-wider mb-1">Bitiş Tarihi</label>
+<div class="text-lg font-medium text-white">24 Ekim 2023, Cuma</div>
+</div>
+<div class="h-10 w-px bg-surface-light"></div>
+<div class="flex-1">
+<label class="block text-xs uppercase text-text-secondary font-bold tracking-wider mb-1">Tahmini Süre</label>
+<div class="text-lg font-medium text-white">4 - 6 Saat</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Action Bar -->
+<div class="mt-auto pt-8 flex justify-between items-center border-t border-surface-light">
+<button class="text-text-secondary hover:text-white font-medium px-4 py-2 transition-colors">Taslağı Kaydet</button>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg border border-surface-light text-white hover:bg-surface-light font-medium transition-colors">İptal</button>
+<button class="px-6 py-2.5 rounded-lg bg-primary text-background-dark font-bold hover:bg-[#22cbb5] transition-colors shadow-[0_0_20px_rgba(43,238,212,0.3)] flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Planı Ata
+                    </button>
+</div>
+</div>
+</div>
+<!-- Right Panel: Live Preview -->
+<div class="hidden lg:flex flex-col w-[480px] xl:w-[560px] bg-surface-dark border-l border-surface-light p-8 relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute -top-20 -right-20 size-80 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute top-40 -left-20 size-60 bg-blue-500/5 rounded-full blur-3xl"></div>
+<div class="relative z-10 h-full flex flex-col">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-text-secondary">preview</span>
+                        Canlı Önizleme
+                    </h2>
+<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">Öğrenci Paneli Görünümü</span>
+</div>
+<!-- Simulated Student Dashboard Card -->
+<div class="bg-[#161f1d] rounded-2xl border border-surface-light shadow-2xl overflow-hidden flex flex-col mx-auto w-full max-w-sm transform transition-all duration-500 hover:scale-[1.02]">
+<!-- Card Header -->
+<div class="bg-gradient-to-r from-primary/20 to-transparent p-6 border-b border-surface-light">
+<div class="flex justify-between items-start mb-4">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<span class="px-2 py-1 rounded bg-red-500/10 text-red-400 text-xs font-bold border border-red-500/20">ACİL GÖREV</span>
+</div>
+<h3 class="text-2xl font-black text-white leading-tight mb-2">Hadi toparlayalım, Ahmet! 🚀</h3>
+<p class="text-sm text-text-secondary">Mentörün senin için özel bir gelişim planı hazırladı.</p>
+</div>
+<!-- Card Body -->
+<div class="p-6 flex-1 flex flex-col gap-6">
+<!-- Goal Section -->
+<div>
+<label class="text-xs uppercase text-text-secondary font-bold tracking-wider mb-2 block">Hedefin</label>
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-1">check_box</span>
+<div>
+<p class="font-bold text-white text-lg">Modül Tekrarı &amp; Quiz</p>
+<p class="text-sm text-gray-400 mt-1">Son işlenen 2 modülü tekrar et ve bölüm sonu testini %80 başarıyla tamamla.</p>
+</div>
+</div>
+</div>
+<!-- Rewards / Gamification -->
+<div class="flex gap-3">
+<div class="flex-1 bg-surface-light/30 rounded-lg p-3 border border-surface-light/50 flex items-center gap-3">
+<span class="material-symbols-outlined text-yellow-400">military_tech</span>
+<div>
+<div class="text-xs text-text-secondary">Ödül</div>
+<div class="text-sm font-bold text-white">+150 XP</div>
+</div>
+</div>
+<div class="flex-1 bg-surface-light/30 rounded-lg p-3 border border-surface-light/50 flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-400">workspace_premium</span>
+<div>
+<div class="text-xs text-text-secondary">Rozet</div>
+<div class="text-sm font-bold text-white">Geri Dönüş</div>
+</div>
+</div>
+</div>
+<!-- Deadline Countdown -->
+<div class="mt-auto">
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs text-text-secondary font-bold">KALAN SÜRE</span>
+<span class="text-sm font-bold text-primary">7 Gün</span>
+</div>
+<div class="h-2 w-full bg-surface-light rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-emerald-400 w-3/4 rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs text-text-secondary mt-2">
+<span>Başlangıç: Bugün</span>
+<span>Bitiş: 24 Ekim</span>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="p-4 bg-surface-light/20 border-t border-surface-light text-center">
+<button class="w-full py-2.5 rounded-lg bg-primary text-background-dark font-bold text-sm hover:opacity-90 transition-opacity">
+                            Görevi Kabul Et
+                        </button>
+</div>
+</div>
+<div class="mt-8 p-4 rounded-xl bg-surface-light/20 border border-surface-light">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">info</span>
+<div>
+<h4 class="text-sm font-bold text-white mb-1">Koç İpucu</h4>
+<p class="text-xs text-text-secondary leading-relaxed">
+                                "Odaklanma" sorunları için kısa ve ölçülebilir hedefler (mikro-hedefler) seçmek öğrencinin başarı hissini artırır. Bu planda süre 1 haftayı geçmemelidir.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

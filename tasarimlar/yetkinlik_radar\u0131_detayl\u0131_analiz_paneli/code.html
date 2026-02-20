@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yetkinlik Radarı Detaylı Analiz Paneli - PUSULA Lite</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2df",
+                        "primary-dark": "#0bbfb0",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111827",
+                        "surface-dark": "#1f2937",
+                        "surface-darker": "#111827",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col antialiased">
+<!-- Top Navigation -->
+<div class="relative flex w-full flex-col bg-[#111817] dark border-b border-[#283938]">
+<header class="flex items-center justify-between whitespace-nowrap px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">explore</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">PUSULA <span class="text-primary font-normal">Lite</span></h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Ana Sayfa</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Derslerim</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Simülasyonlar</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Topluluk</a>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg size-10 bg-[#283938] hover:bg-[#334b49] text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-[#283938] hover:bg-[#334b49] text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+<div class="md:hidden text-white">
+<button>
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+</div>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1400px] mx-auto p-4 md:p-6 lg:p-8 flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 items-center text-sm">
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="#">Ana Sayfa</a>
+<span class="text-slate-600 dark:text-slate-600">/</span>
+<a class="text-slate-400 hover:text-primary transition-colors font-medium" href="#">Profilim</a>
+<span class="text-slate-600 dark:text-slate-600">/</span>
+<span class="text-slate-200 font-medium">Yetkinlik Radarı</span>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-slate-800 pb-6">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-3xl md:text-4xl font-black tracking-tight text-white">
+                    Yetkinlik Radarı Detaylı Analiz Paneli
+                </h1>
+<p class="text-slate-400 text-lg font-light">
+                    Dijital yetkinliklerinizi ve gelişim alanlarınızı 6 eksende inceleyin.
+                </p>
+</div>
+<div class="flex items-center gap-3 bg-slate-800/50 px-4 py-2 rounded-lg border border-slate-700/50">
+<span class="material-symbols-outlined text-primary">verified</span>
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Genel Puan</span>
+<span class="text-xl font-bold text-white">72<span class="text-sm text-slate-500 font-normal">/100</span></span>
+</div>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-4">
+<!-- Left Pane: Radar Chart -->
+<div class="lg:col-span-7 flex flex-col bg-surface-dark rounded-xl border border-slate-700/50 p-6 md:p-10 relative overflow-hidden group">
+<!-- Decorative background glow -->
+<div class="absolute -top-20 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="flex justify-between items-start mb-8 relative z-10">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">radar</span>
+                        Yetkinlik Haritası
+                    </h3>
+<div class="flex gap-4 text-xs font-medium">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary/50 border border-primary"></span>
+<span class="text-slate-300">Sizin Puanınız</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-slate-600/30 border border-slate-600 border-dashed"></span>
+<span class="text-slate-500">Ortalama (Kohort)</span>
+</div>
+</div>
+</div>
+<div class="flex-1 flex items-center justify-center min-h-[400px] relative z-10">
+<!-- Custom SVG Radar Chart Construction -->
+<div class="relative w-full max-w-[500px] aspect-square">
+<svg class="w-full h-full drop-shadow-2xl" viewbox="0 0 500 500">
+<!-- Definitions -->
+<defs>
+<radialgradient cx="50%" cy="50%" fx="50%" fy="50%" id="radarGradient" r="50%">
+<stop offset="0%" style="stop-color:rgb(13, 242, 223);stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:rgb(13, 242, 223);stop-opacity:0.05"></stop>
+</radialgradient>
+<filter id="glow">
+<fegaussianblur result="coloredBlur" stddeviation="2.5"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Grid Lines (Concentric Hexagons) -->
+<g class="stroke-slate-700 fill-none" stroke-width="1">
+<polygon points="250,50 423,150 423,350 250,450 77,350 77,150"></polygon>
+<polygon points="250,90 388,170 388,330 250,410 112,330 112,170"></polygon>
+<polygon points="250,130 353,190 353,310 250,370 147,310 147,190"></polygon>
+<polygon points="250,170 319,210 319,290 250,330 181,290 181,210"></polygon>
+</g>
+<!-- Axis Lines -->
+<g class="stroke-slate-800" stroke-width="1">
+<line x1="250" x2="250" y1="250" y2="50"></line>
+<line x1="250" x2="423" y1="250" y2="150"></line>
+<line x1="250" x2="423" y1="250" y2="350"></line>
+<line x1="250" x2="250" y1="250" y2="450"></line> <!-- Ofis Üretkenliği Axis -->
+<line x1="250" x2="77" y1="250" y2="350"></line>
+<line x1="250" x2="77" y1="250" y2="150"></line>
+</g>
+<!-- Data Area -->
+<polygon class="fill-primary/20 stroke-primary stroke-2" filter="url(#glow)" points="250,110 390,160 380,340 250,390 120,320 130,170"></polygon>
+<!-- Highlighted Axis Area (Ofis Üretkenliği - Bottom) -->
+<path class="stroke-primary stroke-[3px]" d="M250,250 L250,450" filter="url(#glow)"></path>
+<!-- Interactive Points -->
+<!-- Top: Dijital Temeller -->
+<circle class="fill-primary stroke-white stroke-2 cursor-pointer hover:r-6 transition-all" cx="250" cy="110" r="4"></circle>
+<!-- Top Right: Siber Güvenlik -->
+<circle class="fill-primary stroke-white stroke-2 cursor-pointer hover:r-6 transition-all" cx="390" cy="160" r="4"></circle>
+<!-- Bottom Right: Problem Analizi -->
+<circle class="fill-primary stroke-white stroke-2 cursor-pointer hover:r-6 transition-all" cx="380" cy="340" r="4"></circle>
+<!-- Bottom: Ofis Üretkenliği (Active) -->
+<g class="cursor-pointer group/point">
+<circle class="fill-white stroke-primary stroke-4 shadow-lg drop-shadow-[0_0_10px_rgba(13,242,223,0.8)] animate-pulse" cx="250" cy="390" r="8"></circle>
+</g>
+<!-- Bottom Left: Algoritmik Düşünme -->
+<circle class="fill-primary stroke-white stroke-2 cursor-pointer hover:r-6 transition-all" cx="120" cy="320" r="4"></circle>
+<!-- Top Left: Topluluk Katkısı -->
+<circle class="fill-primary stroke-white stroke-2 cursor-pointer hover:r-6 transition-all" cx="130" cy="170" r="4"></circle>
+<!-- Labels -->
+<text class="fill-slate-400 text-[12px] font-bold font-display" text-anchor="middle" x="250" y="30">Dijital Temeller</text>
+<text class="fill-slate-400 text-[12px] font-bold font-display" text-anchor="start" x="435" y="140">Siber Güvenlik</text>
+<text class="fill-slate-400 text-[12px] font-bold font-display" text-anchor="start" x="435" y="370">Problem Analizi</text>
+<!-- Active Label -->
+<text class="fill-primary text-[14px] font-black font-display tracking-wide drop-shadow-md" text-anchor="middle" x="250" y="480">OFİS ÜRETKENLİĞİ</text>
+<text class="fill-slate-400 text-[12px] font-bold font-display" text-anchor="end" x="65" y="370">Algoritmik Düşünme</text>
+<text class="fill-slate-400 text-[12px] font-bold font-display" text-anchor="end" x="65" y="140">Topluluk Katkısı</text>
+</svg>
+</div>
+</div>
+</div>
+<!-- Right Pane: Drill Down Panel (Active State) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Active Card -->
+<div class="bg-surface-dark border-l-4 border-primary rounded-r-xl border-y border-r border-slate-700/50 p-6 md:p-8 shadow-2xl relative">
+<!-- Background pattern -->
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-2 border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                Seçili Eksen
+                            </span>
+<h2 class="text-3xl font-bold text-white mb-1">Ofis Üretkenliği</h2>
+<p class="text-slate-400 text-sm">Ofis yazılımlarını ve üretkenlik araçlarını etkin kullanma becerisi.</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="text-5xl font-black text-primary tracking-tighter">85</div>
+<div class="text-slate-500 font-medium text-sm mt-1">/100 Puan</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-slate-800 rounded-full h-2.5 mb-6 overflow-hidden">
+<div class="bg-primary h-2.5 rounded-full shadow-[0_0_15px_rgba(13,242,223,0.5)]" style="width: 85%"></div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-background-dark p-4 rounded-lg border border-slate-700/50 flex flex-col gap-1">
+<span class="text-xs text-slate-400 uppercase font-bold tracking-wider">Ustalık Seviyesi</span>
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined text-lg">hotel_class</span>
+                                İlerleyen
+                            </div>
+</div>
+<div class="bg-background-dark p-4 rounded-lg border border-slate-700/50 flex flex-col gap-1">
+<span class="text-xs text-slate-400 uppercase font-bold tracking-wider">Büyüme Hızı</span>
+<div class="flex items-center gap-2 text-green-400 font-bold">
+<span class="material-symbols-outlined text-lg">trending_up</span>
+                                +12% (Bu Ay)
+                            </div>
+</div>
+</div>
+<div class="border-t border-slate-700/50 my-6"></div>
+<!-- Feeding Sources List -->
+<h4 class="text-white font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">dataset</span>
+                        Besleyici Kaynaklar
+                    </h4>
+<div class="flex flex-col gap-3">
+<!-- Item 1: Completed -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-background-dark hover:bg-slate-800 transition-colors border border-slate-700/30 group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-200 text-sm font-semibold group-hover:text-primary transition-colors">Excel Temelleri (O1-L1)</span>
+<span class="text-xs text-slate-500">Modül Tamamlandı</span>
+</div>
+</div>
+<span class="text-xs font-mono text-slate-400">100/100</span>
+</div>
+<!-- Item 2: Completed -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-background-dark hover:bg-slate-800 transition-colors border border-slate-700/30 group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-200 text-sm font-semibold group-hover:text-primary transition-colors">İleri Seviye Formüller (O2-L3)</span>
+<span class="text-xs text-slate-500">Modül Tamamlandı</span>
+</div>
+</div>
+<span class="text-xs font-mono text-slate-400">95/100</span>
+</div>
+<!-- Item 3: Simulation Score -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-background-dark hover:bg-slate-800 transition-colors border border-slate-700/30 border-l-primary border-l-2 group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">joystick</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-200 text-sm font-semibold group-hover:text-primary transition-colors">Simülasyon: Yıllık Bütçe (Boss-O2)</span>
+<span class="text-xs text-slate-500">Boss Challenge</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-sm font-bold text-white">88 Puan</span>
+<span class="text-[10px] text-green-400 uppercase">Yüksek Skor</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex gap-3">
+<button class="flex-1 bg-primary hover:bg-primary-dark text-slate-900 font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">play_circle</span>
+                            Eğitime Devam Et
+                        </button>
+<button class="px-4 py-3 rounded-lg border border-slate-600 hover:border-slate-400 text-white transition-colors flex items-center justify-center bg-transparent">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Recommendation Card (Small) -->
+<div class="bg-gradient-to-r from-slate-800 to-surface-dark border border-slate-700/50 rounded-xl p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-sm">Gelişim Önerisi</span>
+<span class="text-slate-400 text-xs">Veri görselleştirme modülüne odaklanın.</span>
+</div>
+</div>
+<button class="text-xs text-primary hover:text-white font-semibold underline underline-offset-4">İncele</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-slate-800 bg-[#111817] mt-12 py-8 px-6 text-center text-slate-500 text-sm">
+<p>© 2024 PUSULA Lite. UNDP Destekli Gençlik Gelişim Platformu. Tüm hakları saklıdır.</p>
+</footer>
+</body></html>

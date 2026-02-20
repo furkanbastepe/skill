@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM | Metin Düzenleyici Lab</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0b5ed7",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c2630",
+                        "surface-border": "#2d3748",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3748; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a5568; 
+        }
+        
+        .editor-page-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display overflow-hidden flex flex-col h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-surface-border bg-surface-dark px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined text-xl">description</span>
+</div>
+<div>
+<h2 class="text-white text-base font-bold leading-tight tracking-tight">DIGEM | Metin Düzenleyici Lab</h2>
+<p class="text-slate-400 text-xs font-normal">SCR-030 • Dijital Okuryazarlık Modülü</p>
+</div>
+</div>
+<!-- Document Title & Status -->
+<div class="flex-1 flex justify-center items-center">
+<div class="flex items-center gap-2 bg-background-dark px-4 py-1.5 rounded-full border border-surface-border">
+<span class="material-symbols-outlined text-slate-400 text-sm">cloud_done</span>
+<span class="text-sm text-slate-300">Taslak kaydedildi</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center gap-2 h-9 px-4 rounded-lg bg-surface-border hover:bg-slate-600 text-white text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-lg">save</span>
+<span>Kaydet</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-9 px-4 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-bold transition-colors shadow-[0_0_15px_rgba(19,127,236,0.4)]">
+<span class="material-symbols-outlined text-lg">send</span>
+<span>Gönder</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-surface-border mx-2"></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-surface-border" data-alt="User avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuABryMZ9nu_Tzl_Wtv1h5vx7y_Wd3Um-GrEglodKq7ZxqMLRBKh21H2TzFL_I5-aU_E3g42LKmvD_WD-ZBMU10wVKCO-7x0KvywOfyvdUEKZN28_qj-s4WSnWB8VDTXRac4zwGvsDljRouc-o0YrD8mxl3quQ6lEjgFphU28G-xZUWcVRhFEKmO5fnLkOl4OwWh0e2ZYUrUiJyzzX2rKOTYBB9Ptih30gagLiypSBoSKGbrfS9KfreKMVTLk8VFSWbP0iBgCGjkLg");'></div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex flex-1 overflow-hidden relative">
+<!-- Left Sidebar: Outline / Navigation (Collapsed for focus on editor, minimal icons) -->
+<aside class="w-14 flex flex-col items-center py-4 gap-4 border-r border-surface-border bg-surface-dark shrink-0">
+<button class="p-2 text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors tooltip" title="Editör">
+<span class="material-symbols-outlined">edit_document</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-white hover:bg-surface-border rounded-lg transition-colors tooltip" title="Dosyalar">
+<span class="material-symbols-outlined">folder_open</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-white hover:bg-surface-border rounded-lg transition-colors tooltip" title="Arama">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="flex-1"></div>
+<button class="p-2 text-slate-400 hover:text-white hover:bg-surface-border rounded-lg transition-colors tooltip" title="Ayarlar">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</aside>
+<!-- Center: Editor Area -->
+<div class="flex-1 flex flex-col bg-background-dark min-w-0">
+<!-- Toolbar -->
+<div class="h-14 flex items-center px-4 gap-2 border-b border-surface-border bg-surface-dark overflow-x-auto shrink-0 scrollbar-hide">
+<!-- History -->
+<div class="flex items-center gap-1 border-r border-surface-border pr-2 mr-2">
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors">
+<span class="material-symbols-outlined">undo</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors">
+<span class="material-symbols-outlined">redo</span>
+</button>
+</div>
+<!-- Style Dropdown -->
+<div class="relative group mr-2">
+<button class="flex items-center gap-2 px-3 py-1.5 bg-background-dark border border-surface-border rounded text-sm text-white hover:border-slate-500 w-32 justify-between">
+<span>Normal</span>
+<span class="material-symbols-outlined text-lg">arrow_drop_down</span>
+</button>
+</div>
+<div class="h-6 w-[1px] bg-surface-border mx-1"></div>
+<!-- Font Formatting -->
+<div class="flex items-center gap-1">
+<button class="p-1.5 text-white bg-surface-border rounded transition-colors" title="Kalın">
+<span class="material-symbols-outlined font-bold">format_bold</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors" title="İtalik">
+<span class="material-symbols-outlined">format_italic</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors" title="Altı Çizili">
+<span class="material-symbols-outlined">format_underlined</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors" title="Metin Rengi">
+<span class="material-symbols-outlined">format_color_text</span>
+</button>
+</div>
+<div class="h-6 w-[1px] bg-surface-border mx-1"></div>
+<!-- Alignment -->
+<div class="flex items-center gap-1">
+<button class="p-1.5 text-white bg-surface-border rounded transition-colors" title="Sola Hizala">
+<span class="material-symbols-outlined">format_align_left</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors" title="Ortala">
+<span class="material-symbols-outlined">format_align_center</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors" title="Sağa Hizala">
+<span class="material-symbols-outlined">format_align_right</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors" title="Yasla">
+<span class="material-symbols-outlined">format_align_justify</span>
+</button>
+</div>
+<div class="h-6 w-[1px] bg-surface-border mx-1"></div>
+<!-- Inserts -->
+<div class="flex items-center gap-1">
+<button class="flex items-center gap-1 px-2 py-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors text-xs font-medium">
+<span class="material-symbols-outlined text-lg">image</span>
+<span class="hidden xl:inline">Resim</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors text-xs font-medium">
+<span class="material-symbols-outlined text-lg">table_chart</span>
+<span class="hidden xl:inline">Tablo</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-1.5 text-slate-400 hover:text-white hover:bg-surface-border rounded transition-colors text-xs font-medium">
+<span class="material-symbols-outlined text-lg">link</span>
+<span class="hidden xl:inline">Bağlantı</span>
+</button>
+</div>
+</div>
+<!-- Editor Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto bg-[#101922] p-8 flex justify-center relative">
+<!-- Ruler / Guidelines could go here visually -->
+<!-- The Page -->
+<div class="bg-white text-black w-full max-w-[816px] min-h-[1056px] h-max p-[96px] editor-page-shadow rounded-sm selection:bg-primary/30 selection:text-black">
+<!-- Document Content -->
+<h1 class="text-3xl font-bold mb-4 font-body leading-tight">Proje Ödevi: Dijital Okuryazarlık</h1>
+<p class="mb-4 text-base font-body leading-relaxed text-justify">
+                        Dijital okuryazarlık, günümüz bilgi toplumunda bireylerin teknolojik araçları kullanarak bilgiye erişme, bu bilgiyi analiz etme ve üretme becerilerini ifade eder. Bu makalede, dijital ayak izi kavramı ve güvenli internet kullanımı ele alınacaktır. Dijital dünyada bıraktığımız izler, gelecekteki kariyerimizden sosyal ilişkilerimize kadar pek çok alanı etkileyebilir.
+                    </p>
+<h2 class="text-xl font-bold mt-6 mb-3 font-body text-[#2d3748]">1. Dijital Ayak İzi Nedir?</h2>
+<p class="mb-4 text-base font-body leading-relaxed text-justify">
+                        İnternet üzerindeki her etkileşimimiz bir veri izi bırakır. Sosyal medya paylaşımları, ziyaret edilen web siteleri ve çevrimiçi alışverişler bu izin parçalarıdır. İki tür ayak izi vardır:
+                    </p>
+<ul class="list-disc pl-8 mb-4 font-body space-y-1">
+<li><strong>Aktif Ayak İzi:</strong> Bilinçli olarak paylaştığımız veriler (örneğin, Instagram postları).</li>
+<li><strong>Pasif Ayak İzi:</strong> Farkında olmadan toplanan veriler (örneğin, IP adresi kayıtları).</li>
+</ul>
+<h2 class="text-xl font-bold mt-6 mb-3 font-body text-[#2d3748]">2. Güvenli İnternet Kullanımı</h2>
+<p class="mb-4 text-base font-body leading-relaxed text-justify">
+                        Güvenliğimizi sağlamak için güçlü şifreler kullanmalı ve iki faktörlü kimlik doğrulamayı etkinleştirmeliyiz. Aşağıdaki tablo, güçlü ve zayıf şifre örneklerini göstermektedir:
+                    </p>
+<table class="w-full border-collapse border border-gray-300 mb-6 font-body text-sm">
+<thead>
+<tr class="bg-gray-100">
+<th class="border border-gray-300 p-2 text-left">Şifre Tipi</th>
+<th class="border border-gray-300 p-2 text-left">Örnek</th>
+<th class="border border-gray-300 p-2 text-left">Güvenlik Durumu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="border border-gray-300 p-2">Zayıf</td>
+<td class="border border-gray-300 p-2">123456</td>
+<td class="border border-gray-300 p-2 text-red-600 font-medium">Çok Riskli</td>
+</tr>
+<tr>
+<td class="border border-gray-300 p-2">Orta</td>
+<td class="border border-gray-300 p-2">Ahmet1990</td>
+<td class="border border-gray-300 p-2 text-yellow-600 font-medium">Tahmin Edilebilir</td>
+</tr>
+<tr>
+<td class="border border-gray-300 p-2">Güçlü</td>
+<td class="border border-gray-300 p-2">K!rm1z1#Elma92</td>
+<td class="border border-gray-300 p-2 text-green-600 font-medium">Güvenli</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-4 text-base font-body leading-relaxed">
+                        Sonuç olarak, dijital vatandaşlık bilinciyle hareket etmek hem bireysel güvenliğimiz hem de toplumsal bilgi kirliliğini önlemek adına kritik öneme sahiptir.
+                    </p>
+<p class="mb-4 text-base font-body leading-relaxed text-primary cursor-pointer">Cursor position...</p>
+</div>
+<div class="h-8"></div> <!-- Spacer for bottom scrolling -->
+</div>
+<!-- Footer / Status Bar -->
+<footer class="h-8 bg-surface-dark border-t border-surface-border flex items-center justify-between px-4 text-xs text-slate-400 shrink-0 select-none">
+<div class="flex items-center gap-4">
+<span>Sayfa 1 / 1</span>
+<span>236 Kelime</span>
+<span>Türkçe (TR)</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<span class="block size-2 rounded-full bg-green-500"></span>
+<span>Çevrimiçi</span>
+</div>
+<span>%100</span>
+</div>
+</footer>
+</div>
+<!-- Right Sidebar: Rubric Panel -->
+<aside class="w-80 border-l border-surface-border bg-surface-dark flex flex-col shrink-0">
+<!-- Rubric Header -->
+<div class="p-4 border-b border-surface-border bg-[#151e26]">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-white font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">assignment_turned_in</span>
+                        Rubrik Paneli
+                    </h3>
+<div class="text-xs font-bold px-2 py-1 bg-primary/20 text-primary-400 rounded">
+                        65/100 Puan
+                    </div>
+</div>
+<p class="text-slate-400 text-xs">Aşağıdaki gereksinimleri tamamlayarak puanını yükselt.</p>
+<!-- Overall Progress Bar -->
+<div class="w-full bg-surface-border h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary h-full rounded-full w-[65%]"></div>
+</div>
+</div>
+<!-- Checklist Items -->
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Completed Item -->
+<div class="flex gap-3 items-start p-3 bg-green-500/10 border border-green-500/20 rounded-lg group">
+<div class="mt-0.5 text-green-500 bg-green-500/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div>
+<h4 class="text-green-400 text-sm font-bold">Ana Başlık Kullanımı</h4>
+<p class="text-green-500/60 text-xs mt-1">H1 etiketi ile ana başlık eklendi.</p>
+</div>
+<div class="ml-auto text-green-400 text-xs font-bold">+20</div>
+</div>
+<!-- Completed Item -->
+<div class="flex gap-3 items-start p-3 bg-green-500/10 border border-green-500/20 rounded-lg group">
+<div class="mt-0.5 text-green-500 bg-green-500/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div>
+<h4 class="text-green-400 text-sm font-bold">Tablo Ekleme</h4>
+<p class="text-green-500/60 text-xs mt-1">En az bir veri tablosu mevcut.</p>
+</div>
+<div class="ml-auto text-green-400 text-xs font-bold">+15</div>
+</div>
+<!-- Completed Item -->
+<div class="flex gap-3 items-start p-3 bg-green-500/10 border border-green-500/20 rounded-lg group">
+<div class="mt-0.5 text-green-500 bg-green-500/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div>
+<h4 class="text-green-400 text-sm font-bold">Kelime Sayısı</h4>
+<p class="text-green-500/60 text-xs mt-1">Minimum 200 kelime sınırına ulaşıldı.</p>
+</div>
+<div class="ml-auto text-green-400 text-xs font-bold">+30</div>
+</div>
+<!-- Pending Item (Active/Warning) -->
+<div class="flex gap-3 items-start p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg group hover:bg-yellow-500/20 transition-colors cursor-pointer ring-1 ring-yellow-500/30">
+<div class="mt-0.5 text-yellow-500 bg-yellow-500/10 rounded-full p-0.5 animate-pulse">
+<span class="material-symbols-outlined text-lg">radio_button_unchecked</span>
+</div>
+<div>
+<h4 class="text-yellow-400 text-sm font-bold">Alt Başlık Hiyerarşisi</h4>
+<p class="text-yellow-500/70 text-xs mt-1">En az 3 adet H2 alt başlık kullanmalısın. Şu an: 2/3</p>
+</div>
+<div class="ml-auto text-yellow-400 text-xs font-bold">0/15</div>
+</div>
+<!-- Failed/Missing Item -->
+<div class="flex gap-3 items-start p-3 bg-red-500/10 border border-red-500/20 rounded-lg group hover:bg-red-500/20 transition-colors cursor-pointer">
+<div class="mt-0.5 text-red-500 bg-red-500/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">priority_high</span>
+</div>
+<div>
+<h4 class="text-red-400 text-sm font-bold">Görsel Kullanımı</h4>
+<p class="text-red-500/70 text-xs mt-1">Konuyla ilgili en az 1 görsel eklenmedi.</p>
+</div>
+<div class="ml-auto text-red-400 text-xs font-bold">0/10</div>
+</div>
+<!-- Failed/Missing Item -->
+<div class="flex gap-3 items-start p-3 bg-surface-border/30 border border-surface-border rounded-lg group opacity-70">
+<div class="mt-0.5 text-slate-500 bg-slate-700/50 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">lock</span>
+</div>
+<div>
+<h4 class="text-slate-400 text-sm font-bold">Kaynakça Ekleme</h4>
+<p class="text-slate-500 text-xs mt-1">Doküman sonuna kaynakça listesi ekleyin.</p>
+</div>
+<div class="ml-auto text-slate-500 text-xs font-bold">0/10</div>
+</div>
+</div>
+<!-- Rubric Footer Action -->
+<div class="p-4 border-t border-surface-border">
+<button class="w-full flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary font-bold py-2.5 rounded-lg transition-colors text-sm">
+<span class="material-symbols-outlined text-lg">refresh</span>
+                    Kontrolü Yenile
+                </button>
+</div>
+</aside>
+</main>
+</body></html>

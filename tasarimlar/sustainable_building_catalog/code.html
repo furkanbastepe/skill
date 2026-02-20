@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Solarpunk City Builder - Sustainable Building Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2a6",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#10221c",
+                        "surface-dark": "#1c2b24",
+                        "surface-hover": "#253830",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #10221c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283933;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0df2a6;
+        }
+        .glass-panel {
+            background: rgba(16, 34, 28, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-body h-screen w-full flex flex-col overflow-hidden antialiased selection:bg-primary selection:text-background-dark">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-white/5 bg-[#111816]/90 backdrop-blur-md px-6 py-3 z-50 shrink-0">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-[32px]">eco</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Solarpunk City Builder</h2>
+<p class="text-white/50 text-xs font-medium">Simulation Active • Year 2145</p>
+</div>
+</div>
+<!-- Resource Bar -->
+<div class="hidden lg:flex items-center gap-6 px-6 py-2 bg-surface-dark rounded-full border border-white/5 shadow-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">bolt</span>
+<span class="font-bold text-sm">45.2k</span>
+<span class="text-xs text-white/50">Energy</span>
+</div>
+<div class="w-px h-4 bg-white/10"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-xl">water_drop</span>
+<span class="font-bold text-sm">12.8k</span>
+<span class="text-xs text-white/50">Water</span>
+</div>
+<div class="w-px h-4 bg-white/10"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-400 text-xl">forest</span>
+<span class="font-bold text-sm">8.4k</span>
+<span class="text-xs text-white/50">Biomass</span>
+</div>
+<div class="w-px h-4 bg-white/10"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-purple-400 text-xl">currency_bitcoin</span>
+<span class="font-bold text-sm">9,204</span>
+<span class="text-xs text-white/50">Credits</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-xl h-10 w-10 bg-surface-dark hover:bg-surface-hover text-white transition-colors border border-white/5">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex items-center justify-center rounded-xl h-10 px-4 bg-primary hover:bg-emerald-400 text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(13,242,166,0.2)]">
+<span class="material-symbols-outlined mr-2 text-lg">close</span>
+<span>Close Catalog</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Background Image/Map with Blur -->
+<div class="absolute inset-0 z-0 opacity-40">
+<img alt="Blurred futuristic city skyline background" class="w-full h-full object-cover filter blur-sm scale-105" data-alt="Blurred futuristic city skyline background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZlOZGyZnZN8DUy9CN-PkRnj_OkWTaPRJecIAmkk8Y-pis3Bge0_pH9gFCR4Fr1vO8OZk020yhLkVzTHm9-3H7bk2_SrmknHnCR6M-yBNLUnARNsOnO8YllAXAcBwX5S1sYmgeL_p8K6BlwYLhqgTuD9rPcjKjUNTlupz1UE0Uisi8aKSvi-QMVxIzFPUlR_tWMkGxE8HF_Q4BC4W_r7EJJp6dxFFbehkrRcHxY0yuKmH7Lb0vMobLKvoeWx5Ypk_0_76-AOgbq0XP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent"></div>
+</div>
+<!-- Sidebar Filters -->
+<aside class="w-80 flex flex-col glass-panel z-10 border-r border-white/5 overflow-y-auto shrink-0 backdrop-blur-xl">
+<div class="p-6 flex flex-col gap-8">
+<!-- Search -->
+<div>
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-primary transition-colors material-symbols-outlined">search</span>
+<input class="w-full bg-surface-dark border border-white/5 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all shadow-inner" placeholder="Search blueprints..." type="text"/>
+</div>
+</div>
+<!-- Categories -->
+<div class="flex flex-col gap-3">
+<h3 class="text-xs font-bold uppercase tracking-wider text-white/40 mb-1 pl-1">Categories</h3>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 border border-primary/20 text-white group transition-all">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">grid_view</span>
+<span class="font-bold text-sm flex-1 text-left">All Structures</span>
+<span class="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">42</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-hover text-white/70 hover:text-white transition-all border border-transparent hover:border-white/5">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">bolt</span>
+<span class="font-medium text-sm flex-1 text-left">Energy Generation</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-hover text-white/70 hover:text-white transition-all border border-transparent hover:border-white/5">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">home_work</span>
+<span class="font-medium text-sm flex-1 text-left">Housing &amp; Living</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-hover text-white/70 hover:text-white transition-all border border-transparent hover:border-white/5">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">spa</span>
+<span class="font-medium text-sm flex-1 text-left">Nature &amp; Parks</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-hover text-white/70 hover:text-white transition-all border border-transparent hover:border-white/5">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">factory</span>
+<span class="font-medium text-sm flex-1 text-left">Industry</span>
+</button>
+</div>
+<!-- Impact Filters -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between mb-1 pl-1">
+<h3 class="text-xs font-bold uppercase tracking-wider text-white/40">Impact Goals</h3>
+<button class="text-[10px] text-primary hover:underline">Reset</button>
+</div>
+<label class="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/5 bg-surface-dark/50 hover:bg-surface-hover cursor-pointer transition-colors group">
+<div class="relative flex items-center">
+<input checked="" class="peer h-5 w-5 rounded border-2 border-white/20 bg-transparent text-primary focus:ring-0 focus:ring-offset-0 transition-all checked:border-primary checked:bg-primary" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-white group-hover:text-primary transition-colors">Carbon Negative</span>
+<span class="text-[10px] text-white/40">Removes CO2 over time</span>
+</div>
+</label>
+<label class="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/5 bg-surface-dark/50 hover:bg-surface-hover cursor-pointer transition-colors group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 rounded border-2 border-white/20 bg-transparent text-primary focus:ring-0 focus:ring-offset-0 transition-all checked:border-primary checked:bg-primary" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-white group-hover:text-primary transition-colors">High Density</span>
+<span class="text-[10px] text-white/40">Max population efficiency</span>
+</div>
+</label>
+<label class="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/5 bg-surface-dark/50 hover:bg-surface-hover cursor-pointer transition-colors group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 rounded border-2 border-white/20 bg-transparent text-primary focus:ring-0 focus:ring-offset-0 transition-all checked:border-primary checked:bg-primary" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-white group-hover:text-primary transition-colors">Community Hub</span>
+<span class="text-[10px] text-white/40">Boosts area happiness</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Sidebar Footer -->
+<div class="mt-auto p-6 border-t border-white/5 bg-surface-dark">
+<div class="rounded-lg bg-gradient-to-br from-primary/20 to-transparent p-4 border border-primary/10">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="text-xs font-bold uppercase">Tip</span>
+</div>
+<p class="text-xs text-white/80 leading-relaxed">
+                        Combine <span class="text-white font-bold">Algae Tanks</span> with <span class="text-white font-bold">Vertical Farms</span> to create a closed-loop nutrient cycle bonus.
+                    </p>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto z-10 p-8 scroll-smooth">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center justify-between mb-8">
+<h1 class="text-3xl font-bold text-white tracking-tight">Available Structures</h1>
+<div class="flex items-center gap-3">
+<span class="text-sm text-white/50">Sort by:</span>
+<div class="relative group">
+<button class="flex items-center gap-2 bg-surface-dark hover:bg-surface-hover border border-white/10 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+<span>Efficiency Impact</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 pb-20">
+<!-- Card 1: Algae Bio-reactor -->
+<div class="group relative flex flex-col bg-surface-dark border border-white/5 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-[0_0_30px_-10px_rgba(13,242,166,0.15)] transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-black">
+<img alt="Abstract glowing green tubes representing an Algae Bio-reactor" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="Abstract glowing green tubes representing an Algae Bio-reactor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWn9yGXggBSnWT8N3B8ABJ-el4ktQLdgSJAENPUPyOr0PaWWJntdih98ELcAQHcc9dwIWXGqSh6-OfpkqEdyBJP9ons1OIlg0YwnpKX7gT8DdGHx9Us-PhZK8IU3cH5SRcy-Nln9QlF3M8tXRQqmIaogGx1rtcbe62cMMbXiL7N0oAV8wLofKVle6fSjBrB69AWalvqqvjAKz86Ys9MDEilCYmAiIaM-9LM2p6N-tTg_zydrZA03iKPSIUbgg0QCcV7LOjKY2cKwOD"/>
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md border border-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span>
+<span class="text-xs font-bold text-primary uppercase">Energy</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface-dark to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Algae Bio-reactor</h3>
+<span class="bg-white/5 text-white/60 text-[10px] font-bold px-2 py-0.5 rounded border border-white/5">TIER 2</span>
+</div>
+<p class="text-sm text-white/60 mb-4 line-clamp-2">High-efficiency energy generator that converts solar light and CO2 into biofuel and electricity.</p>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">bolt</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Output</span>
+<span class="text-xs font-bold text-white">+240/tick</span>
+</div>
+</div>
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-green-400 text-base">co2</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Sequestration</span>
+<span class="text-xs font-bold text-white">-15 tons</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-col gap-3">
+<div class="flex items-center gap-3 text-xs font-medium text-white/50">
+<span>Cost:</span>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">water_drop</span> 100
+                                    </div>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">grid_on</span> 300
+                                    </div>
+</div>
+<button class="w-full py-2.5 bg-primary hover:bg-emerald-400 text-background-dark font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">construction</span>
+                                    Construct
+                                </button>
+</div>
+</div>
+</div>
+<!-- Card 2: Vertical Forest Tower -->
+<div class="group relative flex flex-col bg-surface-dark border border-white/5 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-[0_0_30px_-10px_rgba(13,242,166,0.15)] transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-black">
+<img alt="Futuristic skyscraper covered in lush green plants" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-transform duration-700" data-alt="Futuristic skyscraper covered in lush green plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNFq19DPCeb9S4QxQwmmQDX9Z1EZVvTQdy4XU_e7gSF86gHbiGnB9o6pD5OCvF0_rL8LOtXBWJQvCZvXJ2VsJgddYwMtMQFyJO_9Bx0x-406RUQE99y4ZVt7GdCN-7-rKuVGUVCjJECwrJzAg5LYI41ynCRft9KCbF3gr2kU1Z13qggs7W9PaZ_77TF_WQZyQoscPcnimfbPI89xnxgNQht9sve-v1kH_Jsz9MMF1y8eJIPsuRJItcZCC6sqzpPLKjGt2r2LuZHqR5"/>
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md border border-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">home_work</span>
+<span class="text-xs font-bold text-primary uppercase">Housing</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface-dark to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Vertical Forest</h3>
+<span class="bg-white/5 text-white/60 text-[10px] font-bold px-2 py-0.5 rounded border border-white/5">TIER 3</span>
+</div>
+<p class="text-sm text-white/60 mb-4 line-clamp-2">Luxury sustainable housing integrated with living trees to cool the city and purify air.</p>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-base">groups</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Capacity</span>
+<span class="text-xs font-bold text-white">450 Units</span>
+</div>
+</div>
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-400 text-base">mood</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Happiness</span>
+<span class="text-xs font-bold text-white">+15%</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-col gap-3">
+<div class="flex items-center gap-3 text-xs font-medium text-white/50">
+<span>Cost:</span>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">forest</span> 500
+                                    </div>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">grid_view</span> 200
+                                    </div>
+</div>
+<button class="w-full py-2.5 bg-primary hover:bg-emerald-400 text-background-dark font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">construction</span>
+                                    Construct
+                                </button>
+</div>
+</div>
+</div>
+<!-- Card 3: Kinetic Sidewalks -->
+<div class="group relative flex flex-col bg-surface-dark border border-white/5 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-[0_0_30px_-10px_rgba(13,242,166,0.15)] transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-black">
+<img alt="Glowing neon patterns on a dark surface representing kinetic floor tiles" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="Glowing neon patterns on a dark surface representing kinetic floor tiles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZT4Z-F-jktsHlrxKFMsU0ovMV3Gk8FWjcZl_8ate8D0Eo5_fOlYx4C2kMczAG1HSSQMp1FxVFRkt7dYNsr53V_YRKHt3yF8ZPHgX_fBKtYm4YJdlFvzozbRmO84CYbHRNIEt_ly7PBQfVwpaVsFCj_tjgiVbA3W0WD9HQ-XYcOyKhzNPO5ncYKJzIscEZytl7I0hFwai_XBHF6hLNh2tHRwNNQ2WFO9uq4ufuE-ToDjGMHz1QNOgz1E0dM6K8mTnAVhU7XwaX7lSA"/>
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md border border-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">add_road</span>
+<span class="text-xs font-bold text-primary uppercase">Infra</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface-dark to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Kinetic Sidewalks</h3>
+<span class="bg-white/5 text-white/60 text-[10px] font-bold px-2 py-0.5 rounded border border-white/5">TIER 1</span>
+</div>
+<p class="text-sm text-white/60 mb-4 line-clamp-2">Paving tiles that generate electricity from pedestrian footsteps. Perfect for busy districts.</p>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">bolt</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Passive Gen</span>
+<span class="text-xs font-bold text-white">+5/walker</span>
+</div>
+</div>
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-purple-400 text-base">speed</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Speed</span>
+<span class="text-xs font-bold text-white">+10%</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-col gap-3">
+<div class="flex items-center gap-3 text-xs font-medium text-white/50">
+<span>Cost:</span>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">landscape</span> 5
+                                    </div>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">memory</span> 20
+                                    </div>
+</div>
+<button class="w-full py-2.5 bg-primary hover:bg-emerald-400 text-background-dark font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">construction</span>
+                                    Construct
+                                </button>
+</div>
+</div>
+</div>
+<!-- Card 4: Atmospheric Water Gen -->
+<div class="group relative flex flex-col bg-surface-dark border border-white/5 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-[0_0_30px_-10px_rgba(13,242,166,0.15)] transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-black">
+<img alt="Clean minimal geometric structure collecting water" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="Clean minimal geometric structure collecting water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiOQS_NJ87VgBkOXVRYFcJvdMTpXKCYVE6BdWLI4U78fEsOrouQxvRah_M5ow5ulJLw6Sp9AJGg4ulnH8Ei3dDFRUJd7I-3XOewtqWL8_l8rGzNRNcDNZP9ZFx9M9Svv6mQ-20JWzn0_VfK742ohOaa5TdUdVyeQDxwMpOHfltCkJCaJ5t9o7-kZUq27Tpq2KrX5uLX06IV7cS3F7eruNk7odm7oMMBzgUUJXdtbjpgaYYgm9_rYNlIBCWPqSN-SqOe_Xbf84AgSYc"/>
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md border border-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">water_drop</span>
+<span class="text-xs font-bold text-primary uppercase">Resource</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface-dark to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Atmospheric Gen</h3>
+<span class="bg-white/5 text-white/60 text-[10px] font-bold px-2 py-0.5 rounded border border-white/5">TIER 1</span>
+</div>
+<p class="text-sm text-white/60 mb-4 line-clamp-2">Condenses humidity from the air into drinkable water without needing groundwater access.</p>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-base">water_drop</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Production</span>
+<span class="text-xs font-bold text-white">+50/tick</span>
+</div>
+</div>
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-400 text-base">bolt</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Drain</span>
+<span class="text-xs font-bold text-white">-10/tick</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-col gap-3">
+<div class="flex items-center gap-3 text-xs font-medium text-white/50">
+<span>Cost:</span>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">recycling</span> 150
+                                    </div>
+</div>
+<button class="w-full py-2.5 bg-primary hover:bg-emerald-400 text-background-dark font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">construction</span>
+                                    Construct
+                                </button>
+</div>
+</div>
+</div>
+<!-- Card 5: Geo-Thermal Plant -->
+<div class="group relative flex flex-col bg-surface-dark border border-white/5 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-[0_0_30px_-10px_rgba(13,242,166,0.15)] transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-black">
+<img alt="Industrial facility with steam vents and green surroundings" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="Industrial facility with steam vents and green surroundings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfzEKuBJ5dfqTuVfKqr2C2sfQPikGb3iBv4pp23-BSCD_dw-Z-0a1O-bxfR6cq8tjee4Zv0ShFKGI1sZnwmba2Z_lfV-1PXnbpBcIkHj7yPgPW3wj0s_mUUVZ8cXTH7keeuEaih9rIi6xip6QV7huXotUkbPE6uTHdwt_sj1hRKrhE8zXdshOAmuJmmDPg0gZCiNUFdPbONPoK6efmmdebDCSoUh5okI0z4CDTqi6OrTkgRe0pnHVL6WMta9BA4mgwa8XL9OR5S8OW"/>
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md border border-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span>
+<span class="text-xs font-bold text-primary uppercase">Energy</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface-dark to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Geo-Thermal Plant</h3>
+<span class="bg-white/5 text-white/60 text-[10px] font-bold px-2 py-0.5 rounded border border-white/5">TIER 3</span>
+</div>
+<p class="text-sm text-white/60 mb-4 line-clamp-2">Taps into the planet's core heat for massive, clean energy output. Requires specific terrain.</p>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">bolt</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Output</span>
+<span class="text-xs font-bold text-white">+800/tick</span>
+</div>
+</div>
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500 text-base">warning</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Risk</span>
+<span class="text-xs font-bold text-white">Low</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-col gap-3">
+<div class="flex items-center gap-3 text-xs font-medium text-white/50">
+<span>Cost:</span>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">grid_on</span> 1000
+                                    </div>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">currency_bitcoin</span> 5k
+                                    </div>
+</div>
+<button class="w-full py-2.5 bg-primary hover:bg-emerald-400 text-background-dark font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">construction</span>
+                                    Construct
+                                </button>
+</div>
+</div>
+</div>
+<!-- Card 6: Community Fab-Lab -->
+<div class="group relative flex flex-col bg-surface-dark border border-white/5 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-[0_0_30px_-10px_rgba(13,242,166,0.15)] transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-48 overflow-hidden bg-black">
+<img alt="High tech workshop with 3D printers and green lighting" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="High tech workshop with 3D printers and green lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNy9c2puFulJ1pIKKmrTKddd2EfqDgT91LvJykd0YrznYF3fifRjmJa8bnawvd-iINbVIxfRmEcWqt2uQA9lbsVunm2ye5Wvhb45dL0XGLjTXiCCbUqnh9ueLYl3H0WUF1qDFTcrF4xSX8xQN1dxgyHXLXXUXKQ239SULDeoBBiBDC0m1WcHs9GbzKy6sap8T-W_36HpEVYZvaKIOEJXo-6tHwA2RBWpTttQEO1yMpC7Mj97KXB4ucYbM3ptkEZT7ncXAlQtWti2_Y"/>
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md border border-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">school</span>
+<span class="text-xs font-bold text-primary uppercase">Education</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface-dark to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Community Fab-Lab</h3>
+<span class="bg-white/5 text-white/60 text-[10px] font-bold px-2 py-0.5 rounded border border-white/5">TIER 2</span>
+</div>
+<p class="text-sm text-white/60 mb-4 line-clamp-2">Public workshop equipped with 3D printers and recyclers. Boosts education and local production.</p>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-purple-400 text-base">psychology</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Innovation</span>
+<span class="text-xs font-bold text-white">+2.5/day</span>
+</div>
+</div>
+<div class="bg-white/5 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-base">handyman</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-white/40 uppercase">Maintenance</span>
+<span class="text-xs font-bold text-white">-20% Cost</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-col gap-3">
+<div class="flex items-center gap-3 text-xs font-medium text-white/50">
+<span>Cost:</span>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">memory</span> 50
+                                    </div>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-sm">recycling</span> 100
+                                    </div>
+</div>
+<button class="w-full py-2.5 bg-primary hover:bg-emerald-400 text-background-dark font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">construction</span>
+                                    Construct
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

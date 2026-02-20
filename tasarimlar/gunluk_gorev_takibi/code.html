@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Günlük Görev Takibi</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                        "surface-dark": "#162e2a",
+                        "surface-darker": "#122522",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"], 
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for kanban columns */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .kanban-column {
+            min-height: calc(100vh - 280px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden flex flex-col h-screen">
+<!-- Top Navigation -->
+<header class="shrink-0 flex items-center justify-between whitespace-nowrap border-b border-primary/10 bg-surface-darker px-8 py-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight">Gunluk Gorev Takibi</h2>
+</div>
+<label class="hidden md:flex relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-primary/60">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full min-w-[300px] p-2.5 pl-10 text-sm bg-surface-dark border border-primary/10 rounded-full placeholder-gray-400 text-white focus:ring-primary focus:border-primary transition-all duration-300" placeholder="Ders, görev veya etiket ara..." type="text"/>
+</label>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#">Dersler</a>
+<a class="text-primary text-sm font-medium" href="#">Görevler</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#">Takvim</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#">Raporlar</a>
+</nav>
+<div class="h-6 w-px bg-primary/20 hidden lg:block"></div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-white hover:text-primary transition-colors rounded-full hover:bg-primary/10">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full animate-pulse"></span>
+</button>
+<div class="flex items-center gap-3 pl-2 border-l border-primary/10">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold leading-none">Ali Yılmaz</p>
+<p class="text-xs text-primary/80 mt-1">12. Sınıf</p>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Student profile picture showing a young man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgfR6fvd0N4Wllv19jUrHrJA81jJ8W_r8p8N8vPy7ANBDtKbKGVY0qOjYpZZU07KO8DMFbylqH5fYIu9TWaoeGcR2eccIShW9-qbOK3rPVeNgqCz20D5hSmMgOjgwf7la3Re4dxUCFoh927bSPWZimryLOVxUoJPHJkYNy7p4CCh9u-2vxssSa1I2K_tBg0_BWdMiqeyydGJXtbyUBhZDAHUJhZD1WoQ5xQcqYDaZA9XsTIodMmI1bHsF59zABKJYbFGw3NwMMlNID");'>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden relative">
+<!-- Sub Header & Filters -->
+<div class="px-8 py-6 shrink-0 flex flex-col md:flex-row md:items-center justify-between gap-6 z-10">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Bugünün Görevleri</h1>
+<span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">4 GÖREV KALDI</span>
+</div>
+<p class="text-gray-400 text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                    14 Ekim 2023, Çarşamba
+                </p>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-surface-dark border border-primary/20 text-white hover:bg-primary/10 transition-colors group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">add</span>
+<span class="text-sm font-bold">Hızlı Ekle</span>
+</button>
+<div class="flex bg-surface-dark p-1 rounded-full border border-primary/10">
+<button class="flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-primary text-surface-darker shadow-lg transition-all">
+<span class="material-symbols-outlined text-[18px]">view_kanban</span>
+<span class="text-sm font-bold">Kanban</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-4 py-1.5 rounded-full text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-[18px]">list</span>
+<span class="text-sm font-medium">Liste</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Warning Banner -->
+<div class="px-8 pb-4 shrink-0">
+<div class="bg-red-500/10 border border-red-500/20 rounded-xl p-3 flex items-start sm:items-center gap-3 text-red-200">
+<span class="material-symbols-outlined text-red-500">warning</span>
+<div class="flex flex-1 flex-col sm:flex-row sm:items-center justify-between gap-2">
+<p class="text-sm font-medium"><span class="font-bold text-red-400">Dikkat:</span> Dünden kalan "Biyoloji - Hücre Yapısı" görevi henüz tamamlanmadı.</p>
+<button class="text-xs font-bold text-red-400 hover:text-red-300 underline decoration-2 underline-offset-4">Görevi İncele</button>
+</div>
+</div>
+</div>
+<!-- Kanban Board -->
+<div class="flex-1 overflow-x-auto overflow-y-hidden px-8 pb-8">
+<div class="flex h-full gap-6 min-w-[1000px]">
+<!-- Column: To Do -->
+<div class="flex-1 flex flex-col min-w-[320px] max-w-[400px] h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-gray-400"></span>
+<h3 class="text-lg font-bold text-white tracking-tight">Yapılacaklar</h3>
+<span class="bg-surface-dark text-gray-400 text-xs px-2 py-0.5 rounded-full border border-white/5">3</span>
+</div>
+<button class="text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 bg-surface-dark/50 rounded-[2rem] p-4 border border-white/5 flex flex-col gap-4 overflow-y-auto kanban-column custom-scrollbar">
+<!-- Task Card: High Priority -->
+<div class="group bg-surface-darker p-5 rounded-[1.5rem] border border-transparent hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-grab active:cursor-grabbing relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+<div class="flex justify-between items-start mb-3">
+<span class="bg-orange-500/10 text-orange-400 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-orange-500/20">Yüksek Öncelik</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+<button class="size-7 flex items-center justify-center rounded-full bg-surface-dark hover:text-primary" title="Ertele">
+<span class="material-symbols-outlined text-[16px]">schedule_send</span>
+</button>
+</div>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 leading-tight">Limit ve Süreklilik</h4>
+<p class="text-gray-400 text-sm mb-4">Matematik • Modül 4</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-1.5 text-gray-400 bg-surface-dark px-2.5 py-1 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+<span class="text-xs font-medium">45 dk</span>
+</div>
+<button class="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all bg-primary text-surface-darker text-xs font-bold px-4 py-1.5 rounded-full hover:bg-white hover:text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+                                    Başla
+                                </button>
+</div>
+</div>
+<!-- Task Card: Standard -->
+<div class="group bg-surface-darker p-5 rounded-[1.5rem] border border-transparent hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-grab active:cursor-grabbing relative overflow-hidden">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-primary/20">Ödev</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+<button class="size-7 flex items-center justify-center rounded-full bg-surface-dark hover:text-primary" title="Ertele">
+<span class="material-symbols-outlined text-[16px]">schedule_send</span>
+</button>
+</div>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 leading-tight">Essay Taslağı</h4>
+<p class="text-gray-400 text-sm mb-4">İngilizce • Writing</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-1.5 text-gray-400 bg-surface-dark px-2.5 py-1 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+<span class="text-xs font-medium">30 dk</span>
+</div>
+<button class="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all bg-primary text-surface-darker text-xs font-bold px-4 py-1.5 rounded-full hover:bg-white hover:text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+                                    Başla
+                                </button>
+</div>
+</div>
+<!-- Task Card: Overdue -->
+<div class="group bg-surface-darker p-5 rounded-[1.5rem] border border-red-500/20 hover:border-red-500/40 hover:shadow-lg hover:shadow-red-500/5 transition-all cursor-grab active:cursor-grabbing relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+<div class="flex justify-between items-start mb-3">
+<span class="bg-red-500/10 text-red-400 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-red-500/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">warning</span> Gecikmiş
+                                </span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+<button class="size-7 flex items-center justify-center rounded-full bg-surface-dark hover:text-primary" title="Ertele">
+<span class="material-symbols-outlined text-[16px]">schedule_send</span>
+</button>
+</div>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 leading-tight">Hücre Yapısı Okuma</h4>
+<p class="text-gray-400 text-sm mb-4">Biyoloji • Ünite 2</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-1.5 text-red-300 bg-red-500/10 px-2.5 py-1 rounded-full border border-red-500/20">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+<span class="text-xs font-medium">60 dk</span>
+</div>
+<button class="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all bg-primary text-surface-darker text-xs font-bold px-4 py-1.5 rounded-full hover:bg-white hover:text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+                                    Başla
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Progress -->
+<div class="flex-1 flex flex-col min-w-[320px] max-w-[400px] h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-primary animate-pulse"></span>
+<h3 class="text-lg font-bold text-white tracking-tight">Devam Ediyor</h3>
+<span class="bg-primary/20 text-primary text-xs px-2 py-0.5 rounded-full border border-primary/20">1</span>
+</div>
+<button class="text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 bg-surface-dark/50 rounded-[2rem] p-4 border border-primary/10 flex flex-col gap-4 overflow-y-auto kanban-column custom-scrollbar">
+<!-- Active Task Card -->
+<div class="group bg-surface-darker p-5 rounded-[1.5rem] border border-primary/40 shadow-lg shadow-primary/5 transition-all cursor-grab active:cursor-grabbing relative overflow-hidden">
+<!-- Progress Bar Background -->
+<div class="absolute bottom-0 left-0 h-1 bg-surface-dark w-full">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<div class="flex justify-between items-start mb-3">
+<span class="bg-blue-500/10 text-blue-400 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-blue-500/20">Sınav Hazırlığı</span>
+<div class="flex gap-1">
+<button class="size-7 flex items-center justify-center rounded-full bg-surface-dark text-white hover:text-red-400" title="Durdur">
+<span class="material-symbols-outlined text-[16px]">pause</span>
+</button>
+</div>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 leading-tight">Modern Fizik Testi</h4>
+<p class="text-gray-400 text-sm mb-6">Fizik • Soru Çözümü</p>
+<div class="flex items-center justify-between mt-auto mb-2">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-primary font-bold mb-1 tracking-wider">Kalan Süre</span>
+<div class="flex items-center gap-1.5 text-white">
+<span class="text-xl font-bold font-mono">24:15</span>
+<span class="text-xs text-gray-500 font-medium">/ 60 dk</span>
+</div>
+</div>
+<button class="bg-primary/10 text-primary text-xs font-bold px-4 py-2 rounded-full hover:bg-primary hover:text-surface-darker transition-colors flex items-center gap-1 border border-primary/20">
+<span class="material-symbols-outlined text-[16px]">check</span>
+                                    Tamamla
+                                </button>
+</div>
+</div>
+<!-- Empty State Placeholder (if column wasn't populated) -->
+<!-- <div class="h-32 border-2 border-dashed border-white/5 rounded-[1.5rem] flex flex-col items-center justify-center text-gray-500">
+                            <span class="material-symbols-outlined mb-1">drag_indicator</span>
+                            <span class="text-xs">Buraya bir görev sürükle</span>
+                         </div> -->
+</div>
+</div>
+<!-- Column: Completed -->
+<div class="flex-1 flex flex-col min-w-[320px] max-w-[400px] h-full opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-emerald-500"></span>
+<h3 class="text-lg font-bold text-white tracking-tight">Tamamlandı</h3>
+<span class="bg-surface-dark text-gray-400 text-xs px-2 py-0.5 rounded-full border border-white/5">2</span>
+</div>
+<button class="text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 bg-surface-dark/30 rounded-[2rem] p-4 border border-white/5 flex flex-col gap-4 overflow-y-auto kanban-column custom-scrollbar">
+<!-- Completed Task Card -->
+<div class="group bg-surface-darker/50 p-5 rounded-[1.5rem] border border-transparent hover:border-white/10 transition-all cursor-grab active:cursor-grabbing relative overflow-hidden grayscale-[0.5] hover:grayscale-0">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-gray-700/30 text-gray-400 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-white/5">Okuma</span>
+<div class="text-emerald-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+</div>
+<h4 class="text-gray-300 font-bold text-lg mb-1 leading-tight line-through decoration-gray-500 decoration-2">Nutuk - Bölüm 1</h4>
+<p class="text-gray-500 text-sm mb-4">Tarih • İnkılap Tarihi</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-1.5 text-gray-500 bg-surface-dark/50 px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="text-xs font-medium">Tamamlandı: 14:30</span>
+</div>
+</div>
+</div>
+<!-- Completed Task Card -->
+<div class="group bg-surface-darker/50 p-5 rounded-[1.5rem] border border-transparent hover:border-white/10 transition-all cursor-grab active:cursor-grabbing relative overflow-hidden grayscale-[0.5] hover:grayscale-0">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-gray-700/30 text-gray-400 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-white/5">Proje</span>
+<div class="text-emerald-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+</div>
+<h4 class="text-gray-300 font-bold text-lg mb-1 leading-tight line-through decoration-gray-500 decoration-2">Kimya Proje Raporu</h4>
+<p class="text-gray-500 text-sm mb-4">Kimya • Organik</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-1.5 text-gray-500 bg-surface-dark/50 px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="text-xs font-medium">Tamamlandı: 10:15</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Defer Modal (Hidden by default, structure for interactivity) -->
+<!-- This represents the "Defer with Reason" component requested -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" id="defer-modal">
+<div class="bg-surface-darker border border-white/10 rounded-[2rem] p-8 w-full max-w-md shadow-2xl relative">
+<button class="absolute top-4 right-4 text-gray-400 hover:text-white">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h3 class="text-xl font-bold text-white mb-2">Görevi Ertele</h3>
+<p class="text-gray-400 text-sm mb-6">Bu görevi yarına ertelemek üzeresiniz. Lütfen bir sebep belirtin.</p>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Sebep</label>
+<select class="w-full bg-surface-dark border border-white/10 rounded-xl p-3 text-white focus:ring-primary focus:border-primary">
+<option>Zaman yetmedi</option>
+<option>Daha önemli bir iş çıktı</option>
+<option>Kaynak eksikliği</option>
+<option>Yorgunluk</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Not (İsteğe bağlı)</label>
+<textarea class="w-full bg-surface-dark border border-white/10 rounded-xl p-3 text-white focus:ring-primary focus:border-primary resize-none h-24" placeholder="Ek açıklama..."></textarea>
+</div>
+<div class="pt-4 flex gap-3">
+<button class="flex-1 py-3 rounded-full border border-white/10 text-white font-bold hover:bg-white/5 transition-colors">Vazgeç</button>
+<button class="flex-1 py-3 rounded-full bg-primary text-surface-darker font-bold hover:bg-white hover:text-primary transition-colors">Onayla ve Ertele</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

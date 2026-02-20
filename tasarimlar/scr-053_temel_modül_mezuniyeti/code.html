@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM - Temel Modül Mezuniyeti</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283039] bg-white/90 dark:bg-[#111418]/90 backdrop-blur-md px-10 py-3">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-black leading-tight tracking-[-0.015em]">DIGEM</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary font-bold text-sm leading-normal transition-colors" href="#">Kariyer Patikaları</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Topluluk</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Profil</a>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-100 dark:bg-[#283039] text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-[#374151] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-100 dark:bg-[#283039] text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-[#374151] transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow layout-container flex flex-col items-center">
+<div class="w-full max-w-7xl px-4 md:px-10 py-8 flex flex-col gap-10">
+<!-- Hero Section: Celebration & Badge -->
+<section class="relative rounded-2xl overflow-hidden bg-[#1c232b] dark:bg-[#161e27] border border-slate-200 dark:border-[#283039] shadow-xl">
+<!-- Decorative Background Glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-full bg-primary/10 blur-[100px] rounded-full pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8">
+<!-- Text Content -->
+<div class="flex-1 text-center md:text-left space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 text-xs font-bold uppercase tracking-wide mb-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                            Tamamlandı
+                        </div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
+                            Tebrikler! <br/>
+<span class="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">Temel Modülü</span> <br/>
+                            Başarıyla Bitirdin!
+                        </h1>
+<p class="text-slate-400 text-lg max-w-xl mx-auto md:mx-0 font-light">
+                            Dijital yolculuğunun en önemli adımını tamamladın. Artık yetkinliklerini kanıtladın ve uzmanlaşmaya hazırsın.
+                        </p>
+</div>
+<!-- Badge Visualization -->
+<div class="flex-1 flex justify-center items-center">
+<div class="relative group cursor-pointer">
+<div class="absolute inset-0 bg-primary/30 rounded-full blur-xl group-hover:bg-primary/50 transition-all duration-500"></div>
+<div class="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#283039] to-[#101922] rounded-full border-4 border-primary/50 flex items-center justify-center shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+<div class="absolute top-4 inset-x-0 text-center">
+<span class="text-primary/80 text-xs font-bold tracking-[0.2em] uppercase">DIGEM 2024</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[6rem] md:text-[8rem] drop-shadow-[0_0_15px_rgba(19,127,236,0.6)]">verified</span>
+<span class="text-white text-xl md:text-2xl font-bold tracking-tight uppercase">Core Graduate</span>
+</div>
+<div class="absolute bottom-6 flex gap-1 justify-center w-full">
+<div class="w-1 h-1 rounded-full bg-white/50"></div>
+<div class="w-1 h-1 rounded-full bg-white/50"></div>
+<div class="w-1 h-1 rounded-full bg-white/50"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Certificate Download Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-3 bg-gradient-to-r from-[#1c232b] to-[#161e27] dark:from-[#1c2127] dark:to-[#161b22] rounded-xl p-6 border border-[#283039] flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+<div class="flex items-center gap-6">
+<div class="flex-shrink-0 w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center text-primary border border-primary/30">
+<span class="material-symbols-outlined text-4xl">workspace_premium</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-xl font-bold text-white">Temel Yetkinlik Sertifikası</h3>
+<p class="text-slate-400 text-sm mt-1 max-w-md">Başarını belgeleyen resmi sertifikan hazır. Bu sertifika, temel dijital okuryazarlık yetkinliklerine sahip olduğunu kanıtlar.</p>
+</div>
+</div>
+<button class="w-full md:w-auto flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-[0_4px_14px_0_rgba(19,127,236,0.39)] hover:shadow-[0_6px_20px_rgba(19,127,236,0.23)] hover:-translate-y-0.5">
+<span class="material-symbols-outlined">download</span>
+<span>Sertifikayı PDF İndir</span>
+</button>
+</div>
+</section>
+<!-- Career Tracks Grid -->
+<section class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<h2 class="text-3xl font-bold text-white flex items-center gap-3">
+<span class="w-2 h-8 bg-primary rounded-full"></span>
+                        Kariyer Patikaları
+                    </h2>
+<p class="text-slate-400 ml-5">Uzmanlaşmak istediğin alanı seç ve yolculuğuna devam et. Aşağıdaki eğitimler erişimine açıldı.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Data Analyst -->
+<div class="group relative bg-[#1c232b] dark:bg-[#182029] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#182029] via-transparent to-transparent z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Abstract data visualization with charts and graphs on dark background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyKMRhklmxhzGoXt793Psf5WzhWXcOFd3ZCS9kSsDNfrLgapS-cCi2HWan0JNG0dQotGkBuXJGMFptM2xGdXCZv0PjGUDf2HCRmgdYn4EV4Nsd2R3bFkdHSAXmOf80sUkHezhuXJvHSmhgovYCTpnjOCyyqs6sHw_KXNxdMcrb1izqtOu7HQNLi211HjbUEmtgl73bhSA_lwTcUBIiS0b2itgweAS8TDOyZQne_meoN0Qx36O32wI0m3sGKAOm9CQqDYx0RLalLg');"></div>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Yakında</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="mb-4">
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Veri Analisti</h3>
+<p class="text-slate-400 text-sm line-clamp-2">Büyük veriyi anlamlandırın ve iş zekası çözümleri geliştirin. Python, SQL ve Tableau eğitimleri.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 60 Saat
+                                </span>
+<button class="text-sm font-bold text-slate-500 cursor-not-allowed group-hover:text-primary transition-colors flex items-center gap-1">
+                                    Detayları Gör <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Software Specialist -->
+<div class="group relative bg-[#1c232b] dark:bg-[#182029] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#182029] via-transparent to-transparent z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Computer screen showing code editor with colorful syntax highlighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmkdrJEgdtEzrZmMONl48dPkhZRuW90LVkkXtYHWQLZHabJXA63ZOQCUch6sjALhd7K0-luCNKv7xONsWuKUd8_bWBtASU1cHSp6TmJalnQs3lvIwGrQIVsMH7-zKdSdPXlMpDrab_wh_VVuUUnd_DQ_lSXjl8hP-ckgZh7pdUmCxHbVNZ7TotDAzArSvx85VRyCFEhs9wpTXJcJddQjIqf1gaUKqquZOmA7x3mZNQn-JVyryZFzZHRQXC5Wj-OpYk0-OkajS0jg');"></div>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-primary/20 text-blue-300 border border-primary/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Oryantasyon Gerekli</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="mb-4">
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Yazılım Uzmanı</h3>
+<p class="text-slate-400 text-sm line-clamp-2">Full-stack web geliştirme dünyasına adım atın. Modern frontend ve backend teknolojileri.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 120 Saat
+                                </span>
+<button class="text-sm font-bold text-white bg-primary/20 hover:bg-primary px-3 py-1.5 rounded transition-colors flex items-center gap-1">
+                                    Başla <span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Digital Marketing -->
+<div class="group relative bg-[#1c232b] dark:bg-[#182029] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#182029] via-transparent to-transparent z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Laptop displaying social media analytics and marketing graphs" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJpeRVRhxEB7D5zsHojLTOo1-b8aWBIdEI2qh83Yz2aZMd2cTkBqH8OHrpf2jxReXuQkcuM2ZsasK9ehdJk4s3aTZikBrKtCwAvaglaPiK2AD9YHcjUTfYY2wDDvFT6cpfc83jk7Lfyg6xlOJGcNiQEQFHuN9oVQkdlr_x4m1tw9g4MPOgmHYSaTKHIR-CWdJt7bJ8gPhW4VL81lEPYaY6yLGlJmF0nRKLhw0ZaWvotSNvX7qdJUpsUxdd9kcdgaqmKa3KvfYFgg');"></div>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-slate-700/50 text-slate-300 border border-slate-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Kayıtlar Kapalı</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="mb-4">
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Dijital Pazarlama</h3>
+<p class="text-slate-400 text-sm line-clamp-2">SEO, SEM ve Sosyal Medya yönetimi ile markaları dijital dünyada büyütün.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 45 Saat
+                                </span>
+<button class="text-sm font-bold text-slate-500 cursor-not-allowed group-hover:text-primary transition-colors flex items-center gap-1">
+                                    İncele <span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4: Game Development -->
+<div class="group relative bg-[#1c232b] dark:bg-[#182029] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#182029] via-transparent to-transparent z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Close up of a gaming controller in neon purple lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAXZRf2ocylvHruVKmm38rcjEsGAp0F_iGQCCUddhEn30bDjtapD3yUnQ0hS56XgqNqRtV98F6stmF3OIPtYVv8iyc_qzIJKu0X1xbsk-RjJ5QUIcLVnUF7XXsnUd7aXTmn6YcF4kuXbkvp0sHfB5Ubiuj2agdMhMdCBlRJ1dYnpGg-LvHYPhvaUjKdgDSTR83UsaCx0KjJLwfhQGDqfNA4oNu-mpPiMsU9Xcrry5GezG2R3VfRT0e6Fa9dLFFDfH7eLPOnq6g0w');"></div>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-primary/20 text-blue-300 border border-primary/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Oryantasyon Gerekli</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="mb-4">
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Oyun Geliştirme</h3>
+<p class="text-slate-400 text-sm line-clamp-2">Unity ve C# kullanarak hayalinizdeki dünyaları tasarlayın ve kodlayın.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 90 Saat
+                                </span>
+<button class="text-sm font-bold text-white bg-primary/20 hover:bg-primary px-3 py-1.5 rounded transition-colors flex items-center gap-1">
+                                    Başla <span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 5: Cyber Security -->
+<div class="group relative bg-[#1c232b] dark:bg-[#182029] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#182029] via-transparent to-transparent z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Binary code stream on a digital screen representing security" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBglyxF6R85dhk-OK-zjBB2-HkJiSgzPnKJxC7uJX6uC4luFimVBtSgqHkiTH3lOsUfyeYfmon6dgvUf-mCXHns9wHzCep_c5-R2zcqegofQZTKtbtv4xcYplPc1lWTcLgrn6kTzQ5sskTWA7E7XyyKPVHEn55dWhI2Ruupy7VgXtJxw48vH-D3y3Wf-o8LGSpht6rgzx94V4kF5YLkr9b0Tlv5ORoLd0DKsKX5pPuQP5ZB-NyPB6kVypPiNYq2Upf0Dw7KdMBGWg');"></div>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Yakında</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="mb-4">
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Siber Güvenlik</h3>
+<p class="text-slate-400 text-sm line-clamp-2">Ağ güvenliği, etik hackleme ve savunma stratejilerini öğrenin.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 75 Saat
+                                </span>
+<button class="text-sm font-bold text-slate-500 cursor-not-allowed group-hover:text-primary transition-colors flex items-center gap-1">
+                                    Bildirim Al <span class="material-symbols-outlined text-[16px]">notifications_active</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 6: Design -->
+<div class="group relative bg-[#1c232b] dark:bg-[#182029] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#182029] via-transparent to-transparent z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Designer workspace with color swatches and tablet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoiPTENJDjyoYomWabCM5wf9rbFpTr4mIo7esSauyODOXIgAbixZ_BrQ8OAF_pfMTRGSUF7c1dvxojlrNIV1qqdeDJZNsjySG-Z_ea3JuP3XDA5w8023j4jKizc9035_265p0BDPqMVRwNZaEhcAfLB23lmMBJ0j_-xy1YY06F6dyHioV-uNp6-zqbEjZDyC7PMKgAQaO_0Z2UqNh5yH2W2VaPJcZJWP7ArU66rBcw89t4ahJ_herlb0jBXTKrWDMp_ZPp2KGmXw');"></div>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Yakında</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="mb-4">
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">UI/UX Tasarım</h3>
+<p class="text-slate-400 text-sm line-clamp-2">Kullanıcı deneyimi prensipleri ve arayüz tasarımı araçları (Figma) ile projeler üretin.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 50 Saat
+                                </span>
+<button class="text-sm font-bold text-slate-500 cursor-not-allowed group-hover:text-primary transition-colors flex items-center gap-1">
+                                    Detayları Gör <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto border-t border-[#283039] bg-[#111418] py-8 px-10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
+<p>© 2024 DIGEM Platformu. Tüm hakları saklıdır.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Gizlilik Politikası</a>
+<a class="hover:text-white transition-colors" href="#">Kullanım Şartları</a>
+<a class="hover:text-white transition-colors" href="#">Yardım</a>
+</div>
+</div>
+</footer>
+</body></html>

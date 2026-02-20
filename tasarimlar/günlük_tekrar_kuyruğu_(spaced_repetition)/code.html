@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite v1.3 - Günlük Tekrar</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-hover": "#0f6bd0",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#192633",
+                        "surface-darker": "#111a22",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px -5px rgba(19, 127, 236, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        
+        /* Custom scrollbar for content areas */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Flashcard Flip Animation styles (Visual only for now) */
+        .flashcard-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .card-face {
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-hidden selection:bg-primary selection:text-white">
+<!-- Top Navigation / Progress Header -->
+<header class="w-full h-16 border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-surface-darker/50 backdrop-blur-md sticky top-0 z-50">
+<div class="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+<!-- Left: Back & Title -->
+<div class="flex items-center gap-4">
+<button aria-label="Geri" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div>
+<h1 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Günlük Tekrar Kuyruğu</h1>
+<div class="flex items-center gap-2">
+<span class="text-lg font-bold text-slate-900 dark:text-white">Bugünkü Liste</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-bold">5 Öğe</span>
+</div>
+</div>
+</div>
+<!-- Center: Progress Bar -->
+<div class="hidden md:flex flex-col items-center w-1/3 gap-1">
+<div class="flex justify-between w-full text-xs font-medium text-slate-500 dark:text-slate-400">
+<span>1. Kart</span>
+<span>%20 Tamamlandı</span>
+</div>
+<div class="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 20%"></div>
+</div>
+</div>
+<!-- Right: Stats & User -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-orange-500/10 rounded-lg border border-orange-500/20">
+<span class="material-symbols-outlined text-orange-500 text-[18px]">local_fire_department</span>
+<span class="text-sm font-bold text-orange-500">12 Gün</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 rounded-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary text-[18px]">bolt</span>
+<span class="text-sm font-bold text-primary">850 XP</span>
+</div>
+<button class="ml-2 p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 relative">
+<!-- Ambient Background Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+<!-- Flashcard Container -->
+<div class="w-full max-w-3xl flex flex-col gap-6 perspective-1000">
+<!-- Context Badge -->
+<div class="flex justify-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-dark border border-slate-700/50 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-purple-500"></span>
+<span class="text-xs font-medium text-slate-300">Girişimcilik 101 • Modül 2: Fikir Geliştirme</span>
+</div>
+</div>
+<!-- The Card -->
+<div class="group relative w-full bg-white dark:bg-surface-dark rounded-2xl shadow-xl dark:shadow-glow border border-slate-200 dark:border-slate-700/50 overflow-hidden flex flex-col min-h-[420px]">
+<!-- Question Section (Always Visible) -->
+<div class="p-8 md:p-12 flex-1 flex flex-col items-center justify-center text-center border-b border-slate-100 dark:border-slate-700/50 relative z-10 bg-white dark:bg-surface-dark">
+<span class="absolute top-6 left-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Soru</span>
+<h2 class="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 leading-tight mb-6">
+                        SMART Hedefler Nedir?
+                    </h2>
+<!-- Optional Hint/Context -->
+<p class="text-slate-500 dark:text-slate-400 max-w-lg">
+                        Hedef belirleme süreçlerinde kullanılan bir kısaltmadır. Her harf bir kriteri temsil eder.
+                    </p>
+</div>
+<!-- Answer Section (Hidden/Revealed State Simulation) -->
+<!-- In a real app, this would be hidden initially. Here we show it as "revealed" for the design mockup -->
+<div class="bg-slate-50 dark:bg-[#15202b] p-8 md:p-10 flex flex-col gap-4 relative">
+<span class="absolute top-6 left-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Cevap</span>
+<div class="prose prose-invert max-w-none">
+<ul class="space-y-3 text-lg text-slate-700 dark:text-slate-300">
+<li class="flex items-start gap-3">
+<span class="font-bold text-primary min-w-[24px]">S</span>
+<span><strong class="text-slate-900 dark:text-white">Specific (Özel):</strong> Hedef açık ve net olmalıdır.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="font-bold text-primary min-w-[24px]">M</span>
+<span><strong class="text-slate-900 dark:text-white">Measurable (Ölçülebilir):</strong> İlerleme takip edilebilmelidir.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="font-bold text-primary min-w-[24px]">A</span>
+<span><strong class="text-slate-900 dark:text-white">Achievable (Ulaşılabilir):</strong> Gerçekçi olmalıdır.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="font-bold text-primary min-w-[24px]">R</span>
+<span><strong class="text-slate-900 dark:text-white">Relevant (İlgili):</strong> Amaca uygun olmalıdır.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="font-bold text-primary min-w-[24px]">T</span>
+<span><strong class="text-slate-900 dark:text-white">Time-bound (Zamanlı):</strong> Bir bitiş tarihi olmalıdır.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Keyboard shortcuts hint -->
+<div class="absolute top-4 right-4 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-[10px] text-slate-500 border border-slate-700 rounded px-1.5 py-0.5">Space</span>
+<span class="text-[10px] text-slate-500">Cevabı Göster</span>
+</div>
+</div>
+<!-- Assessment / Action Dock -->
+<div class="flex flex-col items-center gap-4 mt-2">
+<!-- State 1: Show Answer Button (Hidden in this view to show assessment options, 
+                     but included in code structure as commented out alternative state) -->
+<!-- 
+                <button class="w-full max-w-md h-14 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl shadow-lg shadow-primary/25 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                    <span>Cevabı Göster</span>
+                    <span class="material-symbols-outlined text-sm">visibility</span>
+                </button> 
+                -->
+<!-- State 2: Assessment Buttons (Active View) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 w-full">
+<!-- Tekrar (Fail) -->
+<button class="group flex flex-col items-center justify-center p-3 h-20 rounded-xl bg-surface-dark border border-slate-700 hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-200">
+<span class="text-sm font-bold text-red-400 group-hover:text-red-300">Tekrar</span>
+<span class="text-xs text-slate-500 group-hover:text-red-400/70 mt-1">&lt; 10 dk</span>
+<div class="mt-1 w-1 h-1 rounded-full bg-red-500 opacity-0 group-hover:opacity-100"></div>
+</button>
+<!-- Zor (Hard) -->
+<button class="group flex flex-col items-center justify-center p-3 h-20 rounded-xl bg-surface-dark border border-slate-700 hover:border-orange-500/50 hover:bg-orange-500/10 transition-all duration-200">
+<span class="text-sm font-bold text-orange-400 group-hover:text-orange-300">Zor</span>
+<span class="text-xs text-slate-500 group-hover:text-orange-400/70 mt-1">2 Gün</span>
+<div class="mt-1 w-1 h-1 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100"></div>
+</button>
+<!-- Orta (Medium/Good) - Primary Focus -->
+<button class="group flex flex-col items-center justify-center p-3 h-20 rounded-xl bg-surface-dark border border-primary hover:bg-primary/10 ring-1 ring-primary/20 hover:ring-primary/50 transition-all duration-200 shadow-[0_0_15px_-5px_rgba(19,127,236,0.3)]">
+<span class="text-sm font-bold text-primary group-hover:text-blue-300">Orta</span>
+<span class="text-xs text-slate-500 group-hover:text-blue-300/70 mt-1">4 Gün</span>
+<div class="mt-1 px-1.5 py-0.5 rounded bg-primary/20 text-[10px] font-bold text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                            +10 XP
+                        </div>
+</button>
+<!-- Kolay (Easy) -->
+<button class="group flex flex-col items-center justify-center p-3 h-20 rounded-xl bg-surface-dark border border-slate-700 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-200">
+<span class="text-sm font-bold text-green-400 group-hover:text-green-300">Kolay</span>
+<span class="text-xs text-slate-500 group-hover:text-green-400/70 mt-1">7 Gün</span>
+<div class="mt-1 w-1 h-1 rounded-full bg-green-500 opacity-0 group-hover:opacity-100"></div>
+</button>
+</div>
+<div class="flex items-center gap-4 text-xs text-slate-500 font-medium">
+<span class="flex items-center gap-1"><kbd class="bg-surface-dark border border-slate-700 px-1.5 py-0.5 rounded text-slate-400 font-sans">1</kbd> Tekrar</span>
+<span class="flex items-center gap-1"><kbd class="bg-surface-dark border border-slate-700 px-1.5 py-0.5 rounded text-slate-400 font-sans">2</kbd> Zor</span>
+<span class="flex items-center gap-1"><kbd class="bg-surface-dark border border-slate-700 px-1.5 py-0.5 rounded text-slate-400 font-sans">3</kbd> Orta</span>
+<span class="flex items-center gap-1"><kbd class="bg-surface-dark border border-slate-700 px-1.5 py-0.5 rounded text-slate-400 font-sans">4</kbd> Kolay</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Branding -->
+<footer class="w-full py-6 flex justify-center items-center opacity-40 hover:opacity-100 transition-opacity duration-300">
+<div class="flex items-center gap-3">
+<div class="h-6 w-auto flex items-center gap-2 text-slate-400 font-bold text-xs">
+<span>UNDP</span>
+<span class="text-slate-600">|</span>
+<span>ESKİŞEHİR</span>
+</div>
+</div>
+</footer>
+</body></html>

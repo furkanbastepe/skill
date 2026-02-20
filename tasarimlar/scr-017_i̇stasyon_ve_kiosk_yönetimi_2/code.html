@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM - İstasyon ve Kiosk Yönetimi</title>
+<!-- Google Fonts: Lexend -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ab8a1",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102220",
+                        "surface-dark": "#162a27",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102220; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283937; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ab8a1; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-white font-display overflow-x-hidden">
+<!-- Main Container -->
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283937] px-6 py-4 bg-surface-light dark:bg-surface-dark sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Panel</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Ana Sayfa</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Kiosklar</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Öğrenciler</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Raporlar</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden sm:flex relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="form-input block w-full rounded-lg border-none bg-slate-100 dark:bg-[#283937] pl-10 pr-4 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Global Arama..." type="text"/>
+</div>
+<button class="relative p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Profile picture of the trainer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvKNhTZsKuwiJSiwgQ2WjBONGdbexQLTRcfCmDZR-m629aqZX-nI14lthNmM38s_rg1odiLrt6ASxVLnc4adJRAYc6jBWtL9oGDplXYxLv5mEXxW-R8rr5lj3fvK-NHtXV79xec8OObXtlGOCFACKMtKzYCombwIJYPaWYmx1-ucm1VvHQ4N0s_djKEPAAShfdtYMj7Y5PfCeQgzg_FC9m9cVd47JqpNy0TzC6OY0Ibu3OiNZ7FyKAQNPltWAfYvO1x5YSGc3SEg");'></div>
+</div>
+</header>
+<!-- Content Area -->
+<main class="flex-1 px-4 sm:px-8 py-6 w-full max-w-[1600px] mx-auto">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-6 text-sm">
+<a class="text-slate-500 dark:text-[#9cbab6] hover:text-primary" href="#">Ana Sayfa</a>
+<span class="text-slate-500 dark:text-[#6a8885]">/</span>
+<a class="text-slate-500 dark:text-[#9cbab6] hover:text-primary" href="#">Yönetim</a>
+<span class="text-slate-500 dark:text-[#6a8885]">/</span>
+<span class="text-slate-900 dark:text-white font-medium">İstasyonlar</span>
+</div>
+<!-- Page Title & Summary -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
+<div>
+<h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">İstasyon ve Kiosk Yönetimi</h1>
+<p class="text-slate-500 dark:text-[#9cbab6] text-base">Fiziksel istasyonların durumunu izleyin, yönetin ve bakım işlemlerini gerçekleştirin.</p>
+</div>
+<!-- Quick Stats -->
+<div class="flex gap-4">
+<div class="flex flex-col px-4 py-2 bg-white dark:bg-surface-dark rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold">Toplam</span>
+<span class="text-xl font-bold text-slate-900 dark:text-white">24</span>
+</div>
+<div class="flex flex-col px-4 py-2 bg-green-500/10 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800/30">
+<span class="text-xs text-green-700 dark:text-green-400 uppercase font-semibold">Aktif</span>
+<span class="text-xl font-bold text-green-700 dark:text-green-400">18</span>
+</div>
+<div class="flex flex-col px-4 py-2 bg-red-500/10 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800/30">
+<span class="text-xs text-red-700 dark:text-red-400 uppercase font-semibold">Offline</span>
+<span class="text-xl font-bold text-red-700 dark:text-red-400">4</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Main Content: Kiosk Table -->
+<div class="lg:col-span-8 xl:col-span-9 flex flex-col gap-6">
+<!-- Toolbar -->
+<div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="relative w-full sm:w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-50 dark:bg-[#1f3330] border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block pl-10 p-2.5 placeholder-slate-400" placeholder="Cihaz ID veya Öğrenci Ara..." type="text"/>
+</div>
+<div class="flex gap-2 w-full sm:w-auto">
+<select class="bg-slate-50 dark:bg-[#1f3330] border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full sm:w-auto p-2.5">
+<option selected="">Tüm Durumlar</option>
+<option value="online">Online</option>
+<option value="offline">Offline</option>
+<option value="maintenance">Bakımda</option>
+</select>
+<button class="flex items-center justify-center p-2.5 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/30 transition-all">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-hidden bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-slate-500 dark:text-slate-400">
+<thead class="text-xs text-slate-700 uppercase bg-slate-50 dark:bg-[#1f3330] dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
+<tr>
+<th class="px-6 py-4 font-bold tracking-wider" scope="col">Cihaz ID</th>
+<th class="px-6 py-4 font-bold tracking-wider" scope="col">Durum</th>
+<th class="px-6 py-4 font-bold tracking-wider" scope="col">Atanan Öğrenci</th>
+<th class="px-6 py-4 font-bold tracking-wider" scope="col">Son Aktivite</th>
+<th class="px-6 py-4 font-bold tracking-wider text-right" scope="col">İşlemler</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-[#1f3330]/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">desktop_windows</span>
+                                            K-104
+                                        </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800/50">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                                Online
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-cover bg-center" data-alt="Student Portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCauB6dCmw6XXi_X5D72Jk4l4xDus2ctmDFw03AXNrVlLTjR73W2hE6l-DgKyppbK4-gp-4mv4lGSa00R4NPsqfXb4eptlQhx8VzBoICOn3yeJwM_0CIaU_9rmhFWsVSHEi1HxtF6F14I-aj16SBPmEHTd8pZQOoxa0o-WPmwp38vHjfH5-ARpiyB9VVwKQ39j8uHFvGijbd427odTPFRP6slUYueC9TEcsQh0G6KnnInQJb8rSIRmj5pi59p6PSqgr9AxWbRR-ng')"></div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-medium">Ahmet Yılmaz</span>
+<span class="text-xs">ID: 2023001</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+                                            2 dk önce
+                                        </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Yeniden Başlat">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-amber-500 dark:text-slate-400 dark:hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Kilitle">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-blue-500 dark:text-slate-400 dark:hover:text-blue-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Kullanıcı Değiştir">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-[#1f3330]/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">desktop_windows</span>
+                                            K-105
+                                        </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800/50">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                                                Offline
+                                            </span>
+</td>
+<td class="px-6 py-4 text-slate-400 italic">
+                                            -- Boş --
+                                        </td>
+<td class="px-6 py-4">
+                                            3 saat önce
+                                        </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Yeniden Başlat">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-amber-500 dark:text-slate-400 dark:hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Kilitle">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-blue-500 dark:text-slate-400 dark:hover:text-blue-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Kullanıcı Değiştir">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-[#1f3330]/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">desktop_windows</span>
+                                            K-106
+                                        </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50">
+<span class="material-symbols-outlined text-[14px]">build</span>
+                                                Bakımda
+                                            </span>
+</td>
+<td class="px-6 py-4 text-slate-400 italic">
+                                            -- Serviste --
+                                        </td>
+<td class="px-6 py-4">
+                                            1 gün önce
+                                        </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-500 hover:text-green-500 dark:text-slate-400 dark:hover:text-green-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Aktif Et">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-[#1f3330]/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">desktop_windows</span>
+                                            K-107
+                                        </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800/50">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                                Online
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-cover bg-center" data-alt="Student Portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzbmlDonVh_JkIoXdtPWdzcnN83FQb-fK6x37WLkMP4ewafE0TNrJY635bDM6eJS906YgTUIj1FgTFZdwL2m1OmEP5PKCcgCzYcmUg2D7zMwgbwNqjbDmhnsYvR_KcRfIVtC-Z0D0hBM-kCDWg4SBRA_XZzMHaQYZNpvsKII7Ijmgqi-xFG8RTNdy5w1874vysMRFANZuUYZ-1zWqYwv3F5HCxJq4l0xayDe8rCRrc41iq6GEzErS5QycIne_ajdXbhQXK_st27A')"></div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-medium">Ayşe Demir</span>
+<span class="text-xs">ID: 2023042</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+                                            12 dk önce
+                                        </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Yeniden Başlat">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-amber-500 dark:text-slate-400 dark:hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Kilitle">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-blue-500 dark:text-slate-400 dark:hover:text-blue-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Kullanıcı Değiştir">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-[#1f3330]/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">desktop_windows</span>
+                                            K-108
+                                        </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800/50">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                                Online
+                                            </span>
+</td>
+<td class="px-6 py-4 text-slate-400 italic">
+                                            -- Boş --
+                                        </td>
+<td class="px-6 py-4">
+                                            1 saat önce
+                                        </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Yeniden Başlat">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-amber-500 dark:text-slate-400 dark:hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Kilitle">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</button>
+<button class="p-1.5 text-slate-500 hover:text-blue-500 dark:text-slate-400 dark:hover:text-blue-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Kullanıcı Değiştir">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-surface-dark px-4 py-3 sm:px-6">
+<div class="hidden sm:flex flex-1 items-center justify-between">
+<div>
+<p class="text-sm text-slate-700 dark:text-slate-400">
+<span class="font-medium">1</span> ile <span class="font-medium">10</span> arası gösteriliyor (Toplam <span class="font-medium">24</span>)
+                                    </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-[#1f3330] focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Önceki</span>
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</a>
+<a aria-current="page" class="relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="#">1</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 dark:text-gray-300 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-[#1f3330] focus:z-20 focus:outline-offset-0" href="#">2</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 dark:text-gray-300 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-[#1f3330] focus:z-20 focus:outline-offset-0" href="#">3</a>
+<a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-[#1f3330] focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Sonraki</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Control Panel -->
+<div class="lg:col-span-4 xl:col-span-3 flex flex-col gap-6">
+<!-- Token Generator Card -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl text-primary">key</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 relative z-10">
+<span class="material-symbols-outlined text-primary">vpn_key</span>
+                            Hızlı Erişim
+                        </h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 relative z-10">Kiosklar için geçici giriş kodları oluşturun.</p>
+<div class="space-y-4 relative z-10">
+<div>
+<label class="block mb-2 text-sm font-medium text-slate-900 dark:text-white">Geçerlilik Süresi</label>
+<select class="bg-slate-50 dark:bg-[#1f3330] border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
+<option>30 Dakika</option>
+<option>1 Saat</option>
+<option>4 Saat</option>
+<option>1 Gün</option>
+</select>
+</div>
+<button class="w-full text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:ring-primary/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors shadow-lg shadow-primary/20">
+                                Kod Oluştur
+                            </button>
+</div>
+</div>
+<!-- Maintenance Queue -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500">engineering</span>
+                                Bakım Kuyruğu
+                            </h3>
+<span class="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-amber-900/30 dark:text-amber-300">2 Cihaz</span>
+</div>
+<div class="space-y-3">
+<!-- Maintenance Item 1 -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 dark:bg-[#1f3330] border border-slate-100 dark:border-slate-700/50">
+<span class="material-symbols-outlined text-amber-500 mt-1 text-[20px]">warning</span>
+<div>
+<div class="flex justify-between items-center w-full">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">K-106</h4>
+<span class="text-[10px] text-slate-500">Bugün</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ekran dokunmatik hatası bildirildi.</p>
+<button class="text-xs text-primary mt-2 hover:underline">Detay Gör</button>
+</div>
+</div>
+<!-- Maintenance Item 2 -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 dark:bg-[#1f3330] border border-slate-100 dark:border-slate-700/50">
+<span class="material-symbols-outlined text-amber-500 mt-1 text-[20px]">wifi_off</span>
+<div>
+<div class="flex justify-between items-center w-full">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">K-112</h4>
+<span class="text-[10px] text-slate-500">Dün</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ağ bağlantısı stabil değil.</p>
+<button class="text-xs text-primary mt-2 hover:underline">Detay Gör</button>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 text-slate-700 dark:text-slate-300 bg-transparent border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-[#283937] focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-700 font-medium rounded-lg text-xs px-5 py-2.5 text-center transition-colors">
+                            Bakım Talebi Oluştur
+                        </button>
+</div>
+<!-- Global Actions -->
+<div class="bg-red-50 dark:bg-red-900/10 p-6 rounded-xl border border-red-200 dark:border-red-900/30 shadow-sm">
+<h3 class="text-lg font-bold text-red-900 dark:text-red-400 mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+                            Yönetici İşlemleri
+                        </h3>
+<p class="text-xs text-red-700 dark:text-red-300 mb-4 opacity-80">Bu işlemler tüm sınıfı etkiler. Lütfen dikkatli kullanın.</p>
+<div class="flex flex-col gap-3">
+<button class="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+                                Tüm Kioskları Kilitle
+                            </button>
+<button class="w-full text-red-700 dark:text-red-400 bg-transparent border border-red-300 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/30 focus:ring-4 focus:ring-red-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">power_settings_new</span>
+                                Tümünü Yeniden Başlat
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

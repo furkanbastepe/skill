@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Etkinlik Takvimi - Gençlik Merkezi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320", // Deep dark teal/black base
+                        "surface-dark": "#162b28", // Slightly lighter for cards
+                        "surface-highlight": "#1e3632", // Hover states
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display selection:bg-primary selection:text-white">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+<div class="px-6 md:px-10 py-4 flex items-center justify-between max-w-[1400px] mx-auto">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">token</span>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight">Gençlik Merkezi</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium" href="#">Ana Sayfa</a>
+<a class="text-primary text-sm font-bold" href="#">Etkinlikler</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium" href="#">Projeler</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium" href="#">Profilim</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full bg-surface-dark border-none rounded-full py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-400 focus:ring-2 focus:ring-primary/50 focus:outline-none" placeholder="Etkinlik ara..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="relative p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+<div class="size-10 rounded-full bg-surface-highlight border border-white/10 overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl2qOZUQboqY6umbfhWEJPKaiaJ4bistZI4TekIWKFf-SS8ld38gZsmELsKjlUwFQeoOGdafcrlcO_Mr3U04Sz2ClQT7lrCApkVs3AfrxmKrl5SugbhcG731wPTc3B9DuQW-hyZ9QgaWIwTGNia119AIIrZDKKgV28WZwrlUrPN6LB1MlEwH82UDMGYOxf3PegzIhSO5UPpxKIxd0XKhea2T0mX7VVsaki4f9TI-Vqw98yrWQsyYyCenjLZs1whE9t-VVpI_G2R075"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1400px] mx-auto w-full px-6 md:px-10 py-8">
+<!-- Page Header & Controls -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-10">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Etkinlik Takvimi</h1>
+<p class="text-slate-400 text-lg">Yaklaşan atölye çalışmalarını ve sosyal etkinlikleri keşfedin.</p>
+</div>
+<div class="flex flex-wrap items-center gap-4">
+<!-- View Toggle -->
+<div class="bg-surface-dark p-1 rounded-full flex items-center border border-white/5">
+<button class="px-4 py-2 rounded-full bg-primary text-background-dark text-sm font-bold shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                        Takvim
+                    </button>
+<button class="px-4 py-2 rounded-full text-slate-400 hover:text-white text-sm font-medium flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">list</span>
+                        Liste
+                    </button>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex overflow-x-auto pb-4 gap-3 mb-8 scrollbar-hide">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-background-dark font-bold text-sm whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+                Tümü
+            </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-dark border border-white/5 hover:bg-surface-highlight text-slate-300 hover:text-white font-medium text-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+                Teknoloji
+            </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-dark border border-white/5 hover:bg-surface-highlight text-slate-300 hover:text-white font-medium text-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+                Sosyal
+            </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-dark border border-white/5 hover:bg-surface-highlight text-slate-300 hover:text-white font-medium text-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">work</span>
+                Kariyer
+            </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-dark border border-white/5 hover:bg-surface-highlight text-slate-300 hover:text-white font-medium text-sm transition-all whitespace-nowrap ml-auto">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+                Etkinliklerim
+            </button>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Calendar Section (Left) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Month Navigation -->
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-2xl font-bold text-white">Ekim 2023</h2>
+<div class="flex gap-2">
+<button class="size-10 rounded-full bg-surface-dark hover:bg-surface-highlight flex items-center justify-center text-white transition-colors border border-white/5">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-10 rounded-full bg-surface-dark hover:bg-surface-highlight flex items-center justify-center text-white transition-colors border border-white/5">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="bg-surface-dark rounded-xl p-6 border border-white/5 shadow-xl">
+<div class="grid grid-cols-7 mb-4">
+<div class="text-center text-slate-500 text-sm font-semibold uppercase tracking-wider">Pzt</div>
+<div class="text-center text-slate-500 text-sm font-semibold uppercase tracking-wider">Sal</div>
+<div class="text-center text-slate-500 text-sm font-semibold uppercase tracking-wider">Çar</div>
+<div class="text-center text-slate-500 text-sm font-semibold uppercase tracking-wider">Per</div>
+<div class="text-center text-slate-500 text-sm font-semibold uppercase tracking-wider">Cum</div>
+<div class="text-center text-slate-500 text-sm font-semibold uppercase tracking-wider">Cmt</div>
+<div class="text-center text-slate-500 text-sm font-semibold uppercase tracking-wider">Paz</div>
+</div>
+<div class="grid grid-cols-7 gap-y-4 gap-x-2">
+<!-- Previous Month Days -->
+<div class="h-24 p-2 rounded-lg text-slate-600">26</div>
+<div class="h-24 p-2 rounded-lg text-slate-600">27</div>
+<div class="h-24 p-2 rounded-lg text-slate-600">28</div>
+<div class="h-24 p-2 rounded-lg text-slate-600">29</div>
+<div class="h-24 p-2 rounded-lg text-slate-600">30</div>
+<!-- Current Month -->
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">1</span>
+</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">2</span>
+</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">3</span>
+</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">4</span>
+<div class="mt-2 w-full">
+<div class="h-1.5 w-full bg-purple-500 rounded-full mb-1"></div>
+<div class="text-[10px] text-purple-200 truncate leading-none">Mikrolab Sprint</div>
+</div>
+</div>
+<!-- Today -->
+<div class="h-24 p-2 rounded-lg bg-primary/20 hover:bg-primary/30 transition-colors cursor-pointer group relative border border-primary">
+<span class="flex items-center justify-center size-7 rounded-full bg-primary text-background-dark font-bold text-sm">5</span>
+<div class="mt-2 w-full flex flex-col gap-1">
+<div class="h-1.5 w-3/4 bg-orange-500 rounded-full"></div>
+<div class="text-[10px] text-orange-200 truncate leading-none font-medium">Boss Night</div>
+</div>
+</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">6</span>
+</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">7</span>
+</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">8</span>
+</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">9</span>
+<div class="mt-2 w-full">
+<div class="h-1.5 w-full bg-blue-500 rounded-full mb-1"></div>
+</div>
+</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer group relative border border-transparent hover:border-primary/30">
+<span class="font-medium text-white">10</span>
+</div>
+<!-- ... More days placeholders ... -->
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">11</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">12</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">13</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">14</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">15</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">16</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">17</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">18</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">19</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">20</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">21</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">22</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">23</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">24</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">25</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">26</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">27</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">28</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">29</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">30</div>
+<div class="h-24 p-2 rounded-lg bg-surface-highlight/30 hover:bg-surface-highlight transition-colors cursor-pointer text-slate-400">31</div>
+</div>
+</div>
+</div>
+<!-- Event Feed / Detail (Right) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">event_upcoming</span>
+                    Seçili Gün Etkinlikleri
+                </h3>
+<p class="text-sm text-slate-400 -mt-4">5 Ekim 2023</p>
+<!-- Event Card 1: Boss Night -->
+<div class="group bg-surface-dark rounded-xl p-5 border border-white/5 hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-500/20 text-orange-300 mb-2 w-fit border border-orange-500/20">
+                                Sosyal
+                            </span>
+<h4 class="text-xl font-bold text-white group-hover:text-primary transition-colors">Boss Night: Networking</h4>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-2xl font-bold text-white">18:00</span>
+<span class="text-xs text-slate-400">GMT+3</span>
+</div>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-300 mb-4">
+<span class="material-symbols-outlined text-slate-500">location_on</span>
+<span>Ana Salon, Kat 2</span>
+</div>
+<!-- Prerequisites -->
+<div class="flex items-center gap-2 mb-4 group/tooltip cursor-help w-fit">
+<span class="material-symbols-outlined text-slate-500 text-lg">info</span>
+<span class="text-xs text-slate-400 underline decoration-slate-600 underline-offset-4">Ön koşul yok</span>
+<!-- Tooltip -->
+<div class="absolute opacity-0 group-hover/tooltip:opacity-100 transition-opacity bg-black text-white text-xs p-2 rounded bottom-full mb-2 left-0 w-40 z-10 pointer-events-none">
+                            Bu etkinlik herkese açıktır.
+                        </div>
+</div>
+<!-- Capacity -->
+<div class="mb-5">
+<div class="flex justify-between text-xs mb-1.5">
+<span class="text-slate-400">Kontenjan</span>
+<span class="text-primary font-bold">15/20 Dolu</span>
+</div>
+<div class="h-2 w-full bg-surface-highlight rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 rounded-full"></div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-background-dark font-bold py-2.5 rounded-full hover:bg-white transition-colors flex items-center justify-center gap-2">
+                            Katıl
+                        </button>
+<button class="size-11 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-surface-highlight transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Event Card 2: Mikrolab Sprint (Waitlist) -->
+<div class="group bg-surface-dark rounded-xl p-5 border border-white/5 hover:border-purple-500/50 transition-all duration-300 relative overflow-hidden opacity-90">
+<div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-500/20 text-purple-300 mb-2 w-fit border border-purple-500/20">
+                                Teknoloji
+                            </span>
+<h4 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">Mikrolab Sprint</h4>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-2xl font-bold text-white">14:00</span>
+<span class="text-xs text-slate-400">GMT+3</span>
+</div>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-300 mb-4">
+<span class="material-symbols-outlined text-slate-500">laptop_mac</span>
+<span>Lab 3, Zemin Kat</span>
+</div>
+<!-- Prerequisites -->
+<div class="flex items-center gap-2 mb-4 group/tooltip cursor-help w-fit">
+<span class="material-symbols-outlined text-yellow-500 text-lg">warning</span>
+<span class="text-xs text-yellow-500 underline decoration-yellow-600/50 underline-offset-4">Ön koşul: Python 101</span>
+<!-- Tooltip -->
+<div class="absolute opacity-0 group-hover/tooltip:opacity-100 transition-opacity bg-black text-white text-xs p-2 rounded bottom-full mb-2 left-0 w-48 z-10 pointer-events-none border border-white/10">
+                            Python temelleri eğitimi tamamlanmış olmalıdır.
+                        </div>
+</div>
+<!-- Capacity -->
+<div class="mb-5">
+<div class="flex justify-between text-xs mb-1.5">
+<span class="text-slate-400">Kontenjan</span>
+<span class="text-red-400 font-bold">Dolu (Bekleme Listesi)</span>
+</div>
+<div class="h-2 w-full bg-surface-highlight rounded-full overflow-hidden">
+<div class="h-full bg-slate-500 w-full rounded-full"></div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-transparent border border-white/20 text-white font-bold py-2.5 rounded-full hover:bg-white hover:text-background-dark hover:border-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">hourglass_empty</span>
+                            Sıraya Gir
+                        </button>
+</div>
+</div>
+<!-- Upcoming Teaser -->
+<div class="bg-gradient-to-br from-primary/10 to-transparent rounded-xl p-5 border border-primary/20 flex items-center justify-between">
+<div>
+<p class="text-primary font-bold text-sm mb-1">Gelecek Hafta</p>
+<p class="text-white font-medium text-xs">Yapay Zeka Zirvesi kayıtları açılıyor!</p>
+</div>
+<button class="text-xs bg-surface-dark hover:bg-surface-highlight text-white px-3 py-2 rounded-full transition-colors border border-white/10">
+                        Hatırlat
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Map & Location Footer Section -->
+<div class="border-t border-white/5 bg-background-dark py-12 mt-12">
+<div class="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+<div>
+<h3 class="text-2xl font-bold text-white mb-4">Gençlik Merkezi</h3>
+<p class="text-slate-400 mb-6 max-w-md">Şehrin kalbinde, gençlerin teknoloji, sanat ve kariyer alanlarında gelişimi için tasarlanmış modern bir merkez.</p>
+<div class="flex flex-col gap-4 text-sm text-slate-300">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>Cumhuriyet Mah. Bilim Cad. No:14</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">call</span>
+<span>+90 212 555 0123</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span>info@genclikmerkezi.com</span>
+</div>
+</div>
+</div>
+<div class="h-48 rounded-2xl overflow-hidden relative">
+<img alt="Map Location" class="w-full h-full object-cover grayscale opacity-60 hover:opacity-80 transition-opacity" data-alt="Map view of the youth center location in a dark themed interface" data-location="Istanbul, Turkey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpkHO778yEpE0rYchCHGokPnESG5gK84nEjKpA2VG3oYFS_kvhVc6EB4uOCPno4WbbYiRMhhrfkHVNEgteyQMA3nfqOtW6d9FTxcMFvKO0E6Pbi2wC4S_HL_JRnlMsOm44TaJ3Jg91tccCP4KGkpFOadN0ZzxkYpRx1XPvy-fu6g08gXZc1s1k5YiAg8hRk24jkZUecNrDOgX-vQe9As22ZxnRL0cDSiqibpXQVidiW0jYxlH7DFLxoVOhJik0L7RbUYGH7GD5kX7H"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent"></div>
+<button class="absolute bottom-4 right-4 bg-primary text-background-dark px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">directions</span>
+                    Yol Tarifi
+                </button>
+</div>
+</div>
+</div>
+</body></html>

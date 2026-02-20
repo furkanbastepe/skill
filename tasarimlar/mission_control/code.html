@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pusula Flux - Mission Control</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF6B6B", /* Electric Coral */
+                        "primary-dark": "#D64545",
+                        "accent": "#4D7CFF", /* Electric Blue */
+                        "success": "#00E0B8", /* Neon Mint */
+                        "glass-border": "rgba(255, 255, 255, 0.4)",
+                        "glass-surface": "rgba(255, 255, 255, 0.65)",
+                        "text-main": "#1F2937",
+                        "text-muted": "#6B7280",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Outfit", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    boxShadow: {
+                        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.10)",
+                        "float": "0 10px 40px -10px rgba(0,0,0,0.1)",
+                        "button-3d": "0 4px 0 #D64545",
+                        "card-hover": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                    },
+                    backgroundImage: {
+                        "liquid-gradient": "linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 50%, #CCFBF1 100%)",
+                        "crystal-gradient": "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%)",
+                        "jelly-bar": "linear-gradient(90deg, #00E0B8 0%, #4D7CFF 100%)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        /* Custom Scrollbar for the glass look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Juicy Button Animation */
+        .btn-juicy {
+            transition: all 0.1s ease;
+        }
+        .btn-juicy:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #D64545;
+        }
+
+        /* Shimmer Effect */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            100% {
+                left: 200%;
+            }
+        }
+
+        /* Pulse Animation for Status Dots */
+        .pulse-dot {
+            box-shadow: 0 0 0 0 rgba(0, 224, 184, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 224, 184, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(0, 224, 184, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 224, 184, 0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-liquid-gradient h-screen w-full overflow-hidden flex flex-col items-center justify-center relative">
+<!-- Background Decoration (Abstract Shapes) -->
+<div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-[80px] opacity-40 animate-blob"></div>
+<div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-yellow-200 rounded-full mix-blend-multiply filter blur-[80px] opacity-40 animate-blob animation-delay-2000"></div>
+<div class="absolute bottom-[-20%] left-[20%] w-[50vw] h-[50vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-[80px] opacity-40 animate-blob animation-delay-4000"></div>
+<!-- Main OS Window Container -->
+<div class="relative w-[95%] max-w-[1400px] h-[85vh] bg-glass-surface backdrop-blur-2xl rounded-2xl border border-white/50 shadow-glass flex flex-col overflow-hidden z-10 transition-all duration-300">
+<!-- Window Title Bar -->
+<div class="h-12 bg-white/30 border-b border-white/40 flex items-center justify-between px-4 shrink-0">
+<div class="flex gap-2 group">
+<div class="w-3 h-3 rounded-full bg-red-400 border border-red-500 group-hover:opacity-80 transition-opacity cursor-pointer"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-400 border border-yellow-500 group-hover:opacity-80 transition-opacity cursor-pointer"></div>
+<div class="w-3 h-3 rounded-full bg-green-400 border border-green-500 group-hover:opacity-80 transition-opacity cursor-pointer"></div>
+</div>
+<div class="text-text-muted font-mono text-xs tracking-widest uppercase opacity-70">
+                PusulaOS // Mission Control // v2.4.0
+            </div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-text-muted text-[18px] cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined text-text-muted text-[18px] cursor-pointer hover:text-primary transition-colors">settings</span>
+</div>
+</div>
+<!-- App Content Grid -->
+<div class="flex-1 grid grid-cols-12 gap-0 overflow-hidden">
+<!-- LEFT COLUMN: Profile & Stats (Col-span-3) -->
+<div class="col-span-3 bg-white/20 border-r border-white/40 flex flex-col p-6 gap-6 overflow-y-auto">
+<!-- Profile Card -->
+<div class="flex flex-col items-center gap-4 py-4">
+<div class="relative group">
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-accent to-success shadow-lg">
+<img alt="Pilot Avatar" class="w-full h-full rounded-full object-cover border-2 border-white" data-alt="Young woman with futuristic glasses portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6c2RnWNyvzNR3kXu8PmxcUsYGL1WaS6-d8M447nH1JWI8z0AMxJycxeyaqvZn1FtIDe7CnCGN-4JiV45_28oGEjamV9WaJsv8gTb9R64-XnCF1-UBivUsxVyyuyNxtYcgzRk5qpQsSf9x9okr2GrFtwqzHAlMMR4YsSCZ48j-AlLBsoNZHkx64y8cowMksplKCmCsV4mue_JLkOJYrM2pAyqE0LJz2GL2U7IBZoUo3lPL35r9sZdrs_ndBtQCB8UlErmGaE0350k"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-text-main text-white text-xs font-display font-bold px-3 py-1 rounded-full shadow-md border border-white/20">
+                            Lvl 12
+                        </div>
+</div>
+<div class="text-center">
+<h2 class="font-display font-bold text-xl text-text-main tracking-tight">Pilot_01</h2>
+<p class="text-accent text-sm font-medium tracking-wide uppercase">Cyber-Adept</p>
+</div>
+</div>
+<!-- XP Bar (Juicy) -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-xs font-bold text-text-muted uppercase tracking-wider">
+<span>XP Progress</span>
+<span>2,450 / 3,000</span>
+</div>
+<div class="h-4 w-full bg-white/50 rounded-full border border-white/60 p-[2px] shadow-inner">
+<div class="h-full rounded-full bg-jelly-bar w-[82%] relative shimmer shadow-[0_0_10px_rgba(0,224,184,0.4)]"></div>
+</div>
+<p class="text-[10px] text-text-muted text-right mt-1">Next Reward: Neural Implant Schema</p>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-3 mt-2">
+<div class="bg-white/40 rounded-xl p-3 border border-white/50 flex flex-col items-center gap-1 shadow-sm hover:translate-y-[-2px] transition-transform duration-200">
+<span class="material-symbols-outlined text-primary text-2xl">local_fire_department</span>
+<span class="font-display font-bold text-lg text-text-main">12</span>
+<span class="text-[10px] uppercase tracking-wider text-text-muted">Day Streak</span>
+</div>
+<div class="bg-white/40 rounded-xl p-3 border border-white/50 flex flex-col items-center gap-1 shadow-sm hover:translate-y-[-2px] transition-transform duration-200">
+<span class="material-symbols-outlined text-accent text-2xl">leaderboard</span>
+<span class="font-display font-bold text-lg text-text-main">Top 5%</span>
+<span class="text-[10px] uppercase tracking-wider text-text-muted">Global Rank</span>
+</div>
+<div class="bg-white/40 rounded-xl p-3 border border-white/50 flex flex-col items-center gap-1 shadow-sm hover:translate-y-[-2px] transition-transform duration-200 col-span-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-success text-xl">verified</span>
+<span class="font-display font-bold text-lg text-text-main">18</span>
+</div>
+<span class="text-[10px] uppercase tracking-wider text-text-muted">Protocols Completed</span>
+</div>
+</div>
+<!-- Achievements Teaser -->
+<div class="mt-auto pt-4 border-t border-white/30">
+<h3 class="text-xs font-bold text-text-muted uppercase tracking-wider mb-3">Recent Trophies</h3>
+<div class="flex gap-2">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-200 to-orange-300 border border-white/60 shadow-sm flex items-center justify-center text-orange-700 tooltip" title="Speed Demon">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-200 to-indigo-300 border border-white/60 shadow-sm flex items-center justify-center text-indigo-700 tooltip" title="Code Ninja">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-gray-200/50 border border-white/40 border-dashed flex items-center justify-center text-gray-400">
+<span class="text-xs">+3</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CENTER COLUMN: Protocols (Col-span-6) -->
+<div class="col-span-6 flex flex-col h-full bg-white/5 relative">
+<!-- Header / Filter -->
+<div class="p-6 pb-2">
+<h1 class="font-display font-bold text-3xl text-text-main mb-1">Active Protocols</h1>
+<p class="text-text-muted font-body text-sm mb-6">Resume your current learning missions to maintain streak.</p>
+<div class="flex gap-2 mb-2">
+<button class="px-4 py-2 bg-white/60 backdrop-blur-md rounded-full text-sm font-semibold text-text-main shadow-sm border border-white/50 hover:bg-white/80 transition-all">Current</button>
+<button class="px-4 py-2 bg-transparent rounded-full text-sm font-medium text-text-muted hover:bg-white/20 transition-all">Completed</button>
+<button class="px-4 py-2 bg-transparent rounded-full text-sm font-medium text-text-muted hover:bg-white/20 transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">lock</span> Boss Battles
+                        </button>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 pt-2 space-y-4">
+<!-- Card 1: Active -->
+<div class="group relative bg-white/40 backdrop-blur-md border border-white/60 rounded-xl p-5 shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 cursor-default">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<!-- Donut Chart Placeholder -->
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-gray-200" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-accent" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-dasharray="150" stroke-dashoffset="60" stroke-width="4"></circle>
+</svg>
+<span class="absolute text-[10px] font-bold text-accent">60%</span>
+</div>
+<div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-accent/10 text-accent uppercase tracking-wider mb-1">Python Logic</span>
+<h3 class="font-display font-bold text-xl text-text-main leading-tight">Neural Network Basics</h3>
+<p class="text-sm text-text-muted mt-1 font-body">Module 3: Activation Functions &amp; Backprop</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="text-xs font-mono text-text-muted">XP: +350</span>
+<span class="text-xs font-mono text-text-muted">Time: ~15m</span>
+</div>
+</div>
+<div class="mt-5 flex items-center justify-between">
+<div class="flex -space-x-2">
+<img alt="Friend avatar" class="w-6 h-6 rounded-full border border-white object-cover" data-alt="User avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASzHGLSWOaab5_8Pl4Wia2j6r76BgZm4YocKqIICd5k6OAnKwSVkrWA5Cc8TWWt0fLmfN17SlZkv1kqIB1B8EkwLrecyHL3AkiTmJYqV8ro-zBFsphvbbd0akZz9m8QskoILpPQtCj0t9ekCevVWvX7nIbqkNS-cIhJBwtb-hG8FXy_GpKhazjYCUZqXJHATgsJhI8OIQf--hHhDZE1QjVAAB_JDm9xxr7SwG9zed6zM5Vg-pqIf9u7TDpP-SjBkrzy6UWZT5_Klk"/>
+<img alt="Friend avatar" class="w-6 h-6 rounded-full border border-white object-cover" data-alt="User avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3NrqdJL82CXZ97JWhtdWpeUj1KG6zjiBYIjdiuzCE-EUb6pTAuJQy9eGKeUEOnYK5daPtcPowQRyQMoYAGf-WG4n99vvyZ_eLfbOy1jSlYLGCCpI8zjMtFLgx1ENsu8mAh_t4pU1rZBbijKmaugMJchItL5r1jmc12qXAGG6ZeQRAHlKmbL_ItX9l8IEl519PaJLtiRas1jZ_NqaI45ogv0lz8S-MTApp-djGexMlSNC52PI9lVRf4m7QpuyyhxxHGYE0Wyyelc4"/>
+<div class="w-6 h-6 rounded-full border border-white bg-gray-100 flex items-center justify-center text-[8px] text-gray-500 font-bold">+4</div>
+</div>
+<button class="btn-juicy bg-primary shadow-button-3d text-white px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 hover:brightness-110">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span> Resume Protocol
+                            </button>
+</div>
+</div>
+<!-- Card 2: New -->
+<div class="group relative bg-white/40 backdrop-blur-md border border-white/60 rounded-xl p-5 shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
+<div class="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-md transform rotate-3">NEW</div>
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="relative w-14 h-14 flex items-center justify-center bg-white/50 rounded-full border border-white/60 text-text-muted">
+<span class="material-symbols-outlined text-[24px]">lock_open</span>
+</div>
+<div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/10 text-purple-600 uppercase tracking-wider mb-1">Cyber Security</span>
+<h3 class="font-display font-bold text-xl text-text-main leading-tight">Algorithm Defense</h3>
+<p class="text-sm text-text-muted mt-1 font-body">Defend your grid against rogue bot injections.</p>
+</div>
+</div>
+</div>
+<div class="mt-5 flex items-center justify-between">
+<span class="text-xs text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> 
+                                High Intensity
+                            </span>
+<button class="btn-juicy bg-white text-text-main border border-white/50 shadow-sm px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-white/80">
+                                Start Protocol
+                            </button>
+</div>
+</div>
+<!-- Card 3: Locked -->
+<div class="group relative bg-gray-50/30 backdrop-blur-sm border border-white/40 rounded-xl p-5 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="relative w-14 h-14 flex items-center justify-center bg-gray-200/50 rounded-full border border-gray-300/50 text-gray-400">
+<span class="material-symbols-outlined text-[24px]">lock</span>
+</div>
+<div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-gray-200 text-gray-500 uppercase tracking-wider mb-1">Advanced Data</span>
+<h3 class="font-display font-bold text-xl text-text-muted leading-tight">Binary Trees &amp; Heaps</h3>
+<p class="text-sm text-text-muted mt-1 font-body">Unlock by completing 'Algorithm Defense'.</p>
+</div>
+</div>
+</div>
+<div class="mt-5 flex items-center justify-end">
+<button class="bg-gray-200/50 text-gray-400 cursor-not-allowed px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2" disabled="">
+<span class="material-symbols-outlined text-[16px]">lock</span> Locked
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Social/Squad (Col-span-3) -->
+<div class="col-span-3 bg-white/20 border-l border-white/40 flex flex-col h-full overflow-hidden">
+<div class="p-5 border-b border-white/30 bg-white/10 backdrop-blur-sm">
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-display font-bold text-sm uppercase tracking-wider text-text-muted">Squad Uplink</h2>
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded border border-green-200">4 Online</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2 top-2 text-text-muted text-[18px]">search</span>
+<input class="w-full pl-8 pr-3 py-1.5 bg-white/40 border border-white/50 rounded-lg text-sm placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-accent/50 focus:bg-white/70 transition-all font-body" placeholder="Find pilot..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-2">
+<!-- Friend 1: Online -->
+<div class="flex items-center gap-3 p-2 hover:bg-white/30 rounded-lg transition-colors cursor-pointer group">
+<div class="relative">
+<img alt="Friend Avatar" class="w-10 h-10 rounded-full object-cover border border-white/60" data-alt="Male avatar with headphones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBiknfH63bYaj6jwSMxNZMGwR0MAUG4E9wMybU0Ya7g3-RWApEp2A71vUbppejmoP70fiADw6j6duZfpY72AD26eonA6L-24trrB68R4Rwgtp_i2ixhY03Lb_uS6edVyQAKYZT6T67iEH0xvVf3dxjB7_wAwAlYEqcmG1f7nqFtky3Eo4FRSEtHRFoXzWKDgxECKVZJMDKQxYSwHQB7rkJUpBZEVSJPWimSt1LEeeK7wmiVQNwpUXrr4H10HD3EM_TtfgorPCYfps"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-success rounded-full border-2 border-white pulse-dot"></div>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-text-main truncate group-hover:text-accent transition-colors">PixelQueen</h4>
+<p class="text-xs text-text-muted truncate">Lvl 14 • Online</p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 p-1.5 rounded-full hover:bg-white/50 text-text-muted transition-all">
+<span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+</button>
+</div>
+<!-- Friend 2: In Arena -->
+<div class="flex items-center gap-3 p-2 hover:bg-white/30 rounded-lg transition-colors cursor-pointer group">
+<div class="relative">
+<img alt="Friend Avatar" class="w-10 h-10 rounded-full object-cover border border-white/60" data-alt="Male avatar in suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcK7MwoL7Y6CDvak2B4EpK31S3JAd_tasvt8UP7cfmpxbrWbPOAycIOu9VItV7BjvLBbawO8iKNXhILtbIgbRQOoROg20uxAYgZVv2dijFdAtc1dc5h289Z0m4LO7aTp_YsZcgDn4-k9yz03sD_10a-Qh2prkL6twRzLqYJEe4MVce7NeNNsS4RSB13-j214vSvBkCPFaBeK4AIkco4tfF_QlrcTcJM-e1y022ZgM5RSfNluOWitF7wxFKrK7-6mdIGVfHljwZMfE"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-primary rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-text-main truncate group-hover:text-accent transition-colors">Dev_Slayer</h4>
+<p class="text-xs text-primary truncate font-medium">In Arena: 1v1</p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 p-1.5 rounded-full hover:bg-white/50 text-text-muted transition-all">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+<!-- Friend 3: Idle -->
+<div class="flex items-center gap-3 p-2 hover:bg-white/30 rounded-lg transition-colors cursor-pointer group">
+<div class="relative">
+<img alt="Friend Avatar" class="w-10 h-10 rounded-full object-cover border border-white/60" data-alt="Female avatar smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJv1UFbtmNGuc_ub4sunBYn19yERoM6vwG4UGTbT1Of1m5rLA-9z3aN8Vwz0MakP0QmpiUFad1Psfl013B3nvuIG42cyAXLt4nIzgBLoUnFh_Q8qH_qvwYw4YRzTJhWM4Yqd5oDiA7ET6uBpcOecWI-CccA2qwUzHx3lxwOiJkcPui3KWwT8OWe7jKw6ipN7l8BucL4HuJ8503VepXMS_nTwk6ARL2275pDJq70HGqYrC4HqqkX2sK2QNPcaebO6sx5uBi6ojqaZE"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-yellow-400 rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-text-main truncate group-hover:text-accent transition-colors">NullPointer</h4>
+<p class="text-xs text-text-muted truncate">Idle (15m)</p>
+</div>
+</div>
+<!-- Friend 4: Online -->
+<div class="flex items-center gap-3 p-2 hover:bg-white/30 rounded-lg transition-colors cursor-pointer group">
+<div class="relative">
+<img alt="Friend Avatar" class="w-10 h-10 rounded-full object-cover border border-white/60" data-alt="Male avatar with beard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDDOR5BvWKR2J5x9eje9D9VzvekIATuZDHhi5G1oAbYprHG8kv5qyV9M59mTS0TvbIsIvdpxVuJX2cTJU-6Pqc3Kztk30zmtLUqRp_YQE9gY8BM_md_JBOxLplaXlcCNBqogfg2Bt0-QdeS2j1n23lNuRBw3m4829-u-iE7Ym2oi-UjBq3-p6_0p_qYICt2LYo2t-HhNTsoOaLH89RLR3VflCL8ryYzC7AtZt3LWMmEJyQCdE4XbcDJY7IQOhJmdJz5Kb1NLRNZyU"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-success rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-text-main truncate group-hover:text-accent transition-colors">Glitch_00</h4>
+<p class="text-xs text-text-muted truncate">Lvl 9 • Online</p>
+</div>
+</div>
+</div>
+<!-- Invite CTA -->
+<div class="p-4 border-t border-white/30">
+<button class="w-full py-2 border-2 border-dashed border-accent/30 rounded-xl text-accent text-sm font-bold hover:bg-accent/5 hover:border-accent/50 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">person_add</span> Invite Recruit
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Dock (Visual Context Only) -->
+<div class="absolute bottom-8 h-16 bg-glass-surface backdrop-blur-xl border border-white/40 rounded-full px-6 flex items-center gap-6 shadow-float z-20">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-orange-400 shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white">grid_view</span>
+</div>
+<div class="w-[1px] h-8 bg-white/40"></div>
+<div class="w-10 h-10 rounded-xl bg-white/50 hover:bg-white/80 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform group relative">
+<span class="material-symbols-outlined text-primary text-[28px]">rocket_launch</span>
+<div class="absolute -bottom-1 w-1 h-1 bg-primary rounded-full"></div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-white/50 hover:bg-white/80 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-text-main text-[28px]">code</span>
+</div>
+<div class="w-10 h-10 rounded-xl bg-white/50 hover:bg-white/80 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-text-main text-[28px]">account_circle</span>
+</div>
+</div>
+</body></html>

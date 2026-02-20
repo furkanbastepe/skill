@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Solarpunk Builder - Bot Arena</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Satoshi:wght@300;400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#10B981", // Bio-Lume Green
+                        "secondary": "#F59E0B", // Solar Gold
+                        "background-dark": "#18181B", // Deep Loam
+                        "background-surface": "rgba(39, 39, 42, 0.6)", // Basalt Surface
+                        "text-main": "#ECFDF5", // Mint Cream
+                        "text-muted": "#71717A", // Zinc
+                        "accent": "#064E3B", // Deep Moss
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Satoshi", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        "lg": "1.5rem", // 24px per spec
+                        "md": "0.75rem", // 12px
+                        "sm": "0.5rem",
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Styles for specific visual effects */
+        .glass-panel {
+            background: rgba(39, 39, 42, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .isometric-grid {
+            transform: rotateX(60deg) rotateZ(-45deg);
+            transform-style: preserve-3d;
+        }
+
+        .tile {
+            transition: all 0.3s ease;
+        }
+
+        .tile:hover {
+            background-color: rgba(16, 185, 129, 0.2);
+            transform: translateZ(5px);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Syntax Highlighting Simulation */
+        .token-keyword { color: #F59E0B; }
+        .token-func { color: #10B981; }
+        .token-string { color: #A7F3D0; }
+        .token-comment { color: #71717A; font-style: italic; }
+        .token-operator { color: #ECFDF5; }
+        .token-number { color: #FCD34D; }
+
+        /* Bot Animation */
+        @keyframes float {
+            0%, 100% { transform: translateZ(20px) translateY(0); }
+            50% { transform: translateZ(25px) translateY(-5px); }
+        }
+        
+        .bot-unit {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Flower Bloom */
+        @keyframes bloom {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .flower-bloom {
+            animation: bloom 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-text-main font-body h-screen w-full overflow-hidden flex flex-col relative">
+<!-- Background Noise Overlay -->
+<div class="absolute inset-0 bg-noise pointer-events-none z-0 mix-blend-overlay"></div>
+<!-- Navigation -->
+<header class="relative z-20 flex items-center justify-between border-b border-white/10 px-8 py-3 bg-[#111816]/90 backdrop-blur-md h-16 shrink-0">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-lg">eco</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-display font-bold leading-none tracking-tight">Bot Arena</h2>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs text-text-muted font-mono uppercase tracking-wider">Sector 7G: Reforestation</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1 bg-white/5 rounded-full px-3 py-1.5 border border-white/5">
+<span class="material-symbols-outlined text-secondary text-sm">bolt</span>
+<span class="text-xs font-mono text-secondary">840/1000 Energy</span>
+</div>
+<div class="h-6 w-px bg-white/10"></div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center size-9 rounded-full bg-white/5 hover:bg-white/10 text-text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<button class="flex items-center justify-center size-9 rounded-full bg-white/5 hover:bg-white/10 text-text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center border border-white/10" data-alt="User profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZS5koJP_ML7XTNLkYNfd7uYaUXlebEuJ8efvN2h4PYu4IktsZFKzpvmw6veli0n07mPe1lgIlbfMYp9P2xvK6smfAR21BOBCIw2fYGqZrpoHQBz0eKhcDpXARfh2LLcJPjoCVhhqVyanngFO-zRXy7ZMTtfb_TwuIFzFdNVLB_ufUvPhWSoMjXUqVaVaOeqx68RQFZKPleJH2YJkWcx4vInXfCOSZsQFdEN3HyLlrk45w9ecjsm6vt8-YNkbvoVcQZFJs7SL1FEDw');"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden relative z-10 p-4 gap-4">
+<!-- Left Column: Garden Grid (Simulation) -->
+<section class="flex-grow w-[60%] flex flex-col gap-4 relative">
+<!-- Garden Viewport -->
+<div class="glass-panel rounded-lg flex-1 relative overflow-hidden flex items-center justify-center bg-[#131315]">
+<!-- Floating HUD Elements -->
+<div class="absolute top-6 left-6 z-30 flex flex-col gap-3">
+<div class="glass-panel p-4 rounded-md min-w-[200px] border-l-4 border-l-secondary">
+<h3 class="text-xs font-display font-bold uppercase text-text-muted tracking-widest mb-2">Objective</h3>
+<p class="text-sm font-medium mb-1">Hydrate wilting flora</p>
+<div class="w-full bg-white/10 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full w-[45%] rounded-full"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="text-[10px] font-mono text-text-muted">3/7 Flowers</span>
+<span class="text-[10px] font-mono text-primary">45%</span>
+</div>
+</div>
+</div>
+<div class="absolute top-6 right-6 z-30">
+<div class="glass-panel p-3 rounded-md flex flex-col gap-2 w-48">
+<div class="flex justify-between items-center border-b border-white/5 pb-2 mb-1">
+<span class="text-xs font-display font-bold uppercase text-text-muted">Leaderboard</span>
+<span class="material-symbols-outlined text-xs text-text-muted">trophy</span>
+</div>
+<div class="flex items-center gap-2 text-sm">
+<span class="text-secondary font-mono font-bold">1</span>
+<div class="size-5 rounded-full bg-white/10"></div>
+<span class="text-xs truncate">Neo_Sprout</span>
+<span class="ml-auto text-xs font-mono text-primary">98%</span>
+</div>
+<div class="flex items-center gap-2 text-sm opacity-70">
+<span class="text-text-muted font-mono font-bold">2</span>
+<div class="size-5 rounded-full bg-white/10"></div>
+<span class="text-xs truncate">Solar_Witch</span>
+<span class="ml-auto text-xs font-mono text-text-muted">95%</span>
+</div>
+<div class="flex items-center gap-2 text-sm opacity-50">
+<span class="text-text-muted font-mono font-bold">3</span>
+<div class="size-5 rounded-full bg-white/10"></div>
+<span class="text-xs truncate">Code_Root</span>
+<span class="ml-auto text-xs font-mono text-text-muted">92%</span>
+</div>
+</div>
+</div>
+<!-- Simulation Controls (Bottom Center) -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 glass-panel rounded-full px-6 py-2 flex items-center gap-6 shadow-2xl shadow-black/50">
+<button class="text-text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined">skip_previous</span>
+</button>
+<button class="size-10 rounded-full bg-primary text-background-dark flex items-center justify-center hover:bg-primary/90 transition-colors shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+<span class="material-symbols-outlined fill-current">play_arrow</span>
+</button>
+<button class="text-text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined">skip_next</span>
+</button>
+<div class="h-4 w-px bg-white/10"></div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-mono text-text-muted">1x</span>
+<div class="w-16 h-1 bg-white/10 rounded-full relative cursor-pointer group">
+<div class="absolute top-0 left-0 h-full w-1/3 bg-primary rounded-full"></div>
+<div class="absolute top-1/2 -translate-y-1/2 left-1/3 size-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"></div>
+</div>
+<span class="text-xs font-mono text-text-muted">4x</span>
+</div>
+</div>
+<!-- The 3D Scene Container -->
+<div class="w-[600px] h-[600px] flex items-center justify-center perspective-[1000px]">
+<!-- Isometric Grid Plane -->
+<div class="isometric-grid relative w-[400px] h-[400px] bg-[#1a1a1e] shadow-2xl rounded-sm border-[8px] border-[#252529]">
+<!-- Grid Tiles Generation (10x10) -->
+<div class="absolute inset-0 grid grid-cols-10 grid-rows-10 gap-0.5 p-0.5">
+<!-- This is a simplified grid generation for demo purposes. 
+                                 Real implementation would likely be programmatic. -->
+<!-- Row 1 -->
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px] relative">
+<!-- Obstacle Rock -->
+<div class="absolute inset-0 m-auto w-3/4 h-3/4 bg-gray-600 rounded-sm transform translate-z-2 shadow-lg" style="transform: translateZ(10px)"></div>
+</div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<!-- Row 2 -->
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-primary/20 border border-primary/30 rounded-[2px] shadow-[0_0_10px_rgba(16,185,129,0.2)]"></div> <!-- Path -->
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px] relative">
+<!-- Flower Goal (Wilting) -->
+<div class="absolute inset-0 flex items-center justify-center transform -rotate-45" style="transform: translateZ(10px) rotateZ(45deg) rotateX(-60deg) scale(2);">
+<span class="material-symbols-outlined text-secondary text-lg drop-shadow-lg">local_florist</span>
+</div>
+</div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<!-- Row 3 -->
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-primary/20 border border-primary/30 rounded-[2px] shadow-[0_0_10px_rgba(16,185,129,0.2)]"></div> <!-- Path -->
+<div class="tile bg-primary/20 border border-primary/30 rounded-[2px] shadow-[0_0_10px_rgba(16,185,129,0.2)] relative">
+<!-- THE BOT -->
+<div class="bot-unit absolute w-8 h-8 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.8)] border-2 border-primary z-20 flex items-center justify-center left-1/2 top-1/2 -ml-4 -mt-4">
+<div class="w-4 h-4 rounded-full bg-primary animate-pulse"></div>
+<div class="absolute -bottom-6 left-1/2 -ml-0.5 w-1 h-8 bg-gradient-to-b from-primary/80 to-transparent"></div>
+</div>
+</div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px] relative">
+<!-- Obstacle Log -->
+<div class="absolute inset-0 m-auto w-full h-1/2 bg-amber-900/80 rounded-sm transform translate-z-2 shadow-lg" style="transform: translateZ(5px) rotate(45deg)"></div>
+</div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<!-- Row 4 -->
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<!-- Fill remaining rows with standard tiles for visual density -->
+<!-- Using a simpler loop logic visual representation -->
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px] relative">
+<div class="absolute inset-0 flex items-center justify-center transform -rotate-45" style="transform: translateZ(10px) rotateZ(45deg) rotateX(-60deg) scale(2);">
+<span class="material-symbols-outlined text-primary text-lg drop-shadow-lg flower-bloom">local_florist</span>
+</div>
+</div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<div class="tile bg-white/5 border border-white/5 rounded-[2px]"></div>
+<!-- ... (rest of grid implied for brevity) -->
+</div>
+<!-- Grid overlay gradient -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none z-10"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Code Editor (IDE) -->
+<section class="w-[40%] flex flex-col gap-0 glass-panel rounded-lg overflow-hidden border border-white/10 shadow-2xl">
+<!-- Editor Tabs -->
+<div class="flex items-center justify-between bg-black/20 border-b border-white/5 px-2 pt-2">
+<div class="flex items-end">
+<button class="px-4 py-2 bg-[#1e1e22] text-primary text-xs font-mono border-t border-l border-r border-primary/20 rounded-t-md relative group">
+<span class="absolute top-0 left-0 w-full h-[2px] bg-primary"></span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">javascript</span>
+                            water_bot.js
+                            <span class="material-symbols-outlined text-[12px] opacity-0 group-hover:opacity-100 hover:text-white transition-opacity ml-1">close</span>
+</div>
+</button>
+<button class="px-4 py-2 text-text-muted hover:text-white text-xs font-mono rounded-t-md transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">markdown</span>
+                            readme.md
+                        </div>
+</button>
+</div>
+<div class="flex items-center gap-2 pr-2 pb-1">
+<button class="text-text-muted hover:text-white"><span class="material-symbols-outlined text-[18px]">splitscreen</span></button>
+<button class="text-text-muted hover:text-white"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+</div>
+<!-- Code Area -->
+<div class="flex-1 bg-[#1e1e22]/80 p-4 font-mono text-sm leading-relaxed overflow-y-auto custom-scrollbar relative">
+<!-- Line Numbers -->
+<div class="absolute left-0 top-4 bottom-0 w-10 flex flex-col items-end pr-3 text-text-muted/30 select-none font-mono text-xs">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
+</div>
+<!-- Code Content -->
+<div class="pl-10">
+<div class="text-text-muted italic opacity-60 mb-2">// Mission: Navigate the grid and water all wilted flowers.</div>
+<div class="text-text-muted italic opacity-60 mb-4">// Avoid rocks and stay within bounds.</div>
+<div class="mb-1"><span class="token-keyword">import</span> { Drone, Garden } <span class="token-keyword">from</span> <span class="token-string">'@solarpunk/sdk'</span>;</div>
+<br/>
+<div class="mb-1"><span class="token-keyword">const</span> <span class="token-func">initBot</span> = (<span class="token-number">gridConfig</span>) =&gt; {</div>
+<div class="pl-4 mb-1"><span class="token-keyword">const</span> bot = <span class="token-keyword">new</span> <span class="token-func">Drone</span>({</div>
+<div class="pl-8 mb-1">id: <span class="token-string">"SP-7G"</span>,</div>
+<div class="pl-8 mb-1">mode: <span class="token-string">"REFOREST"</span>,</div>
+<div class="pl-8 mb-1">energy: <span class="token-number">100</span></div>
+<div class="pl-4 mb-1">});</div>
+<br/>
+<div class="pl-4 mb-1"><span class="token-comment">// TODO: Implement pathfinding logic here</span></div>
+<div class="pl-4 mb-1">bot.<span class="token-func">on</span>(<span class="token-string">'detect_flower'</span>, (target) =&gt; {</div>
+<div class="pl-8 mb-1"><span class="token-keyword">if</span> (target.status === <span class="token-string">'WILTING'</span>) {</div>
+<div class="pl-12 mb-1">bot.<span class="token-func">moveTo</span>(target.coords);</div>
+<div class="pl-12 mb-1">bot.<span class="token-func">hydrate</span>();</div>
+<div class="pl-12 mb-1"><span class="token-func">console</span>.<span class="token-func">log</span>(<span class="token-string">"Life restored at: "</span> + target.coords);</div>
+<div class="pl-8 mb-1">}</div>
+<div class="pl-4 mb-1">});</div>
+<br/>
+<div class="pl-4 mb-1"><span class="token-keyword">return</span> bot;</div>
+<div class="mb-1">};</div>
+<!-- Cursor -->
+<div class="inline-block w-2 h-4 bg-primary animate-pulse align-middle ml-0.5"></div>
+</div>
+</div>
+<!-- Terminal / Console -->
+<div class="h-40 bg-[#131315] border-t border-white/10 flex flex-col">
+<div class="flex items-center justify-between px-4 py-2 border-b border-white/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-text-muted">terminal</span>
+<span class="text-xs font-display font-bold text-text-muted uppercase tracking-wider">Console Output</span>
+</div>
+<div class="flex gap-2">
+<button class="text-[10px] text-text-muted hover:text-white px-2 py-0.5 rounded border border-white/10 hover:bg-white/5">Clear</button>
+</div>
+</div>
+<div class="flex-1 p-4 font-mono text-xs overflow-y-auto no-scrollbar">
+<div class="mb-1 text-primary">&gt; System initialized. Garden sensor array online.</div>
+<div class="mb-1 text-text-muted">&gt; Loading map "Sector 7G"... OK</div>
+<div class="mb-1 text-text-muted">&gt; Drone "SP-7G" deployed at [1, 2].</div>
+<div class="mb-1 text-yellow-500">&gt; Warning: Obstacle detected at [2, 6]. Rerouting...</div>
+<div class="mb-1 text-primary">&gt; Flower hydrated at [3, 2]. XP +50</div>
+</div>
+</div>
+<!-- Editor Action Bar (Footer) -->
+<div class="p-4 border-t border-white/5 bg-[#1e1e22]/50 backdrop-blur-sm flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border border-[#1e1e22] bg-gray-500" data-alt="Collaborator avatar"></div>
+<div class="size-6 rounded-full border border-[#1e1e22] bg-gray-400" data-alt="Collaborator avatar"></div>
+</div>
+<span class="text-xs text-text-muted">2 active</span>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-md border border-white/10 text-sm font-medium text-text-main hover:bg-white/5 transition-colors">
+                        Reset
+                    </button>
+<button class="px-5 py-2 rounded-md bg-primary hover:bg-primary/90 text-background-dark text-sm font-bold flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] transform hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                        Run Script
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Overlay Particles (Decorative) -->
+<div class="absolute top-20 right-10 w-2 h-2 rounded-full bg-primary/40 blur-[1px] animate-[float_4s_ease-in-out_infinite]"></div>
+<div class="absolute bottom-40 left-20 w-3 h-3 rounded-full bg-secondary/30 blur-[2px] animate-[float_6s_ease-in-out_infinite_reverse]"></div>
+</body></html>

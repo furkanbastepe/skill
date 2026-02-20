@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-042 Mantıksal Dallanma Lab | DIGEM</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Fira+Code:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111418", // Darker charcoal
+                        "surface-dark": "#1a2128", // Slightly lighter for cards
+                        "code-bg": "#0d1117",
+                        "success": "#2ecc71",
+                        "danger": "#e74c3c",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for code block */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1a2128; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; 
+        }
+
+        /* Flowchart connection lines */
+        .flow-line {
+            position: absolute;
+            background-color: #374151;
+            z-index: 0;
+            transition: all 0.3s ease;
+        }
+        .flow-line.active {
+            background-color: #137fec;
+            box-shadow: 0 0 8px rgba(19, 127, 236, 0.4);
+        }
+        
+        /* Flowchart Nodes */
+        .flow-node {
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .flow-node.active {
+            border-color: #137fec;
+            box-shadow: 0 0 12px rgba(19, 127, 236, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden flex flex-col h-screen">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#283039] bg-[#111418] px-6 py-3 shrink-0">
+<div class="flex items-center gap-4 text-white">
+<div class="flex items-center justify-center size-10 rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined" style="font-size: 24px;">hub</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM | Core Programming</h2>
+<div class="text-[#9dabb9] text-xs font-medium tracking-wide">SCR-042: MANTIKSAL DALLANMA LAB</div>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden md:flex items-center gap-6">
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Modules</a>
+<a class="text-white text-sm font-medium border-b-2 border-primary py-1" href="#">Practice</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Profile</a>
+</div>
+<div class="h-6 w-px bg-[#283039]"></div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center size-9 rounded-lg bg-[#283039] text-white hover:bg-[#323c47] transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+</button>
+<button class="flex items-center justify-center size-9 rounded-lg bg-[#283039] text-white hover:bg-[#323c47] transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">help</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-[#283039]" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBP4mTtQv6D0178abOzTDW-weG6QLcvRvVfFErGkHei93oaQXmiSxtV-DzlCDsppVMrbbIkIXkCh_YWbt-vaCowPA9k_8m_9X8CLNlMxL7fRrIqQ-Rn6RJjCQfnOhOhSihtOxJN3RjrnCJaqRaNwE3LpmuEJsMMaXCnf-BQUQ5ipoo5JNQ1T7e4iawbahfuXELYVmaPh1DjY362gIJCjT_MJraf2p3fDWVspUJb9rK3B78TAm9LpGjtzIcoH6QfxgaTfCvV5xAbuQ");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area (Split View) -->
+<main class="flex-1 flex flex-col md:flex-row overflow-hidden">
+<!-- Left Panel: Flowchart Visualizer -->
+<div class="flex-1 flex flex-col border-r border-[#283039] bg-[#111418] relative overflow-hidden group/canvas">
+<!-- Toolbar -->
+<div class="absolute top-4 left-4 z-20 flex gap-2">
+<div class="bg-surface-dark/90 backdrop-blur border border-[#283039] rounded-lg px-3 py-1.5 flex items-center gap-2 text-xs text-[#9dabb9] shadow-lg">
+<span class="material-symbols-outlined text-primary" style="font-size: 16px;">visibility</span>
+<span>Visualizer View</span>
+</div>
+</div>
+<!-- Canvas Area -->
+<div class="flex-1 relative flex items-center justify-center p-8 overflow-auto custom-scrollbar bg-[radial-gradient(#283039_1px,transparent_1px)] [background-size:20px_20px]">
+<!-- Flowchart Container -->
+<div class="relative w-[400px] h-[500px] flex flex-col items-center">
+<!-- Start Node -->
+<div class="flow-node w-32 h-10 rounded-full bg-surface-dark border-2 border-[#3b4754] flex items-center justify-center text-sm text-white mb-8 relative z-10">
+                        Start
+                        <!-- Connection Line Down -->
+<div class="absolute -bottom-8 left-1/2 w-0.5 h-8 bg-[#374151] -translate-x-1/2"></div>
+</div>
+<!-- Input Node -->
+<div class="flow-node w-40 h-12 skew-x-[-12deg] bg-surface-dark border-2 border-[#3b4754] flex items-center justify-center text-sm text-white mb-12 relative z-10">
+<span class="skew-x-[12deg]">score = 75</span>
+<!-- Connection Line Down (Active) -->
+<div class="absolute -bottom-12 left-1/2 w-0.5 h-12 bg-primary -translate-x-1/2 z-0 shadow-[0_0_8px_rgba(19,127,236,0.6)]"></div>
+</div>
+<!-- Decision Diamond -->
+<div class="relative w-40 h-40 mb-12 flex items-center justify-center z-10">
+<!-- Diamond Shape -->
+<div class="absolute inset-0 bg-surface-dark border-2 border-primary rotate-45 rounded-lg shadow-[0_0_15px_rgba(19,127,236,0.2)]"></div>
+<span class="relative z-10 text-white text-sm font-medium text-center leading-tight">is score<br/>&gt;= 50?</span>
+<!-- True Label -->
+<div class="absolute top-1/2 -right-12 translate-y-[-140%] text-xs font-bold text-primary">True</div>
+<!-- False Label -->
+<div class="absolute top-1/2 -left-12 translate-y-[-140%] text-xs font-bold text-[#55606d]">False</div>
+<!-- Right Branch Line (TRUE - Active) -->
+<div class="absolute top-1/2 right-0 translate-x-[0%] w-[100px] h-0.5 bg-primary origin-left z-0 shadow-[0_0_8px_rgba(19,127,236,0.6)]"></div>
+<div class="absolute top-1/2 right-[-100px] w-0.5 h-[60px] bg-primary origin-top z-0 shadow-[0_0_8px_rgba(19,127,236,0.6)]"></div>
+<!-- Left Branch Line (FALSE - Inactive) -->
+<div class="absolute top-1/2 left-0 translate-x-[-100%] w-[100px] h-0.5 bg-[#374151] origin-right z-0"></div>
+<div class="absolute top-1/2 left-[-100px] w-0.5 h-[60px] bg-[#374151] origin-top z-0"></div>
+</div>
+<!-- Action Nodes Container -->
+<div class="flex justify-between w-[440px] relative z-10">
+<!-- False Action -->
+<div class="flow-node w-36 h-12 bg-surface-dark border-2 border-[#3b4754] flex items-center justify-center text-sm text-[#55606d] opacity-50">
+                            print("Failed")
+                        </div>
+<!-- True Action (Active) -->
+<div class="flow-node active w-36 h-12 bg-surface-dark border-2 border-primary flex items-center justify-center text-sm text-white font-medium shadow-[0_0_15px_rgba(19,127,236,0.15)]">
+                            print("Passed")
+                        </div>
+</div>
+<!-- End Node Connector Lines -->
+<div class="absolute bottom-[60px] left-[20px] w-0.5 h-[40px] bg-[#374151] translate-x-[0px]"></div> <!-- Left down -->
+<div class="absolute bottom-[60px] right-[20px] w-0.5 h-[40px] bg-primary translate-x-[0px] shadow-[0_0_8px_rgba(19,127,236,0.6)]"></div> <!-- Right down -->
+<div class="absolute bottom-[20px] left-[20px] w-[360px] h-0.5 bg-gradient-to-r from-[#374151] via-[#374151] to-primary"></div> <!-- Horz join -->
+<!-- End Node -->
+<div class="flow-node w-32 h-10 rounded-full bg-surface-dark border-2 border-[#3b4754] flex items-center justify-center text-sm text-white mt-16 relative z-10">
+                        End
+                         <!-- Connection Line Up -->
+<div class="absolute -top-6 left-1/2 w-0.5 h-6 bg-primary -translate-x-1/2 shadow-[0_0_8px_rgba(19,127,236,0.6)]"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Controls (Floating) -->
+<div class="p-6 bg-[#111418] border-t border-[#283039]">
+<div class="max-w-2xl mx-auto w-full">
+<div class="flex justify-between items-end mb-2">
+<label class="text-sm font-medium text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 18px;">tune</span>
+                            Input Variable: Exam Score
+                        </label>
+<span class="text-2xl font-mono font-bold text-primary">75</span>
+</div>
+<div class="relative h-6 flex items-center">
+<!-- Track -->
+<div class="absolute w-full h-1.5 bg-[#283039] rounded-full overflow-hidden">
+<div class="h-full bg-primary/30 w-full"></div>
+</div>
+<!-- Thumb & Progress -->
+<div class="absolute h-1.5 bg-primary rounded-l-full" style="width: 75%;"></div>
+<div class="absolute size-5 bg-white rounded-full shadow-lg cursor-grab border-2 border-primary hover:scale-110 transition-transform flex items-center justify-center" style="left: 75%; transform: translateX(-50%);">
+<div class="size-1.5 rounded-full bg-primary"></div>
+</div>
+<!-- Markers -->
+<div class="absolute top-4 left-0 text-[10px] text-[#55606d]">0</div>
+<div class="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] text-[#55606d]">50</div>
+<div class="absolute top-4 right-0 text-[10px] text-[#55606d]">100</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Code Editor -->
+<div class="w-full md:w-[45%] lg:w-[40%] flex flex-col bg-code-bg border-l border-[#283039]">
+<!-- Editor Tabs -->
+<div class="flex items-center border-b border-[#283039] bg-[#111418]">
+<div class="px-4 py-3 bg-code-bg border-r border-[#283039] text-primary text-sm font-medium flex items-center gap-2 border-t-2 border-t-primary">
+<span class="material-symbols-outlined" style="font-size: 16px;">code</span>
+                    logic_lab.py
+                </div>
+<div class="px-4 py-3 text-[#55606d] hover:text-[#9dabb9] text-sm font-medium flex items-center gap-2 cursor-pointer transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">terminal</span>
+                    Output
+                </div>
+</div>
+<!-- Code Content -->
+<div class="flex-1 p-4 font-mono text-sm leading-relaxed overflow-auto custom-scrollbar relative">
+<!-- Line Numbers -->
+<div class="absolute left-0 top-4 bottom-0 w-10 text-right pr-3 text-[#3b4754] select-none">
+                    1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10
+                </div>
+<!-- Code Text -->
+<div class="pl-10">
+<div class="text-[#55606d] italic mb-2"># Initialize score variable</div>
+<div class="group flex">
+<span class="text-[#e06c75]">score</span>
+<span class="text-[#abb2bf] mx-2">=</span>
+<span class="text-[#d19a66] font-bold">75</span>
+</div>
+<br/>
+<div class="text-[#55606d] italic mb-1"># Check if score passes threshold</div>
+<div class="group flex relative">
+<div class="absolute -left-14 -right-4 top-0 bottom-0 bg-primary/10 border-l-2 border-primary pointer-events-none"></div>
+<span class="text-[#c678dd]">if</span>
+<span class="text-[#e06c75] ml-2">score</span>
+<span class="text-[#abb2bf] mx-2">&gt;=</span>
+<span class="text-[#d19a66]">50</span>
+<span class="text-[#abb2bf]">:</span>
+</div>
+<div class="group flex relative">
+<div class="absolute -left-14 -right-4 top-0 bottom-0 bg-primary/20 border-l-2 border-primary pointer-events-none animate-pulse"></div>
+<span class="ml-8 text-[#61afef]">print</span>
+<span class="text-[#abb2bf]">(</span>
+<span class="text-[#98c379]">"Passed"</span>
+<span class="text-[#abb2bf]">)</span>
+<span class="ml-4 text-primary text-xs flex items-center gap-1 opacity-80"><span class="material-symbols-outlined text-[14px]">arrow_back</span> Active Path</span>
+</div>
+<div class="group flex opacity-40">
+<span class="text-[#c678dd]">else</span>
+<span class="text-[#abb2bf]">:</span>
+</div>
+<div class="group flex opacity-40">
+<span class="ml-8 text-[#61afef]">print</span>
+<span class="text-[#abb2bf]">(</span>
+<span class="text-[#98c379]">"Failed"</span>
+<span class="text-[#abb2bf]">)</span>
+</div>
+</div>
+</div>
+<!-- Execution Status / Mini Console -->
+<div class="h-40 border-t border-[#283039] bg-[#111418] flex flex-col">
+<div class="px-4 py-2 border-b border-[#283039] flex justify-between items-center">
+<span class="text-xs font-bold text-[#9dabb9] uppercase tracking-wider">Console Output</span>
+<button class="text-xs text-primary hover:text-primary/80">Clear</button>
+</div>
+<div class="p-4 font-mono text-sm text-[#abb2bf]">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-success material-symbols-outlined text-[16px]">check_circle</span>
+<span>Execution successful</span>
+</div>
+<div class="pl-6 border-l-2 border-[#283039]">
+                        &gt; Passed
+                    </div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="p-4 bg-[#111418] border-t border-[#283039] flex gap-3">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-medium h-10 rounded-lg flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">play_arrow</span>
+                    Run Simulation
+                </button>
+<button class="px-4 bg-[#283039] hover:bg-[#323c47] text-white font-medium h-10 rounded-lg flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">restart_alt</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

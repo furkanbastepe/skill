@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirvanaOS Multi-Window View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#895af6",
+                        "primary-dark": "#6d44c5",
+                        "accent-cyan": "#00f0ff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131118",
+                        "surface-dark": "#1f1b27",
+                        "surface-darker": "#1a1622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'desktop-gradient': 'radial-gradient(circle at 50% 50%, #2d2839 0%, #131118 100%)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for simulated OS feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1622; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d2839; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a4259; 
+        }
+        
+        .glass-panel {
+            background: rgba(31, 27, 39, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(137, 90, 246, 0.1);
+        }
+
+        .code-syntax-keyword { color: #ff79c6; }
+        .code-syntax-func { color: #8be9fd; }
+        .code-syntax-string { color: #f1fa8c; }
+        .code-syntax-comment { color: #6272a4; }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display overflow-hidden h-screen flex flex-col bg-desktop-gradient relative">
+<!-- Top Status Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-white/5 bg-[#131118]/90 backdrop-blur-md px-6 py-2 z-50 h-14 shrink-0">
+<!-- User Profile & Gamification -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-primary/50" data-alt="User Avatar Profile Picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmUwKUlCQudHxh3BXaZOLaQ2ztofY0NJHF4jPxYjfX_Uj3s6nphgXTZtBF8fpwMT-TCfe9DdFl93yMO1NwxXdiJwiBxFIi22fpldRB5QEkDs_xHm2NjT42i1Rm_VAC0Fso7RHuql5-n96LU9ausPR_yBTmBl1v11QWsnfBJxgy5vEzhjsTH_hfNP24npc3ireDG_VypVtEgxu7hUxpDL4a4fy1jCgLrhCyVL118C_iqLASsRZfvshrEljc00kfypaxwkdDQ1isXLm2");'></div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full border-2 border-[#131118]"></div>
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-sm font-bold leading-tight tracking-wide">FurkanY</h2>
+<p class="text-accent-cyan text-xs font-medium tracking-wider">Lv. 23</p>
+</div>
+</div>
+<div class="h-6 w-px bg-white/10"></div>
+<div class="flex items-center gap-2 bg-surface-dark/50 px-3 py-1.5 rounded-full border border-white/5 shadow-inner">
+<span class="text-orange-500 animate-pulse material-symbols-outlined text-[18px]">local_fire_department</span>
+<span class="text-white text-xs font-bold tracking-wide">12 Day Streak</span>
+</div>
+</div>
+<!-- NirvanaOS Logo Center -->
+<div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary">token</span>
+<span class="font-bold tracking-widest text-sm uppercase">NirvanaOS</span>
+</div>
+<!-- System Status -->
+<div class="flex items-center justify-end gap-4">
+<div class="flex items-center gap-4 text-xs font-medium text-gray-400 bg-surface-dark/50 px-4 py-1.5 rounded-full border border-white/5">
+<span class="text-white">14:02 PM</span>
+<span class="w-px h-3 bg-white/10"></span>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-[16px] text-white">wifi</span>
+<span class="material-symbols-outlined text-[16px] text-white">battery_full</span>
+</div>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace Area -->
+<main class="flex-1 relative w-full h-full p-6 overflow-hidden">
+<!-- Background Window: FileExplorer -->
+<div class="absolute top-12 left-12 w-[800px] h-[500px] glass-panel rounded-xl shadow-2xl flex flex-col overflow-hidden z-10 transition-transform hover:z-20 hover:scale-[1.005] duration-200">
+<!-- Window Title Bar -->
+<div class="h-10 bg-[#2d2839]/80 border-b border-white/5 flex items-center justify-between px-4 handle cursor-grab active:cursor-grabbing">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">folder_open</span>
+<span class="text-xs font-medium text-gray-300">FileExplorer - /home/FurkanY/projects</span>
+</div>
+<div class="flex gap-2">
+<div class="size-3 rounded-full bg-yellow-500/80 hover:bg-yellow-400 cursor-pointer"></div>
+<div class="size-3 rounded-full bg-green-500/80 hover:bg-green-400 cursor-pointer"></div>
+<div class="size-3 rounded-full bg-red-500/80 hover:bg-red-400 cursor-pointer"></div>
+</div>
+</div>
+<!-- Window Content -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar -->
+<div class="w-48 bg-surface-darker/50 border-r border-white/5 flex flex-col py-4 px-2 gap-1 text-sm">
+<div class="px-3 py-1.5 rounded-md text-gray-400 hover:bg-white/5 cursor-pointer flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">home</span> Home
+                    </div>
+<div class="px-3 py-1.5 rounded-md text-gray-400 hover:bg-white/5 cursor-pointer flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">desktop_windows</span> Desktop
+                    </div>
+<div class="px-3 py-1.5 rounded-md text-gray-400 hover:bg-white/5 cursor-pointer flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span> Downloads
+                    </div>
+<div class="mt-4 px-3 text-xs font-bold text-gray-500 uppercase tracking-wider">Locations</div>
+<div class="px-3 py-1.5 rounded-md bg-primary/20 text-white font-medium cursor-pointer flex items-center gap-2 border border-primary/30">
+<span class="material-symbols-outlined text-[18px] text-primary">code_blocks</span> Projects
+                    </div>
+</div>
+<!-- Main View -->
+<div class="flex-1 p-4 grid grid-cols-4 content-start gap-4">
+<div class="flex flex-col items-center gap-2 p-2 hover:bg-white/5 rounded-lg cursor-pointer group">
+<span class="material-symbols-outlined text-5xl text-blue-400 group-hover:scale-110 transition-transform">folder</span>
+<span class="text-xs text-gray-300">assets</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-2 hover:bg-white/5 rounded-lg cursor-pointer group">
+<span class="material-symbols-outlined text-5xl text-yellow-400 group-hover:scale-110 transition-transform">javascript</span>
+<span class="text-xs text-gray-300">main.js</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-2 hover:bg-white/5 rounded-lg cursor-pointer group">
+<span class="material-symbols-outlined text-5xl text-orange-500 group-hover:scale-110 transition-transform">html</span>
+<span class="text-xs text-gray-300">index.html</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-2 hover:bg-white/5 rounded-lg cursor-pointer group">
+<span class="material-symbols-outlined text-5xl text-blue-500 group-hover:scale-110 transition-transform">css</span>
+<span class="text-xs text-gray-300">style.css</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-2 hover:bg-white/5 rounded-lg cursor-pointer group">
+<span class="material-symbols-outlined text-5xl text-gray-500 group-hover:scale-110 transition-transform">description</span>
+<span class="text-xs text-gray-300">readme.md</span>
+</div>
+</div>
+</div>
+<!-- Status Footer -->
+<div class="h-6 bg-[#2d2839] border-t border-white/5 px-3 flex items-center text-[10px] text-gray-500">
+                5 items | 24 MB free
+            </div>
+</div>
+<!-- Foreground Window: CodeLab -->
+<div class="absolute top-24 left-64 w-[850px] h-[550px] bg-[#1e1e1e] rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.7)] flex flex-col overflow-hidden z-30 ring-1 ring-white/10">
+<!-- Window Title Bar -->
+<div class="h-10 bg-[#252526] border-b border-black/20 flex items-center justify-between px-4 handle cursor-grab active:cursor-grabbing">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-accent-cyan text-sm">terminal</span>
+<span class="text-xs font-medium text-gray-300">CodeLab - main.js</span>
+<span class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded text-gray-400">Read-only</span>
+</div>
+<div class="flex gap-2 opacity-50 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm cursor-pointer hover:text-white">minimize</span>
+<span class="material-symbols-outlined text-sm cursor-pointer hover:text-white">crop_square</span>
+<span class="material-symbols-outlined text-sm cursor-pointer hover:text-red-400">close</span>
+</div>
+</div>
+<!-- Code Editor Content -->
+<div class="flex flex-1 font-mono text-sm relative">
+<!-- Line Numbers -->
+<div class="w-12 bg-[#1e1e1e] border-r border-white/5 text-gray-600 text-right pr-3 py-4 select-none leading-6">
+                    1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15
+                </div>
+<!-- Code Area -->
+<div class="flex-1 p-4 bg-[#1e1e1e] text-gray-300 leading-6 overflow-auto">
+<div class="code-line"><span class="code-syntax-comment">// Initialize NirvanaOS Core Systems</span></div>
+<div class="code-line"><span class="code-syntax-keyword">const</span> <span class="code-syntax-func">initSystem</span> = <span class="code-syntax-keyword">async</span> () =&gt; {</div>
+<div class="code-line pl-4"><span class="code-syntax-keyword">try</span> {</div>
+<div class="code-line pl-8"><span class="code-syntax-comment">// Load user preferences</span></div>
+<div class="code-line pl-8"><span class="code-syntax-keyword">const</span> userProfile = <span class="code-syntax-keyword">await</span> <span class="code-syntax-func">loadProfile</span>(<span class="code-syntax-string">'FurkanY'</span>);</div>
+<div class="code-line pl-8"><span class="code-syntax-func">console</span>.<span class="code-syntax-func">log</span>(<span class="code-syntax-string">`Welcome back, ${userProfile.name}`</span>);</div>
+<div class="code-line pl-8"></div>
+<div class="code-line pl-8"><span class="code-syntax-comment">// Check gamification status</span></div>
+<div class="code-line pl-8"><span class="code-syntax-keyword">if</span> (userProfile.streak &gt; <span class="code-syntax-func">10</span>) {</div>
+<div class="code-line pl-12"><span class="code-syntax-func">activateBonusMode</span>(<span class="code-syntax-keyword">true</span>);</div>
+<div class="code-line pl-12"><span class="code-syntax-func">renderBadge</span>(<span class="code-syntax-string">'🔥 High Performer'</span>);</div>
+<div class="code-line pl-8">}</div>
+<div class="code-line pl-8"></div>
+<div class="code-line pl-8"><span class="code-syntax-keyword">return</span> <span class="code-syntax-string">'System Ready'</span>;</div>
+<div class="code-line pl-4">} <span class="code-syntax-keyword">catch</span> (error) {</div>
+<div class="code-line pl-8"><span class="code-syntax-func">reportError</span>(error);</div>
+<div class="code-line pl-4">}</div>
+<div class="code-line">};</div>
+</div>
+<!-- Floating Action Button inside CodeLab -->
+<div class="absolute bottom-6 right-6">
+<button class="bg-primary hover:bg-primary-dark text-white rounded-full p-3 shadow-lg flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined">play_arrow</span>
+<span class="pr-2 font-bold">Run</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Side QuestDock (Collapsed) -->
+<aside class="absolute top-1/2 -translate-y-1/2 right-0 h-auto py-4 w-14 bg-surface-dark/90 backdrop-blur-md rounded-l-2xl border-y border-l border-white/5 flex flex-col items-center gap-6 z-40 shadow-xl transition-all hover:w-16">
+<div class="p-2 rounded-lg bg-surface-darker text-gray-400 hover:text-white hover:bg-white/10 cursor-pointer relative group">
+<span class="material-symbols-outlined">target</span>
+<span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">Daily Goal</span>
+</div>
+<div class="w-8 h-px bg-white/10"></div>
+<div class="p-2 rounded-lg bg-surface-darker text-accent-cyan hover:bg-white/10 cursor-pointer relative group">
+<span class="material-symbols-outlined animate-pulse">map</span>
+<span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">Main Quest</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-darker text-gray-400 hover:text-white hover:bg-white/10 cursor-pointer relative group">
+<div class="relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full"></span>
+</div>
+<span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">Notifications</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-darker text-gray-400 hover:text-white hover:bg-white/10 cursor-pointer relative group mt-auto">
+<span class="material-symbols-outlined">help</span>
+<span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">Help</span>
+</div>
+</aside>
+</main>
+<!-- Bottom Taskbar -->
+<footer class="shrink-0 h-16 flex justify-center items-end pb-2 relative z-50">
+<div class="bg-surface-dark/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-2 flex items-center gap-4 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+<!-- Start Button -->
+<button class="size-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark hover:brightness-110 flex items-center justify-center text-white shadow-lg transition-all active:scale-95 mr-2">
+<span class="material-symbols-outlined">rocket_launch</span>
+</button>
+<div class="w-px h-8 bg-white/10 mx-1"></div>
+<!-- App Icons -->
+<div class="relative group cursor-pointer flex flex-col items-center gap-1">
+<div class="size-10 rounded-lg bg-[#2d2839] hover:bg-[#3d364d] flex items-center justify-center text-white transition-colors border border-white/5">
+<span class="material-symbols-outlined text-blue-400">article</span>
+</div>
+<!-- Tooltip -->
+<span class="absolute bottom-full mb-2 bg-black text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">NirvanaDoc</span>
+</div>
+<div class="relative group cursor-pointer flex flex-col items-center gap-1">
+<div class="size-10 rounded-lg bg-[#2d2839] hover:bg-[#3d364d] flex items-center justify-center text-white transition-colors border border-white/5">
+<span class="material-symbols-outlined text-green-400">table_chart</span>
+</div>
+<span class="absolute bottom-full mb-2 bg-black text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">NirvanaSheets</span>
+</div>
+<!-- Active App: FileExplorer -->
+<div class="relative group cursor-pointer flex flex-col items-center gap-1">
+<div class="size-10 rounded-lg bg-surface-darker ring-1 ring-white/20 flex items-center justify-center text-white shadow-inner">
+<span class="material-symbols-outlined text-yellow-400">folder</span>
+</div>
+<!-- Active Indicator -->
+<div class="size-1 rounded-full bg-white/50"></div>
+<span class="absolute bottom-full mb-2 bg-black text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">File Explorer</span>
+</div>
+<!-- Active App: CodeLab -->
+<div class="relative group cursor-pointer flex flex-col items-center gap-1">
+<div class="size-10 rounded-lg bg-surface-darker ring-1 ring-primary shadow-[0_0_15px_-5px_rgba(137,90,246,0.6)] flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-accent-cyan">terminal</span>
+</div>
+<!-- Active Indicator -->
+<div class="size-1 rounded-full bg-primary shadow-[0_0_5px_#895af6]"></div>
+<span class="absolute bottom-full mb-2 bg-black text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">CodeLab</span>
+</div>
+</div>
+</footer>
+</body></html>

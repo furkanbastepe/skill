@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-005 Yol Seçimi ve Zorunlu Modüller - DIGEM</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#00c2a8",
+              "primary-dark": "#009e89",
+              "background-light": "#f5f8f8",
+              "background-dark": "#0f2320",
+              "card-dark": "#162e2a",
+              "border-dark": "#273a38",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Lexend', sans-serif;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#101817] dark:text-white flex flex-col min-h-screen overflow-x-hidden font-display">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-gray-200 dark:border-border-dark bg-background-light dark:bg-background-dark/95 backdrop-blur-sm px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined !text-3xl">token</span>
+</div>
+<h2 class="text-xl font-black leading-tight tracking-[-0.015em] text-gray-900 dark:text-white">DIGEM</h2>
+</div>
+<div class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors text-gray-600 dark:text-gray-300" href="#">Ana Sayfa</a>
+<a class="text-sm font-medium text-primary" href="#">Kariyer Yolu</a>
+<a class="text-sm font-medium hover:text-primary transition-colors text-gray-600 dark:text-gray-300" href="#">İlerlemem</a>
+<a class="text-sm font-medium hover:text-primary transition-colors text-gray-600 dark:text-gray-300" href="#">Ayarlar</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex cursor-pointer items-center justify-center rounded-lg h-9 px-4 border border-gray-300 dark:border-border-dark bg-transparent hover:bg-gray-100 dark:hover:bg-card-dark transition-colors text-sm font-bold">
+<span class="truncate">Çıkış Yap</span>
+</button>
+<div class="relative group cursor-pointer">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIcG807lbihJwazRCoJLLTvp2g_wpFUS_kjzOoA5y2T3k8Z51a1wWLypA9_AJgB8MhHiDYp5ysBHIqq9Xe5aMx8bjUOgz2Ra8aDyPx0WC_Bs9MCHCjoszwe8JZO_uzRbjcjjJSrp1BZk07nw_rL0ZVRr51aC_khk9LcK2F68xcY2znQAqlM9y5O4-ghWFyNgA8OUC1dT_I7L9MIMQdafX9Va1Urs8ohbWJ59yI1x7umJI5uoBW4O8wWzDPYewraZSm36ret2gO-A");'></div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full border-2 border-background-light dark:border-background-dark"></div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1280px] mx-auto p-4 md:p-8 lg:px-10 flex flex-col gap-8">
+<!-- Hero & Notification Section -->
+<section class="flex flex-col lg:flex-row gap-6 items-start">
+<div class="flex-1 flex flex-col gap-3">
+<h1 class="text-3xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white">
+                    Geleceğini Tasarla
+                </h1>
+<p class="text-gray-600 dark:text-[#9abcb7] text-lg max-w-2xl">
+                    Uzmanlaşmak istediğin alanı seç ve öğrenme yolculuğuna başla. Her bir patika, seni geleceğin teknolojilerine hazırlar.
+                </p>
+</div>
+<!-- Mandatory Module Notification Card -->
+<div class="w-full lg:w-[480px] shrink-0 bg-card-dark/50 dark:bg-[#162e2a]/80 border-l-4 border-primary rounded-r-lg p-5 flex flex-col gap-4 shadow-lg backdrop-blur-sm relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="flex items-start gap-3 z-10">
+<span class="material-symbols-outlined text-primary mt-1">info</span>
+<div>
+<h3 class="font-bold text-white text-lg">Önemli Bilgilendirme</h3>
+<p class="text-sm text-gray-300 mt-1 leading-relaxed">
+                            İhtisas alanlarına erişim sağlamak için önce <span class="text-primary font-medium">Temel Modülleri</span> (Bilgisayar, Ofis, Programlama) başarıyla tamamlaman gerekmektedir.
+                        </p>
+</div>
+</div>
+<div class="flex items-center justify-between gap-4 mt-1 pl-9 z-10">
+<div class="flex flex-col w-full gap-1">
+<div class="flex justify-between text-xs font-medium text-gray-400">
+<span>Temel Modül İlerlemesi</span>
+<span class="text-primary">65%</span>
+</div>
+<div class="h-2 w-full bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%] rounded-full"></div>
+</div>
+</div>
+<button class="shrink-0 whitespace-nowrap px-3 py-1.5 bg-primary hover:bg-primary-dark text-background-dark text-xs font-bold rounded transition-colors">
+                        Modüllere Git
+                    </button>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="h-px w-full bg-gradient-to-r from-transparent via-gray-700 to-transparent my-2"></div>
+<!-- Career Tracks Grid -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">alt_route</span>
+                    Kariyer Yolları
+                </h2>
+<span class="text-sm text-gray-400">Toplam 6 Patika</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+<!-- Card 1: Data Analyst -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-border-dark bg-card-dark p-5 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,194,168,0.1)] overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-gray-600">lock</span>
+</div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">analytics</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Veri Analisti</h3>
+<p class="text-sm text-gray-400 line-clamp-2">Verileri anlamlı bilgilere dönüştürerek stratejik kararlar alınmasını sağlar.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">SQL</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">İstatistik</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Python</span>
+</div>
+<button class="mt-2 w-full flex items-center justify-center gap-2 h-10 rounded-lg bg-gray-800 text-gray-500 font-bold text-sm cursor-not-allowed border border-transparent" disabled="">
+<span>Kilitli</span>
+</button>
+</div>
+<!-- Card 2: Software Specialist -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-border-dark bg-card-dark p-5 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,194,168,0.1)] overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-gray-600">lock</span>
+</div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">terminal</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Yazılım Uzmanı</h3>
+<p class="text-sm text-gray-400 line-clamp-2">Modern yazılım prensipleriyle güvenli ve ölçeklenebilir uygulamalar geliştir.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Java</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Algoritma</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">OOP</span>
+</div>
+<button class="mt-2 w-full flex items-center justify-center gap-2 h-10 rounded-lg bg-gray-800 text-gray-500 font-bold text-sm cursor-not-allowed border border-transparent" disabled="">
+<span>Kilitli</span>
+</button>
+</div>
+<!-- Card 3: Cyber Security -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-border-dark bg-card-dark p-5 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,194,168,0.1)] overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-gray-600">lock</span>
+</div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">security</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Siber Güvenlik</h3>
+<p class="text-sm text-gray-400 line-clamp-2">Dijital varlıkları koru, tehditleri analiz et ve güvenli ağlar oluştur.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Ağ Güvenliği</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Ethical Hacking</span>
+</div>
+<button class="mt-2 w-full flex items-center justify-center gap-2 h-10 rounded-lg bg-gray-800 text-gray-500 font-bold text-sm cursor-not-allowed border border-transparent" disabled="">
+<span>Kilitli</span>
+</button>
+</div>
+<!-- Card 4: Game Development -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-border-dark bg-card-dark p-5 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,194,168,0.1)] overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-gray-600">lock</span>
+</div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">sports_esports</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Oyun Geliştirme</h3>
+<p class="text-sm text-gray-400 line-clamp-2">Hayalindeki dünyaları kodlayarak interaktif deneyimlere dönüştür.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Unity</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">C#</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">3D Modelleme</span>
+</div>
+<button class="mt-2 w-full flex items-center justify-center gap-2 h-10 rounded-lg bg-gray-800 text-gray-500 font-bold text-sm cursor-not-allowed border border-transparent" disabled="">
+<span>Kilitli</span>
+</button>
+</div>
+<!-- Card 5: Digital Design -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-border-dark bg-card-dark p-5 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,194,168,0.1)] overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-gray-600">lock</span>
+</div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">brush</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Dijital Tasarım</h3>
+<p class="text-sm text-gray-400 line-clamp-2">Kullanıcı deneyimini ön planda tutan modern ve estetik arayüzler tasarla.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">UI/UX</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Adobe XD</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Figma</span>
+</div>
+<button class="mt-2 w-full flex items-center justify-center gap-2 h-10 rounded-lg bg-gray-800 text-gray-500 font-bold text-sm cursor-not-allowed border border-transparent" disabled="">
+<span>Kilitli</span>
+</button>
+</div>
+<!-- Card 6: Robotic Coding -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-border-dark bg-card-dark p-5 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,194,168,0.1)] overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-gray-600">lock</span>
+</div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Robotik Kodlama</h3>
+<p class="text-sm text-gray-400 line-clamp-2">Donanım ve yazılımı birleştirerek otonom sistemler ve robotlar üret.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Arduino</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">Sensörler</span>
+<span class="px-2 py-1 rounded bg-background-dark border border-border-dark text-[11px] font-medium text-[#9abcb7]">C++</span>
+</div>
+<button class="mt-2 w-full flex items-center justify-center gap-2 h-10 rounded-lg bg-gray-800 text-gray-500 font-bold text-sm cursor-not-allowed border border-transparent" disabled="">
+<span>Kilitli</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Legend / Info Footer -->
+<section class="mt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 border-t border-border-dark pt-6 pb-10">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+<span>Tavsiye Edilen</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-gray-600"></span>
+<span>Henüz Açılmadı</span>
+</div>
+</div>
+<div class="mt-4 sm:mt-0 text-center sm:text-right">
+<p>© 2024 DIGEM - Tüm Hakları Saklıdır</p>
+</div>
+</section>
+</main>
+</body></html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite v2.1 - Öğrenci Portfolyosu</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a2230",
+                        "border-dark": "#2a3447",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col antialiased selection:bg-primary/30">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<!-- Logo & Branding -->
+<div class="flex items-center gap-3">
+<div class="flex size-8 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-white">PUSULA Lite <span class="text-primary text-xs font-medium ml-1 bg-primary/10 px-1.5 py-0.5 rounded border border-primary/20">v2.1</span></h1>
+</div>
+<!-- Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-white hover:text-primary transition-colors" href="#">Ana Sayfa</a>
+<a class="text-sm font-medium text-primary" href="#">Portfolyo</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition-colors" href="#">Rozetler</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition-colors" href="#">Ayarlar</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<!-- Employer Toggle -->
+<div class="hidden sm:flex items-center gap-3 px-3 py-1.5 rounded-full border border-border-dark bg-surface-dark/50">
+<span class="text-xs font-medium text-slate-400">İşveren Görünümü</span>
+<button aria-checked="false" class="relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-slate-700" role="switch" type="button">
+<span class="sr-only">İşveren Görünümünü Aç</span>
+<span aria-hidden="true" class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+</button>
+</div>
+<!-- Profile Dropdown Trigger -->
+<button class="size-9 rounded-full bg-surface-dark border border-border-dark overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark">
+<img alt="Kullanıcı Profil Resmi" class="h-full w-full object-cover" data-alt="Close up portrait of a young man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzIFHQHtwZ0Z0ExKkZiDpjfgDvJYc0seI9CnSmzRSj5ZEVTB-Ivx6Oh9CITZz77RaTpeO-5SsI2YoY6utap9oBXa4zhL1grMhImfsgRKq2_MmG88FCzi1IsQ2IeaE8LnAZgvANk8Co3zztJ-Xqa_ozTQZ9Y0FqCscBAd2k9WernJAtMrMMXilKSUygeHfkxy_SK1YpnPen3xgDw0jdQhMwEQNmTnsnxqPFNRBqVb-vqceyIneVtwvNLygaOBHAM3CLI2l1C8s2Asw"/>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 gap-8 grid grid-cols-1 lg:grid-cols-12">
+<!-- Left Sidebar (Profile & Stats) -->
+<aside class="lg:col-span-4 flex flex-col gap-6">
+<!-- Profile Card -->
+<div class="bg-surface-dark rounded-xl border border-border-dark p-6 relative overflow-hidden group">
+<!-- Abstract Background Decoration -->
+<div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-primary/20 to-purple-500/10 z-0"></div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="relative">
+<div class="size-24 rounded-full border-4 border-surface-dark overflow-hidden shadow-xl">
+<img alt="Ahmet Yılmaz Profil Resmi" class="h-full w-full object-cover" data-alt="Portrait of a professional man in a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARwfpCDtQOJsrsZ1IR8PaZfOtwKrA0z6jzXOtXSkzUF-UN5RuUOD5toCR20cARJyqrMGqLt5Wh60ywzx0pfRDswywEP5VDNzp6yNlAmLb0JSOB-rLJ88wn0fI6SildbdWnf2lV80jwG_j8cAgMeJH-TK890qDajRbm33UT2qdkwdaBdFsAwT1GvA6XxH0VQmkwAYErVKU4-l8UyBFgy3q7fo10K9X6HSlFOsIsADUfRpxPQdv-01yEEOi1ovmpnS4S4d5CkrzIe1g"/>
+</div>
+<div class="absolute bottom-0 right-0 translate-x-1 translate-y-1 bg-blue-500 text-white p-1 rounded-full border-2 border-surface-dark shadow-sm" title="Doğrulanmış Hesap">
+<span class="material-symbols-outlined text-[16px] font-bold leading-none block">verified</span>
+</div>
+</div>
+<h2 class="mt-4 text-xl font-bold text-white">Ahmet Yılmaz</h2>
+<p class="text-primary font-medium text-sm mt-1">Veri Analisti Adayı</p>
+<div class="flex items-center gap-1 mt-2 text-slate-400 text-sm">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>Eskişehir, Türkiye</span>
+</div>
+<div class="mt-6 w-full flex gap-3">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                            İletişim
+                        </button>
+<button class="bg-border-dark hover:bg-slate-700 text-white font-medium py-2 px-3 rounded-lg text-sm transition-colors flex items-center justify-center" title="Özgeçmişi İndir">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Stats & Badges -->
+<div class="bg-surface-dark rounded-xl border border-border-dark p-6">
+<h3 class="text-sm uppercase tracking-wider text-slate-400 font-semibold mb-4">Başarı İstatistikleri</h3>
+<!-- TKP Score -->
+<div class="bg-background-dark rounded-lg p-4 border border-border-dark mb-6 flex items-center justify-between">
+<div>
+<p class="text-slate-400 text-xs font-medium mb-1">Topluluk Katkı Puanı (TKP)</p>
+<p class="text-2xl font-bold text-white">1,250</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-green-500/10 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="text-white font-medium text-sm">Rozetlerim (8)</h4>
+<a class="text-primary text-xs hover:underline" href="#">Tümünü Gör</a>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="aspect-square bg-border-dark/50 rounded-lg p-2 flex flex-col items-center justify-center gap-1 border border-border-dark hover:border-primary/50 transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-yellow-500 text-3xl group-hover:scale-110 transition-transform">terminal</span>
+<span class="text-[10px] text-center text-slate-300 leading-tight">Python<br/>Ustası</span>
+</div>
+<div class="aspect-square bg-border-dark/50 rounded-lg p-2 flex flex-col items-center justify-center gap-1 border border-border-dark hover:border-primary/50 transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-blue-400 text-3xl group-hover:scale-110 transition-transform">bar_chart</span>
+<span class="text-[10px] text-center text-slate-300 leading-tight">Veri<br/>Görsel..</span>
+</div>
+<div class="aspect-square bg-border-dark/50 rounded-lg p-2 flex flex-col items-center justify-center gap-1 border border-border-dark hover:border-primary/50 transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-purple-400 text-3xl group-hover:scale-110 transition-transform">database</span>
+<span class="text-[10px] text-center text-slate-300 leading-tight">SQL<br/>Temelleri</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Partner Logos (Footer equivalent for sidebar) -->
+<div class="flex flex-col items-center gap-4 py-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<p class="text-xs text-slate-500 text-center">Destekleyen Kuruluşlar</p>
+<div class="flex gap-4 justify-center items-center">
+<div class="h-8 w-8 bg-white/10 rounded-full flex items-center justify-center text-[10px] font-bold">UNDP</div>
+<div class="h-8 w-8 bg-white/10 rounded-full flex items-center justify-center text-[10px] font-bold">TBB</div>
+<div class="h-8 w-8 bg-white/10 rounded-full flex items-center justify-center text-[10px] font-bold">EBB</div>
+</div>
+</div>
+</aside>
+<!-- Right Content (Artifacts Grid) -->
+<section class="lg:col-span-8 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-white">Öne Çıkan Artefaktlar</h2>
+<div class="flex gap-2">
+<button class="text-slate-400 hover:text-white p-2 rounded hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="text-slate-400 hover:text-white p-2 rounded hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined">list</span>
+</button>
+</div>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Artifact 1: Chart/Analysis -->
+<article class="bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all group md:col-span-2 flex flex-col md:flex-row h-auto md:h-56">
+<div class="w-full md:w-2/5 h-48 md:h-full bg-gradient-to-br from-indigo-900/50 to-slate-900 relative p-4 flex items-center justify-center">
+<!-- Placeholder Chart -->
+<div class="w-full h-full flex items-end justify-between gap-2 px-4 pb-2 opacity-80 group-hover:scale-105 transition-transform duration-300">
+<div class="w-1/5 h-[40%] bg-blue-500 rounded-t"></div>
+<div class="w-1/5 h-[70%] bg-blue-400 rounded-t"></div>
+<div class="w-1/5 h-[50%] bg-indigo-500 rounded-t"></div>
+<div class="w-1/5 h-[90%] bg-primary rounded-t"></div>
+</div>
+<div class="absolute top-3 left-3 bg-black/40 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white border border-white/10">.csv</div>
+<img alt="Grafik Görselleştirmesi" class="absolute inset-0 w-full h-full object-cover opacity-0" data-alt="Abstract bar chart visualization representing sales data" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB20E9hoFWbVPgntHWhaPLP3S2K_G0CkQgZRr9DlpjiIlgCor4HGN28rdu96_OB2CQn6P5jubigF3-k4vlk8sPfSwdiMmvKXjmnc4CG-drAd2pX2_PJozcWUvhxT4oDvqwdHyLdM6-JUyFFTA9BbV5kxJOG2tf2KHc3JJ-eqaG7OqjAWtIacqACz39mOmD-Uu5wR7Z-m5TcCHYkluSe962KD3qCxhAURJrFdtRuDLY6iPSSMS4H7UTbZFOqDVsb5vnwIgEgcdG7I8"/>
+</div>
+<div class="p-5 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-semibold text-blue-400 bg-blue-400/10 px-2 py-1 rounded uppercase tracking-wide">Veri Analizi</span>
+<span class="text-xs text-slate-500">12 Ekim 2023</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">E-Ticaret Satış Performans Analizi</h3>
+<p class="text-sm text-slate-400 line-clamp-2">2023 Q3 dönemi için bölgesel satış verilerinin Python Pandas kütüphanesi ile analizi ve Matplotlib ile görselleştirilmesi. Müşteri segmentasyonunda %15 iyileşme önerisi sunuldu.</p>
+</div>
+<div class="flex items-center gap-3 mt-4">
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full bg-slate-700 border border-surface-dark flex items-center justify-center text-[10px] text-white font-bold" title="Python">Py</div>
+<div class="size-6 rounded-full bg-slate-700 border border-surface-dark flex items-center justify-center text-[10px] text-white font-bold" title="Pandas">Pd</div>
+</div>
+<button class="ml-auto text-sm font-medium text-white hover:text-primary flex items-center gap-1 transition-colors">
+                                Projeyi İncele
+                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Artifact 2: Code Snippet -->
+<article class="bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all group flex flex-col">
+<div class="bg-[#1e1e1e] p-4 border-b border-border-dark relative overflow-hidden h-40">
+<!-- Fake Code Window -->
+<div class="flex gap-1.5 mb-3">
+<div class="size-2.5 rounded-full bg-red-500/20"></div>
+<div class="size-2.5 rounded-full bg-yellow-500/20"></div>
+<div class="size-2.5 rounded-full bg-green-500/20"></div>
+</div>
+<pre class="text-[10px] font-mono text-slate-300 leading-relaxed opacity-80 select-none"><span class="text-pink-400">def</span> <span class="text-yellow-300">segment_customers</span>(data):
+    <span class="text-green-400">"""K-Means kümeleme algoritması"""</span>
+    model = KMeans(n_clusters=<span class="text-purple-400">5</span>)
+    clusters = model.fit_predict(data)
+    <span class="text-pink-400">return</span> clusters
+</pre>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white border border-white/10">.py</div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] to-transparent h-8 mt-auto top-full -translate-y-full"></div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-semibold text-yellow-500 bg-yellow-500/10 px-2 py-1 rounded uppercase tracking-wide">Algoritma</span>
+<span class="text-xs text-slate-500">28 Eylül 2023</span>
+</div>
+<h3 class="text-base font-bold text-white mb-1 group-hover:text-primary transition-colors">Müşteri Segmentasyon Modeli</h3>
+<p class="text-xs text-slate-400 line-clamp-2 mb-4">K-Means kullanarak müşteri davranışlarını gruplayan makine öğrenmesi betiği.</p>
+<button class="mt-auto w-full py-2 bg-background-dark hover:bg-border-dark text-slate-300 text-xs font-medium rounded border border-border-dark transition-colors">
+                            Kod Detayı
+                        </button>
+</div>
+</article>
+<!-- Artifact 3: Database Schema -->
+<article class="bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all group flex flex-col">
+<div class="bg-background-dark p-0 border-b border-border-dark relative h-40 flex items-center justify-center overflow-hidden">
+<!-- Abstract Schema Visual -->
+<div class="relative w-3/4 h-3/4 opacity-60 group-hover:scale-105 transition-transform duration-500">
+<div class="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-8 border border-slate-600 rounded bg-surface-dark"></div>
+<div class="absolute bottom-2 left-4 w-16 h-12 border border-slate-600 rounded bg-surface-dark"></div>
+<div class="absolute bottom-2 right-4 w-16 h-12 border border-slate-600 rounded bg-surface-dark"></div>
+<!-- Lines -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 h-8 w-px bg-slate-600"></div>
+<div class="absolute top-[4.5rem] left-12 right-12 h-px bg-slate-600"></div>
+<div class="absolute top-[4.5rem] left-12 h-4 w-px bg-slate-600"></div>
+<div class="absolute top-[4.5rem] right-12 h-4 w-px bg-slate-600"></div>
+</div>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white border border-white/10">.sql</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-semibold text-purple-400 bg-purple-400/10 px-2 py-1 rounded uppercase tracking-wide">Veritabanı</span>
+<span class="text-xs text-slate-500">15 Eylül 2023</span>
+</div>
+<h3 class="text-base font-bold text-white mb-1 group-hover:text-primary transition-colors">CRM Veritabanı Tasarımı</h3>
+<p class="text-xs text-slate-400 line-clamp-2 mb-4">İlişkisel veritabanı şeması ve normalizasyon raporu (3NF).</p>
+<button class="mt-auto w-full py-2 bg-background-dark hover:bg-border-dark text-slate-300 text-xs font-medium rounded border border-border-dark transition-colors">
+                            Şemayı Gör
+                        </button>
+</div>
+</article>
+<!-- Artifact 4: PDF Report -->
+<article class="bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all group flex flex-col">
+<div class="bg-slate-800 p-4 border-b border-border-dark relative h-40 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-red-500/80 group-hover:scale-110 transition-transform duration-300">picture_as_pdf</span>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white border border-white/10">.pdf</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-semibold text-teal-400 bg-teal-400/10 px-2 py-1 rounded uppercase tracking-wide">Rapor</span>
+<span class="text-xs text-slate-500">02 Eylül 2023</span>
+</div>
+<h3 class="text-base font-bold text-white mb-1 group-hover:text-primary transition-colors">Sektörel Pazar Araştırması</h3>
+<p class="text-xs text-slate-400 line-clamp-2 mb-4">Perakende sektörü dijital dönüşüm trendleri üzerine kapsamlı araştırma raporu.</p>
+<button class="mt-auto w-full py-2 bg-background-dark hover:bg-border-dark text-slate-300 text-xs font-medium rounded border border-border-dark transition-colors">
+                            Raporu İndir
+                        </button>
+</div>
+</article>
+<!-- Artifact 5: Script/Automation -->
+<article class="bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all group flex flex-col">
+<div class="bg-slate-900 p-4 border-b border-border-dark relative h-40 flex items-center justify-center">
+<div class="text-center">
+<span class="material-symbols-outlined text-5xl text-green-500/80 group-hover:rotate-180 transition-transform duration-700">settings</span>
+<div class="mt-2 text-xs font-mono text-green-500/60">automating...</div>
+</div>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white border border-white/10">.py</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-1 rounded uppercase tracking-wide">Otomasyon</span>
+<span class="text-xs text-slate-500">20 Ağustos 2023</span>
+</div>
+<h3 class="text-base font-bold text-white mb-1 group-hover:text-primary transition-colors">Stok Takip Otomasyonu</h3>
+<p class="text-xs text-slate-400 line-clamp-2 mb-4">Düşük stok seviyeleri için otomatik e-posta uyarısı gönderen script.</p>
+<button class="mt-auto w-full py-2 bg-background-dark hover:bg-border-dark text-slate-300 text-xs font-medium rounded border border-border-dark transition-colors">
+                            Kod Detayı
+                        </button>
+</div>
+</article>
+</div>
+<div class="mt-4 flex justify-center">
+<button class="text-sm font-medium text-slate-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-surface-dark transition-colors">
+                    Daha Fazla Göster
+                    <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Simple Footer for Context -->
+<footer class="border-t border-border-dark bg-background-dark mt-auto py-6">
+<div class="max-w-[1200px] mx-auto px-4 text-center">
+<p class="text-xs text-slate-600">© 2024 PUSULA Lite v2.1. Tüm hakları saklıdır. UNDP, Eskişehir Büyükşehir Belediyesi ve TBB işbirliği ile geliştirilmiştir.</p>
+</div>
+</footer>
+</body></html>

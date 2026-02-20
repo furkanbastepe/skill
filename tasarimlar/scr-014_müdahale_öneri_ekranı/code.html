@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-014 Müdahale Öneri Ekranı</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ab8a1",
+                        "primary-hover": "#089c8a",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102220",
+                        "surface-dark": "#1A2E2C",
+                        "surface-border": "#2C403E",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Lexend', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Custom Scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102220; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2C403E; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b5451; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-border bg-surface-dark px-10 py-3 shrink-0 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM | Rehber Paneli</h2>
+</div>
+<div class="flex items-center gap-9 hidden md:flex">
+<a class="text-slate-400 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Öğrencilerim</a>
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary pb-0.5" href="#">Müdahaleler</a>
+<a class="text-slate-400 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Raporlar</a>
+<a class="text-slate-400 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Takvim</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="relative hidden sm:block">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="bg-[#102220] border border-surface-border text-sm rounded-lg block w-64 pl-10 p-2.5 text-white placeholder-slate-500 focus:ring-primary focus:border-primary" placeholder="Öğrenci Ara..." type="text"/>
+</div>
+<div class="flex items-center gap-3 border-l border-surface-border pl-6">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-white">Canan Yılmaz</p>
+<p class="text-xs text-slate-400">Kıdemli Rehber</p>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-surface-border" data-alt="Portrait of a female coach smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGMIKi91d5Jlo17dgAxuucbHTIT5aG5ZDH2-2dAhmuPlnYBpCVlSqc4YxkJLfn2Gd7XuU-4BBCo7nMbXuNk3jx0k0PAH0Nqzf9XdIA8MJ7FREpFMdHfmoNnQXXEaz--auuQwMemgRyO_wEPgx5Gq9IunRKZNMCHRrfwo_XUow8okj733jnjCwgJna2PBFyn0q3_ILQGpJIDQkdf9xAZMYQb8pTl6VKjG7x1kdrbWiZkStQ9accuyRXSpHjI_lL6JbnnRIVLVJVtQ");'></div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar: Context Panel -->
+<aside class="w-80 bg-[#152826] border-r border-surface-border flex flex-col shrink-0 overflow-y-auto hidden lg:flex">
+<div class="p-6 border-b border-surface-border">
+<div class="flex items-center gap-4 mb-4">
+<div class="relative">
+<div class="size-16 rounded-full bg-cover bg-center ring-2 ring-red-500/50" data-alt="Portrait of a male student looking thoughtful" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDpbg-Dr8k7lawVenZayxcECNBR0_K8Gp_LAOkapiXnbf0wR8qmH-q8ipUq4Kt-8WqXuVgsvGqQATy1vTzYfPKTprWiMwcsxC7ylAY00nrogl8kz4oGKUVw3WIitkhWI6h-kW4o9x6ZcEcBbL_OCHFf6kTkI7zE_Ti0C0oEqtoqGOH2z3xRK-z2yVlidAAmH2gsnH1rrnPm_P4F4yfcMW1tGffCsYQIf8jrrFOh_W4We76uNt3O_BsrQdI5cdF_WKzBxI-QBjKs9g");'></div>
+<div class="absolute -bottom-1 -right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-[#152826]">RİSKLİ</div>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">Ali Yılmaz</h3>
+<p class="text-slate-400 text-sm">11. Sınıf - Sayısal A</p>
+<div class="mt-1 flex items-center gap-1 text-red-400 text-xs font-medium">
+<span class="material-symbols-outlined text-[14px] filled">trending_down</span>
+<span>Başarı %15 Düştü</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-4">
+<div class="bg-surface-border/30 rounded p-2 text-center">
+<p class="text-xs text-slate-400">Son Giriş</p>
+<p class="text-white font-medium text-sm">3 Gün Önce</p>
+</div>
+<div class="bg-surface-border/30 rounded p-2 text-center">
+<p class="text-xs text-slate-400">Ödev Tamamlama</p>
+<p class="text-white font-medium text-sm text-red-400">%42</p>
+</div>
+</div>
+</div>
+<div class="p-6 flex-1">
+<h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">history</span>
+                    Son Aktiviteler
+                </h4>
+<div class="relative pl-4 border-l border-surface-border space-y-8">
+<!-- Event 1 -->
+<div class="relative group">
+<div class="absolute -left-[21px] bg-[#152826] p-1">
+<div class="size-2.5 rounded-full bg-red-500 ring-4 ring-[#152826]"></div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-slate-500">Dün, 14:30</span>
+<p class="text-sm font-medium text-white group-hover:text-red-400 transition-colors">Boss Fight #3: Başarısız (2x)</p>
+<p class="text-xs text-slate-400">Algoritma Temelleri konusunda zorlanıyor.</p>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="relative group">
+<div class="absolute -left-[21px] bg-[#152826] p-1">
+<div class="size-2.5 rounded-full bg-orange-400 ring-4 ring-[#152826]"></div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-slate-500">2 Gün Önce</span>
+<p class="text-sm font-medium text-white group-hover:text-orange-300 transition-colors">Haftalık Ödev Teslim Edilmedi</p>
+<p class="text-xs text-slate-400">Python: Listeler ve Sözlükler</p>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="relative group">
+<div class="absolute -left-[21px] bg-[#152826] p-1">
+<div class="size-2.5 rounded-full bg-surface-border ring-4 ring-[#152826]"></div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-slate-500">4 Gün Önce</span>
+<p class="text-sm font-medium text-white">Canlı Derse Katılmadı</p>
+<p class="text-xs text-slate-400">Sebep belirtilmedi.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-surface-border mt-auto">
+<button class="w-full flex items-center justify-center gap-2 text-slate-400 hover:text-white text-sm py-2 transition-colors">
+<span class="material-symbols-outlined text-lg">description</span>
+                    Detaylı Öğrenci Raporu
+                </button>
+</div>
+</aside>
+<!-- Main Content Area: Wizard -->
+<main class="flex-1 flex flex-col min-w-0 bg-background-dark relative">
+<!-- Wizard Header / Stepper -->
+<div class="bg-surface-dark/50 border-b border-surface-border p-6 pb-2">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h1 class="text-2xl font-bold text-white">Müdahale Planı Oluştur</h1>
+<p class="text-slate-400 text-sm mt-1">Öğrenci Ali Yılmaz için iyileştirme adımları belirleniyor.</p>
+</div>
+<div class="hidden sm:flex items-center gap-2">
+<button class="text-slate-400 hover:text-white text-sm font-medium px-4 py-2 rounded hover:bg-surface-border transition-colors">Taslağı Kaydet</button>
+</div>
+</div>
+<!-- Stepper -->
+<nav aria-label="Progress">
+<ol class="flex items-center" role="list">
+<li class="relative pr-8 sm:pr-20">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-primary"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary-hover" href="#">
+<span class="material-symbols-outlined text-white text-sm font-bold">check</span>
+<span class="sr-only">Adım 1</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium text-primary">Teşhis</span>
+</li>
+<li class="relative pr-8 sm:pr-20">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-primary"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary-hover ring-4 ring-primary/20" href="#">
+<span class="text-white text-sm font-bold">2</span>
+<span class="sr-only">Adım 2</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium text-primary">Strateji</span>
+</li>
+<li class="relative pr-8 sm:pr-20">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-surface-border"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-surface-dark border-2 border-surface-border hover:border-slate-400" href="#">
+<span class="text-slate-400 text-sm font-bold">3</span>
+<span class="sr-only">Adım 3</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium text-slate-500">Planlama</span>
+</li>
+<li class="relative">
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-surface-dark border-2 border-surface-border hover:border-slate-400" href="#">
+<span class="text-slate-400 text-sm font-bold">4</span>
+<span class="sr-only">Adım 4</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium text-slate-500">Önizleme</span>
+</li>
+</ol>
+</nav>
+</div>
+<!-- Wizard Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-6 md:p-10">
+<div class="max-w-4xl mx-auto space-y-10">
+<!-- Section: Diagnosis Review (Already Completed Step) -->
+<section class="opacity-60 pointer-events-none grayscale">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="bg-primary/20 text-primary rounded-full size-8 flex items-center justify-center text-sm">1</span>
+                                Tespit Edilen Kök Nedenler
+                            </h2>
+<button class="text-primary text-sm font-medium">Düzenle</button>
+</div>
+<div class="bg-surface-dark border border-surface-border rounded-xl p-6 flex flex-wrap gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-red-500/10 text-red-400 border border-red-500/20">
+<span class="material-symbols-outlined text-lg">psychology_alt</span>
+                                Motivasyon Eksikliği
+                            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20">
+<span class="material-symbols-outlined text-lg">code_off</span>
+                                Temel Algoritma Eksiği
+                            </span>
+</div>
+</section>
+<!-- Section: Strategy & Goals (Active Step) -->
+<section>
+<h2 class="text-xl font-bold text-white flex items-center gap-2 mb-6">
+<span class="bg-primary text-white rounded-full size-8 flex items-center justify-center text-sm shadow-[0_0_15px_rgba(10,184,161,0.4)]">2</span>
+                            İyileştirme Hedefleri Belirleyin
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Left: Suggested Templates -->
+<div class="md:col-span-8 space-y-4">
+<p class="text-sm text-slate-400 mb-2">Önerilen Mikro Hedefler (Öğrenci geçmişine göre filtrelendi)</p>
+<!-- Template Card 1 -->
+<div class="group relative bg-surface-dark border border-surface-border hover:border-primary/50 rounded-xl p-4 transition-all cursor-pointer">
+<div class="flex items-start gap-4">
+<div class="bg-blue-500/10 p-2 rounded-lg text-blue-400 group-hover:bg-blue-500/20 transition-colors">
+<span class="material-symbols-outlined">play_circle</span>
+</div>
+<div class="flex-1">
+<h3 class="text-white font-medium text-base mb-1">Ders Tekrarı: Döngüler ve Koşullar</h3>
+<p class="text-slate-400 text-sm">Bölüm 4.2 ve 4.3 videolarını izle ve not çıkar.</p>
+</div>
+<div class="flex items-center h-full">
+<button class="size-8 rounded-full border border-surface-border text-slate-400 hover:text-primary hover:border-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Template Card 2 -->
+<div class="group relative bg-surface-dark border-2 border-primary bg-primary/5 rounded-xl p-4 transition-all cursor-pointer">
+<div class="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">SEÇİLDİ</div>
+<div class="flex items-start gap-4">
+<div class="bg-green-500/10 p-2 rounded-lg text-green-400">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<div class="flex-1">
+<h3 class="text-white font-medium text-base mb-1">Pratik: 3 Kolay Seviye Algoritma Sorusu</h3>
+<p class="text-slate-400 text-sm">Hackerrank veya Leetcode üzerinden temel seviye döngü soruları çöz.</p>
+</div>
+<div class="flex items-center h-full">
+<button class="size-8 rounded-full bg-primary text-white flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Template Card 3 -->
+<div class="group relative bg-surface-dark border border-surface-border hover:border-primary/50 rounded-xl p-4 transition-all cursor-pointer">
+<div class="flex items-start gap-4">
+<div class="bg-purple-500/10 p-2 rounded-lg text-purple-400 group-hover:bg-purple-500/20 transition-colors">
+<span class="material-symbols-outlined">quiz</span>
+</div>
+<div class="flex-1">
+<h3 class="text-white font-medium text-base mb-1">Kısa Sınav: Mantıksal Operatörler</h3>
+<p class="text-slate-400 text-sm">10 soruluk pekiştirme testini tamamla (Min %70 başarı).</p>
+</div>
+<div class="flex items-center h-full">
+<button class="size-8 rounded-full border border-surface-border text-slate-400 hover:text-primary hover:border-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Custom Goal Input -->
+<div class="mt-4 pt-4 border-t border-surface-border border-dashed">
+<label class="block text-sm font-medium text-slate-300 mb-2">Özel Hedef Ekle</label>
+<div class="flex gap-2">
+<input class="flex-1 bg-surface-dark border border-surface-border text-white text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 placeholder-slate-500" placeholder="Örn: Rehberlik ofisine uğra..." type="text"/>
+<button class="bg-surface-border hover:bg-slate-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors">Ekle</button>
+</div>
+</div>
+</div>
+<!-- Right: Selected Goals Summary -->
+<div class="md:col-span-4">
+<div class="bg-surface-dark/50 border border-surface-border rounded-xl p-5 sticky top-4">
+<h3 class="text-white font-bold text-lg mb-4 flex items-center justify-between">
+                                        Seçilenler
+                                        <span class="bg-primary/20 text-primary text-xs font-bold px-2 py-1 rounded-full">1 Hedef</span>
+</h3>
+<ul class="space-y-3 mb-6">
+<li class="flex gap-3 items-start group">
+<span class="material-symbols-outlined text-green-400 text-sm mt-1">terminal</span>
+<div class="flex-1">
+<p class="text-sm text-slate-200">Pratik: 3 Kolay Seviye Algoritma Sorusu</p>
+</div>
+<button class="text-slate-500 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</li>
+</ul>
+<div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 flex gap-3 items-start">
+<span class="material-symbols-outlined text-blue-400 text-lg">info</span>
+<p class="text-xs text-blue-300 leading-relaxed">
+                                            Bu planı tamamladığında öğrencinin "Riskli" statüsü otomatik olarak "İzleniyor" seviyesine çekilecektir.
+                                        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="bg-surface-dark border-t border-surface-border p-4 px-10">
+<div class="max-w-4xl mx-auto flex items-center justify-between">
+<button class="flex items-center gap-2 text-slate-400 hover:text-white font-medium transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Geri: Teşhis
+                    </button>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg border border-surface-border text-slate-300 hover:bg-surface-border hover:text-white font-medium text-sm transition-all">Taslağı Kaydet</button>
+<button class="px-6 py-2.5 rounded-lg bg-primary hover:bg-primary-hover text-white font-bold text-sm shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
+                            İleri: Planlama
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

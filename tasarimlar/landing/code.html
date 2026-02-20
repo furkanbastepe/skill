@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA - Code for the Commons</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#10B981", // Bio-Lume Green
+                        "primary-dark": "#059669",
+                        "secondary": "#F59E0B", // Solar Gold
+                        "background-dark": "#18181B", // Deep Loam
+                        "surface": "rgba(39, 39, 42, 0.6)", // Basalt
+                        "text-main": "#ECFDF5", // Mint Cream
+                        "text-muted": "#71717A", // Zinc
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"], // Using Inter as Satoshi replacement
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+                    },
+                    animation: {
+                        'ticker': 'ticker 30s linear infinite',
+                        'bloom': 'bloom 2s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        ticker: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        bloom: {
+                            '0%': { boxShadow: '0 0 10px rgba(16, 185, 129, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(16, 185, 129, 0.6)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #18181B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10B981;
+        }
+        
+        .glass-panel {
+            background: rgba(39, 39, 42, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-text-main font-body min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark relative">
+<!-- Background Noise Overlay -->
+<div class="fixed inset-0 bg-noise pointer-events-none z-0 mix-blend-overlay"></div>
+<!-- Gradient Orbs -->
+<div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[#064E3B]/40 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<!-- Main Content Container -->
+<div class="relative z-10 flex flex-col min-h-screen">
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+<div class="max-w-7xl mx-auto glass-panel rounded-full px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-[#064E3B] flex items-center justify-center text-background-dark shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+<span class="material-symbols-outlined text-[20px]">forest</span>
+</div>
+<span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">PUSULA</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-muted hover:text-white transition-colors" href="#">Manifesto</a>
+<a class="text-sm font-medium text-text-muted hover:text-white transition-colors" href="#">About</a>
+<a class="text-sm font-medium text-text-muted hover:text-white transition-colors" href="#">Mission</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block text-sm font-bold text-white hover:text-primary transition-colors px-4 py-2">
+                        Login
+                    </button>
+<button class="bg-primary/10 hover:bg-primary/20 border border-primary/50 text-primary px-5 py-2 rounded-full text-sm font-bold tracking-wide transition-all duration-300 flex items-center gap-2 group">
+<span>Terminal</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">terminal</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<main class="flex-grow flex items-center justify-center px-6 pt-24 pb-20 relative">
+<div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+<!-- Left Column: Typography -->
+<div class="flex flex-col gap-8 lg:pr-12 order-2 lg:order-1">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 w-fit backdrop-blur-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-mono text-primary tracking-wide uppercase">System Online v2.4</span>
+</div>
+<h1 class="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] leading-[0.9] tracking-tighter text-white">
+                        Code for the <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary text-glow">Commons</span>
+</h1>
+<p class="text-lg md:text-xl text-text-muted max-w-xl leading-relaxed font-light">
+                        Reimagine the developer journey. Your code is a tool for activism, community repair, and building a sustainable future.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="group relative overflow-hidden bg-primary text-background-dark font-display font-bold text-lg px-8 py-4 rounded-full transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] animate-bloom">
+<span class="relative z-10 flex items-center gap-2">
+                                Initialize Impact
+                                <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</span>
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</button>
+<button class="group flex items-center justify-center gap-3 px-8 py-4 rounded-full border border-white/10 hover:border-white/30 hover:bg-white/5 transition-all duration-300">
+<span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">play_circle</span>
+<span class="font-display font-bold text-text-muted group-hover:text-white transition-colors">Watch Demo</span>
+</button>
+</div>
+<div class="flex items-center gap-4 pt-8 border-t border-white/5 mt-4">
+<div class="flex -space-x-3">
+<img alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-background-dark grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPFeeVYrtVfJT0l2tDgUcQsj_S4Dah3JCJfs_K-S8lC5mJLiC8Bx1h7KvbHNQpOREMkqXpRHRYpHd-QsQNmomhL5E8Gxiisi6lX_jjCv_d6gxyeAWrpk-d0DR_gg1DtWfvH80SVfCbAq8yNpgZNiiuc0ihYWuK1Wz_gSWaS0J8HCuYoOpJLWetC6ppfNzXH3rc4uGDpNfI2OZ6-DR9daqq6khf9n6ko8rtNLCDT_KZM7zEH-MNvsZxffN6MPsUxy0Nl4Wf_f9OtlTi"/>
+<img alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-background-dark grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn-k_0qP962asxPeFnahrxfpbB82VXY8rhTY65d7L-STFgEKQA_aeDruDtkxS51KsRaMQLsczervAK2l6AzK_xumtyIn8-_ZH_N_29c6EDpGsYfXgEApa9mNuSyOCacVg7OhF51CL3AB-GEO3JMJyoaQemCvpK8GiKM1JOKzdVAtK080rYKL7XQvnQPoWcyWZMa6d7ZhGWPq0Auv9f0i83dxDSkYbzsZrLYVP7Nw614BhzOayJpIriZm12zyqkwYW1MbFHxRx3OPYv"/>
+<img alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-background-dark grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDidtafbhWdYojytpKm7XuPH_paUnou56ftAv9HsFtKlT4ouofDxFLRH0roHEibAupXufVrN7Gw07g01Kgfn5pqXGlKNY95Kh1A0zu5pDB3Z0mUSE8rf3dbKuwSU9UXJn1J8_D5mOWNqRrCZkAtOXen4Q84knXRAuDmXfQhmzYyZM33AQ7ett9q3hHUEOPTAVbAW7HFOv-N9RD-Hn4nq-d3hfVYFebaXjgFMjDDFBcekAnrHoXUfulScmoZDStXsWc0WTA4s_ui3K4r"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold font-display">12,000+ Builders</span>
+<span class="text-xs text-text-muted">Joined the collective this month</span>
+</div>
+</div>
+</div>
+<!-- Right Column: 3D Visual -->
+<div class="relative order-1 lg:order-2 flex justify-center lg:justify-end">
+<!-- Decorative Elements behind image -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-secondary/5 rounded-full blur-3xl transform scale-75 animate-pulse"></div>
+<!-- Main Visual Container -->
+<div class="relative w-full aspect-square max-w-[600px] animate-float">
+<!-- Abstract "Laptop with Vines" representation using CSS & Images -->
+<div class="absolute inset-4 rounded-[2rem] bg-gradient-to-br from-[#27272A] to-[#18181B] border border-white/10 shadow-2xl overflow-hidden backdrop-blur-md">
+<!-- Screen Glare -->
+<div class="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-white/5 to-transparent pointer-events-none z-20"></div>
+<!-- "Screen" Content -->
+<div class="absolute inset-[10px] bg-[#0c0c0c] rounded-[1.5rem] overflow-hidden flex flex-col">
+<!-- Fake Browser Header -->
+<div class="h-8 bg-[#1f1f22] flex items-center px-4 gap-2 border-b border-white/5">
+<div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+<div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+<div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+</div>
+<!-- Code Editor Visual -->
+<div class="flex-1 p-6 font-mono text-sm relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&amp;fit=crop&amp;w=1000&amp;q=80')] opacity-20 bg-cover bg-center mix-blend-overlay" data-alt="Abstract nature texture overlay"></div>
+<div class="relative z-10 opacity-80">
+<div class="flex gap-4">
+<div class="text-gray-600 select-none text-right">
+                                                1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7
+                                            </div>
+<div>
+<span class="text-[#c678dd]">import</span> { <span class="text-[#e5c07b]">Nature</span> } <span class="text-[#c678dd]">from</span> <span class="text-[#98c379]">'./earth'</span>;<br/>
+<br/>
+<span class="text-[#c678dd]">async function</span> <span class="text-[#61afef]">healWorld</span>() {<br/>
+                                                  <span class="text-[#c678dd]">const</span> <span class="text-[#e06c75]">impact</span> = <span class="text-[#c678dd]">await</span> <span class="text-[#e5c07b]">Nature</span>.<span class="text-[#61afef]">restore</span>({<br/>
+                                                    target: <span class="text-[#98c379]">'commons'</span>,<br/>
+                                                    method: <span class="text-[#98c379]">'reforestation'</span><br/>
+                                                  });<br/>
+                                                  <span class="text-[#c678dd]">return</span> <span class="text-[#e06c75]">impact</span>;<br/>
+                                                }
+                                            </div>
+</div>
+</div>
+<!-- Vines/Nature Growth Overlay -->
+<img alt="Abstract glowing vines overtaking technology" class="absolute -bottom-10 -right-10 w-2/3 opacity-80 mix-blend-lighten contrast-125 filter hue-rotate-15" data-alt="Abstract glowing vines overtaking technology" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl74Dorqj5GLIK14hsPPysIrAJt5i99u1JJDkNf9IkssnmaMyELgfE5EoZcv-4Io6FUMr5Z2fxWCj3KyVR6mZYnrQ-i-9gzxMjNarQq07sFuQ6kBmzt7kZPmq0hC1PnsDYKfpOqj-sOo0Jf6q3hpESBJjLfDR_1YIVy8f-Nldbea5dCrDF1LoR6UvsuZRwCjAmbwgKwN3Xgf2FMb-bWS1gN9rKpa6artdkvf3-MCsuN6E_EaWatp_P96CoyzVEz1jn-QFNwrZP-4UH"/>
+</div>
+</div>
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-6 -left-6 glass-panel p-4 rounded-xl flex items-center gap-3 animate-float" style="animation-delay: 1s;">
+<div class="bg-secondary/20 p-2 rounded-lg text-secondary">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div>
+<div class="text-xs text-text-muted uppercase font-bold tracking-wider">Current Status</div>
+<div class="text-white font-mono text-sm">Reforestation: Active</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Infinite Ticker Footer -->
+<footer class="fixed bottom-0 left-0 right-0 z-40 glass-panel border-t border-white/5 py-4 overflow-hidden">
+<div class="flex whitespace-nowrap animate-ticker hover:[animation-play-state:paused]">
+<!-- Duplicate content for seamless loop -->
+<div class="flex items-center gap-16 px-8">
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-primary text-xl">forest</span>
+<span class="font-display font-bold text-xl">1,240</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Trees Planted</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-blue-400 text-xl">water_drop</span>
+<span class="font-display font-bold text-xl">450 L</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Water Saved</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-gray-400 text-xl">co2</span>
+<span class="font-display font-bold text-xl">890 kg</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">CO2 Offset</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-secondary text-xl">bolt</span>
+<span class="font-display font-bold text-xl">120</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Active Missions</span>
+</div>
+<!-- Separator -->
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+</div>
+<!-- Duplicate Block -->
+<div class="flex items-center gap-16 px-8">
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-primary text-xl">forest</span>
+<span class="font-display font-bold text-xl">1,240</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Trees Planted</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-blue-400 text-xl">water_drop</span>
+<span class="font-display font-bold text-xl">450 L</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Water Saved</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-gray-400 text-xl">co2</span>
+<span class="font-display font-bold text-xl">890 kg</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">CO2 Offset</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-secondary text-xl">bolt</span>
+<span class="font-display font-bold text-xl">120</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Active Missions</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+</div>
+<!-- Duplicate Block 2 -->
+<div class="flex items-center gap-16 px-8">
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-primary text-xl">forest</span>
+<span class="font-display font-bold text-xl">1,240</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Trees Planted</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-blue-400 text-xl">water_drop</span>
+<span class="font-display font-bold text-xl">450 L</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Water Saved</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-gray-400 text-xl">co2</span>
+<span class="font-display font-bold text-xl">890 kg</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">CO2 Offset</span>
+</div>
+<div class="flex items-center gap-3 text-white/80">
+<span class="material-symbols-outlined text-secondary text-xl">bolt</span>
+<span class="font-display font-bold text-xl">120</span>
+<span class="text-sm uppercase tracking-wide text-text-muted font-medium">Active Missions</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+</div>
+</div>
+</footer>
+</div>
+<!-- Loading State Overlay (Simulated via CSS Animation on load) -->
+<div class="fixed inset-0 z-[100] bg-background-dark flex items-center justify-center pointer-events-none animate-[fadeOut_1s_ease-out_2.5s_forwards]">
+<style>
+            @keyframes fadeOut {
+                to { opacity: 0; visibility: hidden; }
+            }
+            @keyframes spin-slow {
+                to { transform: rotate(360deg); }
+            }
+            .loading-flower path {
+                stroke-dasharray: 100;
+                stroke-dashoffset: 100;
+                animation: draw 2s ease-in-out forwards;
+            }
+            @keyframes draw {
+                to { stroke-dashoffset: 0; }
+            }
+        </style>
+<div class="relative w-32 h-32">
+<!-- Geometric Flower SVG Animation -->
+<svg class="w-full h-full text-primary loading-flower animate-[spin-slow_10s_linear_infinite]" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 100 100">
+<path d="M50 50 L50 10 M50 50 L90 50 M50 50 L50 90 M50 50 L10 50" opacity="0.5"></path>
+<circle cx="50" cy="50" r="10"></circle>
+<path d="M50 20 Q70 20 80 50 Q70 80 50 80 Q30 80 20 50 Q30 20 50 20 Z" transform="rotate(45 50 50)"></path>
+<path d="M50 20 Q70 20 80 50 Q70 80 50 80 Q30 80 20 50 Q30 20 50 20 Z" transform="rotate(-45 50 50)"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-2 h-2 bg-secondary rounded-full animate-ping"></div>
+</div>
+</div>
+</div>
+</body></html>

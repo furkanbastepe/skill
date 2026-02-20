@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite v2.1 - CodeLab</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a1d23",
+                        "border-dark": "#282e39",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for code editor feel */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111318; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #282e39; 
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a4250; 
+        }
+
+        .line-numbers {
+            counter-reset: line;
+        }
+        .code-line::before {
+            counter-increment: line;
+            content: counter(line);
+            display: inline-block;
+            width: 2rem;
+            margin-right: 1rem;
+            text-align: right;
+            color: #4b5563; /* text-gray-600 */
+            user-select: none;
+        }
+        
+        /* Wallpaper Evolution - Subtle animated gradient background */
+        .wallpaper-evolution {
+            background: radial-gradient(circle at 15% 50%, rgba(13, 89, 242, 0.08), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(13, 89, 242, 0.05), transparent 25%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-hidden h-screen flex flex-col wallpaper-evolution">
+<!-- Top Navigation Bar -->
+<header class="h-16 border-b border-border-dark bg-background-dark/95 backdrop-blur-sm flex items-center justify-between px-6 shrink-0 z-20 relative">
+<div class="flex items-center gap-6">
+<!-- Logo Area -->
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold leading-tight tracking-tight">PUSULA Lite v2.1</h1>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span>Python 101</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span>Bölüm 3: Fonksiyonlar</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-4">
+<!-- Progress Pill -->
+<div class="hidden md:flex items-center gap-2 bg-surface-dark px-3 py-1.5 rounded-full border border-border-dark">
+<div class="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-2/3"></div>
+</div>
+<span class="text-xs font-medium text-slate-300">65% Tamamlandı</span>
+</div>
+<div class="h-6 w-px bg-border-dark mx-2"></div>
+<button class="group flex items-center justify-center gap-2 h-9 px-4 rounded-lg bg-surface-dark hover:bg-slate-700 text-slate-200 text-sm font-bold border border-border-dark transition-all">
+<span class="material-symbols-outlined text-yellow-400 group-hover:animate-pulse text-[18px]">lightbulb</span>
+<span>İpucu</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-9 px-6 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold shadow-lg shadow-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+<span>Çalıştır</span>
+</button>
+<!-- User Profile -->
+<div class="ml-2 size-9 rounded-full bg-cover bg-center border border-border-dark cursor-pointer" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmy1zB7_uYRuhsj4PuLZE1wGff5_v2OQOVjv73UJDo62cUAwmV-DOBCeCmkvTSgh6tdggHPn8ebYzy1N0uTDcwcV8qvhwUOSHRu5r1d4Fej3USkD-BIynlqshfq8W86rx_bAKpkdP9v7c6ZWz4jt-a7uP4iM8eIRihl7QXN2taFuQTU-2OcOWu30CcYgZjukkqDADbej19BvEsfq07_ULZ7uD7qL-UorcOdoN1yynI9rolgwrQ_7Iam_Ly7ansyCgmiWNzzuSu8CY");'>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 flex overflow-hidden relative z-10">
+<!-- Left Pane: Code Editor -->
+<section class="flex-1 flex flex-col border-r border-border-dark min-w-[300px]">
+<!-- Editor Tabs -->
+<div class="flex bg-surface-dark border-b border-border-dark">
+<div class="px-4 py-2 bg-background-dark border-t-2 border-primary text-slate-200 text-sm font-medium flex items-center gap-2 cursor-default">
+<span class="material-symbols-outlined text-blue-400 text-[16px]">code</span>
+                    main.py
+                </div>
+<div class="px-4 py-2 text-slate-500 text-sm font-medium flex items-center gap-2 hover:bg-surface-dark/50 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[16px]">description</span>
+                    readme.md
+                </div>
+</div>
+<!-- Editor Content -->
+<div class="flex-1 overflow-auto bg-[#14181f] font-mono text-sm leading-6 pt-4 relative group">
+<!-- Line Numbers and Code -->
+<div class="line-numbers px-4 pb-20">
+<div class="code-line text-slate-400"><span class="text-green-400"># Bu derste fonksiyon tanımlamayı öğreniyoruz.</span></div>
+<div class="code-line text-slate-400"><span class="text-green-400"># Aşağıdaki kodu inceleyin ve çalıştırın.</span></div>
+<div class="code-line text-slate-300"> </div>
+<div class="code-line text-slate-300"><span class="text-purple-400">def</span> <span class="text-yellow-300">selamla</span>(isim):</div>
+<div class="code-line text-slate-300">    <span class="text-slate-500">"""Verilen isme özel selam verir."""</span></div>
+<div class="code-line text-slate-300">    <span class="text-blue-400">print</span>(<span class="text-orange-300">f"Merhaba, <span class="text-pink-400">{isim}</span>! CodeLab'a hoşgeldin."</span>)</div>
+<div class="code-line text-slate-300"> </div>
+<div class="code-line text-slate-300"><span class="text-slate-500"># Fonksiyonu çağıralım</span></div>
+<div class="code-line text-slate-300"><span class="text-yellow-300">selamla</span>(<span class="text-orange-300">"Öğrenci"</span>)</div>
+<div class="code-line text-slate-300"> </div>
+<div class="code-line text-slate-300"><span class="text-slate-500"># TODO: Kendi fonksiyonunuzu aşağıya yazın</span></div>
+<div class="code-line text-slate-300"><span class="text-purple-400">def</span> <span class="text-yellow-300">toplama</span>(a, b):</div>
+<div class="code-line text-slate-300">    <span class="text-purple-400">return</span> a + b</div>
+<div class="code-line text-slate-300"> </div>
+<div class="code-line text-slate-300"><span class="text-blue-400">print</span>(<span class="text-orange-300">f"Toplam: <span class="text-pink-400">{toplama(5, 10)}</span>"</span>)</div>
+<div class="code-line relative">
+<!-- Cursor Simulation -->
+<span class="absolute left-[3.5rem] h-5 w-0.5 bg-primary animate-pulse"></span>
+</div>
+</div>
+</div>
+<!-- Editor Status Bar -->
+<div class="h-8 bg-primary/10 border-t border-border-dark flex items-center justify-between px-4 text-xs text-primary font-medium">
+<div class="flex gap-4">
+<span>Satır 14, Sütun 1</span>
+<span>UTF-8</span>
+<span>Python 3.10</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span>Hazır</span>
+</div>
+</div>
+</section>
+<!-- Right Pane: QuestDock & Console -->
+<aside class="w-[420px] bg-background-dark border-l border-border-dark flex flex-col shrink-0">
+<!-- QuestDock (Tasks) -->
+<div class="flex-1 flex flex-col min-h-0">
+<div class="px-5 py-4 border-b border-border-dark bg-surface-dark/50 backdrop-blur flex justify-between items-center">
+<h2 class="text-white font-bold text-base flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">assignment</span>
+                        QuestDock
+                    </h2>
+<span class="text-xs px-2 py-0.5 rounded bg-slate-700 text-slate-300">2/3</span>
+</div>
+<div class="p-5 overflow-y-auto space-y-4">
+<!-- Task Item: Completed -->
+<div class="flex gap-3 items-start group">
+<div class="mt-0.5 w-5 h-5 rounded border border-primary bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-sm font-bold">check</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-400 font-medium line-through text-sm">Fonksiyon Tanımla</h3>
+<p class="text-slate-500 text-xs mt-1">`def` anahtar kelimesini kullanarak basit bir fonksiyon oluşturun.</p>
+</div>
+</div>
+<!-- Task Item: Completed -->
+<div class="flex gap-3 items-start group">
+<div class="mt-0.5 w-5 h-5 rounded border border-primary bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-sm font-bold">check</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-400 font-medium line-through text-sm">Parametre Ekle</h3>
+<p class="text-slate-500 text-xs mt-1">Fonksiyonunuza en az bir parametre (argüman) ekleyin.</p>
+</div>
+</div>
+<!-- Task Item: Active -->
+<div class="flex gap-3 items-start group">
+<div class="mt-0.5 w-5 h-5 rounded border-2 border-slate-500 bg-transparent flex items-center justify-center shrink-0 transition-colors group-hover:border-primary">
+</div>
+<div class="flex-1">
+<h3 class="text-white font-medium text-sm">Çıktı Al (Print)</h3>
+<p class="text-slate-400 text-xs mt-1">Fonksiyonun sonucunu `print()` komutu ile ekrana yazdırın.</p>
+<!-- Contextual Tip inside Task -->
+<div class="mt-3 bg-blue-900/20 border border-blue-500/30 rounded p-2 flex gap-2">
+<span class="material-symbols-outlined text-blue-400 text-sm">info</span>
+<span class="text-xs text-blue-200">f-string kullanarak metinleri birleştirebilirsiniz.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Resize Handle Simulation -->
+<div class="h-1 bg-border-dark hover:bg-primary/50 cursor-row-resize w-full transition-colors"></div>
+<!-- Console Output -->
+<div class="h-[35%] bg-[#0d1117] flex flex-col border-t border-border-dark">
+<div class="px-4 py-2 border-b border-border-dark flex justify-between items-center bg-surface-dark/50">
+<h2 class="text-slate-300 font-bold text-xs uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">terminal</span>
+                        Konsol Çıktısı
+                    </h2>
+<button class="text-xs text-slate-500 hover:text-white transition-colors">Temizle</button>
+</div>
+<div class="flex-1 p-4 font-mono text-sm overflow-y-auto">
+<div class="text-green-400 mb-1">&gt; python main.py</div>
+<div class="text-slate-300 mb-2">Merhaba, Öğrenci! CodeLab'a hoşgeldin.</div>
+<div class="text-slate-300 mb-4">Toplam: 15</div>
+<div class="flex items-center gap-2 text-slate-500 animate-pulse">
+<span class="material-symbols-outlined text-sm">keyboard_arrow_right</span>
+<span class="w-2 h-4 bg-slate-500 block"></span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

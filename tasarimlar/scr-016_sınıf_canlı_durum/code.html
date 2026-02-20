@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sınıf Canlı Durum - DIGEM Eğitmen Paneli</title>
+<!-- Google Fonts: Lexend -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ab8a1",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102220",
+                        "surface-dark": "#1A2C2A",
+                        "surface-light": "#ffffff",
+                        "status-warning": "#EAB308", // Yellow for help
+                        "status-idle": "#64748B", // Slate/Blue for idle
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283937] px-6 py-3 bg-white dark:bg-[#111817] shrink-0 z-20">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 flex items-center justify-center bg-primary/20 text-primary rounded-lg">
+<span class="material-symbols-outlined">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Eğitmen Paneli</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-500 dark:text-[#9cbab6] text-sm font-medium hover:text-primary transition-colors" href="#">Anasayfa</a>
+<a class="text-primary text-sm font-medium" href="#">Sınıflar</a>
+<a class="text-slate-500 dark:text-[#9cbab6] text-sm font-medium hover:text-primary transition-colors" href="#">Raporlar</a>
+<a class="text-slate-500 dark:text-[#9cbab6] text-sm font-medium hover:text-primary transition-colors" href="#">Ayarlar</a>
+</nav>
+<div class="h-6 w-px bg-slate-200 dark:bg-[#283937]"></div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="text-xs font-medium text-slate-500 dark:text-[#9cbab6]">Eğitmen</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">Burak Yılmaz</span>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="Trainer Profile Picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAzXQFT-0rt_94w3xMgSTWQ7MCQM1cB0-cLc97g2bSLOGt4ngTLrZVQqWPNOgkzfZYvp7OJo9bCJfYdStU3NuRzsFKgu_9-Mk7gInA0stsNCHziZsy6zJvFAJjZHzUS-Kpe_yyQYO4OBvsrh8qJSfHBuHbEjy2IkMyHFlflvVfLnbrpp9eZ_xCzsy67SRmIWkRWq4p3NWdrmWA5gqlH1YzMdGZpeqrjCZyu5sugYj15fRkCTdjHE3I-w9VlCTxW0rxFTZkH4O-Lwg");'></div>
+</div>
+</div>
+</header>
+<!-- Sub-Header / Breadcrumbs & Stats -->
+<div class="bg-white dark:bg-[#111817] border-b border-slate-200 dark:border-[#283937] px-6 py-4 flex flex-wrap items-center justify-between gap-4 shrink-0">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-sm text-slate-500 dark:text-[#9cbab6]">
+<a class="hover:text-primary" href="#">Sınıflar</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-medium">10-A Sınıfı - Kodlama Atölyesi</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
+                Canlı Sınıf Durumu
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-green-500/20 text-green-500 border border-green-500/20 animate-pulse">CANLI</span>
+</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-xs text-slate-500 dark:text-[#9cbab6] font-medium uppercase tracking-wider">Geçen Süre</span>
+<div class="flex items-center gap-2 text-xl font-mono font-bold text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-primary">timer</span>
+                    00:45:12
+                </div>
+</div>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-5 bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 transition-all font-bold text-sm">
+<span class="material-symbols-outlined text-[20px]">stop_circle</span>
+<span>Dersi Bitir</span>
+</button>
+</div>
+</div>
+<!-- Main Content Layout -->
+<main class="flex flex-1 overflow-hidden relative">
+<!-- Left Side: Seat Map -->
+<div class="flex-1 flex flex-col h-full overflow-hidden bg-slate-50 dark:bg-[#0d1312] relative">
+<!-- Toolbar -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-white dark:bg-[#1A2C2A] border border-slate-200 dark:border-[#283937] p-2 rounded-xl shadow-lg flex items-center gap-2">
+<button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#283937] text-slate-500 dark:text-[#9cbab6] transition-colors tooltip-trigger" title="Duyuru Gönder">
+<span class="material-symbols-outlined">campaign</span>
+</button>
+<div class="w-px h-6 bg-slate-200 dark:bg-[#283937]"></div>
+<button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#283937] text-slate-500 dark:text-[#9cbab6] transition-colors" title="Ekranları Kilitle">
+<span class="material-symbols-outlined">lock</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#283937] text-slate-500 dark:text-[#9cbab6] transition-colors" title="Ekranları Aç">
+<span class="material-symbols-outlined">lock_open</span>
+</button>
+<div class="w-px h-6 bg-slate-200 dark:bg-[#283937]"></div>
+<button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#283937] text-slate-500 dark:text-[#9cbab6] transition-colors" title="Mesaj Gönder">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#283937] text-slate-500 dark:text-[#9cbab6] transition-colors" title="Görünümü Yenile">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</div>
+<!-- Legend -->
+<div class="absolute bottom-4 left-6 z-10 flex gap-4 bg-white/90 dark:bg-[#1A2C2A]/90 backdrop-blur border border-slate-200 dark:border-[#283937] px-4 py-2 rounded-lg shadow-sm text-xs font-medium">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(10,184,161,0.5)]"></div>
+<span class="text-slate-700 dark:text-slate-300">Aktif</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-status-warning shadow-[0_0_8px_rgba(234,179,8,0.5)] animate-pulse"></div>
+<span class="text-slate-700 dark:text-slate-300">Yardım Bekliyor</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-status-idle"></div>
+<span class="text-slate-700 dark:text-slate-300">Boşta/Pasif</span>
+</div>
+</div>
+<!-- Scrollable Seat Map Area -->
+<div class="flex-1 overflow-auto p-8 custom-scrollbar">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 max-w-[1600px] mx-auto mt-12 pb-20">
+<!-- Station Card: Active -->
+<div class="group relative bg-white dark:bg-[#1A2C2A] rounded-xl border border-l-4 border-slate-200 dark:border-[#283937] border-l-primary p-4 shadow-sm hover:shadow-md transition-all hover:translate-y-[-2px]">
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">PC-01</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">desktop_windows</span>
+</div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-primary/30" data-alt="Student Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCT0grTHCFEIaOPtmpN_bg6O1SRtq7u_Oee9J-fzrUzpYqdSD872xaemiY56yZlO1Xx_dDdzpKUgpLv6UntYtfKPpkVyvI5ZySXwicGTVpqRmoeARoUaNi73n3ZZXTq_cBUVmNWegSqpdFCKlWcue5VfHj6F0wKi51dJQso_wgiWOonvWgzK4MBD-WgqSVpoGuq2CcyH6bBtzf6JrS1qmPctl6zJLLBrZuxSn_vydxsJtfA8jfrKxrbGkIYpYYpsdHGe56Qnl16Cg");'></div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-sm">Ayşe Demir</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Modül 3: Döngüler</p>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<!-- Station Card: Help Needed -->
+<div class="group relative bg-white dark:bg-[#1A2C2A] rounded-xl border border-l-4 border-status-warning p-4 shadow-sm shadow-status-warning/10 hover:shadow-md transition-all hover:translate-y-[-2px]">
+<div class="absolute -top-1 -right-1">
+<span class="flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-warning opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-status-warning"></span>
+</span>
+</div>
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs font-bold text-status-warning bg-status-warning/10 px-2 py-1 rounded">PC-02</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[18px] text-status-warning">pan_tool</span>
+</div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-status-warning/30" data-alt="Student Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9639_WcpdhowFNkv5CaG-G2IVWA9ZLsrJFfwGpDA9-0tNMWH75dD8Z4b1USmx_6XcclYyyskV8K1sdfKACt1xe7E2EFGLWZUWt-aLp-YuI63gS-NIk1GSXx0WLE1lu0h-budw7hrZuI6a7ydkX0iafWzDqMqt-obMxlF800R6WZjfjw_uecP2UwfHVQcmpr9ncjqo2O3JUkYHhMUf95evCmqlbVcOQ88P0pkOO27A7mhm47UT9i6uFzSd5iUhvAL9Hs8q5-tbnw");'></div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-sm">Can Yılmaz</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Hata: Syntax Error</p>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-warning h-full rounded-full" style="width: 45%"></div>
+</div>
+<button class="mt-3 w-full py-1.5 text-xs font-bold text-status-warning bg-status-warning/10 hover:bg-status-warning/20 rounded border border-status-warning/20 transition-colors">
+                            Yardım Et
+                        </button>
+</div>
+<!-- Station Card: Active -->
+<div class="group relative bg-white dark:bg-[#1A2C2A] rounded-xl border border-l-4 border-slate-200 dark:border-[#283937] border-l-primary p-4 shadow-sm hover:shadow-md transition-all hover:translate-y-[-2px]">
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">PC-03</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">code</span>
+</div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-primary/30" data-alt="Student Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvLcddPDHDQ6rdKXRZgWF8D1q3cXNUwMo8OeSWUgoBxT4im6tmdsWt8-gPbi9Nd86sZDVVrhLMS5jk1-6CGiauvwbZPSLMVMap-71hXeEk2a4WIEfY1xW-iYISYwATz2a-jvfd5f9kX0oBswGL3Y2XZREm_oAHeyCO9i8jNkC9GDfom-L2c5JXD-j8ypyfOeGuLRwAiGgTFQcEttkD3Z34wMAmTIIBYgPAXZtvfK9hXL9VKsRmoRoQmQep_4WLlo_4OnHIzeyIlA");'></div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-sm">Zeynep Kara</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Modül 4: Fonksiyonlar</p>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 12%"></div>
+</div>
+</div>
+<!-- Station Card: Idle -->
+<div class="group relative bg-white dark:bg-[#1A2C2A] rounded-xl border border-l-4 border-slate-200 dark:border-[#283937] border-l-status-idle p-4 shadow-sm hover:shadow-md transition-all opacity-80 hover:opacity-100">
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs font-bold text-status-idle bg-slate-100 dark:bg-slate-700/50 px-2 py-1 rounded">PC-04</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[18px] text-status-idle">hourglass_empty</span>
+</div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-cover bg-center grayscale ring-2 ring-slate-700/30" data-alt="Student Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBIZzcwExX535J-09IGdQHnQntzqtl6veMNNtJK8fcqV4P4IKSJtf4LzGA_Pc2Op3N6jfr_rBG_698MeC_655tcDfJCdfDzmrp_gOXxpGfvpMVyTLt-C6BJRjdWMvXPPFv2EZ89A_nHpW5ttl8sRTTvx87INISfUODJfboblyrllMsfg7kRxRnRkRTUYbKFTc_1dYpcPOlh09GrWFhP7zv6T8BEyyemg96wWoK_glpE_mcn1D4Xp-z62tV95K2vHEZ2FuyE3dJeJg");'></div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-sm">Mehmet Öz</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">5 dakikadır boşta</p>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-idle h-full rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<!-- Additional Active Cards for Grid visual -->
+<div class="group relative bg-white dark:bg-[#1A2C2A] rounded-xl border border-l-4 border-slate-200 dark:border-[#283937] border-l-primary p-4 shadow-sm hover:shadow-md transition-all hover:translate-y-[-2px]">
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">PC-05</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">terminal</span>
+</div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-primary/30" data-alt="Student Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCU-0mGWGDH-b_ThMH8ATcaM_O5gkpRRKAGkqIXp-nObThNNnIMbtW4nEz4YKgMbf8e6oVtpaqw6_fktWuGO6TUIfx76KyI3xhSplZlEPE6BtvChTi7M-n2NdJqnKWdK8fCVg-Zunfjck86lEfmKN3idkxs2ji0EoYIC2cwSBIdc2JGvUNn9Mxz0s3P3L06T6VOZuv1SMcfNsmkl3BFDzlcZ9HiKhYEo8ENli-lBQUOxsTknm6vcd8Wpi2mhJBc-u_xTFo5Ow_R5Q");'></div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-sm">Elif Su</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Modül 2: Değişkenler</p>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<!-- Station Card: Active -->
+<div class="group relative bg-white dark:bg-[#1A2C2A] rounded-xl border border-l-4 border-slate-200 dark:border-[#283937] border-l-primary p-4 shadow-sm hover:shadow-md transition-all hover:translate-y-[-2px]">
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">PC-06</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+</div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-primary/30" data-alt="Student Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBU0tNgChaa2-NnDXgRkh73Wcw0E7BdC1wSUNxME_FTwj_-zbk89OxhEI9Fdo5EBduttouS2yuuE3PF7519JE1XGhMWtkvX1gDXjU-K4LegkOmNWQcic67IvxVlTZ3XctWVRI73m56iWTEfQU3cnkpnBc-HSrUaw2hw77oS8hgUaV9tuqS5vnJX8iL9uAiDntxGcAZDANdUIpVMK5HShKGNMf3NYinwXCOJ-g01iw4XlGBdokCwTwDuLMKwZnyXTY_4Hh16_0IWQQ");'></div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-sm">Burak Tan</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Modül 3 Tamamlandı</p>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<!-- Station Card: Empty -->
+<div class="group relative bg-white/50 dark:bg-[#1A2C2A]/40 rounded-xl border border-dashed border-slate-300 dark:border-[#3b5451] p-4 flex flex-col items-center justify-center min-h-[140px] opacity-60">
+<span class="material-symbols-outlined text-[24px] text-slate-400 dark:text-[#567]">desktop_access_disabled</span>
+<span class="text-xs font-bold text-slate-400 dark:text-[#567] mt-2">PC-07 Boş</span>
+</div>
+<!-- Station Card: Active -->
+<div class="group relative bg-white dark:bg-[#1A2C2A] rounded-xl border border-l-4 border-slate-200 dark:border-[#283937] border-l-primary p-4 shadow-sm hover:shadow-md transition-all hover:translate-y-[-2px]">
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">PC-08</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">code</span>
+</div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-primary/30" data-alt="Student Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBd2DyBTDFt4nyv-bmeM4aI7Il60j65AQ_GaLPF5nGI9r9jXcZfVIZOL-7xNLWwiZHFmiT3Y7YKvhBZIubGR3Cyn2mILCGs1t_7YmYClMxXVRx2_J8GjP13B673GxQoMbB59qGP1c_BOQkErWf6EnBRbbxiFHd6XYQKi95xWbn8BwhIenrCkrSMBjQkpwA4I8xGsxMouWxCs7e9h1VpZ5pHIEMXktVxTnU-IYy-0m8VwFKUe0wjd5hFS4iXJkBI1UxfT13zvQ2cJA");'></div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-sm">Hakan Çelik</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Modül 4: Fonksiyonlar</p>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 30%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Activity Feed Sidebar -->
+<aside class="w-80 border-l border-slate-200 dark:border-[#283937] bg-white dark:bg-[#111817] flex flex-col shrink-0">
+<!-- Feed Header -->
+<div class="p-4 border-b border-slate-200 dark:border-[#283937]">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Canlı Akış</h2>
+<!-- Filters -->
+<div class="flex p-1 bg-slate-100 dark:bg-[#1A2C2A] rounded-lg">
+<button class="flex-1 py-1.5 text-xs font-medium rounded text-slate-900 dark:text-white bg-white dark:bg-[#283937] shadow-sm">Tümü</button>
+<button class="flex-1 py-1.5 text-xs font-medium rounded text-slate-500 dark:text-[#9cbab6] hover:text-slate-900 dark:hover:text-white transition-colors">Uyarılar</button>
+<button class="flex-1 py-1.5 text-xs font-medium rounded text-slate-500 dark:text-[#9cbab6] hover:text-slate-900 dark:hover:text-white transition-colors">Başarılar</button>
+</div>
+</div>
+<!-- Feed Items -->
+<div class="flex-1 overflow-auto p-4 flex flex-col gap-4 custom-scrollbar">
+<!-- Feed Item: Alert (High Priority) -->
+<div class="flex gap-3 relative pl-3">
+<div class="absolute left-0 top-1.5 bottom-1.5 w-0.5 bg-status-warning rounded-full"></div>
+<div class="mt-0.5 shrink-0">
+<div class="size-8 rounded-full bg-status-warning/10 text-status-warning flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">pan_tool</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline w-full">
+<span class="text-xs font-bold text-slate-900 dark:text-white">Can Yılmaz</span>
+<span class="text-[10px] text-slate-400">Şimdi</span>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-snug">Yardım talebi oluşturdu: "Syntax hatası alıyorum."</p>
+<button class="text-[10px] font-bold text-primary text-left mt-1 hover:underline">Görüntüle</button>
+</div>
+</div>
+<!-- Feed Item: Success -->
+<div class="flex gap-3 relative pl-3">
+<div class="absolute left-0 top-1.5 bottom-1.5 w-0.5 bg-primary rounded-full"></div>
+<div class="mt-0.5 shrink-0">
+<div class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">military_tech</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline w-full">
+<span class="text-xs font-bold text-slate-900 dark:text-white">Burak Tan</span>
+<span class="text-[10px] text-slate-400">1 dk önce</span>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-snug">Modül 3'ü başarıyla tamamladı.</p>
+</div>
+</div>
+<!-- Feed Item: Info -->
+<div class="flex gap-3 relative pl-3">
+<div class="absolute left-0 top-1.5 bottom-1.5 w-0.5 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
+<div class="mt-0.5 shrink-0">
+<div class="size-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">login</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline w-full">
+<span class="text-xs font-bold text-slate-900 dark:text-white">Hakan Çelik</span>
+<span class="text-[10px] text-slate-400">5 dk önce</span>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-snug">Sisteme giriş yaptı.</p>
+</div>
+</div>
+<!-- Feed Item: Success -->
+<div class="flex gap-3 relative pl-3">
+<div class="absolute left-0 top-1.5 bottom-1.5 w-0.5 bg-primary rounded-full"></div>
+<div class="mt-0.5 shrink-0">
+<div class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline w-full">
+<span class="text-xs font-bold text-slate-900 dark:text-white">Zeynep Kara</span>
+<span class="text-[10px] text-slate-400">12 dk önce</span>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-snug">Değişkenler Quiz: %95 Başarı</p>
+</div>
+</div>
+<!-- Feed Item: Idle Warning -->
+<div class="flex gap-3 relative pl-3 opacity-70">
+<div class="absolute left-0 top-1.5 bottom-1.5 w-0.5 bg-status-idle rounded-full"></div>
+<div class="mt-0.5 shrink-0">
+<div class="size-8 rounded-full bg-status-idle/10 text-status-idle flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">hourglass_empty</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline w-full">
+<span class="text-xs font-bold text-slate-900 dark:text-white">Mehmet Öz</span>
+<span class="text-[10px] text-slate-400">15 dk önce</span>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-snug">Hareketsiz olarak işaretlendi.</p>
+</div>
+</div>
+</div>
+<!-- Quick Action Area -->
+<div class="p-4 border-t border-slate-200 dark:border-[#283937] bg-slate-50 dark:bg-[#162120]">
+<h3 class="text-xs font-bold text-slate-500 dark:text-[#9cbab6] mb-2 uppercase">Hızlı İşlem</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded bg-white dark:bg-[#1A2C2A] border border-slate-200 dark:border-[#283937] hover:border-primary/50 hover:text-primary transition-colors text-xs font-medium text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-[16px]">send</span>
+                        Mesaj
+                    </button>
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded bg-white dark:bg-[#1A2C2A] border border-slate-200 dark:border-[#283937] hover:border-primary/50 hover:text-primary transition-colors text-xs font-medium text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-[16px]">lightbulb</span>
+                        İpucu
+                    </button>
+</div>
+</div>
+</aside>
+</main>
+<style>
+        /* Custom scrollbar for better blending with dark theme */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 186, 182, 0.2);
+            border-radius: 20px;
+        }
+        .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 186, 182, 0.4);
+        }
+    </style>
+</body></html>

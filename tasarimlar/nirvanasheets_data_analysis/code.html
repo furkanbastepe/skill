@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirvanaSheets | PUSULA</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#895af6",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#151022",
+                        "surface-dark": "#211834",
+                        "border-dark": "#2e2249",
+                        "success": "#0bda6f",
+                        "danger": "#ff4d4d",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-border-dark px-6 py-3 bg-surface-dark shrink-0 z-20">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined text-xl">table_chart</span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">PUSULA | NirvanaSheets</h2>
+<div class="flex gap-2 text-xs text-white/60 font-medium">
+<span>Dosya</span>
+<span>Düzenle</span>
+<span>Görünüm</span>
+<span>Ekle</span>
+<span>Format</span>
+<span>Veri</span>
+<span>Araçlar</span>
+<span>Yardım</span>
+</div>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex items-center gap-2 text-white/50 text-sm mr-4">
+<span class="material-symbols-outlined text-base">cloud_done</span>
+<span>Kaydedildi</span>
+</div>
+<div class="flex gap-2">
+<button class="flex h-10 items-center justify-center gap-2 rounded-full bg-primary px-6 text-white text-sm font-bold shadow-[0_0_15px_rgba(137,90,246,0.3)] hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+<span>Paylaş</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-full bg-border-dark text-white hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary/30" data-alt="User profile picture showing a smiling young woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB420H0BV78IaUNcXHmxxqdGhtdylwo1iV47riok77Uw_gHl9YMiWxlpj-kU2mK4IpM4wDiyimlWbOi_uuIs8yzNbAmTpSPPyXubyW0L0cYQCpiXOp4VYfaW87DB3IM4eSbcUy5mLHnbbkLMejeQTMR8e3_qOMQhNOJzC-gxGIZZwhsmUiztsAnXRQ8o2tpZ0br5i_pss6dCKNhah5gL4jnO5a6aGMaj9aMwohmVZeYAdZTbE2Rj642S_y3FcuN-6-tw_RxYPAbIyU");'></div>
+</div>
+</div>
+</header>
+<!-- Toolbar -->
+<div class="flex justify-between items-center gap-2 px-4 py-2 bg-background-dark border-b border-border-dark shrink-0">
+<div class="flex gap-1 items-center overflow-x-auto no-scrollbar">
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Undo">
+<span class="material-symbols-outlined text-[20px]">undo</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Redo">
+<span class="material-symbols-outlined text-[20px]">redo</span>
+</button>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Print">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Format Painter">
+<span class="material-symbols-outlined text-[20px]">format_paint</span>
+</button>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<div class="flex items-center bg-surface-dark rounded-lg border border-border-dark px-2 h-9 mx-1">
+<span class="text-sm font-medium px-2">100%</span>
+<span class="material-symbols-outlined text-sm text-white/50">arrow_drop_down</span>
+</div>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors font-bold" title="Bold">
+<span class="material-symbols-outlined text-[20px]">format_bold</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors italic" title="Italic">
+<span class="material-symbols-outlined text-[20px]">format_italic</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors underline" title="Underline">
+<span class="material-symbols-outlined text-[20px]">format_underlined</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Text Color">
+<span class="material-symbols-outlined text-[20px] text-primary">format_color_text</span>
+</button>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Fill Color">
+<span class="material-symbols-outlined text-[20px]">format_color_fill</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Borders">
+<span class="material-symbols-outlined text-[20px]">border_all</span>
+</button>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Align Left">
+<span class="material-symbols-outlined text-[20px]">format_align_left</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Align Center">
+<span class="material-symbols-outlined text-[20px]">format_align_center</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="Functions">
+<span class="material-symbols-outlined text-[20px]">functions</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 bg-surface-dark border border-border-dark hover:bg-primary/20 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_chart</span>
+<span>Analiz Et</span>
+</button>
+</div>
+</div>
+<!-- Formula Bar -->
+<div class="flex items-center gap-3 px-4 py-2 bg-background-dark border-b border-border-dark shrink-0">
+<div class="bg-surface-dark border border-border-dark text-white/70 text-xs font-mono px-3 py-1.5 rounded w-16 text-center select-none">
+            fx
+        </div>
+<div class="flex-1 flex items-center bg-surface-dark border border-border-dark rounded-lg px-3 py-1.5 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<input class="w-full bg-transparent border-none text-sm text-white focus:ring-0 font-mono p-0" type="text" value='=EĞER(C4&gt;=50;"Geçti";"Kaldı")'/>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Grid Container -->
+<div class="flex-1 flex flex-col overflow-hidden relative">
+<!-- Grid Header (Letters) -->
+<div class="flex bg-surface-dark border-b border-border-dark h-8 shrink-0 select-none">
+<div class="w-12 border-r border-border-dark bg-background-dark shrink-0"></div> <!-- Corner -->
+<div class="flex-1 flex overflow-hidden">
+<div class="w-[60px] flex items-center justify-center text-xs font-medium text-white/50 border-r border-border-dark shrink-0">A</div>
+<div class="w-[200px] flex items-center justify-center text-xs font-medium text-white/50 border-r border-border-dark shrink-0">B</div>
+<div class="w-[120px] flex items-center justify-center text-xs font-medium text-white/50 border-r border-border-dark shrink-0 bg-primary/10 text-primary">C</div>
+<div class="w-[120px] flex items-center justify-center text-xs font-medium text-white/50 border-r border-border-dark shrink-0">D</div>
+<div class="w-[150px] flex items-center justify-center text-xs font-medium text-white/50 border-r border-border-dark shrink-0">E</div>
+<div class="w-[150px] flex items-center justify-center text-xs font-medium text-white/50 border-r border-border-dark shrink-0">F</div>
+<div class="flex-1 bg-surface-dark"></div>
+</div>
+</div>
+<!-- Grid Body -->
+<div class="flex-1 flex overflow-auto relative bg-background-dark">
+<!-- Row Headers (Numbers) -->
+<div class="w-12 bg-surface-dark border-r border-border-dark flex flex-col shrink-0 select-none sticky left-0 z-10">
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">1</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">2</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">3</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-primary bg-primary/10 border-b border-border-dark">4</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">5</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">6</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">7</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">8</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">9</div>
+<div class="h-10 flex items-center justify-center text-xs font-medium text-white/50 border-b border-border-dark">10</div>
+</div>
+<!-- Cells -->
+<div class="flex flex-col min-w-max">
+<!-- Row 1 -->
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">1</div>
+<div class="w-[200px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white font-medium bg-surface-dark/50">Ad Soyad</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white font-medium bg-surface-dark/50">Not</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white font-medium bg-surface-dark/50">Durum</div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+</div>
+<!-- Row 2 -->
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">2</div>
+<div class="w-[200px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white">Ahmet Yılmaz</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white">85</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-success/20 text-success">
+                                Geçti
+                            </span>
+</div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+</div>
+<!-- Row 3 -->
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">3</div>
+<div class="w-[200px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white">Ayşe Demir</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white">45</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-danger/20 text-danger">
+                                Kaldı
+                            </span>
+</div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+</div>
+<!-- Row 4 (Active) -->
+<div class="flex h-10 border-b border-border-dark/50 bg-primary/5 hover:bg-primary/10">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">4</div>
+<div class="w-[200px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white">Mehmet Kaya</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white relative outline outline-2 outline-primary z-10 bg-primary/10">92</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-success/20 text-success">
+                                Geçti
+                            </span>
+</div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+</div>
+<!-- Row 5 -->
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">5</div>
+<div class="w-[200px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white">Zeynep Çelik</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white">60</div>
+<div class="w-[120px] border-r border-border-dark/50 flex items-center px-2 text-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-success/20 text-success">
+                                Geçti
+                            </span>
+</div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+<div class="w-[150px] border-r border-border-dark/50"></div>
+</div>
+<!-- Empty Rows -->
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">6</div>
+<div class="w-[200px] border-r border-border-dark/50 flex-1"></div>
+</div>
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">7</div>
+<div class="w-[200px] border-r border-border-dark/50 flex-1"></div>
+</div>
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">8</div>
+<div class="w-[200px] border-r border-border-dark/50 flex-1"></div>
+</div>
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">9</div>
+<div class="w-[200px] border-r border-border-dark/50 flex-1"></div>
+</div>
+<div class="flex h-10 border-b border-border-dark/50 hover:bg-white/5">
+<div class="w-[60px] border-r border-border-dark/50 flex items-center px-2 text-sm text-white/60">10</div>
+<div class="w-[200px] border-r border-border-dark/50 flex-1"></div>
+</div>
+</div>
+</div>
+<!-- Footer Tabs -->
+<div class="bg-surface-dark border-t border-border-dark h-10 flex items-center px-2 gap-1 shrink-0">
+<button class="size-8 flex items-center justify-center text-white/70 hover:bg-white/5 rounded-full">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="h-8 px-4 flex items-center gap-2 bg-background-dark border-b-2 border-primary text-primary text-sm font-medium rounded-t-lg">
+<span class="material-symbols-outlined text-[16px]">grid_on</span>
+                        Notlar
+                    </button>
+<button class="h-8 px-4 flex items-center gap-2 text-white/50 hover:bg-white/5 text-sm font-medium rounded-t-lg transition-colors">
+<span class="material-symbols-outlined text-[16px]">bar_chart</span>
+                        Grafikler
+                    </button>
+</div>
+</div>
+</div>
+<!-- Right Panel - Visualization -->
+<div class="w-[360px] bg-surface-dark border-l border-border-dark flex flex-col p-6 overflow-y-auto">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                    Veri Analizi
+                </h3>
+<button class="text-white/50 hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Chart Card -->
+<div class="bg-background-dark rounded-xl p-5 border border-border-dark shadow-xl mb-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-xs text-white/50 uppercase tracking-wider font-semibold">Başarı Dağılımı</p>
+<h4 class="text-white font-bold text-xl mt-1">Sınıf Ortalaması</h4>
+</div>
+<div class="flex items-center gap-1 text-success text-sm font-bold bg-success/10 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>70.5</span>
+</div>
+</div>
+<!-- Bar Chart Representation -->
+<div class="h-48 flex items-end justify-between gap-3 px-2">
+<!-- Bar 1 -->
+<div class="flex flex-col items-center gap-2 flex-1 group cursor-pointer">
+<div class="w-full bg-primary/30 rounded-t-lg relative h-[85%] group-hover:bg-primary/50 transition-all duration-300">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity">85</div>
+</div>
+<span class="text-[10px] text-white/50 font-medium truncate w-full text-center">Ahmet</span>
+</div>
+<!-- Bar 2 -->
+<div class="flex flex-col items-center gap-2 flex-1 group cursor-pointer">
+<div class="w-full bg-danger/30 rounded-t-lg relative h-[45%] group-hover:bg-danger/50 transition-all duration-300">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity">45</div>
+</div>
+<span class="text-[10px] text-white/50 font-medium truncate w-full text-center">Ayşe</span>
+</div>
+<!-- Bar 3 -->
+<div class="flex flex-col items-center gap-2 flex-1 group cursor-pointer">
+<div class="w-full bg-primary rounded-t-lg relative h-[92%] shadow-[0_0_10px_rgba(137,90,246,0.4)] hover:shadow-[0_0_15px_rgba(137,90,246,0.6)] transition-all duration-300">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-primary opacity-100">92</div>
+</div>
+<span class="text-[10px] text-white font-bold truncate w-full text-center">Mehmet</span>
+</div>
+<!-- Bar 4 -->
+<div class="flex flex-col items-center gap-2 flex-1 group cursor-pointer">
+<div class="w-full bg-primary/30 rounded-t-lg relative h-[60%] group-hover:bg-primary/50 transition-all duration-300">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity">60</div>
+</div>
+<span class="text-[10px] text-white/50 font-medium truncate w-full text-center">Zeynep</span>
+</div>
+</div>
+</div>
+<!-- Stats/Insights -->
+<div class="space-y-4">
+<h5 class="text-white font-medium text-sm">Hızlı İstatistikler</h5>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-background-dark border border-border-dark/50">
+<div class="size-10 rounded-full bg-success/10 flex items-center justify-center text-success shrink-0">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="text-xs text-white/50">Geçen Öğrenci</div>
+<div class="text-white font-bold">3 Öğrenci (75%)</div>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-background-dark border border-border-dark/50">
+<div class="size-10 rounded-full bg-danger/10 flex items-center justify-center text-danger shrink-0">
+<span class="material-symbols-outlined">cancel</span>
+</div>
+<div class="flex-1">
+<div class="text-xs text-white/50">Kalan Öğrenci</div>
+<div class="text-white font-bold">1 Öğrenci (25%)</div>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-background-dark border border-border-dark/50">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">functions</span>
+</div>
+<div class="flex-1">
+<div class="text-xs text-white/50">Formül</div>
+<div class="text-white font-mono text-xs truncate w-48">EĞER(C4&gt;=50;"Geçti";"Kaldı")</div>
+</div>
+</div>
+</div>
+<!-- Branding Footer -->
+<div class="mt-auto pt-8 flex flex-col gap-2 items-center opacity-40 hover:opacity-100 transition-opacity">
+<div class="h-px w-full bg-border-dark mb-2"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span class="text-[10px] uppercase font-bold tracking-widest">UNDP x Eskisehir</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

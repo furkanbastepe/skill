@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite - Buddy Collaboration Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111418] px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">PUSULA Lite</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Courses</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Buddy Hub</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Resources</a>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-slate-100 dark:bg-[#283039] text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-[#3b4754] transition-colors w-10">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-slate-100 dark:bg-[#283039] text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-[#3b4754] transition-colors w-10">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-slate-700" data-alt="User profile picture showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA64gKEP0S_UfNeu8qPNxOjUDdRrOmjX3ZHLP8XEQU2Vi8Hd5H3a9aDp-s6U30lPCDHYTZkFa19zepwmj4nWKi3FdQYJim-jln5wif9PS0erMqaMzSHb6wkmoyu15FpoZ6Eg4Ly9RNk7Y8gylLTRLvsoe9Y7EW3ROsNoNI9mmeET-e4oNRXLgdxnzl6KEDl-_ynBQDIvDd8W19vWQ4r7pQFt2LoHSzwQQnRiNtSQ77ZheO0GYYQKgvbNrfPlXZUBEr8n1ykkKVHuCIP");'></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-4 sm:px-8 lg:px-12 w-full max-w-[1440px] mx-auto">
+<!-- Breadcrumbs -->
+<div class="w-full flex flex-wrap gap-2 mb-6">
+<a class="text-slate-500 dark:text-[#9dabb9] hover:text-primary text-sm font-medium leading-normal" href="#">Dashboard</a>
+<span class="text-slate-500 dark:text-[#9dabb9] text-sm font-medium leading-normal">/</span>
+<span class="text-slate-900 dark:text-white text-sm font-medium leading-normal">Buddy Collaboration Hub</span>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full h-full">
+<!-- Left Column: Buddy Profile (3 cols) -->
+<div class="lg:col-span-3 flex flex-col gap-6">
+<!-- Profile Card -->
+<div class="bg-white dark:bg-[#1c2127] border border-slate-200 dark:border-[#3b4754] rounded-xl p-6 flex flex-col items-center text-center shadow-sm">
+<div class="relative mb-4">
+<div class="size-24 rounded-full bg-cover bg-center border-4 border-slate-100 dark:border-[#283039]" data-alt="Buddy profile portrait of Selin" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtLQqU28KvVO0boGXoQ2ZOhPboCzffKA-coLjUixfJhJlyPL21a48ynFlXSw-UD1lruoQzijw6eaUIcrOj1xsiClpd-14ljCfpl-Y-nSPVRBTdd-5idWBtLU4j2onosx0ATFxB8WfSAKG7bkh71pCf-Iu8_SPH09A3qmqPxs_vMaGda3KsA1IqiVgXEzCUllhoMXa-7UE_bgQr0ZaS0XUDaT_UFCroTTC-gqafFsIMjfzI0VBzLWVNRCoMRmyWRkLYLgDBARHePn56");'></div>
+<div class="absolute bottom-1 right-1 size-5 bg-green-500 border-2 border-white dark:border-[#1c2127] rounded-full" title="Online"></div>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Selin Yilmaz</h3>
+<p class="text-sm text-primary font-medium mb-1">Lead Developer</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Computer Science &amp; Design</p>
+<div class="w-full grid grid-cols-2 gap-3 mb-6">
+<button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-slate-100 dark:bg-[#283039] text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-200 dark:hover:bg-[#3b4754] transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            Message
+                        </button>
+<button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-slate-100 dark:bg-[#283039] text-slate-700 dark:text-slate-200 text-sm font-semibold hover:bg-slate-200 dark:hover:bg-[#3b4754] transition-colors">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                            Email
+                        </button>
+</div>
+<div class="w-full pt-4 border-t border-slate-200 dark:border-[#3b4754]">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">Buddy Health</span>
+<span class="px-2 py-0.5 rounded-full bg-green-500/20 text-green-600 dark:text-green-400 text-xs font-bold">Excellent</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-[#283039] rounded-full h-2.5">
+<div class="bg-green-500 h-2.5 rounded-full" style="width: 85%"></div>
+</div>
+<p class="text-xs text-slate-400 mt-2 text-left">Based on interaction frequency &amp; task completion.</p>
+</div>
+</div>
+<!-- Stats Mini Cards -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-white dark:bg-[#1c2127] border border-slate-200 dark:border-[#3b4754] rounded-xl p-4 flex flex-col">
+<span class="material-symbols-outlined text-primary mb-2">local_fire_department</span>
+<span class="text-2xl font-bold text-slate-900 dark:text-white">12</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Day Streak</span>
+</div>
+<div class="bg-white dark:bg-[#1c2127] border border-slate-200 dark:border-[#3b4754] rounded-xl p-4 flex flex-col">
+<span class="material-symbols-outlined text-primary mb-2">workspace_premium</span>
+<span class="text-2xl font-bold text-slate-900 dark:text-white">Lev. 4</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Partnership</span>
+</div>
+</div>
+</div>
+<!-- Center Column: Weekly Ritual (6 cols) -->
+<div class="lg:col-span-6 flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Week 4 Rituals</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Focus: User Research &amp; Prototyping</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Progress</span>
+<div class="w-32 h-2 bg-slate-200 dark:bg-[#283039] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%] rounded-full"></div>
+</div>
+<span class="text-sm font-bold text-primary">65%</span>
+</div>
+</div>
+<!-- Timeline Container -->
+<div class="relative flex flex-col gap-6 pl-4 border-l-2 border-slate-200 dark:border-[#283039] ml-4 md:ml-6 py-2">
+<!-- Monday Card (Completed) -->
+<div class="relative group">
+<div class="absolute -left-[27px] md:-left-[35px] top-6 size-5 rounded-full bg-green-500 border-4 border-white dark:border-background-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[12px] font-bold">check</span>
+</div>
+<div class="bg-white dark:bg-[#1c2127]/50 border border-green-500/30 rounded-xl p-5 hover:bg-slate-50 dark:hover:bg-[#1c2127] transition-all opacity-80">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded text-xs font-bold bg-green-500/10 text-green-600 dark:text-green-400 uppercase tracking-wider">Monday Plan</span>
+<span class="text-xs text-slate-400">Completed Oct 23</span>
+</div>
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-200 mb-2 line-through decoration-slate-500">Sync Goals &amp; Define Scope</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Agree on the user personas and outline the interview questions for the research phase.</p>
+</div>
+</div>
+<!-- Wednesday Card (Active) -->
+<div class="relative">
+<div class="absolute -left-[27px] md:-left-[35px] top-6 size-5 rounded-full bg-primary border-4 border-white dark:border-background-dark ring-4 ring-primary/20"></div>
+<div class="bg-white dark:bg-[#1c2127] border-2 border-primary rounded-xl p-6 shadow-lg shadow-primary/5 relative overflow-hidden">
+<!-- Active indicator gradient -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded text-xs font-bold bg-primary text-white uppercase tracking-wider">Wednesday Check</span>
+<span class="text-xs text-primary font-bold animate-pulse">● Active Now</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Mid-week Artifact Review</h3>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                Share your draft interview scripts. Review Selin's user flow diagrams. Provide at least 3 constructive comments on the shared board.
+                            </p>
+<div class="bg-slate-50 dark:bg-[#283039] rounded-lg p-4 mb-6 border border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-slate-200">Pending Actions</span>
+</div>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+<div class="size-4 rounded border border-slate-300 dark:border-slate-600 flex items-center justify-center"></div>
+                                        Upload your Interview Script
+                                    </li>
+<li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+<div class="size-4 rounded border border-slate-300 dark:border-slate-600 flex items-center justify-center"></div>
+                                        Comment on Selin's User Flow
+                                    </li>
+</ul>
+</div>
+<button class="w-full py-3 bg-primary hover:bg-blue-600 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">rocket_launch</span>
+                                Start Check-in Session
+                            </button>
+</div>
+</div>
+<!-- Friday Card (Locked) -->
+<div class="relative group">
+<div class="absolute -left-[27px] md:-left-[35px] top-6 size-5 rounded-full bg-slate-300 dark:bg-[#3b4754] border-4 border-white dark:border-background-dark"></div>
+<div class="bg-slate-50 dark:bg-[#161b21] border border-slate-200 dark:border-[#283039] rounded-xl p-5 opacity-60">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded text-xs font-bold bg-slate-200 dark:bg-[#283039] text-slate-500 dark:text-slate-400 uppercase tracking-wider">Friday Review</span>
+<span class="text-xs text-slate-400">Locked</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">lock</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-200 mb-2">Weekly Retrospective</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Reflect on what went well this week and plan improvements for the next sprint.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Co-op Actions (3 cols) -->
+<div class="lg:col-span-3 flex flex-col gap-6">
+<!-- Quick Actions -->
+<div class="bg-white dark:bg-[#1c2127] border border-slate-200 dark:border-[#3b4754] rounded-xl p-5 flex flex-col gap-4">
+<h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+                        Co-op Actions
+                    </h3>
+<button class="flex items-center justify-between w-full p-3 rounded-lg border border-slate-200 dark:border-[#3b4754] hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-[#283039] group transition-all text-left">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-500">
+<span class="material-symbols-outlined text-[18px]">rate_review</span>
+</div>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">Review Artifact</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[16px]">arrow_forward_ios</span>
+</button>
+<button class="flex items-center justify-between w-full p-3 rounded-lg border border-slate-200 dark:border-[#3b4754] hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-[#283039] group transition-all text-left">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-500">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+</div>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">Request Session</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[16px]">arrow_forward_ios</span>
+</button>
+<button class="flex items-center justify-between w-full p-3 rounded-lg border border-slate-200 dark:border-[#3b4754] hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-[#283039] group transition-all text-left">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined text-[18px]">folder_shared</span>
+</div>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">Shared Drive</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[16px]">arrow_forward_ios</span>
+</button>
+</div>
+<!-- Recent Activity / Notifications -->
+<div class="bg-white dark:bg-[#1c2127] border border-slate-200 dark:border-[#3b4754] rounded-xl p-5 flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-base font-bold text-slate-900 dark:text-white">Recent Updates</h3>
+<a class="text-xs text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex gap-3">
+<div class="size-8 rounded-full bg-cover bg-center shrink-0" data-alt="Small avatar of Selin" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAJKI0hKQuLt4eEwkVeglpzMHLGOwsMlbDJGbsRui34jMHPnQTKXREJtR8bJBdfw3V3munju7PNdtMXZ6ShJ0y-APp0hiTOoz2LNj9yCd_2Dy3BexB52DNTejB9qMt7fSTHNnnhK_J-MkmdBK28riLcgi5CoLZFLxvTcqBli_pFe9k8gGMj9xbeKekx70WfFBSO1oPmW_sl1c5S_WeBvRd1Q2iQCNGuLcfchQmSaByxP98cvsJVysPYZ3xpSLfLTt672rAz1bvrM4fX");'></div>
+<div class="flex flex-col">
+<p class="text-sm text-slate-700 dark:text-slate-200 leading-tight">
+<span class="font-bold">Selin</span> commented on <span class="text-primary cursor-pointer">Project Plan v1</span>
+</p>
+<span class="text-xs text-slate-500 dark:text-slate-400 mt-1">2 hours ago</span>
+</div>
+</div>
+<div class="w-full h-px bg-slate-100 dark:bg-[#283039]"></div>
+<div class="flex gap-3">
+<div class="size-8 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 text-green-500">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col">
+<p class="text-sm text-slate-700 dark:text-slate-200 leading-tight">
+                                    You completed the <span class="font-bold">Monday Plan</span> task.
+                                </p>
+<span class="text-xs text-slate-500 dark:text-slate-400 mt-1">Yesterday</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Motivational / Empty State Filler -->
+<div class="bg-gradient-to-br from-primary/20 to-purple-500/10 border border-primary/20 rounded-xl p-5 flex flex-col items-center text-center">
+<div class="size-12 rounded-full bg-white dark:bg-[#1c2127] flex items-center justify-center mb-3 shadow-sm text-yellow-500">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Top 5% Partnership!</h4>
+<p class="text-xs text-slate-600 dark:text-slate-300">You and Selin are crushing it. Keep up the momentum to unlock the "Synchronicity" badge.</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

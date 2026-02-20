@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM - Etkinlik Takvimi</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                        "surface-dark": "#162e2a",
+                        "surface-dark-hover": "#1d3a35",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "sans": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f2320; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273a38; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00c2a8; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Header / Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#273a38] bg-white dark:bg-[#101817] px-8 py-4 z-20 shrink-0">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight">DIGEM</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8 ml-4">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Ana Sayfa</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Programlar</a>
+<a class="text-primary text-sm font-medium" href="#">Etkinlikler</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Projelerim</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search Bar -->
+<div class="hidden lg:flex w-64 items-center bg-slate-100 dark:bg-[#273a38] rounded-lg h-10 px-3">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#9abcb7] text-[20px]">search</span>
+<input class="w-full bg-transparent border-none text-sm text-slate-900 dark:text-white focus:ring-0 placeholder:text-slate-400 dark:placeholder:text-[#9abcb7]" placeholder="Etkinlik ara..."/>
+</div>
+<!-- Notifications -->
+<button class="relative text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#101817]"></span>
+</button>
+<!-- Profile -->
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-[#273a38]">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border-2 border-primary" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjXKJtESXHoIIzz4H6zqCTn69VMdV-XOQ5_U9C4zNPgzBb82h9aFHHsm-z1KPt9Bez11XFYO2tcegTjzTGoijjBTz1omzUoxCI9NSRpMM3vhdA0SFZpU2mGDtWk6uBgM5C7eGA6Df3e6YV4_glFudPlQBx-gFpNuTQkssVuDfhwE27bumQYPdi2b_QOe5dh7YvQGDxZ656ViLTWxFLeZCIvf44n9zWkgvw_w0yPDsik7UiYpElJjd3aOIhiDn2jOvgLuOcwSZwkA");'></div>
+<div class="hidden xl:block">
+<p class="text-sm font-bold text-slate-900 dark:text-white leading-none">Elif Yılmaz</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Öğrenci</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Filters & Mini Calendar (Collapsible on mobile) -->
+<aside class="hidden lg:flex w-80 flex-col border-r border-slate-200 dark:border-[#273a38] bg-white dark:bg-[#101817] overflow-y-auto shrink-0">
+<div class="p-6">
+<h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white">Filtrele</h3>
+<!-- Categories -->
+<div class="mb-8">
+<h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Kategoriler</h4>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-3 p-2 rounded hover:bg-slate-50 dark:hover:bg-surface-dark cursor-pointer transition-colors group">
+<input checked="" class="rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="size-2 rounded-full bg-blue-500"></span>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Yazılım &amp; Kodlama</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded hover:bg-slate-50 dark:hover:bg-surface-dark cursor-pointer transition-colors group">
+<input checked="" class="rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="size-2 rounded-full bg-purple-500"></span>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Tasarım &amp; UI/UX</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded hover:bg-slate-50 dark:hover:bg-surface-dark cursor-pointer transition-colors group">
+<input class="rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="size-2 rounded-full bg-orange-500"></span>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Soft Skills</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded hover:bg-slate-50 dark:hover:bg-surface-dark cursor-pointer transition-colors group">
+<input class="rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="size-2 rounded-full bg-green-500"></span>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Ağ &amp; Siber Güvenlik</span>
+</label>
+</div>
+</div>
+<!-- Upcoming Schedule (My Events) -->
+<div>
+<h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Programım</h4>
+<div class="space-y-3">
+<div class="p-3 bg-slate-50 dark:bg-surface-dark rounded-lg border-l-4 border-primary">
+<div class="text-xs text-primary font-bold mb-1">Bugün, 14:00</div>
+<h5 class="text-sm font-semibold text-slate-900 dark:text-white">Python 101</h5>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">videocam</span> Online
+                                </p>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-surface-dark rounded-lg border-l-4 border-slate-600">
+<div class="text-xs text-slate-500 font-bold mb-1">20 Ekim, 18:00</div>
+<h5 class="text-sm font-semibold text-slate-900 dark:text-white">Boss Night</h5>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Konferans Salonu
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Calendar Area -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Toolbar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 pb-2">
+<div>
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Ekim 2023</h1>
+<p class="text-slate-500 dark:text-[#9abcb7]">Dijital yetkinliklerini geliştirecek yaklaşan etkinlikler.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex bg-white dark:bg-[#101817] rounded-lg p-1 border border-slate-200 dark:border-[#273a38]">
+<button class="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-[#273a38] text-slate-900 dark:text-white text-sm font-medium shadow-sm">
+<span class="material-symbols-outlined text-[18px] align-middle mr-1">grid_view</span> Ay
+                            </button>
+<button class="px-3 py-1.5 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-[18px] align-middle mr-1">view_list</span> Liste
+                            </button>
+</div>
+<div class="flex items-center gap-1 bg-white dark:bg-[#101817] rounded-lg border border-slate-200 dark:border-[#273a38] p-1">
+<button class="size-8 flex items-center justify-center rounded hover:bg-slate-100 dark:hover:bg-[#273a38] text-slate-600 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="px-2 text-sm font-semibold text-slate-900 dark:text-white">Bugün</button>
+<button class="size-8 flex items-center justify-center rounded hover:bg-slate-100 dark:hover:bg-[#273a38] text-slate-600 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="flex-1 overflow-y-auto p-6">
+<div class="grid grid-cols-7 gap-px bg-slate-200 dark:bg-[#273a38] rounded-2xl overflow-hidden border border-slate-200 dark:border-[#273a38]">
+<!-- Header Days -->
+<div class="bg-slate-50 dark:bg-[#101817] p-3 text-center text-sm font-semibold text-slate-500 dark:text-[#9abcb7]">Pzt</div>
+<div class="bg-slate-50 dark:bg-[#101817] p-3 text-center text-sm font-semibold text-slate-500 dark:text-[#9abcb7]">Sal</div>
+<div class="bg-slate-50 dark:bg-[#101817] p-3 text-center text-sm font-semibold text-slate-500 dark:text-[#9abcb7]">Çar</div>
+<div class="bg-slate-50 dark:bg-[#101817] p-3 text-center text-sm font-semibold text-slate-500 dark:text-[#9abcb7]">Per</div>
+<div class="bg-slate-50 dark:bg-[#101817] p-3 text-center text-sm font-semibold text-slate-500 dark:text-[#9abcb7]">Cum</div>
+<div class="bg-slate-50 dark:bg-[#101817] p-3 text-center text-sm font-semibold text-slate-500 dark:text-[#9abcb7]">Cmt</div>
+<div class="bg-slate-50 dark:bg-[#101817] p-3 text-center text-sm font-semibold text-slate-500 dark:text-[#9abcb7]">Paz</div>
+<!-- Days Cells -->
+<!-- Empty Previous Month Days -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a]/50 p-2 flex flex-col gap-1 opacity-50">
+<span class="text-sm font-medium text-slate-400 dark:text-slate-600">28</span>
+</div>
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a]/50 p-2 flex flex-col gap-1 opacity-50">
+<span class="text-sm font-medium text-slate-400 dark:text-slate-600">29</span>
+</div>
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a]/50 p-2 flex flex-col gap-1 opacity-50">
+<span class="text-sm font-medium text-slate-400 dark:text-slate-600">30</span>
+</div>
+<!-- Current Month Days (Start Oct 1) -->
+<!-- Day 1 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">1</span>
+</div>
+<!-- Day 2 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">2</span>
+</div>
+<!-- Day 3 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">3</span>
+</div>
+<!-- Day 4 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">4</span>
+</div>
+<!-- Week 2 -->
+<!-- Day 5 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer relative">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">5</span>
+</div>
+<!-- Day 6 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">6</span>
+</div>
+<!-- Day 7 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">7</span>
+</div>
+<!-- Day 8 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">8</span>
+</div>
+<!-- Day 9 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">9</span>
+</div>
+<!-- Day 10 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">10</span>
+</div>
+<!-- Day 11 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">11</span>
+</div>
+<!-- Week 3 -->
+<!-- Day 12 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">12</span>
+</div>
+<!-- Day 13 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">13</span>
+</div>
+<!-- Day 14: EVENT DAY -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-2 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<div class="flex justify-between items-center">
+<span class="size-7 flex items-center justify-center rounded-full bg-primary text-[#101817] text-sm font-bold shadow-lg shadow-primary/20">14</span>
+</div>
+<!-- Event Pill -->
+<div class="group/event relative">
+<div class="w-full bg-blue-500/20 border-l-2 border-blue-500 rounded-r px-2 py-1.5 hover:bg-blue-500/30 transition-colors">
+<p class="text-xs font-semibold text-blue-200 truncate">Mikrolab Sprint</p>
+<p class="text-[10px] text-blue-300">10:00 - 14:00</p>
+</div>
+<!-- Tooltip / Popover for Detail -->
+<div class="absolute left-full top-0 ml-2 z-50 w-72 hidden group-hover/event:block animate-in fade-in zoom-in duration-200">
+<div class="bg-surface-dark border border-[#273a38] rounded-xl shadow-2xl p-4">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-white text-lg leading-tight">Mikrolab Sprint</h4>
+<span class="bg-blue-500/20 text-blue-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Yazılım</span>
+</div>
+<p class="text-xs text-[#9abcb7] mb-3">Takımlar halinde hızlı prototipleme atölyesi. Fikirlerinizi 4 saatte hayata geçirin.</p>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-xs text-white">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span> 14 Ekim, 10:00 - 14:00
+                                            </div>
+<div class="flex items-center gap-2 text-xs text-white">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span> İnovasyon Merkezi, Salon A
+                                            </div>
+<div class="flex items-center gap-2 text-xs text-white">
+<span class="material-symbols-outlined text-[16px] text-primary">school</span> Önkoşul: Temel Kodlama
+                                            </div>
+</div>
+<div class="mb-3">
+<div class="flex justify-between text-[10px] text-[#9abcb7] mb-1">
+<span>Kontenjan</span>
+<span class="text-white">12/20</span>
+</div>
+<div class="h-1.5 w-full bg-[#273a38] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[60%]"></div>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-[#101817] text-xs font-bold py-2 rounded-lg transition-colors">
+                                            Katıl
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Day 15 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">15</span>
+</div>
+<!-- Day 16 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">16</span>
+</div>
+<!-- Day 17 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">17</span>
+</div>
+<!-- Day 18 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">18</span>
+</div>
+<!-- Week 4 -->
+<!-- Day 19 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">19</span>
+</div>
+<!-- Day 20: EVENT DAY -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-2 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">20</span>
+<div class="w-full bg-purple-500/20 border-l-2 border-purple-500 rounded-r px-2 py-1.5 hover:bg-purple-500/30 transition-colors">
+<p class="text-xs font-semibold text-purple-200 truncate">Boss Night</p>
+<p class="text-[10px] text-purple-300">18:00 - 20:00</p>
+</div>
+</div>
+<!-- Day 21 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">21</span>
+</div>
+<!-- Day 22: EVENT DAY (FULL) -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-2 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">22</span>
+<div class="w-full bg-slate-700/40 border-l-2 border-slate-500 rounded-r px-2 py-1.5 hover:bg-slate-700/60 transition-colors opacity-70">
+<div class="flex justify-between items-center">
+<p class="text-xs font-semibold text-slate-300 truncate">Python 101</p>
+<span class="text-[8px] bg-slate-600 px-1 rounded text-white">DOLU</span>
+</div>
+<p class="text-[10px] text-slate-400">10:00 - 16:00</p>
+</div>
+</div>
+<!-- Day 23 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">23</span>
+</div>
+<!-- Day 24 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">24</span>
+</div>
+<!-- Day 25 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">25</span>
+</div>
+<!-- Week 5 -->
+<!-- Day 26 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">26</span>
+</div>
+<!-- Day 27 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">27</span>
+</div>
+<!-- Day 28 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">28</span>
+</div>
+<!-- Day 29 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">29</span>
+</div>
+<!-- Day 30 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">30</span>
+</div>
+<!-- Day 31 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a] p-2 flex flex-col gap-1 hover:bg-slate-50 dark:hover:bg-[#1d3a35] transition-colors group cursor-pointer">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary">31</span>
+</div>
+<!-- Next Month Day 1 -->
+<div class="min-h-[140px] bg-white dark:bg-[#162e2a]/50 p-2 flex flex-col gap-1 opacity-50">
+<span class="text-sm font-medium text-slate-400 dark:text-slate-600">1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Expanded Event Details (Example: Selected "Boss Night") -->
+<aside class="hidden xl:flex w-96 flex-col border-l border-slate-200 dark:border-[#273a38] bg-white dark:bg-[#101817] shrink-0 p-6 overflow-y-auto">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Etkinlik Detayı</h3>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Event Image -->
+<div class="w-full aspect-video rounded-xl bg-cover bg-center mb-6 relative overflow-hidden group" data-alt="Tech conference audience with purple lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoHsz97KQB4NjuDXfHQWwpcTBMEbOaF5i42_AxZCR_nCph-EvIXLLjV5rGn_64zat-fOwanSt_D5hBf9E9di9PtsWSEakLPzv8J8z_rMsqeeBe7B1q8G6czyQuveSlfWDWOprt54XNTSSa5WQb2eW_I-pkTRvbouYZ7tWtnHtXSUkDg11ws2q3EJfLKlqp02-CyGqgZ8oUaNT1wdfHfI3KqmCtDt4MoqsLu3dn5yMS8Qjd6Xqno6UpRGLtyPz_RN1j-hHsL7z_2g");'>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-purple-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase mb-2 inline-block">Networking</span>
+</div>
+</div>
+<h2 class="text-2xl font-black text-slate-900 dark:text-white mb-2 leading-tight">Boss Night: Tech Leaders</h2>
+<p class="text-sm text-slate-500 dark:text-[#9abcb7] mb-6 leading-relaxed">
+                    Sektörün önde gelen liderleriyle tanışma ve deneyimlerini dinleme fırsatı. Kariyer yolculuğunuzda size ilham verecek hikayeler.
+                </p>
+<div class="space-y-4 mb-8">
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-[#273a38] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<div>
+<p class="text-xs text-slate-400 dark:text-[#9abcb7]">Tarih</p>
+<p class="text-sm font-medium text-slate-900 dark:text-white">20 Ekim 2023</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-[#273a38] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="text-xs text-slate-400 dark:text-[#9abcb7]">Saat</p>
+<p class="text-sm font-medium text-slate-900 dark:text-white">18:00 - 20:00</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-[#273a38] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-xs text-slate-400 dark:text-[#9abcb7]">Konum</p>
+<p class="text-sm font-medium text-slate-900 dark:text-white">DIGEM Konferans Salonu</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-[#273a38] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<p class="text-xs text-slate-400 dark:text-[#9abcb7]">Önkoşul</p>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Yok</p>
+</div>
+</div>
+</div>
+<!-- Registration Status -->
+<div class="bg-[#273a38] rounded-xl p-4 mb-6">
+<div class="flex justify-between items-end mb-2">
+<div>
+<p class="text-xs font-bold text-white mb-1">Katılım Durumu</p>
+<p class="text-[10px] text-[#9abcb7]">45 kişi kayıtlı</p>
+</div>
+<span class="text-primary font-bold text-sm">90% Dolu</span>
+</div>
+<div class="h-2 w-full bg-[#101817] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[90%] rounded-full"></div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-auto">
+<button class="w-full h-12 bg-primary hover:bg-primary/90 text-[#101817] text-base font-bold rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                        Kayıt Ol
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<p class="text-center text-[10px] text-slate-500 mt-3">Kayıtlar etkinlikten 2 saat önce kapanır.</p>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

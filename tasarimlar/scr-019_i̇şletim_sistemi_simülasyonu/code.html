@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-019 NirvanaOS Simulation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-content": "#ffffff",
+                        "primary-dark": "#0b5cb5",
+                        "primary-light": "#5faaf4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c242e",
+                        "surface-darker": "#151b22",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    boxShadow: {
+                       'glow': '0 0 15px rgba(19, 127, 236, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            overflow: hidden; /* Prevent scrolling of the "OS" */
+        }
+        
+        /* Custom scrollbar for simulated windows */
+        .os-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .os-scrollbar::-webkit-scrollbar-track {
+            background: #1c242e; 
+        }
+        .os-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151; 
+            border-radius: 4px;
+        }
+        .os-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; 
+        }
+
+        .glass-panel {
+            background: rgba(28, 36, 46, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .desktop-icon-hover:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white h-screen w-screen flex flex-col relative bg-cover bg-center select-none" data-alt="Abstract dark blue and purple digital landscape gradient wallpaper for desktop background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBACNPjAJDynN2nJYbsnhM678JJsW8Pv1Mpeb_kCyxe1N75iNHmyssWQISpy5Z1FjAmq9AhegWToYLLGOXdXPmZd0ql6ZCC7bfMEgQzmWiUSJuOrZEFzkj3ZKDp7q8EIzJsSt6KbJve1uY42U9ElQnFf7ZvFCH3EUVHfyxw7m2J_sZJtTEozmP-nHFoI5VGJX2mGIE8M_Ub0ZIFYq0rx9GQbHCqBkHJMzHm-SCRGTs6s_P3kKbv_4GwVcEqAu6ww-p697h5ulv1MQ');">
+<!-- Desktop Grid Area -->
+<div class="flex-1 relative z-0 p-4 grid grid-cols-[repeat(auto-fill,96px)] grid-rows-[repeat(auto-fill,96px)] gap-2 content-start">
+<!-- Desktop Icon 1 -->
+<div class="flex flex-col items-center justify-start gap-1 p-2 rounded cursor-pointer desktop-icon-hover group w-24 h-24">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary-light group-hover:scale-105 transition-transform duration-200">
+<span class="material-symbols-outlined text-4xl">computer</span>
+</div>
+<span class="text-xs font-medium text-white text-center drop-shadow-md">This PC</span>
+</div>
+<!-- Desktop Icon 2 -->
+<div class="flex flex-col items-center justify-start gap-1 p-2 rounded cursor-pointer desktop-icon-hover group w-24 h-24">
+<div class="w-12 h-12 bg-rose-500/20 rounded-lg flex items-center justify-center text-rose-400 group-hover:scale-105 transition-transform duration-200">
+<span class="material-symbols-outlined text-4xl">delete</span>
+</div>
+<span class="text-xs font-medium text-white text-center drop-shadow-md">Trash</span>
+</div>
+<!-- Desktop Icon 3 (Selected State Simulation) -->
+<div class="flex flex-col items-center justify-start gap-1 p-2 rounded cursor-pointer bg-white/10 border border-white/20 group w-24 h-24">
+<div class="w-12 h-12 bg-slate-500/20 rounded-lg flex items-center justify-center text-slate-300 group-hover:scale-105 transition-transform duration-200">
+<span class="material-symbols-outlined text-4xl">settings</span>
+</div>
+<span class="text-xs font-medium text-white text-center drop-shadow-md">Settings</span>
+</div>
+<!-- Desktop Icon 4 -->
+<div class="flex flex-col items-center justify-start gap-1 p-2 rounded cursor-pointer desktop-icon-hover group w-24 h-24">
+<div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform duration-200">
+<span class="material-symbols-outlined text-4xl">public</span>
+</div>
+<span class="text-xs font-medium text-white text-center drop-shadow-md">Browser</span>
+</div>
+</div>
+<!-- Active Window (Settings) -->
+<div class="absolute top-10 left-[340px] w-[800px] h-[500px] bg-surface-dark rounded-lg shadow-2xl border border-white/10 flex flex-col overflow-hidden z-10 animate-[fadeIn_0.2s_ease-out]">
+<!-- Window Title Bar -->
+<div class="h-10 bg-surface-darker border-b border-white/5 flex items-center justify-between px-4 select-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-sm">settings</span>
+<span class="text-sm font-medium text-slate-200">Settings</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-white/10 p-1 rounded"><span class="material-symbols-outlined text-sm">minimize</span></button>
+<button class="hover:bg-white/10 p-1 rounded"><span class="material-symbols-outlined text-sm">check_box_outline_blank</span></button>
+<button class="hover:bg-red-500/80 hover:text-white p-1 rounded text-slate-400 transition-colors"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+</div>
+<!-- Window Content -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Settings Sidebar -->
+<div class="w-64 bg-surface-darker/50 border-r border-white/5 flex flex-col p-2 gap-1">
+<div class="flex items-center gap-3 px-3 py-2 rounded text-slate-400 hover:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-xl">monitor</span>
+<span class="text-sm">System</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded text-slate-400 hover:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-xl">bluetooth</span>
+<span class="text-sm">Bluetooth &amp; devices</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded text-slate-400 hover:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-xl">wifi</span>
+<span class="text-sm">Network &amp; internet</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded bg-primary/20 text-primary border-l-2 border-primary cursor-pointer">
+<span class="material-symbols-outlined text-xl">palette</span>
+<span class="text-sm font-medium">Personalization</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded text-slate-400 hover:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-xl">apps</span>
+<span class="text-sm">Apps</span>
+</div>
+</div>
+<!-- Settings Main Panel -->
+<div class="flex-1 bg-surface-dark p-8 overflow-y-auto os-scrollbar">
+<div class="max-w-2xl">
+<h2 class="text-2xl font-bold mb-6">Personalization</h2>
+<div class="flex items-center gap-4 mb-8">
+<div class="w-32 h-20 rounded bg-gradient-to-br from-indigo-900 to-slate-900 border-2 border-primary shadow-lg relative" data-alt="Small preview of the current deep blue gradient desktop wallpaper">
+<div class="absolute bottom-1 right-1 bg-primary text-white text-[10px] px-1 rounded">Active</div>
+</div>
+<div>
+<h3 class="font-medium text-lg">Current Theme: Deep Blue</h3>
+<p class="text-slate-400 text-sm">Custom simulation theme</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-darker p-4 rounded-lg border border-white/5 flex items-center justify-between group hover:border-white/10 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-800 rounded">
+<span class="material-symbols-outlined text-slate-300">wallpaper</span>
+</div>
+<div>
+<div class="font-medium">Background</div>
+<div class="text-sm text-slate-400">Wallpaper, color, slideshow</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+<div class="bg-surface-darker p-4 rounded-lg border border-white/5 flex items-center justify-between group hover:border-white/10 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-800 rounded">
+<span class="material-symbols-outlined text-slate-300">palette</span>
+</div>
+<div>
+<div class="font-medium">Colors</div>
+<div class="text-sm text-slate-400">Accent color, transparency effects</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+<div class="bg-surface-darker p-4 rounded-lg border border-white/5 flex items-center justify-between group hover:border-white/10 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-800 rounded">
+<span class="material-symbols-outlined text-slate-300">lock</span>
+</div>
+<div>
+<div class="font-medium">Lock screen</div>
+<div class="text-sm text-slate-400">Lock screen images, apps, timeouts</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+</div>
+<div class="mt-8 flex justify-end gap-3">
+<button class="px-4 py-2 rounded bg-surface-darker border border-white/10 text-sm hover:bg-white/5 transition-colors">Reset</button>
+<button class="px-4 py-2 rounded bg-primary text-white text-sm font-medium hover:bg-primary-dark shadow-glow transition-all">Apply Changes</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mission Control Sidebar (Educational Overlay) -->
+<div class="absolute top-4 left-4 bottom-16 w-80 glass-panel rounded-xl flex flex-col z-50 shadow-2xl transition-all duration-300 ease-in-out border-l-4 border-l-primary">
+<!-- Header -->
+<div class="p-5 border-b border-white/10">
+<h1 class="text-primary font-bold tracking-wide text-xs uppercase mb-1">DIGEM • Core Module</h1>
+<h2 class="text-xl font-bold text-white leading-tight">OS Basics</h2>
+<div class="flex items-center gap-2 mt-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/20 text-green-400 border border-green-500/30">SIMULATION ACTIVE</span>
+</div>
+</div>
+<!-- Progress -->
+<div class="px-5 py-4">
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-300 font-medium">Progress</span>
+<span class="text-primary font-bold">60%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-darker rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[60%] rounded-full shadow-[0_0_10px_rgba(19,127,236,0.6)]"></div>
+</div>
+<p class="text-xs text-slate-400 mt-2">Task 3 of 5 completed</p>
+</div>
+<!-- Current Mission -->
+<div class="flex-1 overflow-y-auto px-5 py-2 space-y-4">
+<div class="bg-primary/10 border border-primary/30 rounded-lg p-4 relative overflow-hidden">
+<div class="absolute -right-2 -top-2 text-primary/10">
+<span class="material-symbols-outlined text-6xl">flag</span>
+</div>
+<h3 class="text-sm font-bold text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">radio_button_checked</span> Current Task
+                </h3>
+<p class="text-sm text-slate-200 leading-relaxed font-light">
+                    Navigate to <span class="font-bold text-white bg-white/10 px-1 rounded">Settings</span> &gt; <span class="font-bold text-white bg-white/10 px-1 rounded">Personalization</span> and change your background to 'Deep Blue'.
+                </p>
+</div>
+<!-- Steps List -->
+<div class="space-y-3">
+<div class="flex items-start gap-3 opacity-50">
+<div class="mt-0.5 text-green-400">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+<p class="text-sm text-slate-400 line-through">Open the Start Menu</p>
+</div>
+<div class="flex items-start gap-3 opacity-50">
+<div class="mt-0.5 text-green-400">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+<p class="text-sm text-slate-400 line-through">Launch Settings App</p>
+</div>
+<div class="flex items-start gap-3">
+<div class="mt-0.5 text-primary animate-pulse">
+<span class="material-symbols-outlined text-lg">circle</span>
+</div>
+<p class="text-sm text-white font-medium">Apply 'Deep Blue' Theme</p>
+</div>
+<div class="flex items-start gap-3 opacity-40">
+<div class="mt-0.5 text-slate-600">
+<span class="material-symbols-outlined text-lg">radio_button_unchecked</span>
+</div>
+<p class="text-sm text-slate-500">Close Settings Window</p>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="p-5 border-t border-white/10 space-y-3 bg-surface-darker/30">
+<button class="w-full py-2.5 px-4 bg-surface-dark hover:bg-white/10 border border-white/10 rounded-lg flex items-center justify-center gap-2 text-sm text-slate-300 transition-colors group">
+<span class="material-symbols-outlined text-yellow-500 group-hover:scale-110 transition-transform">lightbulb</span>
+                Get Hint
+            </button>
+<button class="w-full py-2.5 px-4 hover:bg-red-500/20 border border-transparent hover:border-red-500/30 rounded-lg flex items-center justify-center gap-2 text-sm text-slate-400 hover:text-red-400 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+                Exit Simulation
+            </button>
+</div>
+</div>
+<!-- Toast Notification (Action Log) -->
+<div class="absolute top-4 right-4 bg-surface-dark border border-l-4 border-l-green-500 border-white/10 rounded shadow-xl p-3 flex items-center gap-3 animate-[slideIn_0.3s_ease-out] z-50 max-w-sm">
+<div class="bg-green-500/20 p-1.5 rounded-full text-green-400">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div>
+<h4 class="text-xs font-bold text-white">Action Logged</h4>
+<p class="text-xs text-slate-400">Opened "Settings" Application</p>
+</div>
+<button class="text-slate-500 hover:text-white ml-2">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Taskbar -->
+<div class="absolute bottom-0 w-full h-12 bg-surface-darker/95 backdrop-blur-xl border-t border-white/10 flex items-center justify-between px-2 z-50">
+<!-- Start & App Area -->
+<div class="flex items-center gap-1 h-full">
+<!-- Start Button -->
+<button class="h-10 w-10 flex items-center justify-center rounded hover:bg-white/10 transition-colors relative group ml-1">
+<div class="absolute -top-12 left-0 bg-surface-dark border border-white/10 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Start</div>
+<span class="material-symbols-outlined text-primary text-3xl drop-shadow-[0_0_8px_rgba(19,127,236,0.5)]">grid_view</span>
+</button>
+<div class="w-[1px] h-6 bg-white/10 mx-1"></div>
+<!-- Taskbar Apps -->
+<button class="h-10 w-10 flex items-center justify-center rounded hover:bg-white/10 transition-colors group relative">
+<div class="absolute -top-12 left-0 bg-surface-dark border border-white/10 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">File Explorer</div>
+<span class="material-symbols-outlined text-amber-400 text-2xl">folder</span>
+</button>
+<button class="h-10 w-10 flex items-center justify-center rounded bg-white/10 border-b-2 border-primary transition-colors relative group">
+<div class="absolute -top-12 left-0 bg-surface-dark border border-white/10 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Settings</div>
+<span class="material-symbols-outlined text-slate-300 text-2xl">settings</span>
+</button>
+<button class="h-10 w-10 flex items-center justify-center rounded hover:bg-white/10 transition-colors group relative">
+<div class="absolute -top-12 left-0 bg-surface-dark border border-white/10 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Browser</div>
+<span class="material-symbols-outlined text-cyan-400 text-2xl">public</span>
+</button>
+</div>
+<!-- System Tray -->
+<div class="flex items-center gap-2 h-full pr-2">
+<button class="h-8 px-2 flex items-center gap-1 rounded hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xs">keyboard_arrow_up</span>
+</button>
+<div class="flex items-center gap-2 px-2 py-1 hover:bg-white/10 rounded transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-lg">wifi</span>
+<span class="material-symbols-outlined text-lg">volume_up</span>
+<span class="material-symbols-outlined text-lg">battery_charging_full</span>
+</div>
+<div class="text-right px-2 py-1 hover:bg-white/10 rounded transition-colors cursor-pointer">
+<div class="text-xs font-medium leading-none mb-0.5">14:30</div>
+<div class="text-[10px] text-slate-400 leading-none">10/24/2023</div>
+</div>
+<div class="w-1 h-full border-l border-white/10 ml-1"></div>
+<button class="w-2 h-full hover:bg-white/10"></button>
+</div>
+</div>
+<!-- Start Menu (Hidden by default visually, but shown here for layout demo - I will comment it out or make it 'open' state) -->
+<!-- Ideally, this would toggle. For the purpose of the screenshot, I'll keep the Settings window active and not clutter with an open Start Menu -->
+<script>
+        // Simple animation keyframes injected via Tailwind config or standard CSS were used. 
+        // No actual JS logic for functionality as per constraints.
+    </script>
+</body></html>

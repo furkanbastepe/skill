@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-043: Döngüler Challenge - DIGEM</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "editor-bg": "#1e293b",
+                        "panel-bg": "#1c2127",
+                        "border-dark": "#3b4754",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#283039] bg-[#111418] px-6 py-3 shrink-0">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM | Core Programming</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-white/70 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-white text-sm font-medium leading-normal" href="#">Modules</a>
+<a class="text-white/70 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Community</a>
+</div>
+<div class="flex gap-2 items-center">
+<div class="h-8 px-3 rounded-full bg-primary/10 border border-primary/20 flex items-center gap-2 text-primary text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>Level 4</span>
+</div>
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full hover:bg-[#283039] text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-[#283039]" data-alt="User profile picture showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBaSERRTpdfQfap7AXZUYHZXu274QDssy6lEjs71nAUPCAQwipvbRdZsyWM0p8NCZTjd8ATOAGh3l5O9GzaHI5NefrN0SlDqVTwnHcA5h0sJm0bOAV8FfL8c2_qdmGC5IYKQfHt3mRxAhect9a8U7aDf8v15SoTCykBhueQBrkbVCtRreZj-WdQJlqEPFosENxfegEIbxZYdyeNtZVoSPkaRiTe6MmA22GYM-fuItBPTdID1ZY6j3u4T9mhhqo8PfO-IalB2B1KrA");'></div>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Problem Description -->
+<aside class="w-full max-w-[400px] flex flex-col border-r border-border-dark bg-[#111418] overflow-y-auto custom-scrollbar hidden lg:flex">
+<!-- Breadcrumbs & Header -->
+<div class="p-6 border-b border-border-dark">
+<div class="flex flex-wrap gap-2 mb-4 text-xs">
+<span class="text-[#9dabb9]">Core Programming</span>
+<span class="text-[#9dabb9]">/</span>
+<span class="text-[#9dabb9]">Module 4</span>
+<span class="text-[#9dabb9]">/</span>
+<span class="text-primary font-medium">Loops Challenge</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tight mb-2">SCR-043: Döngüler Challenge</h1>
+<p class="text-[#9dabb9] text-sm leading-relaxed">Master 'for' and 'while' loops to filter data streams effectively. Earn your Efficiency Badge by optimizing complexity.</p>
+</div>
+<!-- Objective Cards -->
+<div class="p-6 grid gap-4">
+<div class="bg-panel-bg rounded-lg border border-border-dark p-4">
+<div class="flex items-start gap-3">
+<div class="p-2 bg-primary/10 rounded-md text-primary">
+<span class="material-symbols-outlined">flag</span>
+</div>
+<div>
+<h3 class="font-bold text-sm mb-1">Objective</h3>
+<p class="text-xs text-[#9dabb9]">Write a loop to filter even numbers from the <code>user_ids</code> list. Store the result in a new list called <code>valid_ids</code>.</p>
+</div>
+</div>
+</div>
+<div class="bg-panel-bg rounded-lg border border-border-dark p-4">
+<div class="flex items-start gap-3">
+<div class="p-2 bg-orange-500/10 rounded-md text-orange-500">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<div>
+<h3 class="font-bold text-sm mb-1">Constraints</h3>
+<p class="text-xs text-[#9dabb9]">Time limit: 200ms.<br/>Memory limit: 50MB.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Accordions -->
+<div class="px-6 pb-6 flex flex-col gap-3">
+<details class="group rounded-lg border border-border-dark bg-panel-bg open:bg-[#161b22] transition-colors">
+<summary class="flex cursor-pointer items-center justify-between p-4 font-medium text-sm select-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">lightbulb</span>
+<span>Complexity Hints</span>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-[#9dabb9]">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-sm text-[#9dabb9] leading-relaxed">
+<p>Nested loops increase complexity to O(n²). Try to solve this in a single pass (O(n)). Use the modulo operator <code>%</code> to check for even numbers.</p>
+</div>
+</details>
+<details class="group rounded-lg border border-border-dark bg-panel-bg open:bg-[#161b22] transition-colors">
+<summary class="flex cursor-pointer items-center justify-between p-4 font-medium text-sm select-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-[20px]">menu_book</span>
+<span>Syntax Guide</span>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-[#9dabb9]">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-sm text-[#9dabb9] leading-relaxed font-mono bg-[#111418] m-4 mt-0 rounded border border-border-dark">
+<div class="p-2">
+<span class="text-purple-400">for</span> item <span class="text-purple-400">in</span> list:<br/>
+                              <span class="text-gray-500"># do something</span>
+</div>
+</div>
+</details>
+</div>
+<!-- Badge Preview -->
+<div class="mt-auto p-6 border-t border-border-dark bg-[#0d1014]">
+<div class="flex items-center gap-4 opacity-50 grayscale transition-all duration-500 hover:grayscale-0 hover:opacity-100 cursor-help" title="Complete task to unlock">
+<div class="size-12 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-[24px]">verified</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Reward</p>
+<p class="font-bold">Efficiency Badge</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Panel: Code Editor -->
+<section class="flex-1 flex flex-col bg-[#0f1318] min-w-0 relative">
+<!-- Editor Tabs -->
+<div class="flex items-center bg-[#111418] border-b border-border-dark">
+<div class="flex">
+<button class="px-4 py-3 text-sm font-medium text-white border-t-2 border-primary bg-[#1e293b] flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-blue-400">code</span>
+                        solution.py
+                    </button>
+<button class="px-4 py-3 text-sm font-medium text-[#9dabb9] hover:text-white hover:bg-[#1e293b]/50 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-yellow-500">data_object</span>
+                        test_data.json
+                    </button>
+</div>
+<div class="ml-auto px-4 flex gap-2">
+<button class="p-1 text-[#9dabb9] hover:text-white transition-colors" title="Settings">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+</button>
+</div>
+</div>
+<!-- Editor Area -->
+<div class="flex-1 relative font-mono text-sm overflow-auto custom-scrollbar bg-[#1e293b]" style="font-family: 'JetBrains Mono', monospace;">
+<!-- Line Numbers -->
+<div class="absolute left-0 top-0 bottom-0 w-12 bg-[#111418] border-r border-border-dark flex flex-col items-end py-4 px-2 text-[#4b5563] select-none">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+</div>
+<!-- Code Content -->
+<div class="absolute left-12 top-0 right-0 bottom-0 p-4 text-[#e2e8f0] leading-relaxed">
+<pre class="m-0"><span class="text-[#6a7282]"># SCR-043: Filter even numbers from user_ids</span>
+<span class="text-[#6a7282]"># Input list is provided as `user_ids`</span>
+
+user_ids = [102, 45, 88, 12, 59, 73, 90, 22]
+valid_ids = []
+
+<span class="text-[#c678dd]">for</span> user_id <span class="text-[#c678dd]">in</span> user_ids:
+    <span class="text-[#6a7282]"># TODO: Check if user_id is even</span>
+    <span class="text-[#c678dd]">if</span> user_id % <span class="text-[#d19a66]">2</span> == <span class="text-[#d19a66]">0</span>:
+        <span class="text-[#e5c07b]">print</span>(<span checking="" class="text-[#98c379]f" id:="" span="" {user_id}"<="">)
+        valid_ids.<span class="text-[#61afef]">append</span>(user_id)
+        
+<span class="text-[#e5c07b]">print</span>(<span class="text-[#98c379]" filtered="" list:"<="" span="">, valid_ids)</span></span></pre>
+<!-- Blinking Cursor -->
+<div class="inline-block w-[2px] h-[1.2em] bg-primary align-middle animate-pulse ml-0.5"></div>
+</div>
+</div>
+<!-- Bottom Status Bar -->
+<div class="h-8 bg-[#111418] border-t border-border-dark flex items-center px-4 justify-between text-xs text-[#9dabb9]">
+<div class="flex gap-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">error</span> 0 Errors</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span> 0 Warnings</span>
+</div>
+<div class="flex gap-4">
+<span>Ln 11, Col 44</span>
+<span>UTF-8</span>
+<span>Python 3.10</span>
+</div>
+</div>
+</section>
+<!-- Right Panel: Output & Controls -->
+<aside class="w-[320px] flex flex-col border-l border-border-dark bg-[#111418] shrink-0">
+<!-- Run Controls -->
+<div class="p-6 border-b border-border-dark flex flex-col gap-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">play_arrow</span>
+                    Run Code
+                </button>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-panel-bg border border-border-dark rounded-lg p-3 flex flex-col items-center justify-center">
+<span class="text-xs text-[#9dabb9] uppercase tracking-wider mb-1">Time</span>
+<span class="font-mono text-lg font-bold text-white">0.04s</span>
+</div>
+<div class="bg-panel-bg border border-border-dark rounded-lg p-3 flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Infinite Loop Detector Pulse -->
+<div class="absolute top-1 right-1 w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse"></div>
+<span class="text-xs text-[#9dabb9] uppercase tracking-wider mb-1">Safety</span>
+<span class="font-mono text-lg font-bold text-green-400">Stable</span>
+</div>
+</div>
+</div>
+<!-- Console Output -->
+<div class="flex-1 flex flex-col min-h-0">
+<div class="px-4 py-2 bg-[#161b22] border-b border-border-dark flex justify-between items-center">
+<span class="text-xs font-bold uppercase tracking-wider text-[#9dabb9]">Terminal</span>
+<button class="text-[#9dabb9] hover:text-white transition-colors" title="Clear Console">
+<span class="material-symbols-outlined text-[16px]">block</span>
+</button>
+</div>
+<div class="flex-1 p-4 font-mono text-xs overflow-y-auto custom-scrollbar text-[#9dabb9] bg-[#0d1014]">
+<div class="mb-2">
+<span class="text-green-500">➜</span> <span class="text-white">python solution.py</span>
+</div>
+<div class="mb-2 pl-4 border-l-2 border-border-dark">
+                        Checking ID: 102<br/>
+                        Checking ID: 88<br/>
+                        Checking ID: 12<br/>
+                        Checking ID: 90<br/>
+                        Checking ID: 22
+                    </div>
+<div class="mb-4 text-white">
+                        Filtered List: [102, 88, 12, 90, 22]
+                    </div>
+<div class="p-2 rounded bg-green-500/10 border border-green-500/20 text-green-400">
+<div class="flex items-center gap-2 mb-1 font-bold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                            Success!
+                        </div>
+                        Output matches expected result.
+                    </div>
+<div class="mt-4 pt-4 border-t border-border-dark/50">
+<span class="text-green-500">➜</span> <span class="animate-pulse">_</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<style>
+        /* Custom Scrollbar for dark theme */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111418; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b4754; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; 
+        }
+    </style>
+</body></html>

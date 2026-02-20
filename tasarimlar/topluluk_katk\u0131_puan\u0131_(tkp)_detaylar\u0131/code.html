@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite - TKP Detayları</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1e2430", // Slightly lighter than background-dark for cards
+                        "success": "#0bda5e",
+                        "text-secondary": "#9ca6ba",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="relative flex h-screen w-full overflow-hidden">
+<!-- Sidebar -->
+<div class="hidden lg:flex w-72 flex-col border-r border-slate-800 bg-background-dark h-full">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- User Profile Snippet -->
+<div class="flex items-center gap-3 px-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 border-2 border-primary/20" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqNa6YKHI0na7IvzWmcVsv4oUBdGctiGZhwgLJL_r91CmbppBICywCyu-_-T5gefdFZPAUxEHv0a-LzDuGRCO0EJ_dlbgav6fRaXiy7fe0n_N_xkdCZMoaeeIQL7OpRNWCCLEZgxCSejwF12HfvpCzErnlC14VEwL2YfLIonPKwac7yAGH0KLaMDKUoBwUlGYoAgVpsNWSBUEeF9wrD93C4Ee6LTNhXsVXYPf6BpJEjupouA1UuwoUkH128cDVSIvj4G0PcgYHrmA");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-tight">Can Yılmaz</h1>
+<p class="text-text-secondary text-xs font-medium">PUSULA Lite - Faz 1</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-slate-800 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:text-primary transition-colors">home</span>
+<span class="text-sm font-medium">Ana Sayfa</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-slate-800 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:text-primary transition-colors">map</span>
+<span class="text-sm font-medium">Kariyer Yolculuğum</span>
+</a>
+<!-- Active Item -->
+<div class="flex flex-col gap-1">
+<a class="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20 transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[24px] fill-1">trophy</span>
+<span class="text-sm font-bold">TKP Detayları</span>
+</div>
+</a>
+</div>
+<a class="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-slate-800 hover:text-white transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[24px] group-hover:text-primary transition-colors">forum</span>
+<span class="text-sm font-medium">Klan Sohbeti</span>
+</div>
+<span class="flex size-2 rounded-full bg-success shadow-[0_0_8px_rgba(11,218,94,0.6)]"></span>
+</a>
+<a class="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-slate-800 hover:text-white transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[24px] group-hover:text-primary transition-colors">military_tech</span>
+<span class="text-sm font-medium">Lider Tablosu</span>
+</div>
+</a>
+</nav>
+<!-- Notifications / Special Section -->
+<div class="mt-4 px-3">
+<div class="rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-4 relative overflow-hidden group cursor-pointer hover:border-slate-600 transition-all">
+<div class="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[64px] text-white">notifications_active</span>
+</div>
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">campaign</span>
+<span class="text-xs font-bold uppercase tracking-wider">Duyuru</span>
+</div>
+<h3 class="text-white text-sm font-bold mb-1">Kaptan Rotasyonu</h3>
+<p class="text-xs text-text-secondary leading-relaxed">Yeni dönem klan kaptanı seçimleri başladı. Oyunu kullan!</p>
+</div>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-slate-800 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-sm font-medium">Ayarlar</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto bg-background-dark relative">
+<!-- Top bar mobile -->
+<div class="lg:hidden flex items-center justify-between p-4 border-b border-slate-800 bg-background-dark sticky top-0 z-20">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9zt6tHpF_xFxDtZOuNKidplPAmiJxs-Af9ruavKzEEvuNnwQ6IJUaNfM0A06yAY54nga5hu6td1zz3h7BetAx5N5KAdCOdMZt9d9mRCp1JfGc0srzdKayMTmtJAXWnLVjsSSZpo17Zlhd7MUgsr1oKytrmqPDHTZZ6tS7dr3hjNZ3w9Dok6P6nIpESfwj9Wuyguh9pMtJ9yQjTYzhwy5z7efsFz5ZZR_hi9ux7ntZH5y7una44oDNTDtg2YPh2GHkob8RB-ZUOiU");'></div>
+<span class="font-bold text-white">TKP Detayları</span>
+</div>
+<button class="text-white p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Content Container -->
+<div class="w-full max-w-[1200px] mx-auto p-4 lg:p-8 flex flex-col gap-8">
+<!-- Hero Section: Total Score & Progress -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Total Score Card -->
+<div class="md:col-span-4 lg:col-span-3 flex flex-col">
+<div class="h-full rounded-2xl bg-gradient-to-b from-primary/20 to-card-dark border border-primary/30 p-6 flex flex-col items-center justify-center text-center relative overflow-hidden shadow-[0_0_30px_rgba(13,89,242,0.1)]">
+<!-- Decorational background glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/20 blur-[50px] rounded-full pointer-events-none"></div>
+<h2 class="text-text-secondary text-sm font-medium mb-2 relative z-10">Toplam TKP Puanınız</h2>
+<div class="text-7xl font-black text-white tracking-tighter mb-2 relative z-10 drop-shadow-xl">
+                                85
+                            </div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-success/20 border border-success/30 text-success text-xs font-bold relative z-10">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+15% bu hafta</span>
+</div>
+</div>
+</div>
+<!-- Career Journey Progress -->
+<div class="md:col-span-8 lg:col-span-9 flex flex-col">
+<div class="h-full rounded-2xl bg-card-dark border border-slate-800 p-6 lg:p-8 flex flex-col justify-center relative overflow-hidden">
+<!-- Background Map Pattern -->
+<div class="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+<div class="flex items-center justify-between mb-6 relative z-10">
+<div>
+<h2 class="text-white text-xl lg:text-2xl font-bold tracking-tight mb-1">Kariyer Yolculuğu Hedefi: Faz 2</h2>
+<p class="text-text-secondary text-sm">Bir sonraki seviyeye geçmek için performansını koru.</p>
+</div>
+<div class="text-right hidden sm:block">
+<span class="text-3xl font-bold text-white">85</span>
+<span class="text-lg text-text-secondary font-medium">/100</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="relative h-4 w-full bg-slate-800 rounded-full overflow-hidden mb-4 z-10 shadow-inner">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-600 via-primary to-blue-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(13,89,242,0.5)]" style="width: 85%;"></div>
+<!-- Stripes on progress bar -->
+<div class="absolute top-0 left-0 h-full w-full opacity-30 bg-[length:1rem_1rem] bg-[linear-gradient(45deg,rgba(255,255,255,0.15)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.15)_50%,rgba(255,255,255,0.15)_75%,transparent_75%,transparent)] animate-[pulse_2s_infinite]"></div>
+</div>
+<div class="flex items-center gap-2 text-sm text-text-secondary relative z-10">
+<span class="material-symbols-outlined text-primary text-[18px]">lock</span>
+<span>Faz 2 kilidini açmak için <span class="text-white font-bold">15 TKP</span> daha gerekli.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Row -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="rounded-xl bg-card-dark border border-slate-800 p-5 flex items-center justify-between">
+<div>
+<p class="text-text-secondary text-xs font-medium uppercase tracking-wider mb-1">Sıralama</p>
+<p class="text-2xl font-bold text-white">12.</p>
+</div>
+<div class="size-10 rounded-full bg-slate-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">leaderboard</span>
+</div>
+</div>
+<div class="rounded-xl bg-card-dark border border-slate-800 p-5 flex items-center justify-between">
+<div>
+<p class="text-text-secondary text-xs font-medium uppercase tracking-wider mb-1">Klan Katkısı</p>
+<p class="text-2xl font-bold text-white">320</p>
+</div>
+<div class="size-10 rounded-full bg-slate-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+</div>
+<div class="rounded-xl bg-card-dark border border-slate-800 p-5 flex items-center justify-between">
+<div>
+<p class="text-text-secondary text-xs font-medium uppercase tracking-wider mb-1">Tamamlanan Görev</p>
+<p class="text-2xl font-bold text-white">14</p>
+</div>
+<div class="size-10 rounded-full bg-slate-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+</div>
+</div>
+<!-- Contribution History Table -->
+<div class="flex flex-col gap-4 mb-8">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<h2 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                            Katkı Geçmişi
+                        </h2>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium transition-colors border border-slate-700">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                                Filtrele
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold shadow-lg shadow-primary/25 transition-all">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                                Yeni Katkı Ekle
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto rounded-xl border border-slate-800 bg-card-dark">
+<table class="w-full text-left text-sm text-text-secondary">
+<thead class="bg-slate-900/50 text-xs uppercase text-text-secondary font-semibold">
+<tr>
+<th class="px-6 py-4" scope="col">Aktivite</th>
+<th class="px-6 py-4" scope="col">Kategori</th>
+<th class="px-6 py-4" scope="col">Tarih</th>
+<th class="px-6 py-4 text-right" scope="col">TKP Puanı</th>
+<th class="px-6 py-4 text-center" scope="col">Durum</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-800">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">event</span>
+</div>
+                                        Cuma Atölyesi Katılımı
+                                    </td>
+<td class="px-6 py-4">Etkinlik</td>
+<td class="px-6 py-4">24 Ekim 2023</td>
+<td class="px-6 py-4 text-right font-bold text-success">+10 TKP</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center rounded-full bg-success/10 px-2.5 py-0.5 text-xs font-medium text-success border border-success/20">
+                                            Onaylandı
+                                        </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+</div>
+                                        SDG Hibrit Görev Tamamlama
+                                    </td>
+<td class="px-6 py-4">Proje</td>
+<td class="px-6 py-4">22 Ekim 2023</td>
+<td class="px-6 py-4 text-right font-bold text-success">+15 TKP</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center rounded-full bg-success/10 px-2.5 py-0.5 text-xs font-medium text-success border border-success/20">
+                                            Onaylandı
+                                        </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">rate_review</span>
+</div>
+                                        Klan Review Desteği
+                                    </td>
+<td class="px-6 py-4">Topluluk</td>
+<td class="px-6 py-4">20 Ekim 2023</td>
+<td class="px-6 py-4 text-right font-bold text-success">+5 TKP</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center rounded-full bg-success/10 px-2.5 py-0.5 text-xs font-medium text-success border border-success/20">
+                                            Onaylandı
+                                        </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4 font-medium text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center group-hover:bg-teal-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">school</span>
+</div>
+                                        Python Giriş Sınavı
+                                    </td>
+<td class="px-6 py-4">Eğitim</td>
+<td class="px-6 py-4">18 Ekim 2023</td>
+<td class="px-6 py-4 text-right font-bold text-success">+20 TKP</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center rounded-full bg-success/10 px-2.5 py-0.5 text-xs font-medium text-success border border-success/20">
+                                            Onaylandı
+                                        </span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-800/50 transition-colors group opacity-75">
+<td class="px-6 py-4 font-medium text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-500/20 text-slate-400 flex items-center justify-center group-hover:bg-slate-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">forum</span>
+</div>
+                                        Discord Moderasyon
+                                    </td>
+<td class="px-6 py-4">Topluluk</td>
+<td class="px-6 py-4">15 Ekim 2023</td>
+<td class="px-6 py-4 text-right font-bold text-text-secondary">---</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center rounded-full bg-yellow-500/10 px-2.5 py-0.5 text-xs font-medium text-yellow-500 border border-yellow-500/20">
+                                            İnceleniyor
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-slate-800 bg-slate-900/30 px-6 py-3">
+<div class="text-xs text-text-secondary">
+                                Toplam <span class="font-medium text-white">24</span> kayıttan <span class="font-medium text-white">1-5</span> arası gösteriliyor
+                            </div>
+<div class="flex gap-2">
+<button class="rounded-md border border-slate-700 p-1 text-text-secondary hover:bg-slate-800 hover:text-white disabled:opacity-50">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="rounded-md border border-slate-700 p-1 text-text-secondary hover:bg-slate-800 hover:text-white disabled:opacity-50">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer (Optional) -->
+<div class="mt-auto py-6 border-t border-slate-800 text-center text-xs text-text-secondary">
+                    © 2023 PUSULA Lite. UNDP destekli bir gençlik projesidir.
+                </div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-028 Computer Mastery Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4 lg:px-12">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center rounded-xl bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+</div>
+<div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">DIGEM</h2>
+<p class="text-xs font-medium text-gray-500 dark:text-gray-400">Digital Youth Centers</p>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6">
+<a class="text-sm font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" href="#">Modules</a>
+<a class="text-sm font-medium text-gray-900 dark:text-white" href="#">Dashboard</a>
+<a class="text-sm font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<div class="h-6 w-px bg-gray-200 dark:bg-gray-700"></div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
+<span>Log Out</span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center border-2 border-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAY1ClaAmmiWFI3BrgxkbYZLoeS0hB2VdNBwksFsLV0LDkxIudaCpUcXIFIyDCYNm-mhw97kBt_5t_QhIFSlWZ-Q8qrTb9NB6MdY-1X03no87XubGGGOpd9jU2P2QKulCsFVxJAQ2CMDzLX_DQ4AwzZCNtAi3Rdfo2oSnqynJgKrMYbquh1kmeC5TM37KmV31UvBHwvY1a_MzbXGGzkhV37LwY_SGCjDfvZPxzj_c3VBHGCIu2Tk4zSAGJCKCydVGa6XXyciUvN1g");'>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-4 md:px-8 lg:px-12">
+<div class="w-full max-w-6xl space-y-8">
+<!-- Report Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-gray-200 dark:border-gray-800">
+<div class="space-y-2">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center rounded-full bg-green-500/10 px-2.5 py-0.5 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">
+                                COMPLETED
+                            </span>
+<span class="text-sm text-gray-500 dark:text-gray-400 font-mono">ID: SCR-028</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 dark:text-white">
+                            Bilgisayar Mastery Raporu
+                        </h1>
+<p class="text-base text-gray-500 dark:text-gray-400 max-w-2xl">
+                            Core Computer Module Evaluation. Analiz sonuçlarınız ve gelişim önerileriniz aşağıda listelenmiştir.
+                        </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-2.5 text-sm font-semibold text-gray-900 dark:text-white shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined mr-2 text-[20px]">download</span>
+                            PDF İndir
+                        </button>
+<button class="inline-flex items-center justify-center rounded-lg border border-transparent bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors">
+<span class="material-symbols-outlined mr-2 text-[20px]">share</span>
+                            Paylaş
+                        </button>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Stats & Chart (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- Score Card -->
+<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1f2937] p-6 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-9xl text-primary">emoji_events</span>
+</div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                                Genel Başarı Özeti
+                            </h3>
+<div class="flex flex-col sm:flex-row items-center gap-8 md:gap-12">
+<!-- Circular Progress -->
+<div class="relative size-40 shrink-0">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<!-- Background Circle -->
+<path class="text-gray-200 dark:text-gray-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="100, 100" stroke-width="3.5"></path>
+<!-- Progress Circle -->
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="82, 100" stroke-width="3.5"></path>
+</svg>
+<div class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-center">
+<span class="block text-4xl font-black text-gray-900 dark:text-white">82%</span>
+</div>
+</div>
+<div class="flex flex-col gap-4 flex-1 w-full">
+<div class="space-y-1">
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Seviye</p>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">Advanced</p>
+</div>
+<div class="space-y-1">
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Sıralama</p>
+<p class="text-lg font-semibold text-gray-900 dark:text-white">Top 15% of Students</p>
+</div>
+<div class="h-1.5 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mt-1">
+<div class="h-full bg-gradient-to-r from-blue-400 to-primary w-[82%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Radar Chart / Skills Breakdown -->
+<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1f2937] p-6 shadow-sm flex-1">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">radar</span>
+                                    Yetenek Analizi
+                                </h3>
+<button class="text-sm text-primary hover:text-blue-400 font-medium">Detayları Gör</button>
+</div>
+<div class="relative h-[300px] w-full flex justify-center items-center">
+<!-- Abstract CSS-only Radar Chart Representation for Design Mockup -->
+<div class="relative size-64">
+<!-- Grid lines -->
+<div class="absolute inset-0 border border-gray-200 dark:border-gray-700 rounded-full opacity-30"></div>
+<div class="absolute inset-8 border border-gray-200 dark:border-gray-700 rounded-full opacity-30"></div>
+<div class="absolute inset-16 border border-gray-200 dark:border-gray-700 rounded-full opacity-30"></div>
+<div class="absolute inset-24 border border-gray-200 dark:border-gray-700 rounded-full opacity-30"></div>
+<!-- Axes -->
+<div class="absolute top-0 bottom-0 left-1/2 w-px bg-gray-200 dark:bg-gray-700 -translate-x-1/2"></div>
+<div class="absolute left-0 right-0 top-1/2 h-px bg-gray-200 dark:bg-gray-700 -translate-y-1/2"></div>
+<div class="absolute top-0 bottom-0 left-1/2 w-px bg-gray-200 dark:bg-gray-700 -translate-x-1/2 rotate-45"></div>
+<div class="absolute top-0 bottom-0 left-1/2 w-px bg-gray-200 dark:bg-gray-700 -translate-x-1/2 -rotate-45"></div>
+<!-- Data Shape (Polygon) -->
+<svg class="absolute inset-0 size-full drop-shadow-lg" preserveaspectratio="none" viewbox="0 0 100 100">
+<polygon fill="rgba(19, 127, 236, 0.2)" points="50,15 85,35 75,80 25,80 15,35" stroke="#137fec" stroke-width="2"></polygon>
+<!-- Data Points -->
+<circle class="fill-primary" cx="50" cy="15" r="3"></circle>
+<circle class="fill-primary" cx="85" cy="35" r="3"></circle>
+<circle class="fill-primary" cx="75" cy="80" r="3"></circle>
+<circle class="fill-primary" cx="25" cy="80" r="3"></circle>
+<circle class="fill-primary" cx="15" cy="35" r="3"></circle>
+</svg>
+<!-- Labels -->
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-gray-600 dark:text-gray-300">Donanım</span>
+<span class="absolute top-[30%] -right-12 text-xs font-bold text-gray-600 dark:text-gray-300">Yazılım</span>
+<span class="absolute bottom-[15%] -right-8 text-xs font-bold text-gray-600 dark:text-gray-300">Ağ</span>
+<span class="absolute bottom-[15%] -left-12 text-xs font-bold text-gray-600 dark:text-gray-300">Güvenlik</span>
+<span class="absolute top-[30%] -left-16 text-xs font-bold text-gray-600 dark:text-gray-300">İşletim Sistemi</span>
+</div>
+</div>
+<!-- Detailed Scores Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+<div class="text-center">
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Donanım</p>
+<p class="text-xl font-bold text-gray-900 dark:text-white">85</p>
+</div>
+<div class="text-center">
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Yazılım</p>
+<p class="text-xl font-bold text-gray-900 dark:text-white">92</p>
+</div>
+<div class="text-center">
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Ağ</p>
+<p class="text-xl font-bold text-gray-900 dark:text-white">74</p>
+</div>
+<div class="text-center">
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Güvenlik</p>
+<p class="text-xl font-bold text-gray-900 dark:text-white">68</p>
+</div>
+<div class="text-center">
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-1">OS</p>
+<p class="text-xl font-bold text-gray-900 dark:text-white">90</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Remediation & Actions (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Remediation Plan -->
+<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1f2937] p-6 shadow-sm flex flex-col h-full">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-400">warning</span>
+                                Gelişim Alanları &amp; Öneriler
+                            </h3>
+<div class="space-y-4 flex-1">
+<!-- Item 1 -->
+<div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 border-l-4 border-orange-400">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-semibold text-gray-900 dark:text-white text-sm">RAM vs ROM Differences</h4>
+<span class="text-[10px] font-bold uppercase bg-orange-400/20 text-orange-400 px-2 py-0.5 rounded">Donanım</span>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Kalıcı ve geçici bellek arasındaki farklar konusunda eksikleriniz var.</p>
+<a class="inline-flex items-center text-xs font-medium text-primary hover:text-blue-400 transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px] mr-1">play_circle</span>
+                                        Ders 3: Bellek Birimlerini Tekrarla
+                                    </a>
+</div>
+<!-- Item 2 -->
+<div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 border-l-4 border-red-500">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-semibold text-gray-900 dark:text-white text-sm">Firewall Configuration</h4>
+<span class="text-[10px] font-bold uppercase bg-red-500/20 text-red-500 px-2 py-0.5 rounded">Güvenlik</span>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Ağ güvenliği simülasyonunda güvenlik duvarı ayarları optimal değildi.</p>
+<a class="inline-flex items-center text-xs font-medium text-primary hover:text-blue-400 transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px] mr-1">science</span>
+                                        Lab: Ağ Güvenliği Temelleri
+                                    </a>
+</div>
+<!-- Item 3 -->
+<div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 border-l-4 border-yellow-400">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-semibold text-gray-900 dark:text-white text-sm">IP Addressing</h4>
+<span class="text-[10px] font-bold uppercase bg-yellow-400/20 text-yellow-400 px-2 py-0.5 rounded">Ağ</span>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Subnet mask hesaplamalarında küçük hatalar tespit edildi.</p>
+<a class="inline-flex items-center text-xs font-medium text-primary hover:text-blue-400 transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px] mr-1">quiz</span>
+                                        Quiz: IP Adresleme
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Action Bar (Sticky in Mobile view via CSS if needed, but placed here for desktop layout) -->
+<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1f2937] p-6 shadow-sm">
+<h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+                                Sonraki Adımlar
+                            </h3>
+<div class="flex flex-col gap-3">
+<button class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-lg bg-primary px-6 py-4 text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-600 hover:scale-[1.01] hover:shadow-blue-500/40">
+<div class="flex flex-col items-start">
+<span class="text-sm font-medium text-blue-100">Devam Et</span>
+<span class="text-base font-bold">Ofis Programları Modülü</span>
+</div>
+<span class="material-symbols-outlined ml-auto text-2xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="group flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-transparent px-6 py-3 text-sm font-bold text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white">
+<span class="material-symbols-outlined text-xl">replay</span>
+                                    Laboratuvarı Tekrarla
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

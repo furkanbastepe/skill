@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite - Lesson Runner</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1e232e",
+                        "border-dark": "#282e39",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for code editor feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111318; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #282e39; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4354; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark px-6 py-3 z-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg">
+<span class="material-symbols-outlined text-white text-[20px]">explore</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">PUSULA Lite</h2>
+<p class="text-slate-400 text-xs font-medium">Lesson 4: Python Basics</p>
+</div>
+</div>
+<!-- Progress Stepper -->
+<div class="hidden md:flex flex-col items-center gap-1 w-1/3">
+<div class="flex justify-between w-full text-xs font-medium text-slate-400 px-1">
+<span>Step 3 of 7: Retrieval</span>
+<span class="text-primary">42%</span>
+</div>
+<div class="w-full h-2 bg-border-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-300" style="width: 42%;"></div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-dark border border-border-dark">
+<span class="material-symbols-outlined text-yellow-500 text-[18px]">bolt</span>
+<span class="text-white text-sm font-bold">1.0x XP</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/20 border border-primary/30 text-primary">
+<span class="material-symbols-outlined text-[18px]">school</span>
+<span class="text-sm font-bold">Guided Mode</span>
+</div>
+<button class="flex size-9 cursor-pointer items-center justify-center rounded-lg bg-border-dark hover:bg-slate-700 text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace Area -->
+<main class="flex-1 flex overflow-hidden relative">
+<!-- Left: Code Editor (Simulation) -->
+<section class="flex-1 flex flex-col bg-[#0d0f14] relative blur-sm opacity-50 select-none pointer-events-none transition-all duration-500">
+<!-- File Tabs -->
+<div class="flex border-b border-border-dark bg-background-dark">
+<div class="px-4 py-2 bg-[#0d0f14] border-t-2 border-primary text-white text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-[16px]">terminal</span>
+                    main.py
+                </div>
+<div class="px-4 py-2 text-slate-400 hover:bg-surface-dark cursor-pointer text-sm font-medium flex items-center gap-2 border-r border-border-dark">
+<span class="material-symbols-outlined text-yellow-400 text-[16px]">description</span>
+                    data_source.json
+                </div>
+</div>
+<!-- Code Area -->
+<div class="flex-1 p-6 font-mono text-sm leading-relaxed text-slate-300 overflow-y-auto">
+<div class="flex">
+<div class="flex flex-col text-right text-slate-600 pr-4 select-none border-r border-border-dark mr-4">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+</div>
+<div class="w-full">
+<p><span class="text-purple-400">import</span> json</p>
+<p class="h-5"></p>
+<p><span class="text-slate-500"># Function to load data from the source</span></p>
+<p><span class="text-purple-400">def</span> <span class="text-blue-400">retrieve_data</span>(file_path):</p>
+<p class="pl-4"><span class="text-purple-400">try</span>:</p>
+<p class="pl-8"><span class="text-purple-400">with</span> <span class="text-yellow-300">open</span>(file_path, <span class="text-green-400">'r'</span>) <span class="text-purple-400">as</span> file:</p>
+<p class="pl-12">data = json.<span class="text-blue-400">load</span>(file)</p>
+<p class="pl-12"><span class="text-purple-400">return</span> data</p>
+<p class="pl-4"><span class="text-purple-400">except</span> FileNotFoundError:</p>
+<p class="pl-8"><span class="text-yellow-300">print</span>(<span class="text-green-400">"Error: File not found."</span>)</p>
+<p class="pl-8"><span class="text-purple-400">return</span> <span class="text-purple-400">None</span></p>
+<p class="h-5"></p>
+<p><span class="text-slate-500"># TODO: Initialize the retrieval process here</span></p>
+<p>result = <span class="text-red-400 border-b border-dashed border-red-500">retrieve_dt("data.json")</span> <span class="text-slate-500">// Error here</span></p>
+<p><span class="text-yellow-300">print</span>(result)</p>
+</div>
+</div>
+</div>
+<!-- Terminal Output Area -->
+<div class="h-48 border-t border-border-dark bg-[#0f1116] p-4 font-mono text-sm">
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Terminal</span>
+<span class="size-2 rounded-full bg-red-500"></span>
+</div>
+<div class="text-red-400">
+                    &gt; Traceback (most recent call last):<br/>
+                    &gt;   File "main.py", line 13, in <module><br/>
+                    &gt;     result = retrieve_dt("data.json")<br/>
+                    &gt; NameError: name 'retrieve_dt' is not defined. Did you mean: 'retrieve_data'?
+                </module></div>
+</div>
+</section>
+<!-- Right: QuestDock Sidebar (Locked/Dimmed) -->
+<aside class="w-[360px] flex-none flex flex-col bg-background-dark border-l border-border-dark relative blur-sm opacity-50 pointer-events-none">
+<div class="p-6 border-b border-border-dark flex items-center justify-between">
+<div>
+<h1 class="text-white text-base font-medium leading-normal">QuestDock</h1>
+<p class="text-slate-400 text-sm">Step 3: Fix Syntax</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">lock</span>
+</div>
+<div class="p-4 flex flex-col gap-3 flex-1 overflow-y-auto">
+<!-- Instruction Card -->
+<div class="p-4 rounded-xl bg-surface-dark border border-border-dark">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-blue-400 text-[20px]">assignment</span>
+<h3 class="text-white font-medium text-sm">Task</h3>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed">
+                        The code has a typo in the function call. Identify the error on line 13 and correct it to match the function definition.
+                    </p>
+</div>
+<!-- Hints Section -->
+<div class="p-4 rounded-xl bg-surface-dark border border-border-dark opacity-60">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-yellow-500 text-[20px]">lightbulb</span>
+<h3 class="text-white font-medium text-sm">Hint</h3>
+</div>
+<p class="text-slate-400 text-sm">Look closely at how 'retrieve_data' is spelled in the definition versus the call.</p>
+</div>
+<!-- Tools -->
+<div class="mt-auto">
+<div class="grid grid-cols-2 gap-2">
+<div class="p-3 bg-surface-dark rounded-lg flex flex-col items-center justify-center gap-1 border border-border-dark">
+<span class="material-symbols-outlined text-slate-400">book</span>
+<span class="text-xs text-slate-400">Docs</span>
+</div>
+<div class="p-3 bg-surface-dark rounded-lg flex flex-col items-center justify-center gap-1 border border-border-dark">
+<span class="material-symbols-outlined text-slate-400">history</span>
+<span class="text-xs text-slate-400">Logs</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- "Why Gate" Modal Overlay -->
+<div class="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-[2px]">
+<div class="w-full max-w-lg mx-4 bg-surface-dark border border-border-dark rounded-2xl shadow-2xl overflow-hidden animate-[fadeIn_0.3s_ease-out]">
+<!-- Modal Header -->
+<div class="p-6 md:p-8 text-center border-b border-border-dark bg-[#181c24]">
+<div class="size-16 mx-auto mb-4 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/20">
+<span class="material-symbols-outlined text-red-500 text-[32px]">manage_search</span>
+</div>
+<h2 class="text-2xl font-bold text-white mb-2">Neden Olmadı?</h2>
+<p class="text-slate-400 text-sm">Let's analyze the mistake to move forward correctly.</p>
+</div>
+<!-- Options -->
+<div class="p-6 md:p-8 space-y-3">
+<label class="group relative flex items-center p-4 rounded-xl border border-border-dark bg-background-dark hover:border-primary/50 hover:bg-[#1a202c] cursor-pointer transition-all duration-200">
+<input class="peer sr-only" name="reason" type="radio"/>
+<div class="size-5 rounded-full border-2 border-slate-500 peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center mr-4 transition-colors">
+<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex-1">
+<span class="block text-white font-medium text-base group-hover:text-primary transition-colors">Yanlış sırada yaptım</span>
+<span class="text-slate-500 text-xs">I executed the steps in the wrong order.</span>
+</div>
+<!-- Checkmark icon on selection (visual flair) -->
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 absolute right-4 transition-opacity">check_circle</span>
+<!-- Border highlight -->
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary rounded-xl pointer-events-none transition-colors"></div>
+</label>
+<label class="group relative flex items-center p-4 rounded-xl border border-border-dark bg-background-dark hover:border-primary/50 hover:bg-[#1a202c] cursor-pointer transition-all duration-200">
+<input class="peer sr-only" name="reason" type="radio"/>
+<div class="size-5 rounded-full border-2 border-slate-500 peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center mr-4 transition-colors">
+<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex-1">
+<span class="block text-white font-medium text-base group-hover:text-primary transition-colors">Komutu yanlış yazdım</span>
+<span class="text-slate-500 text-xs">I made a syntax or spelling error.</span>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 absolute right-4 transition-opacity">check_circle</span>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary rounded-xl pointer-events-none transition-colors"></div>
+</label>
+<label class="group relative flex items-center p-4 rounded-xl border border-border-dark bg-background-dark hover:border-primary/50 hover:bg-[#1a202c] cursor-pointer transition-all duration-200">
+<input class="peer sr-only" name="reason" type="radio"/>
+<div class="size-5 rounded-full border-2 border-slate-500 peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center mr-4 transition-colors">
+<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex-1">
+<span class="block text-white font-medium text-base group-hover:text-primary transition-colors">Nereye tıklayacağımı bulamadım</span>
+<span class="text-slate-500 text-xs">I couldn't locate the correct interface element.</span>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 absolute right-4 transition-opacity">check_circle</span>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary rounded-xl pointer-events-none transition-colors"></div>
+</label>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 md:p-8 pt-0 flex flex-col gap-3">
+<button class="w-full h-12 flex items-center justify-center gap-2 rounded-lg bg-primary hover:bg-blue-600 text-white font-bold text-sm transition-colors shadow-lg shadow-blue-900/20">
+<span>Analyze &amp; Retry</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="w-full h-10 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-white/5 font-medium text-sm transition-colors">
+                        Skip this step (No XP)
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

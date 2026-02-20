@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-034 İşbirliği Mikrolabı</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c2632",
+                        "border-dark": "#283039",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151; 
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="h-16 shrink-0 border-b border-border-dark bg-surface-dark flex items-center justify-between px-6 z-20 relative">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined filled">hub</span>
+</div>
+<h1 class="text-white text-lg font-bold tracking-tight">İşbirliği Mikrolabı <span class="text-xs font-normal text-slate-400 ml-2 bg-slate-800 px-2 py-0.5 rounded-full">Öğrenci Modu</span></h1>
+</div>
+<div class="flex-1 max-w-xl mx-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border-none rounded-lg leading-5 bg-background-dark text-slate-300 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary focus:bg-slate-900 sm:text-sm" placeholder="E-posta, kişi veya görev ara..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-400 hover:text-white transition-colors rounded-full hover:bg-slate-800">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-2 size-2 bg-red-500 rounded-full border-2 border-surface-dark"></span>
+</button>
+<div class="h-8 w-px bg-border-dark mx-1"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-medium text-white">Ali Yılmaz</p>
+<p class="text-xs text-slate-400">ali.yilmaz@digem.edu.tr</p>
+</div>
+<div class="size-9 rounded-full bg-cover bg-center border border-border-dark" data-alt="User profile picture of a young professional" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBE2AAjUfstK4rWWUQ2n1r9S5OR0L6HMeVTSe01Ge2PpxYM5D5PAOQGTD4zR1P4EwgQ4jbGe3yGFzdhyAGXfCf3GIAs2TVbPgb7dN6OxQ_Se899rDCpCEeTbs402pCps7LCFdcEMUtlsMqXu4twMv12AzjzGBcbRTVGLeKA2BBsOUEaaEsuzhpPT3J4B4gJDmRCC2yW_hi9CaPLJ1ufnBnwAXWvImp0fSYpV3yMYsdrilc-iqVdyv2XaqdXTfGCSWFNbcn81oJIPg');"></div>
+</div>
+</div>
+</header>
+<!-- Main Workspace Layout -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Sidebar (Navigation) -->
+<nav class="w-64 bg-background-dark border-r border-border-dark flex flex-col shrink-0">
+<div class="p-4">
+<button class="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-2.5 text-white shadow-lg shadow-primary/20 hover:bg-blue-600 transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+<span class="text-sm font-bold">Yeni Oluştur</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto px-3 space-y-6">
+<!-- Mail Section -->
+<div>
+<h3 class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Posta</h3>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-surface-dark text-white border-l-2 border-primary" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined filled text-primary" style="font-size: 20px;">inbox</span>
+<span class="text-sm font-medium">Gelen Kutusu</span>
+</div>
+<span class="bg-primary text-white text-xs font-bold px-1.5 py-0.5 rounded">3</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-surface-dark hover:text-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+<span class="text-sm font-medium">Gönderilmiş</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-surface-dark hover:text-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">draft</span>
+<span class="text-sm font-medium">Taslaklar</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-surface-dark hover:text-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">label_important</span>
+<span class="text-sm font-medium">Önemli</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Calendar Mini View -->
+<div>
+<h3 class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Yaklaşan</h3>
+<div class="px-3">
+<div class="rounded-lg bg-surface-dark p-3 border border-border-dark">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-bold text-white">Ekim 2023</span>
+<span class="material-symbols-outlined text-slate-500 text-sm cursor-pointer hover:text-white">calendar_month</span>
+</div>
+<div class="space-y-3">
+<div class="flex gap-3">
+<div class="flex flex-col items-center justify-center bg-primary/10 rounded w-10 h-10 shrink-0">
+<span class="text-[10px] text-primary font-bold">EKM</span>
+<span class="text-sm text-white font-bold">24</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-xs font-medium text-white truncate">Proje Raporu Teslimi</p>
+<p class="text-[10px] text-slate-400 truncate">14:00 - Toplantı Odası A</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="flex flex-col items-center justify-center bg-orange-500/10 rounded w-10 h-10 shrink-0">
+<span class="text-[10px] text-orange-500 font-bold">EKM</span>
+<span class="text-sm text-white font-bold">25</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-xs font-medium text-white truncate">Haftalık Takım Toplantısı</p>
+<p class="text-[10px] text-slate-400 truncate">09:30 - Online</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tasks Section -->
+<div>
+<h3 class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Görevler</h3>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-400 hover:bg-surface-dark hover:text-slate-200 transition-colors" href="#">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-green-500"></div>
+<span class="text-sm font-medium">Bülten Hazırlığı</span>
+</div>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-400 hover:bg-surface-dark hover:text-slate-200 transition-colors" href="#">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-purple-500"></div>
+<span class="text-sm font-medium">Web Sitesi Güncelleme</span>
+</div>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<!-- Bottom Status -->
+<div class="p-4 border-t border-border-dark bg-surface-dark/50">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-green-500" style="font-size: 14px;">circle</span>
+<span>Çevrimiçi</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area: Split View (List + Detail) -->
+<main class="flex flex-1 relative bg-background-light dark:bg-black/20">
+<!-- Educational Hint Banner -->
+<div class="absolute top-0 left-0 right-0 z-10 bg-gradient-to-r from-primary to-blue-600 text-white px-4 py-2 flex items-center justify-between shadow-md transform -translate-y-full transition-transform duration-300" id="hint-banner" style="transform: translate-y(0);">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">lightbulb</span>
+<p class="text-sm font-medium">İpucu: Bu toplantı isteğine yanıt vermeden önce takviminizdeki çakışmaları kontrol edin.</p>
+</div>
+<button class="text-white/80 hover:text-white">
+<span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+</button>
+</div>
+<!-- Email List Column -->
+<div class="w-96 flex flex-col border-r border-border-dark bg-background-dark/95 backdrop-blur-sm shrink-0 pt-10"> <!-- Added pt-10 for hint banner spacing -->
+<!-- Filters -->
+<div class="px-4 py-3 flex items-center justify-between border-b border-border-dark">
+<h2 class="text-sm font-bold text-white">Gelen Kutusu</h2>
+<div class="flex items-center gap-1 text-slate-400">
+<button class="p-1 hover:text-white hover:bg-surface-dark rounded"><span class="material-symbols-outlined" style="font-size: 18px;">filter_list</span></button>
+<button class="p-1 hover:text-white hover:bg-surface-dark rounded"><span class="material-symbols-outlined" style="font-size: 18px;">sort</span></button>
+</div>
+</div>
+<!-- List Items -->
+<div class="flex-1 overflow-y-auto">
+<!-- Email Item 1 (Active/Selected) -->
+<div class="cursor-pointer border-l-4 border-primary bg-surface-dark p-4 hover:bg-surface-dark transition-colors group relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-cover bg-center" data-alt="Portrait of Ahmet Yöneticisi" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrhO2mpZbpe1EMnmFcQyAoibtAEBoD56mpacU1YrHJk6MHf7AGwHipZICRRG8adm6eP-kdeeUA3aTtQ1q08HciZuY6Lj3tUZ5laWEk8jBeeVANxC80xhikM4TOBn-8tGUT_dAjkCOWY5-dOtiUQka4hzEA1U8mT2YXhWzQNkKoDqX1JdQQFWPFUtVaYhBt2O_lyv1wCB87qb-Hg54cXJRha-UiSWrwBgz06sh9S5Vr2txRTJpopYXa7wDSv6JNWRWmM9mRwMPOMQ');"></div>
+<span class="text-sm font-semibold text-white">Ahmet Yöneticisi</span>
+</div>
+<span class="text-xs text-primary font-medium">10:30</span>
+</div>
+<h3 class="text-sm font-bold text-white mb-1">Proje Raporu Güncellemesi</h3>
+<p class="text-xs text-slate-400 line-clamp-2">Merhaba Ali, Q3 raporundaki son rakamları kontrol etmen gerekiyor. Lütfen yarına kadar...</p>
+<div class="flex gap-2 mt-2">
+<span class="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded border border-red-500/20">Acil</span>
+<span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded border border-blue-500/20">Rapor</span>
+</div>
+<!-- Hover Actions -->
+<div class="absolute right-2 top-1/2 -translate-y-1/2 hidden group-hover:flex gap-1 bg-surface-dark shadow-lg p-1 rounded-lg border border-border-dark">
+<button class="p-1 text-slate-400 hover:text-red-400"><span class="material-symbols-outlined" style="font-size: 18px;">delete</span></button>
+<button class="p-1 text-slate-400 hover:text-white"><span class="material-symbols-outlined" style="font-size: 18px;">archive</span></button>
+<button class="p-1 text-slate-400 hover:text-white"><span class="material-symbols-outlined" style="font-size: 18px;">mark_email_unread</span></button>
+</div>
+</div>
+<!-- Email Item 2 -->
+<div class="cursor-pointer border-l-4 border-transparent p-4 hover:bg-surface-dark/50 transition-colors border-b border-border-dark/50">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-cover bg-center" data-alt="Portrait of Zeynep İK" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlhuSa7aiEU7PJlxdXlwWRNfMS-vnwzOSehEFcN6jqZTDRnVzG1yWFOdpoEMuSAIp1AYuXbLIdc9kXveYPERs9OQrpzrZAl5M603w4w6c-ld_I1jvrQbDm7uMRZ31lOTrNp0FOevB2TaTLKy7C3GFgXapN9Xr76ixZY9reKxLPgLL0Q4-m2Kx96dc27rxSFAiTlxzK3mXtCAAPRCj2DeOVdB7tvVtdrNq-KPV66rBuuyN_p8uC9ocdnpw4b8LXbOGkg_pJRT0f1w');"></div>
+<span class="text-sm font-semibold text-slate-200">Zeynep İK</span>
+</div>
+<span class="text-xs text-slate-500">09:15</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-300 mb-1">Toplantı Odası Değişikliği</h3>
+<p class="text-xs text-slate-500 line-clamp-2">Haftalık takım toplantısı B odasına alındı. Lütfen not edin ve gecikmeyin.</p>
+</div>
+<!-- Email Item 3 (Unread) -->
+<div class="cursor-pointer border-l-4 border-transparent p-4 bg-background-dark hover:bg-surface-dark/50 transition-colors border-b border-border-dark/50">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-purple-600 flex items-center justify-center text-[10px] text-white font-bold">IT</div>
+<span class="text-sm font-bold text-white">IT Destek</span>
+</div>
+<span class="text-xs text-primary font-bold">Dün</span>
+</div>
+<h3 class="text-sm font-bold text-white mb-1">Şifre Değişikliği Hatırlatması</h3>
+<p class="text-xs text-slate-400 line-clamp-2">Güvenlik politikamız gereği şifrenizi 3 gün içinde yenilemeniz gerekmektedir.</p>
+</div>
+<!-- Email Item 4 -->
+<div class="cursor-pointer border-l-4 border-transparent p-4 hover:bg-surface-dark/50 transition-colors border-b border-border-dark/50 opacity-70">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-200">Bülten Ekibi</span>
+</div>
+<span class="text-xs text-slate-500">Pzt</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-300 mb-1">Haftalık Bülten Taslağı</h3>
+<p class="text-xs text-slate-500 line-clamp-2">Taslak ektedir. Lütfen inceleyip geri dönüş yapınız.</p>
+<span class="mt-2 inline-flex items-center gap-1 text-[10px] text-slate-400 bg-surface-dark px-2 py-0.5 rounded border border-border-dark">
+<span class="material-symbols-outlined" style="font-size: 12px;">attachment</span> bulten_v1.pdf
+                        </span>
+</div>
+</div>
+</div>
+<!-- Reading Pane / Detail View -->
+<div class="flex-1 flex flex-col bg-background-dark pt-10 overflow-hidden">
+<!-- Toolbar -->
+<div class="h-14 border-b border-border-dark flex items-center justify-between px-6 shrink-0 bg-surface-dark/30">
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center size-8 rounded hover:bg-surface-dark text-slate-400 hover:text-white" title="Yanıtla">
+<span class="material-symbols-outlined">reply</span>
+</button>
+<button class="flex items-center justify-center size-8 rounded hover:bg-surface-dark text-slate-400 hover:text-white" title="Tümünü Yanıtla">
+<span class="material-symbols-outlined">reply_all</span>
+</button>
+<button class="flex items-center justify-center size-8 rounded hover:bg-surface-dark text-slate-400 hover:text-white" title="İlet">
+<span class="material-symbols-outlined">forward</span>
+</button>
+<div class="h-4 w-px bg-border-dark mx-2"></div>
+<button class="flex items-center justify-center size-8 rounded hover:bg-surface-dark text-slate-400 hover:text-red-400" title="Sil">
+<span class="material-symbols-outlined">delete</span>
+</button>
+<button class="flex items-center justify-center size-8 rounded hover:bg-surface-dark text-slate-400 hover:text-white" title="Okunmadı Olarak İşaretle">
+<span class="material-symbols-outlined">mark_email_unread</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-slate-500">1 / 43</span>
+<div class="flex gap-1">
+<button class="size-8 flex items-center justify-center rounded hover:bg-surface-dark text-slate-400"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="size-8 flex items-center justify-center rounded hover:bg-surface-dark text-slate-400"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Email Content -->
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-4xl mx-auto">
+<!-- Subject Header -->
+<div class="flex items-start justify-between mb-6">
+<h1 class="text-2xl font-bold text-white leading-tight">Proje Raporu Güncellemesi - Q3 Finansal Veriler</h1>
+<div class="flex gap-2">
+<span class="bg-surface-dark border border-border-dark text-slate-300 text-xs px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-slate-500" style="font-size: 14px;">label</span> Projeler
+                                </span>
+</div>
+</div>
+<!-- Sender Info -->
+<div class="flex items-center justify-between mb-8 pb-6 border-b border-border-dark">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full bg-cover bg-center ring-2 ring-surface-dark" data-alt="Sender Ahmet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDiB6J9ev19Jd-s-Blv7rJa4KE8Jb8--MCWAOfz30PQ51SXaiHSsJoM6zSW6etyxdNbNKrS__8XU8FnId3OAHj3jckja8jyu48h0mgP4Rbe3hmAcTKb9GLNuAssEgFZOvsxd5cdnwm46FZlYxwE1oxHoPW46KuXd6vAh4UU8rejpKb4AzWK4hhkJJbj0L8J4CVlDXmfI-FTpLA9oXIBctu-t5EOuqLUeKTFzBEr_nVjKhgYAs4nYBdqZ8o93BdIBYm9M-loFJC7Fg');"></div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-bold text-white text-base">Ahmet Yöneticisi</span>
+<span class="text-xs text-slate-500">&lt;ahmet.yonetici@sirket.com&gt;</span>
+</div>
+<p class="text-xs text-slate-400 mt-0.5">Kime: <span class="text-slate-300">Ali Yılmaz</span>, <span class="text-slate-500">Merve Finans</span></p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm text-slate-400">Bugün, 10:30</p>
+<button class="text-xs text-primary hover:underline mt-1">Ayrıntıları Göster</button>
+</div>
+</div>
+<!-- Body -->
+<div class="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed">
+<p>Merhaba Ali,</p>
+<p>Umarım haftan iyi geçiyordur.</p>
+<p>Yönetim kurulu toplantısı öncesinde Q3 raporundaki bazı rakamların üzerinden geçmemiz gerekiyor. Özellikle pazarlama bütçesi kalemlerinde bir tutarsızlık fark ettim.</p>
+<p>Lütfen aşağıdaki işlemleri yarına kadar tamamlayabilir misin?</p>
+<ul class="list-disc pl-5 space-y-2 my-4">
+<li>Ekteki Excel dosyasındaki "Ekim Harcamaları" sekmesini kontrol et.</li>
+<li>Muhasebe departmanından gelen son faturalarla karşılaştır.</li>
+<li>Farklılıkları not alarak bana kısa bir özet geç.</li>
+</ul>
+<!-- Contextual Task Integration inside email -->
+<div class="my-6 p-4 bg-surface-dark rounded-lg border border-border-dark flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded text-primary">
+<span class="material-symbols-outlined">event_busy</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Toplantı İsteği: Rapor Değerlendirme</p>
+<p class="text-xs text-slate-400">Yarın, 14:00 - 15:00</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded text-xs font-bold bg-white text-slate-900 hover:bg-slate-200 transition-colors">Kabul Et</button>
+<button class="px-3 py-1.5 rounded text-xs font-bold bg-surface-dark border border-border-dark text-slate-300 hover:bg-border-dark transition-colors">Reddet</button>
+<button class="px-3 py-1.5 rounded text-xs font-bold bg-surface-dark border border-border-dark text-slate-300 hover:bg-border-dark transition-colors">Yeni Zaman Öner</button>
+</div>
+</div>
+<p>Sorun olursa beni aramaktan çekinme.</p>
+<p>İyi çalışmalar,<br/>Ahmet</p>
+</div>
+<!-- Attachments -->
+<div class="mt-8 pt-6 border-t border-border-dark">
+<p class="text-xs font-bold text-slate-500 uppercase mb-3">Ekler (2)</p>
+<div class="flex gap-3">
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-dark border border-border-dark hover:border-primary/50 cursor-pointer transition-colors w-64">
+<div class="bg-green-600/20 text-green-500 p-2 rounded">
+<span class="material-symbols-outlined">table_view</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-sm font-medium text-white truncate">Q3_Butce_Analizi.xlsx</p>
+<p class="text-xs text-slate-500">2.4 MB</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-dark border border-border-dark hover:border-primary/50 cursor-pointer transition-colors w-64">
+<div class="bg-red-600/20 text-red-500 p-2 rounded">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-sm font-medium text-white truncate">Yonetim_Notlari.pdf</p>
+<p class="text-xs text-slate-500">1.1 MB</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Reply Area -->
+<div class="mt-8 flex gap-4">
+<div class="size-10 rounded-full bg-cover bg-center shrink-0" data-alt="User Ali" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6tKk_RrW4dPsaYv_MmC2ba_NxMJEaOJL7sG1FdvWFOdF6k5jWNp506fcAB2UjdAWTfXllx5uIjygR8MMiP6iVGFjHkh8rC9_l8-_ktC5SdXeVYS1zPWgeSjJjbdPOjexVKcfoLAJDj9frspQgLdk-nf4SeFXs0bSHJxHi1tF7qQUxvtKRYvIU-rc5Nvvfn1f4CJR6tDgh-v3jwZL0fLzKa_6FNbJ68dHBcSaH_FubUqi15l9MzO6fYrJgXufkii-9PNRqoM-bdg');"></div>
+<div class="flex-1">
+<div class="bg-surface-dark border border-border-dark rounded-lg p-4 cursor-text hover:border-slate-600 transition-colors">
+<p class="text-slate-500 text-sm">Yanıtlamak için buraya tıklayın...</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Task Integration -->
+<aside class="w-80 bg-background-dark border-l border-border-dark flex flex-col pt-12 shrink-0 hidden xl:flex">
+<div class="px-5 py-4 flex items-center justify-between border-b border-border-dark">
+<h3 class="text-sm font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+                         İlgili Görevler
+                     </h3>
+<button class="text-primary text-xs font-bold hover:text-blue-400">Yeni Ekle</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Task Group -->
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Haftalık Bülten Hazırlığı</p>
+<div class="space-y-2">
+<div class="flex items-start gap-3 group">
+<input class="mt-1 rounded bg-surface-dark border-slate-600 text-primary focus:ring-offset-background-dark focus:ring-primary h-4 w-4 cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<p class="text-sm text-slate-300 group-hover:text-white transition-colors">Görsel Tasarımlar</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-[10px] text-red-400 bg-red-500/10 px-1.5 rounded">Bugün</span>
+<div class="size-4 rounded-full bg-cover bg-center" data-alt="Assignee Ali" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnGcZtTLK00ICK3NrhH5BTun0DfegWyke37pjgwfR8sUJJGfD5J2mq2gufx8R4YrkevQ2ZzyxlE3ktXEtzYD70vlubou829Z9sxasxmx_uxjIEU_aZPqCk882XIf7GAMBBgwXKXfi_rfoMPj6HC5lvwy56itfHhFbum8kX2RIb7Kwr0thG_5kpyFAIjJHk1nTpEF6gadCNMX1Eo36q6_SMZl1dczgU1lXRDs0YyxdTyAi7Hmx_h5pgAfTZtMo3S1ULDCxJU6FuLQ');"></div>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 group">
+<input checked="" class="mt-1 rounded bg-surface-dark border-slate-600 text-primary focus:ring-offset-background-dark focus:ring-primary h-4 w-4 cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<p class="text-sm text-slate-500 line-through">İçerik Toplama</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="size-4 rounded-full bg-cover bg-center grayscale opacity-50" data-alt="Assignee Zeynep" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBm0Qtfk00JnYrHox0u_bu9FN2niFITVDK_Wf7qv83DL5f-skiGCEt-uxbk_KJRD04NTQAwWWwQdNyi1nfdw3mnMQg47YVUp0MgiIQbpr55Ug1yqEJ_kVWxR1gGE1yj2kvgG9BMzxoQ16idD3mDPxa5ly87xCK10RRTT-nip79Vjw07IgXG29NhVhvxzWgzYtbYqiupln49nTa4bCWerKVW3O2b6Dj7LL-yTsH_d2Dj63lUgGmo6iPzSm1B8jSXdr1kup_q-oK11Q');"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="h-px bg-border-dark w-full"></div>
+<!-- Task Group 2 -->
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Q3 Raporu</p>
+<div class="space-y-2">
+<div class="flex items-start gap-3 group">
+<input class="mt-1 rounded bg-surface-dark border-slate-600 text-primary focus:ring-offset-background-dark focus:ring-primary h-4 w-4 cursor-pointer" type="checkbox"/>
+<div class="flex-1">
+<p class="text-sm text-slate-300 group-hover:text-white transition-colors">Excel Veri Kontrolü</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-[10px] text-orange-400 bg-orange-500/10 px-1.5 rounded">Yarın</span>
+<div class="size-4 rounded-full bg-cover bg-center" data-alt="Assignee Ali" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7tuCeJjxVvjmQSPOV-yMvQmL3hHNb8fE-VlqmgvsybhF7hXmJX97luKYVJAz02PGSeBnxsjQKYhnDdXuvpxt5S3VQfwVGc8c3iHbmqRHzVW1e5TOEB_pe3azWkPtf9U9l73Y-5AMKsyc50nS9LYRwyvT6EvXZprgvXQ_0gjEPc2iaZfY1mcuebquE37w_PYmyag94KTa109GE7ejTWDKsDZ-4NqO2Wt1aQ7evc-7h49iBQyjt5Z2Tp6M-sUDoZt4E-6rlOf_mZQ');"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini Contact List -->
+<div class="p-4 border-t border-border-dark bg-surface-dark/30">
+<p class="text-xs font-semibold text-slate-500 mb-3">Hızlı İletişim</p>
+<div class="flex gap-2">
+<div class="relative group cursor-pointer">
+<div class="size-8 rounded-full bg-cover bg-center ring-2 ring-transparent group-hover:ring-primary transition-all" data-alt="Contact 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9d9gDukLUC5P820CniSafTj4rY2zsZxfjFFHnXWLiSaTpDZcZL3KZ0sAJIHhKwT_AKWotzHNdcgbRMa9Vemopr9YV6NUzNcNVyDQzODGzT2DN273nfixlqTYZI-tqhA6jCaTVhFxSqn6gUCQB9AjrxRqaaUKVmEqbCqG6bzyuQeeZnlyCwEzFM0P6jSJkyKHGABuWKDnDP2vU4lbClk4DccDzsueZfyGyd5wq6gGG83F0OVEsgRwsfh9XZyAlQwkNdo0kxCwltg');"></div>
+<span class="absolute bottom-0 right-0 size-2 bg-green-500 rounded-full border border-background-dark"></span>
+</div>
+<div class="relative group cursor-pointer">
+<div class="size-8 rounded-full bg-cover bg-center ring-2 ring-transparent group-hover:ring-primary transition-all" data-alt="Contact 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCExiJjEwtQaoan3Fm5pVaUH165wMYCqve7eeRfPDZJb9AYL6YqvVRLnRcNWKSPQGCPy_gU3lWMLJh0jyKyH2Bw4mzYj-W-7g05Z7HURnj8lWhjQMyWMq67MSzuK1aeaGLzQDaZyJGcE_8dz8l36U1huaHiYUWMBctDe7lgKBfVNFkoFQm_f1MFRaX4d7kiRKqJDjj1LeUKjd31V6pNiEAG-vB2rGNLDJOG5O5WLLFn4-yiT1TRW5eLy01bP6L5CzxAdTJqetW09Q');"></div>
+<span class="absolute bottom-0 right-0 size-2 bg-yellow-500 rounded-full border border-background-dark"></span>
+</div>
+<div class="relative group cursor-pointer flex items-center justify-center size-8 rounded-full bg-surface-dark border border-border-dark text-slate-400 hover:text-white hover:border-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</div>
+<!-- Composer Modal (Simulated Overlay) -->
+<!-- Hidden by default, unhide to show simulation -->
+<div class="hidden absolute bottom-0 right-24 w-[600px] h-[500px] bg-background-dark border border-border-dark rounded-t-xl shadow-2xl z-50 flex flex-col">
+<div class="h-10 bg-surface-dark rounded-t-xl flex items-center justify-between px-4 border-b border-border-dark cursor-pointer">
+<span class="text-sm font-bold text-white">Yeni İleti</span>
+<div class="flex items-center gap-2">
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined" style="font-size: 18px;">minimize</span></button>
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined" style="font-size: 18px;">open_in_full</span></button>
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined" style="font-size: 18px;">close</span></button>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="border-b border-border-dark py-1">
+<input class="w-full bg-transparent border-none text-sm text-white focus:ring-0 px-0" placeholder="Kime" type="text"/>
+</div>
+<div class="border-b border-border-dark py-1">
+<input class="w-full bg-transparent border-none text-sm text-white focus:ring-0 px-0" placeholder="Konu" type="text"/>
+</div>
+<textarea class="flex-1 w-full bg-transparent border-none text-sm text-slate-300 focus:ring-0 px-0 resize-none mt-2" placeholder="İletinizi buraya yazın..."></textarea>
+<div class="mt-2 flex items-center justify-between">
+<div class="flex gap-2 text-slate-400">
+<button class="hover:text-white"><span class="material-symbols-outlined" style="font-size: 20px;">format_bold</span></button>
+<button class="hover:text-white"><span class="material-symbols-outlined" style="font-size: 20px;">attach_file</span></button>
+<button class="hover:text-white"><span class="material-symbols-outlined" style="font-size: 20px;">image</span></button>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-slate-400 hover:text-red-400"><span class="material-symbols-outlined" style="font-size: 20px;">delete</span></button>
+<button class="bg-primary hover:bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-bold flex items-center gap-2">
+                        Gönder <span class="material-symbols-outlined" style="font-size: 16px;">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

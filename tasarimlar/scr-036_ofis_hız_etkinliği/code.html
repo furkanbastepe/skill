@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-036 Ofis Hız Etkinliği</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0e5fb0",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1b2531",
+                        "surface-light": "#ffffff",
+                        "border-dark": "#283039",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden flex flex-col h-screen">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-border-dark bg-surface-light dark:bg-surface-dark px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">DIGEM</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-3">
+<button class="flex items-center justify-center rounded-lg size-10 bg-gray-100 dark:bg-border-dark text-slate-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-gray-100 dark:bg-border-dark text-slate-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-3 border-l border-gray-200 dark:border-border-dark">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold leading-none">Ali Yılmaz</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Level 12 Student</p>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile picture showing a smiling young person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBv_5eyMfqM-SXtesg6q_PWpy8bDezV65JYdK0-gXuOyItNs17xdaFrknXqjKfEWZQfGaoVMOBSKquoEr88WeCVbMXECmqUWYbg7rWuXD98XpejjzrUNTf3Kv3hZ2krjYPx8RcimG1WFw0qZZw9righRj1BVFo8WGSjto-c3dsUK5AQl7myTCQI4XWyEMOYgbn7JLHe78mOQA4wE52-a3IeEbi5327kIrj6prnMmGZ9rnBcOmvr11Dv4oweTWYuMtTmpucsZFxEBg");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 overflow-hidden relative">
+<!-- Background Ambient Glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/10 blur-[100px] pointer-events-none rounded-full"></div>
+<div class="w-full h-full p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-[1600px] mx-auto z-10">
+<!-- Left Panel: Stats & Mission Control -->
+<section class="hidden lg:flex lg:col-span-3 flex-col gap-6">
+<!-- Header Info -->
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Ofis Hız Etkinliği</h1>
+<p class="text-slate-500 dark:text-slate-400">Module: Spreadsheet Master</p>
+</div>
+<!-- Stats Cards -->
+<div class="grid gap-4">
+<!-- Combo Card -->
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-border-dark rounded-xl p-5 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">bolt</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Current Combo</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold text-primary">x12</span>
+<span class="text-emerald-500 text-sm font-bold flex items-center">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>+2
+                            </span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-slate-700 h-1.5 rounded-full mt-3">
+<div class="bg-primary h-1.5 rounded-full w-[85%] shadow-[0_0_10px_rgba(19,127,236,0.5)]"></div>
+</div>
+</div>
+<!-- Accuracy Card -->
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-border-dark rounded-xl p-5">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Accuracy</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">94%</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-500 mt-1">Top 5% of class</p>
+</div>
+<!-- Tasks Done Card -->
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-border-dark rounded-xl p-5">
+<div class="flex justify-between items-center mb-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Tasks Done</p>
+<span class="text-xs font-bold px-2 py-0.5 rounded bg-primary/20 text-primary">Level 3</span>
+</div>
+<span class="text-3xl font-bold text-slate-900 dark:text-white">15<span class="text-slate-400 text-xl font-medium">/20</span></span>
+</div>
+</div>
+<!-- Action Log (Mini) -->
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-border-dark rounded-xl flex-1 flex flex-col overflow-hidden min-h-[200px]">
+<div class="p-4 border-b border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#222b36]">
+<h3 class="font-bold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">Activity Log</h3>
+</div>
+<div class="p-4 space-y-3 overflow-y-auto custom-scrollbar flex-1">
+<div class="flex items-start gap-3 text-sm">
+<div class="mt-0.5 text-emerald-500"><span class="material-symbols-outlined text-base">check_circle</span></div>
+<div class="text-slate-600 dark:text-slate-300">
+<span class="font-semibold text-slate-900 dark:text-white">You</span> formatted row 4 correctly.
+                                <div class="text-xs text-slate-400 mt-0.5">2s ago</div>
+</div>
+</div>
+<div class="flex items-start gap-3 text-sm opacity-60">
+<div class="mt-0.5 text-red-500"><span class="material-symbols-outlined text-base">cancel</span></div>
+<div class="text-slate-600 dark:text-slate-300">
+<span class="font-semibold text-slate-900 dark:text-white">You</span> missed bold style on cell A2.
+                                <div class="text-xs text-slate-400 mt-0.5">14s ago</div>
+</div>
+</div>
+<div class="flex items-start gap-3 text-sm opacity-40">
+<div class="mt-0.5 text-emerald-500"><span class="material-symbols-outlined text-base">check_circle</span></div>
+<div class="text-slate-600 dark:text-slate-300">
+<span class="font-semibold text-slate-900 dark:text-white">You</span> entered the sum formula.
+                                <div class="text-xs text-slate-400 mt-0.5">28s ago</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Center Panel: The Arena (Workspace) -->
+<section class="col-span-1 lg:col-span-6 flex flex-col h-full gap-4">
+<!-- Timer & Task Header -->
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-border-dark rounded-2xl p-6 shadow-xl relative overflow-hidden flex flex-col items-center justify-center text-center gap-4 shrink-0">
+<!-- Progress Bar Background -->
+<div class="absolute bottom-0 left-0 h-1 bg-primary w-[65%] transition-all duration-1000"></div>
+<div class="flex items-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">
+<span class="size-2 rounded-full bg-red-500 animate-pulse"></span>
+                        Time Remaining
+                    </div>
+<!-- Big Timer -->
+<div class="flex items-end gap-1 font-mono text-slate-900 dark:text-white leading-none">
+<span class="text-6xl font-black tracking-tighter">00</span>
+<span class="text-4xl font-bold opacity-50 mb-1">:</span>
+<span class="text-6xl font-black tracking-tighter text-red-500">45</span>
+</div>
+<!-- Active Task Prompt -->
+<div class="bg-primary/10 border border-primary/20 text-primary dark:text-white rounded-lg px-6 py-3 w-full max-w-md animate-[pulse_3s_ease-in-out_infinite]">
+<p class="text-lg font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">edit_document</span>
+                            Task: Format Header Row as Bold
+                        </p>
+</div>
+</div>
+<!-- Mock Interface (Spreadsheet) -->
+<div class="bg-surface-light dark:bg-[#1a2027] flex-1 rounded-2xl border border-gray-200 dark:border-border-dark overflow-hidden flex flex-col relative shadow-inner">
+<!-- Toolbar Mock -->
+<div class="bg-gray-100 dark:bg-[#232b36] border-b border-gray-200 dark:border-border-dark p-2 flex gap-2 items-center overflow-x-auto">
+<div class="flex gap-1 pr-3 border-r border-gray-300 dark:border-gray-600">
+<button class="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300"><span class="material-symbols-outlined text-sm">undo</span></button>
+<button class="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300"><span class="material-symbols-outlined text-sm">redo</span></button>
+</div>
+<div class="flex gap-1 pr-3 border-r border-gray-300 dark:border-gray-600">
+<button class="p-1.5 rounded bg-primary text-white shadow-sm"><span class="material-symbols-outlined text-sm">format_bold</span></button>
+<button class="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300"><span class="material-symbols-outlined text-sm">format_italic</span></button>
+<button class="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300"><span class="material-symbols-outlined text-sm">format_underlined</span></button>
+</div>
+<div class="flex gap-1 items-center px-2">
+<span class="text-xs text-slate-500 font-mono">Arial</span>
+<span class="material-symbols-outlined text-xs text-slate-500">arrow_drop_down</span>
+</div>
+<div class="flex gap-1 items-center px-2 border-l border-gray-300 dark:border-gray-600">
+<span class="text-xs text-slate-500 font-mono">11</span>
+<span class="material-symbols-outlined text-xs text-slate-500">arrow_drop_down</span>
+</div>
+</div>
+<!-- Spreadsheet Area -->
+<div class="flex-1 overflow-auto bg-white dark:bg-[#1a2027] relative">
+<!-- Toast Notification -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white px-4 py-2 rounded-full shadow-lg text-sm font-bold flex items-center gap-2 z-20 animate-[bounce_0.5s_ease-out]">
+<span class="material-symbols-outlined text-lg">check</span> Good Move! Combo x12
+                        </div>
+<table class="w-full text-sm text-left border-collapse">
+<thead>
+<tr>
+<th class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 w-10 text-center text-xs text-slate-400 font-normal"></th>
+<th class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 px-3 py-1 text-slate-500 font-normal text-xs text-center">A</th>
+<th class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 px-3 py-1 text-slate-500 font-normal text-xs text-center">B</th>
+<th class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 px-3 py-1 text-slate-500 font-normal text-xs text-center">C</th>
+<th class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 px-3 py-1 text-slate-500 font-normal text-xs text-center">D</th>
+</tr>
+</thead>
+<tbody class="text-slate-800 dark:text-slate-300">
+<!-- Row 1 (Target) -->
+<tr class="bg-blue-50/50 dark:bg-blue-900/20">
+<td class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 text-center text-xs text-slate-400">1</td>
+<td class="border border-blue-300 dark:border-blue-700 px-3 py-2 font-bold bg-blue-100 dark:bg-blue-900/40 border-2 outline outline-2 outline-primary z-10 relative">Date</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold">Item Name</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold">Category</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold">Price</td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 text-center text-xs text-slate-400">2</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">2023-10-01</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">Office Chair</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">Furniture</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 text-right">$120.00</td>
+</tr>
+<!-- Row 3 -->
+<tr>
+<td class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 text-center text-xs text-slate-400">3</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">2023-10-02</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">Wireless Mouse</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">Electronics</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 text-right">$25.50</td>
+</tr>
+<!-- Row 4 -->
+<tr>
+<td class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 text-center text-xs text-slate-400">4</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">2023-10-02</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">Paper Ream</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2">Supplies</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 text-right">$5.00</td>
+</tr>
+<!-- Row 5 -->
+<tr>
+<td class="bg-gray-50 dark:bg-[#232b36] border border-gray-200 dark:border-gray-700 text-center text-xs text-slate-400">5</td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2"></td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2"></td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2"></td>
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 text-right"></td>
+</tr>
+</tbody>
+</table>
+<!-- Cursor Mock -->
+<div class="absolute top-[48px] left-[130px] pointer-events-none">
+<svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.500002 16.8829L0.500002 1.19135L11.7841 12.3673H5.65376Z" fill="#137fec" stroke="white"></path>
+</svg>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="bg-gray-100 dark:bg-[#232b36] border-t border-gray-200 dark:border-border-dark p-4 flex justify-between items-center">
+<button class="text-sm text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 font-medium">Reset Selection</button>
+<button class="bg-primary hover:bg-primary-dark text-white font-bold py-2.5 px-8 rounded-lg shadow-lg shadow-blue-500/30 transition-all active:scale-95 flex items-center gap-2">
+                            SUBMIT TASK <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Panel: Leaderboard & Social -->
+<section class="hidden lg:flex lg:col-span-3 flex-col h-full bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-border-dark rounded-2xl overflow-hidden shadow-sm">
+<!-- Tabs -->
+<div class="flex border-b border-gray-200 dark:border-border-dark">
+<button class="flex-1 py-4 text-sm font-bold text-center border-b-2 border-primary text-primary bg-primary/5">Leaderboard</button>
+<button class="flex-1 py-4 text-sm font-bold text-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">Class Feed</button>
+</div>
+<!-- Leaderboard List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-2">
+<div class="flex flex-col gap-1">
+<!-- Top 3 -->
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-[#232b36] transition-colors cursor-pointer">
+<div class="flex items-center justify-center size-8 rounded-full bg-yellow-500/10 text-yellow-500 font-black text-sm border border-yellow-500/20">1</div>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Portrait of student rank 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLT3rJfMVph9zCvDQID1ThuGjUEovSjSXOltCegVYDEZMJEvK3jebiotxZXYeFeIc1cASJuIicu0eL5NN-74TqaOBrgsOk852wcRRf617GDJ5NAXv1Ku8J-uYXeRkwGG3vjC8Nbp7FQZ5fgb4J7b9whnMQBMByB9i9pTMdikMgxDPm2dZJRuQUkDSRHuiS2C-dLxJl_BwccD5Qqb4-w7zZRosHudoM9NiXxzmALxxpf7n-qLyo3s5KDBxJq1_C4rZQN5rrJxScyQ')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Zeynep K.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">12,450 pts</p>
+</div>
+<div class="text-xs font-bold text-emerald-500">+12%</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-[#232b36] transition-colors cursor-pointer">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-black text-sm">2</div>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Portrait of student rank 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCL0JThfYF65pNxl40MtH91kE-x7eG0h9sKoWku6g90ObqSDsYsdpiOQNKlefuknX3gPxashKFsyeyN6ySj3Ik_m-qQ3el3BFae9H8VU6fsaXVKBPASXA9vI7LpUBBfl2xoVeVPjPpgmrhjZ8l621gi36j-TH9Lx1kMnsQjP76Jap6RlgQAtER5TkYWOuks3f40-6RczEptI6wK-4MwVkWpT1qUCu6NhlGui_jO7551iws73pnqDIaeazhsZrMKzuxVrITShPOVHw')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Mehmet A.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">11,820 pts</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-[#232b36] transition-colors cursor-pointer">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-black text-sm">3</div>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Portrait of student rank 3" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDM-BEj4t3lsJBPwLbowKknHLZz3kTR-UOzw2PTVnqCgXF7EpYlk-9lcTH93EaBbbhZuO1_DC9SH-uGYxafkxswui1zzwlReckyW1sXU3Bn-Wz6JL3J1oQSTvgo6v2s7X8sSZ9ieI5EX6oMl9VkYJXsWxXrQplnuTBIwVbrwkHO20RrUWSmJhVrGWQ_cKSeN3UF_WOUvfpxT58kOk4BMGewRQmpYAnjC3IuzG6VPIjiRkkC0R-lsxUxB2baaRq-gozDNG732x0Smg')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Ayşe B.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">11,200 pts</p>
+</div>
+</div>
+<div class="h-px bg-gray-200 dark:bg-border-dark my-2 mx-3"></div>
+<!-- User Rank -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 border border-primary/30 relative">
+<div class="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r"></div>
+<div class="flex items-center justify-center size-8 rounded-full bg-primary text-white font-black text-sm">8</div>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-primary" data-alt="Your profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAh23gzGO0wUNvfvPdJkEc2Ed9jkAV0US3nmCifKx-W-dg5aMlhbgE_fAFl_PAl2_vSCNgkK55t3UeQ7i-F7Fw7JWJneVgGRw2JuO1RClVZhARQlfu2CURQ3UflxgxVnZLaFHS-75OL1ZESjywhGIY7a1yms7lp-01t55egzEgz_SAHbp6P9G93-ZTaSlgaSQtJqXrT55pilBXx3JcMor5FHuHN3L-nUnmWF0oTKoeyNO7wkQYNWCj0ZJnEVqRFQEchflDyRl2lyA')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Ali Yılmaz (You)</p>
+<p class="text-xs text-primary font-medium">9,450 pts</p>
+</div>
+<div class="text-xs font-bold text-emerald-500 flex items-center"><span class="material-symbols-outlined text-sm">arrow_upward</span> 2</div>
+</div>
+<!-- Others -->
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-[#232b36] transition-colors cursor-pointer opacity-70">
+<div class="flex items-center justify-center size-8 rounded-full bg-transparent text-slate-400 font-bold text-sm">9</div>
+<div class="size-10 rounded-full bg-cover bg-center grayscale" data-alt="Portrait of student rank 9" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChf-SzgEhiqpa6USAA3MGK17U99au8GnQvls5c81gEbt5LxQdhTCd3QoUGscl4bjwrxllYcYnHgt2astUxv18tP47JimAqLOPPnvuCOBOtpF5pPNFh2EpQ3Phj_w_C25FXMlwdArEryclZklzCNzKBispSXMRZrs2FMYfOwuSkcQmURywUrE6_fmIUn9-bFoAuaa8Pc8fzrJZuk5-ywgHc5KI-gk0X8LKbEzRX6INMANdBmY6ILX4N0J3hdBoVEBPoNa7644WF1w')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Caner T.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">9,100 pts</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Invite/Challenge Button -->
+<div class="p-4 border-t border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#232b36]">
+<button class="w-full py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">swords</span> Challenge a Friend
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Overlay Controls (Mobile Only) - Hidden on Desktop -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 bg-surface-light dark:bg-surface-dark border-t border-gray-200 dark:border-border-dark p-4 flex justify-between items-center z-30">
+<div class="flex flex-col">
+<span class="text-xs text-slate-500 uppercase font-bold">Timer</span>
+<span class="text-xl font-bold text-slate-900 dark:text-white font-mono">00:45</span>
+</div>
+<button class="bg-primary text-white rounded-full p-4 shadow-lg">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+</body></html>

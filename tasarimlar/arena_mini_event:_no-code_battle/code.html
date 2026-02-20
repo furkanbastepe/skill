@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite - Arena Battle</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b6cee",
+                        "primary-glow": "#4d8aff",
+                        "secondary-red": "#ee2b4d",
+                        "secondary-green": "#2beeac",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f1115",
+                        "surface-dark": "#161b22",
+                        "surface-border": "#232f48",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #232f48 1px, transparent 1px), linear-gradient(to bottom, #232f48 1px, transparent 1px)",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for terminal */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-custom::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background: #161b22; 
+        }
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background: #2b6cee; 
+            border-radius: 4px;
+        }
+
+        /* CRT/Scanline effect overlay */
+        .scanlines::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Neon Glows */
+        .glow-text-blue {
+            text-shadow: 0 0 10px rgba(43, 108, 238, 0.5);
+        }
+        .glow-box-blue {
+            box-shadow: 0 0 15px rgba(43, 108, 238, 0.15);
+        }
+        
+        /* Grid Perspective */
+        .perspective-container {
+            perspective: 1000px;
+            overflow: hidden;
+        }
+        .tilted-grid {
+            transform: rotateX(20deg) scale(1.1);
+            transform-style: preserve-3d;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden selection:bg-primary selection:text-white">
+<!-- Top Navigation & HUD -->
+<header class="flex-none z-20 border-b border-surface-border bg-surface-dark/95 backdrop-blur px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary animate-pulse">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold tracking-tight">PUSULA <span class="text-primary font-normal">Lite</span></h1>
+<p class="text-xs text-slate-400">Arena Event: No-Code Battle</p>
+</div>
+</div>
+<!-- Central Timer -->
+<div class="absolute left-1/2 top-3 -translate-x-1/2 flex flex-col items-center">
+<div class="flex items-center gap-2 bg-black/40 border border-primary/30 px-6 py-2 rounded-lg glow-box-blue">
+<span class="material-symbols-outlined text-primary text-xl">timer</span>
+<span class="text-2xl font-bold text-white font-mono tracking-widest tabular-nums">00:45</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-surface-border/50 p-1.5 rounded-lg border border-surface-border">
+<span class="material-symbols-outlined text-slate-400 text-sm">settings</span>
+</div>
+<div class="bg-surface-border/50 p-1.5 rounded-lg border border-surface-border">
+<span class="material-symbols-outlined text-slate-400 text-sm">notifications</span>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-surface-border mx-1"></div>
+<button class="flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 border border-red-500/20 rounded-lg transition-colors text-sm font-bold tracking-wide">
+<span class="material-symbols-outlined text-base">logout</span>
+                EXIT ARENA
+            </button>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-primary/30" data-alt="User avatar profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBcYqcXXVCn7zBUW5IcgZmXbtblq6olFbQ6pAk9oaRCS4jyPIGTf1H4wAwe6u5w6AQxieIktdsBukYLQ2mWacDeJ6mGj9fMbhYDGekuajM_yzyowlwPlHaXOVQSab3xafzFihUBFonYdbiG96kIhByXa8QoMQB-pQghvNWf4Owsl4OC4DZNmyjkd8fT8QjsjaN10BgnZhKyuT5SQJJKmK8BdSFWcOK1d97ee3LKx4UrqxRrT2bMYpbCOVpvgYbGnhlNmXJcYwbUqI');"></div>
+</div>
+</header>
+<!-- HP Bars Header -->
+<div class="flex-none px-6 py-4 grid grid-cols-2 gap-12 bg-background-dark border-b border-surface-border/50 z-10">
+<!-- Player HP -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">face</span>
+<span class="text-primary font-bold text-sm tracking-wider">PLAYER_ONE</span>
+</div>
+<span class="text-primary text-sm font-mono">1800/2000 HP</span>
+</div>
+<div class="h-3 w-full bg-surface-border rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full w-[90%] bg-primary shadow-[0_0_10px_rgba(43,108,238,0.6)] rounded-r-full"></div>
+<!-- Striped pattern overlay -->
+<div class="absolute top-0 left-0 h-full w-full opacity-20" style="background: repeating-linear-gradient(45deg, transparent, transparent 10px, #000 10px, #000 20px);"></div>
+</div>
+</div>
+<!-- Champion HP -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<span class="text-secondary-red text-sm font-mono">1200/5000 HP</span>
+<div class="flex items-center gap-2">
+<span class="text-secondary-red font-bold text-sm tracking-wider">CHAMPION_BOT_V9</span>
+<span class="material-symbols-outlined text-secondary-red">smart_toy</span>
+</div>
+</div>
+<div class="h-3 w-full bg-surface-border rounded-full overflow-hidden relative flex justify-end">
+<div class="h-full w-[24%] bg-secondary-red shadow-[0_0_10px_rgba(238,43,77,0.6)] rounded-l-full"></div>
+<!-- Striped pattern overlay -->
+<div class="absolute top-0 left-0 h-full w-full opacity-20" style="background: repeating-linear-gradient(-45deg, transparent, transparent 10px, #000 10px, #000 20px);"></div>
+</div>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<main class="flex-1 grid grid-cols-12 overflow-hidden bg-background-dark">
+<!-- LEFT PANEL: STRATEGY -->
+<section class="col-span-3 border-r border-surface-border bg-surface-dark/50 flex flex-col relative z-10">
+<div class="p-6 border-b border-surface-border bg-surface-dark">
+<h2 class="text-white tracking-[0.2em] text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">tune</span>
+                    RUNTIME CONFIG
+                </h2>
+</div>
+<div class="flex-1 p-6 flex flex-col gap-8 overflow-y-auto scrollbar-custom">
+<!-- Strategy Presets -->
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-primary bg-primary/10 text-primary transition-all hover:bg-primary/20">
+<span class="material-symbols-outlined mb-1">bolt</span>
+<span class="text-xs font-bold uppercase tracking-wider">Aggressive</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-surface-border bg-surface-border/30 text-slate-400 transition-all hover:text-white hover:border-slate-500">
+<span class="material-symbols-outlined mb-1">shield</span>
+<span class="text-xs font-bold uppercase tracking-wider">Defensive</span>
+</button>
+</div>
+<!-- Sliders -->
+<div class="space-y-6">
+<!-- Speed Slider -->
+<div class="space-y-3">
+<div class="flex justify-between text-sm font-medium text-slate-300">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">speed</span> Speed</span>
+<span class="text-primary font-mono">30%</span>
+</div>
+<input class="w-full h-2 bg-surface-border rounded-lg appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-4 [&amp;::-webkit-slider-thumb]:h-4 [&amp;::-webkit-slider-thumb]:bg-primary [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(43,108,238,0.8)]" type="range" value="30"/>
+</div>
+<!-- Attack Slider -->
+<div class="space-y-3">
+<div class="flex justify-between text-sm font-medium text-slate-300">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-red text-sm">swords</span> Attack</span>
+<span class="text-secondary-red font-mono">50%</span>
+</div>
+<input class="w-full h-2 bg-surface-border rounded-lg appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-4 [&amp;::-webkit-slider-thumb]:h-4 [&amp;::-webkit-slider-thumb]:bg-secondary-red [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(238,43,77,0.8)]" type="range" value="50"/>
+</div>
+<!-- Defense Slider -->
+<div class="space-y-3">
+<div class="flex justify-between text-sm font-medium text-slate-300">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-green text-sm">shield_lock</span> Defense</span>
+<span class="text-secondary-green font-mono">20%</span>
+</div>
+<input class="w-full h-2 bg-surface-border rounded-lg appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-4 [&amp;::-webkit-slider-thumb]:h-4 [&amp;::-webkit-slider-thumb]:bg-secondary-green [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(43,238,172,0.8)]" type="range" value="20"/>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-surface-border">
+<div class="flex justify-between text-xs uppercase tracking-wider text-slate-500 mb-2">
+<span>Total Allocation</span>
+<span class="text-white font-mono">100/100</span>
+</div>
+<button class="w-full py-4 bg-primary hover:bg-primary-glow text-white font-bold tracking-widest uppercase rounded-lg shadow-[0_0_20px_rgba(43,108,238,0.4)] transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:rotate-90 transition-transform">memory</span>
+                        Commit Strategy
+                    </button>
+</div>
+</div>
+</section>
+<!-- CENTER PANEL: ARENA VISUALS -->
+<section class="col-span-6 relative bg-background-dark overflow-hidden flex flex-col">
+<!-- Scanline Overlay -->
+<div class="scanlines absolute inset-0 pointer-events-none z-20 opacity-50"></div>
+<!-- Vignette -->
+<div class="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,#0f1115_90%)]"></div>
+<!-- Arena Container -->
+<div class="flex-1 relative flex items-center justify-center perspective-container bg-[#0b0d10]">
+<!-- Animated Background Particles (Static representation) -->
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 50px 50px;"></div>
+<!-- 3D Tilted Grid -->
+<div class="tilted-grid w-[600px] h-[600px] relative">
+<!-- Grid Lines -->
+<div class="absolute inset-0 bg-grid-pattern opacity-30 shadow-[0_0_50px_rgba(43,108,238,0.1)] border border-primary/20"></div>
+<!-- Floor Glow -->
+<div class="absolute inset-0 bg-primary/5 blur-3xl"></div>
+<!-- CHAMPION BOT (Red) -->
+<div class="absolute top-[20%] left-[70%] size-16 flex items-center justify-center transition-all duration-1000 z-10">
+<!-- Bot Body -->
+<div class="relative z-10 bg-secondary-red/20 border border-secondary-red p-3 rounded-full shadow-[0_0_30px_rgba(238,43,77,0.5)] animate-bounce">
+<span class="material-symbols-outlined text-secondary-red text-3xl">smart_toy</span>
+</div>
+<!-- Ripple/Shield Effect -->
+<div class="absolute inset-0 border border-secondary-red/40 rounded-full animate-ping"></div>
+<!-- Trail -->
+<div class="absolute top-1/2 right-full w-24 h-1 bg-gradient-to-r from-transparent to-secondary-red/60 blur-[2px]"></div>
+<!-- Floating Label -->
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 border border-secondary-red/50 px-2 py-0.5 rounded text-[10px] text-secondary-red font-mono font-bold tracking-widest">
+                            BOSS_LVL_99
+                        </div>
+</div>
+<!-- PLAYER BOT (Blue) -->
+<div class="absolute top-[60%] left-[30%] size-16 flex items-center justify-center transition-all duration-1000 z-10">
+<!-- Bot Body -->
+<div class="relative z-10 bg-primary/20 border border-primary p-3 rounded-full shadow-[0_0_30px_rgba(43,108,238,0.5)]">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+</div>
+<!-- Trail -->
+<div class="absolute top-1/2 right-full w-32 h-1 bg-gradient-to-r from-transparent to-primary/60 blur-[2px] rotate-12 origin-right"></div>
+<!-- Floating Label -->
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 border border-primary/50 px-2 py-0.5 rounded text-[10px] text-primary font-mono font-bold tracking-widest">
+                            YOU
+                        </div>
+</div>
+<!-- Collision Effect (Simulated) -->
+<div class="absolute top-[40%] left-[50%] size-20 pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-2 bg-white rounded-full blur-[2px] shadow-[0_0_20px_white]"></div>
+<div class="absolute top-1/2 left-1/2 w-20 h-[1px] bg-yellow-300 rotate-45"></div>
+<div class="absolute top-1/2 left-1/2 w-20 h-[1px] bg-yellow-300 -rotate-45"></div>
+</div>
+</div>
+</div>
+<!-- Bottom HUD Status -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 z-30">
+<div class="px-4 py-2 bg-black/80 border border-surface-border rounded-full flex items-center gap-2 backdrop-blur-md">
+<div class="size-2 bg-green-500 rounded-full animate-pulse"></div>
+<span class="text-xs font-mono text-slate-300">LIVE CONNECTION ESTABLISHED</span>
+</div>
+</div>
+</section>
+<!-- RIGHT PANEL: INTEL & LOGS -->
+<section class="col-span-3 border-l border-surface-border bg-surface-dark/50 flex flex-col relative z-10">
+<!-- Header -->
+<div class="p-6 border-b border-surface-border bg-surface-dark">
+<h2 class="text-white tracking-[0.2em] text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">terminal</span>
+                    BATTLE INTELLIGENCE
+                </h2>
+</div>
+<!-- Terminal Output -->
+<div class="flex-1 flex flex-col min-h-0">
+<div class="p-2 bg-black/40 border-b border-surface-border">
+<div class="flex gap-2">
+<div class="size-2 rounded-full bg-red-500/30"></div>
+<div class="size-2 rounded-full bg-yellow-500/30"></div>
+<div class="size-2 rounded-full bg-green-500/30"></div>
+</div>
+</div>
+<div class="flex-1 p-4 overflow-y-auto scrollbar-custom font-mono text-xs leading-relaxed space-y-2 bg-[#0a0c10]">
+<p class="text-slate-500 mb-4 border-b border-slate-800 pb-2">
+                        &gt; Connecting to arena server...<br/>
+                        &gt; Session ID: #8X92-QA<br/>
+                        &gt; Environment: GRID_NEON_V3
+                    </p>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:43]</span>
+<span class="text-secondary-green">System: Strategy "Balanced" engaged.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:41]</span>
+<span class="text-slate-300">Bot: Moving to coords (12, 4).</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:38]</span>
+<span class="text-secondary-red">Alert: Champion detected in sector 4.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:35]</span>
+<span class="text-white bg-red-500/20 px-1 rounded">Combat: Took 45 damage from laser beam.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:32]</span>
+<span class="text-primary-glow">Action: Shield deployed. +20 Def.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600">[00:28]</span>
+<span class="text-secondary-green">Success: Counter-attack hit! -120 HP to Enemy.</span>
+</div>
+<div class="flex gap-2 animate-pulse">
+<span class="text-slate-600">[00:27]</span>
+<span class="text-yellow-400">&gt; WAITING FOR INPUT...</span>
+</div>
+</div>
+</div>
+<!-- Mini Leaderboard -->
+<div class="h-1/3 border-t border-surface-border bg-surface-dark flex flex-col">
+<div class="p-4 border-b border-surface-border/50 flex justify-between items-center">
+<span class="text-xs font-bold text-slate-400 tracking-wider">LIVE LEADERBOARD</span>
+<span class="text-[10px] text-primary cursor-pointer hover:underline">VIEW ALL</span>
+</div>
+<div class="flex-1 overflow-y-auto scrollbar-custom p-2 space-y-1">
+<!-- Row 1 -->
+<div class="flex items-center justify-between p-2 rounded bg-primary/10 border border-primary/20">
+<div class="flex items-center gap-3">
+<span class="text-primary font-bold font-mono text-sm">01</span>
+<div class="size-6 bg-slate-700 rounded-full bg-cover" data-alt="Leaderboard user avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUSxuRPTHUlVckpo8RVwIBRpQ40OQH-g2UcSHiz1p2QJXwNd2i-DyD4o4bAtVBjjgRtnjLDzUZEaUICOBqiKqmDaqKQJaUZDUUXV5goILgEy0dng230Qm_Kfz6hSnoxaWaTIlBPNQIoymlYUV_4iTkPBOJFh09wilZHCWUJlLwtFf0VFAhB4gSI9KFMlNc7kQvlfbuOU-8GIouMkygY6qAQSFeQajcsyi45LVA-gMuDsFuprfbARL8t-9dnrZ1RhB9-hLhY-yJETo');"></div>
+<span class="text-white text-sm font-medium">Player_One (You)</span>
+</div>
+<span class="text-primary font-mono text-sm font-bold">9,840</span>
+</div>
+<!-- Row 2 -->
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-border/30 transition-colors">
+<div class="flex items-center gap-3">
+<span class="text-slate-500 font-bold font-mono text-sm">02</span>
+<div class="size-6 bg-slate-700 rounded-full bg-cover" data-alt="Leaderboard user avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCH02JAzz6sBqHSMGa4Zrqn1-N9VcGNQOI3L6WYeQ14iuI0yMYiEHamI-r-1cO0t6zkt84UpxqlpOArc1MnVOnt7_lMJqPWkbf1FcGEJ-UgF2vWVLGiKeyFN5T33RG8T_U3eTozcY7tkOIvzFbudMZxkjyJgCEl4WDshlclSbn6-ZuSy3ZFk4QiNckrJRoNm3fzRihKP1gNo0A1xJ3RdPQdfTSQXJx53ofnb1LgJJmsyihRKiutz7supJvC4WC_rQ0r-jab9VEK0ww');"></div>
+<span class="text-slate-400 text-sm font-medium">Cyber_Ninja</span>
+</div>
+<span class="text-slate-500 font-mono text-sm">9,210</span>
+</div>
+<!-- Row 3 -->
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-border/30 transition-colors">
+<div class="flex items-center gap-3">
+<span class="text-slate-500 font-bold font-mono text-sm">03</span>
+<div class="size-6 bg-slate-700 rounded-full bg-cover" data-alt="Leaderboard user avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCju3NpYo9naAOaHwJjq-K7_D8EVzMNly6yEX_PMFX_MoIB4iHh4FVHnLdQzoTtvkYuKIBZhWMcm8eGqalUPxxSAnkhVNfoVa9oFwpGNj_cu14mnGBnOFdteDaz-JkWLZWyKJqIJpN-OHth8y5Glz26d5WlSVto5Jo_fw_iwd8M9hsYMzVLdCLJ-Zspf9N1ju-pEhYWkvyLjADYDMpENXQPUNsqgAR_OU-IUXdUfUibjZPgMZLMeVEX-T7Zz63owQVu6_-BP_xmCJk');"></div>
+<span class="text-slate-400 text-sm font-medium">ByteMaster</span>
+</div>
+<span class="text-slate-500 font-mono text-sm">8,955</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

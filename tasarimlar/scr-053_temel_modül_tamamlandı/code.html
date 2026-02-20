@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM - Temel Modül Tamamlandı</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111418",
+                        "surface-dark": "#1c2127",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', "Noto Sans", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<div class="relative flex w-full flex-col bg-[#111418] border-b border-[#283039]">
+<header class="flex items-center justify-between whitespace-nowrap px-4 lg:px-10 py-3 max-w-[1440px] mx-auto w-full">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">DIGEM</h2>
+</div>
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-slate-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Ana Sayfa</a>
+<a class="text-white text-sm font-medium leading-normal transition-colors" href="#">Katalog</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Kariyerim</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Profilim</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 lg:gap-8 items-center">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#283039]">
+<div class="text-[#9dabb9] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-white focus:ring-0 placeholder:text-[#9dabb9] px-3 text-sm" placeholder="Ara..."/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg size-10 bg-[#283039] text-white hover:bg-[#323b46] transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-[#283039] text-white hover:bg-[#323b46] transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-[#283039]" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9VGZ_Q5n4Zr1hfaKcX1ma9dVGO6VbSCg3M3mRYt8k9PvvdBMxBzF8TIn--rT9ag2zRjVpVRQAWv7dKkLP8wwLsSyStsLVr3EtKq5e0DUjplwO1eWeGS9luyzJUyBKotqoHYsWWn5tKNgakrUlHz092OkGhrtogLZpjpLHEUyphyr2bhhDGKozMPHmBzmotfAPd2q-sCRLwzYk5D1OGesZw19I7pc4WehqIOQ5dgiH8KZIhZKr4yhCs9QAQ0X8sUNIrBBt9L4SVQ");'></div>
+</div>
+</header>
+</div>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto w-full">
+<div class="max-w-[1200px] mx-auto px-4 py-8 lg:px-8">
+<!-- Hero / Celebration Section -->
+<div class="relative rounded-2xl overflow-hidden mb-10 bg-gradient-to-r from-primary/20 via-surface-dark to-surface-dark border border-primary/20 shadow-[0_0_50px_rgba(19,127,236,0.15)]">
+<!-- Abstract confetti/glow pattern background -->
+<div class="absolute inset-0 opacity-30" data-alt="Subtle dot pattern background" style="background-image: radial-gradient(#137fec 1px, transparent 1px); background-size: 30px 30px;"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center p-6 lg:p-10 gap-8">
+<div class="flex-1 text-center md:text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-primary text-xs font-bold mb-4">
+<span class="material-symbols-outlined text-[16px]">celebration</span>
+                            BAŞARI KİLİDİ AÇILDI
+                        </div>
+<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">Tebrikler, Ahmet!</h1>
+<p class="text-lg text-slate-300 max-w-xl mx-auto md:mx-0">
+                            Temel Programlama Modülünü üstün başarıyla tamamladın. Artık bir sonraki seviyeye geçmeye ve uzmanlaşmaya hazırsın.
+                        </p>
+</div>
+<!-- Certificate Card -->
+<div class="w-full md:w-auto max-w-sm flex-shrink-0">
+<div class="bg-[#1c2127] border border-[#283039] rounded-xl p-4 shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 group">
+<div class="aspect-[1.4/1] w-full bg-[#111418] rounded-lg mb-4 relative overflow-hidden border border-[#283039]">
+<!-- Certificate Preview Image -->
+<div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+<div class="size-12 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<div class="w-24 h-1 bg-[#283039] rounded mb-2"></div>
+<div class="w-32 h-1 bg-[#283039] rounded mb-4"></div>
+<div class="w-full h-[1px] bg-[#283039] mb-4"></div>
+<div class="text-[10px] text-slate-500 font-mono">ID: DG-2023-8842</div>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-white text-black text-xs font-bold py-2 px-4 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                                        Önizle
+                                    </button>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary hover:bg-primary-dark text-white h-9 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                                    Sertifikayı İndir
+                                </button>
+<button class="size-9 bg-[#283039] hover:bg-[#323b46] text-white rounded-lg flex items-center justify-center transition-colors" title="Paylaş">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Unlocked Tracks Grid -->
+<div class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h2 class="text-2xl font-bold text-white flex items-center gap-3">
+<span class="flex items-center justify-center size-8 rounded-full bg-primary text-white text-sm font-bold">6</span>
+                            Kariyer Yolu Açıldı
+                        </h2>
+<p class="text-slate-400 text-sm mt-1">Temel yetkinliklerine dayalı olarak bu yollar senin için hazırlandı.</p>
+</div>
+<div class="hidden sm:flex gap-2 text-sm">
+<span class="text-white font-medium">Sırala:</span>
+<select class="bg-transparent text-slate-400 border-none p-0 pr-6 focus:ring-0 text-sm cursor-pointer hover:text-white">
+<option>Önerilen</option>
+<option>Popülerlik</option>
+<option>Süre</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Track Card 1: Web Development -->
+<div class="bg-[#1c2127] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 hover:shadow-[0_4px_20px_rgba(19,127,236,0.15)] transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="h-40 bg-cover bg-center relative" data-alt="Laptop with code on screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDlGAiuP46zuGtXVC1iYtYEfmhnWCX1Si4YR57niuP4tSND5hbAyK98etROJgLR7BkbgH2QqUm8R6poo3QRByH6BP7zIlyphjVTAh3IDZcFVotFshmEKzwbOV5dsw5u0iFyJB3n_6pQDsF6w6kSanp4QHpuntGHjUvXe-6Qfps9uXnHnahg-uVhvvH2WMKJocGbj5M35Ifm85MIzJwWi_VG4v9dcjx_6LgTqvhP8SQi6n8BWBcVAH2pOyCNlV7C3RRSruHjTNLRmg");'>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c2127] to-transparent"></div>
+<div class="absolute top-3 right-3 bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> %100 Hazır
+                            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">code</span>
+<span class="text-xs font-semibold text-primary uppercase tracking-wider">Popüler</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Front-end Geliştirme</h3>
+<p class="text-slate-400 text-sm mb-4 line-clamp-2">Modern web arayüzleri oluşturmak için React, Vue ve Tailwind CSS öğrenin.</p>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<div class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 12 Hafta
+                                </div>
+<span class="text-white text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                    Başla <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Track Card 2: Data Science -->
+<div class="bg-[#1c2127] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 hover:shadow-[0_4px_20px_rgba(19,127,236,0.15)] transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="h-40 bg-cover bg-center relative" data-alt="Data visualization dashboard" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7TlI-g5z1VeddzUlJIy1GMnyqJYG0mwGSZiokimPgd1Wa9w0uxr27_C4a59QoR4VkA2VrVyVoiRVFUZP3nMWx-yIPt-Yh7DsAAtKBEF_RXSD1auHBgvLNVjp7br7UgR1koOdLNf2G5k1QHsJCZ8tBolO7tl7eUE990W8A_WYzqZqENzdcVyPlEfBL7pKhl-KLkNx1oRz1_it-g97Xl7eQrWsGzJBc0Cok3DM-ib1r-GJ8ltiPy1dZbN4hb0bCPIMOPQS-eoGWvg");'>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c2127] to-transparent"></div>
+<div class="absolute top-3 right-3 bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> %100 Hazır
+                            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-purple-400 text-[20px]">bar_chart</span>
+<span class="text-xs font-semibold text-purple-400 uppercase tracking-wider">Analitik</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Veri Bilimi ve Analitiği</h3>
+<p class="text-slate-400 text-sm mb-4 line-clamp-2">Büyük veriyi anlamlandırmak için Python ve Pandas kütüphanelerini kullanın.</p>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<div class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 16 Hafta
+                                </div>
+<span class="text-white text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                    Başla <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Track Card 3: Mobile Dev -->
+<div class="bg-[#1c2127] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 hover:shadow-[0_4px_20px_rgba(19,127,236,0.15)] transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="h-40 bg-cover bg-center relative" data-alt="Smartphone showing app interface" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAQVb3ZbOJTfNu3ObRi2CBSIHwkjA9_LlZyG9stpqYRjrB5m-z0kGnNv_JmWa1kqLWqawtSl8U_fwl8_by9QE4jOwslTxwBU7bSC6X2KzZlRl6yhHgODZ-cD3l4ju0pUGXTjd-C8uSg7yXurv7HERz1Fi1VTGjj5MCyVamPOH5i1FG_lnzaZAgr0h8DO7C85UQud8fJW3RWvkJdY3LQeCwJBd5KO4csysuKC8b2RJFTiK3QGwZ3CWnTnhXxVwFMPTl7mbMN3X-2bQ");'>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c2127] to-transparent"></div>
+<div class="absolute top-3 right-3 bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> %100 Hazır
+                            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-orange-400 text-[20px]">smartphone</span>
+<span class="text-xs font-semibold text-orange-400 uppercase tracking-wider">Mobil</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Mobil Uygulama Geliştirme</h3>
+<p class="text-slate-400 text-sm mb-4 line-clamp-2">Flutter veya React Native ile hem iOS hem Android uygulamaları geliştirin.</p>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<div class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 14 Hafta
+                                </div>
+<span class="text-white text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                    Başla <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Track Card 4: Game Dev -->
+<div class="bg-[#1c2127] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 hover:shadow-[0_4px_20px_rgba(19,127,236,0.15)] transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="h-40 bg-cover bg-center relative" data-alt="Video game controller and screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9APYFSUucq7V16Eqf56WDtGJZrOv-ernwprEHGmaYBbFzJmjGKReeqcfX86oAJvTmKhceVJGqyAA6_8Zh3AKKMxeVzVheZ7QRZCw6LTl_qdhrckhJS0ArAgdfjciKIXIwdJvjnFp46strtnQj1Y57vbl2MzkK_pgNwpOKvOUfkmsf7c_E6OIMxPP70kOFghohN4GymsuWbB75HAh3pUYc7-yRYVzQKHz01s3TrsOhhlwnnfwGpRKgXKTCd8fnsa38Bzb2Npc5Jw");'>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c2127] to-transparent"></div>
+<div class="absolute top-3 right-3 bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> %90 Hazır
+                            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-pink-400 text-[20px]">sports_esports</span>
+<span class="text-xs font-semibold text-pink-400 uppercase tracking-wider">Oyun</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Oyun Tasarımı ve Geliştirme</h3>
+<p class="text-slate-400 text-sm mb-4 line-clamp-2">Unity ve C# kullanarak 2D ve 3D oyun dünyaları yaratın.</p>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<div class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 18 Hafta
+                                </div>
+<span class="text-white text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                    Başla <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Track Card 5: Cyber Security -->
+<div class="bg-[#1c2127] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 hover:shadow-[0_4px_20px_rgba(19,127,236,0.15)] transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="h-40 bg-cover bg-center relative" data-alt="Digital security lock code" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBX_kqO4u1OCoByVm0NUAvuxhpOl06zyZDhxAuhVkkK3LiFDfiQ6pMukfcCdPmhaE3YO9o_ilMk9LfebWuG6fRV9wr5_6IZgMnES_uy74nWBia4h5TmmYe6a_xLty_Dt0AZzxgdCdYHAs-Z_ZEZQCLAjN0g-cszsPIdiY6w_G1WjZwMnrRNhU9LErbl9V7xEezXgXys_7ureQ7Ic5sE0t2GrlmoDw1anyu9wHfq99wNQ9I2sHTXVB8_NXVi8DtDPERViddsnerMmg");'>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c2127] to-transparent"></div>
+<div class="absolute top-3 right-3 bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> %100 Hazır
+                            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-red-400 text-[20px]">security</span>
+<span class="text-xs font-semibold text-red-400 uppercase tracking-wider">Güvenlik</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Siber Güvenlik Temelleri</h3>
+<p class="text-slate-400 text-sm mb-4 line-clamp-2">Ağ güvenliği, etik hackerlık ve sistem koruma prensiplerini öğrenin.</p>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<div class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 10 Hafta
+                                </div>
+<span class="text-white text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                    Başla <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Track Card 6: AI -->
+<div class="bg-[#1c2127] rounded-xl overflow-hidden border border-[#283039] hover:border-primary/50 hover:shadow-[0_4px_20px_rgba(19,127,236,0.15)] transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="h-40 bg-cover bg-center relative" data-alt="Artificial Intelligence brain nodes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuALMKrxbekyW-FqkKmc8djFjzNET_ZsBXVfCuja2tPQJWaJp-6TahyVpdztkKwiThBrANNxy4LqQnIJ1lZouaTa4CFLhgYgVy9XDGxDX36VYXln2yIpCv2RlZjjl8mhM-mlWo6q2a86S54tYDNvYXv2sFJtMqBo3MRM3hnI1j2uXrcVRXArpaDnl1vKp0Uw5cTKWJNAGG1h5JaVpjwkce5Ip3F7qjrL36VXpGGUI0t1z3tGxCMlOhmc50qwJ9yblQdWo5RfjrzSNg");'>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c2127] to-transparent"></div>
+<div class="absolute top-3 right-3 bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> %100 Hazır
+                            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-cyan-400 text-[20px]">psychology</span>
+<span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Yapay Zeka</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Yapay Zeka Giriş</h3>
+<p class="text-slate-400 text-sm mb-4 line-clamp-2">Makine öğrenmesi algoritmaları ve derin öğrenme temellerine adım atın.</p>
+<div class="mt-auto pt-4 border-t border-[#283039] flex items-center justify-between">
+<div class="text-xs text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 15 Hafta
+                                </div>
+<span class="text-white text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                    Başla <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Coming Soon / Expertise Paths -->
+<div class="pb-12">
+<h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2 opacity-80">
+<span class="material-symbols-outlined text-[24px]">hourglass_empty</span>
+                    Yakında Gelecek: Uzmanlık Yolları
+                </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Locked Card 1 -->
+<div class="bg-[#1c2127]/50 rounded-xl p-5 border border-[#283039] border-dashed flex items-center gap-4 opacity-60 hover:opacity-100 transition-opacity">
+<div class="size-12 rounded-lg bg-[#283039] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-slate-500 text-[24px]">lock</span>
+</div>
+<div>
+<h4 class="text-white font-medium">Senior Backend Mimarisi</h4>
+<p class="text-xs text-slate-500">2024 Sonbahar</p>
+</div>
+</div>
+<!-- Locked Card 2 -->
+<div class="bg-[#1c2127]/50 rounded-xl p-5 border border-[#283039] border-dashed flex items-center gap-4 opacity-60 hover:opacity-100 transition-opacity">
+<div class="size-12 rounded-lg bg-[#283039] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-slate-500 text-[24px]">lock</span>
+</div>
+<div>
+<h4 class="text-white font-medium">DevOps Uzmanlığı</h4>
+<p class="text-xs text-slate-500">2024 Kış</p>
+</div>
+</div>
+<!-- Locked Card 3 -->
+<div class="bg-[#1c2127]/50 rounded-xl p-5 border border-[#283039] border-dashed flex items-center gap-4 opacity-60 hover:opacity-100 transition-opacity">
+<div class="size-12 rounded-lg bg-[#283039] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-slate-500 text-[24px]">lock</span>
+</div>
+<div>
+<h4 class="text-white font-medium">Blockchain Geliştirme</h4>
+<p class="text-xs text-slate-500">Hazırlanıyor</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirvanaOS Lesson Runner</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8655f6",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0d1117", /* Darker global background */
+                        "panel-left": "#161B22",
+                        "panel-right": "#21262D",
+                        "surface-dark": "#30363D",
+                        "border-dark": "#30363D",
+                        "text-main": "#F0F6FC",
+                        "text-muted": "#8B949E",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Lexend', 'Noto Sans', sans-serif; }
+        /* Scrollbar styling for the code block and panel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363D;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8B949E;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main h-screen overflow-hidden flex flex-col relative">
+<!-- NirvanaOS Status Bar (Dimmed) -->
+<div class="h-8 bg-black/40 backdrop-blur-sm flex justify-between items-center px-4 text-xs select-none opacity-60">
+<div class="flex items-center gap-4">
+<span class="font-bold">NirvanaOS</span>
+<span class="text-white/60">Dosya</span>
+<span class="text-white/60">Düzenle</span>
+<span class="text-white/60">Görünüm</span>
+</div>
+<div class="flex items-center gap-4 text-white/60">
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-[16px]">battery_full</span>
+<span>14:42</span>
+</div>
+</div>
+<!-- Main Window Container -->
+<div class="flex-1 flex items-center justify-center p-6 pb-20 relative z-10">
+<!-- App Window -->
+<div class="w-full max-w-[1280px] h-full bg-[#0d1117] rounded-xl overflow-hidden shadow-2xl border border-[#30363D] flex flex-col">
+<!-- Window Header / Title Bar -->
+<div class="h-10 bg-[#161B22] border-b border-[#30363D] flex items-center justify-between px-4 select-none">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div> <!-- Close -->
+<div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div> <!-- Minimize -->
+<div class="w-3 h-3 rounded-full bg-[#27C93F]"></div> <!-- Maximize -->
+</div>
+<div class="text-sm font-medium text-text-muted flex items-center gap-2">
+<span class="material-symbols-outlined text-base">school</span>
+                    PUSULA: Lesson Runner
+                </div>
+<div class="w-16"></div> <!-- Spacer for visual balance -->
+</div>
+<!-- App Content Area (Split Screen) -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Content (60%) -->
+<div class="w-3/5 bg-panel-left flex flex-col overflow-y-auto border-r border-[#30363D]">
+<!-- Breadcrumbs & Progress -->
+<div class="px-8 pt-8 pb-4">
+<div class="flex items-center gap-2 text-sm text-text-muted mb-4 font-light">
+<span class="hover:text-primary cursor-pointer transition-colors">Temel Bilgisayar</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">B2 İnternet Güvenliği</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-text-main font-medium">Ders 3</span>
+</div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs uppercase tracking-wider text-text-muted font-bold">İlerleme</span>
+<span class="text-xs text-text-main font-mono">3 / 7</span>
+</div>
+<!-- Progress Bar -->
+<div class="flex gap-2 h-1.5 w-full mb-6">
+<div class="h-full w-full bg-primary rounded-full"></div>
+<div class="h-full w-full bg-primary rounded-full"></div>
+<div class="h-full w-full bg-primary rounded-full"></div>
+<div class="h-full w-full bg-[#30363D] rounded-full"></div>
+<div class="h-full w-full bg-[#30363D] rounded-full"></div>
+<div class="h-full w-full bg-[#30363D] rounded-full"></div>
+<div class="h-full w-full bg-[#30363D] rounded-full"></div>
+</div>
+</div>
+<!-- Main Lesson Content -->
+<div class="px-8 pb-12">
+<h1 class="text-3xl font-bold text-text-main mb-6 leading-tight">Phishing E-postayı Nasıl Tanırsın?</h1>
+<p class="text-text-muted text-lg mb-6 leading-relaxed">
+                            Phishing (oltalama) saldırıları genellikle meşru görünen sahte e-postalarla yapılır. Saldırganlar genellikle bilinen markaların kimliğine bürünürler. Aşağıdaki örnekte, gönderici adresindeki küçük değişikliğe dikkat edin.
+                        </p>
+<!-- Code Block / Email Header Example -->
+<div class="rounded-lg bg-[#0d1117] border border-[#30363D] p-5 mb-8 font-mono text-sm relative group">
+<div class="absolute top-3 right-3 text-xs text-text-muted bg-[#21262D] px-2 py-1 rounded border border-[#30363D]">Email Headers</div>
+<div class="space-y-2">
+<div class="flex">
+<span class="text-[#79c0ff] min-w-[80px]">Subject:</span>
+<span class="text-text-main">Acil: Hesabınızda şüpheli işlem tespit edildi!</span>
+</div>
+<div class="flex">
+<span class="text-[#79c0ff] min-w-[80px]">Date:</span>
+<span class="text-text-main">Mon, 24 Oct 2023 14:32:01 +0300</span>
+</div>
+<div class="flex bg-red-900/20 -mx-5 px-5 py-1 border-l-2 border-red-500">
+<span class="text-[#ff7b72] min-w-[80px] font-bold">From:</span>
+<span class="text-[#ff7b72]">Google Support &lt;support@g00gle.com&gt;</span>
+<span class="ml-auto text-xs text-red-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">warning</span> Suspicious
+                                    </span>
+</div>
+<div class="flex">
+<span class="text-[#79c0ff] min-w-[80px]">To:</span>
+<span class="text-text-main">user@example.com</span>
+</div>
+<div class="flex">
+<span class="text-[#79c0ff] min-w-[80px]">Reply-To:</span>
+<span class="text-text-main">admin-verify@hotmail.com</span>
+</div>
+</div>
+</div>
+<p class="text-text-muted text-lg mb-6 leading-relaxed">
+                            Yukarıdaki başlık bilgilerinde (header), gönderenin alan adının <span class="text-white bg-[#30363D] px-1.5 py-0.5 rounded text-sm font-mono">google.com</span> yerine <span class="text-white bg-[#30363D] px-1.5 py-0.5 rounded text-sm font-mono">g00gle.com</span> olduğuna dikkat edin. Bu tipografik hileler (Typosquatting) en yaygın yöntemdir.
+                        </p>
+<!-- Info Callout -->
+<div class="bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg flex gap-4 items-start">
+<div class="bg-blue-500/20 p-2 rounded-full text-blue-400 mt-1">
+<span class="material-symbols-outlined block">info</span>
+</div>
+<div>
+<h4 class="text-blue-400 font-bold mb-1">İpucu: Linkleri Kontrol Edin</h4>
+<p class="text-blue-100/80 text-sm">E-posta içindeki bağlantılara tıklamadan önce, fare imlecinizi üzerine getirerek (hover) gerçek hedef adresini sol alt köşede kontrol edin.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Activity (40%) -->
+<div class="w-2/5 bg-panel-right flex flex-col relative">
+<!-- Top Right: Lives/Hearts -->
+<div class="flex justify-end p-6 gap-1">
+<span class="material-symbols-outlined text-red-500 fill-current" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-red-500 fill-current" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-red-500 fill-current" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-red-500 fill-current" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-red-500/30">favorite</span>
+</div>
+<!-- Quiz Content Centered -->
+<div class="flex-1 px-8 flex flex-col justify-center">
+<div class="mb-2">
+<span class="text-primary font-bold tracking-widest text-xs uppercase">Soru 1</span>
+</div>
+<h2 class="text-2xl font-bold text-text-main mb-8">
+                            Bu e-postada kaç kırmızı bayrak (şüpheli durum) var?
+                        </h2>
+<div class="space-y-3 w-full">
+<button class="w-full text-left p-4 rounded-lg bg-surface-dark hover:bg-[#3d444d] hover:border-primary border-2 border-transparent transition-all duration-200 group flex items-center justify-between">
+<span class="font-medium text-lg">1 tane</span>
+<div class="w-5 h-5 rounded-full border-2 border-text-muted group-hover:border-primary flex items-center justify-center"></div>
+</button>
+<button class="w-full text-left p-4 rounded-lg bg-surface-dark hover:bg-[#3d444d] hover:border-primary border-2 border-transparent transition-all duration-200 group flex items-center justify-between">
+<span class="font-medium text-lg">2 tane</span>
+<div class="w-5 h-5 rounded-full border-2 border-text-muted group-hover:border-primary flex items-center justify-center"></div>
+</button>
+<!-- Active/Selected State Example -->
+<button class="w-full text-left p-4 rounded-lg bg-[#3d444d] border-2 border-primary transition-all duration-200 group flex items-center justify-between shadow-[0_0_15px_rgba(134,85,246,0.2)]">
+<span class="font-medium text-lg text-white">3 tane</span>
+<div class="w-5 h-5 rounded-full border-[5px] border-primary bg-white flex items-center justify-center"></div>
+</button>
+<button class="w-full text-left p-4 rounded-lg bg-surface-dark hover:bg-[#3d444d] hover:border-primary border-2 border-transparent transition-all duration-200 group flex items-center justify-between">
+<span class="font-medium text-lg">4 tane</span>
+<div class="w-5 h-5 rounded-full border-2 border-text-muted group-hover:border-primary flex items-center justify-center"></div>
+</button>
+</div>
+</div>
+<!-- Bottom Action Bar -->
+<div class="p-8 border-t border-[#30363D] bg-[#1c2128]">
+<button class="w-full bg-primary hover:bg-[#7244db] text-white font-bold py-4 rounded-lg text-lg flex items-center justify-center gap-2 transition-transform active:scale-[0.98] shadow-lg shadow-primary/20">
+                            İleri
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- NirvanaOS Taskbar (Dimmed) -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 h-14 bg-black/50 backdrop-blur-md rounded-2xl flex items-center px-4 gap-4 opacity-60 hover:opacity-100 transition-opacity duration-300 z-0 border border-white/10 shadow-xl">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg cursor-pointer hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-white text-xl">grid_view</span>
+</div>
+<div class="w-[1px] h-8 bg-white/20"></div>
+<div class="w-10 h-10 rounded-lg bg-[#2D333B] flex items-center justify-center cursor-pointer hover:-translate-y-1 transition-transform group relative">
+<span class="material-symbols-outlined text-white/80 text-xl">terminal</span>
+<div class="absolute -bottom-2 w-1 h-1 bg-white rounded-full"></div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-[#2D333B] flex items-center justify-center cursor-pointer hover:-translate-y-1 transition-transform border border-white/20 relative">
+<span class="material-symbols-outlined text-primary text-xl">school</span>
+<div class="absolute -bottom-2 w-8 h-1 bg-primary rounded-full blur-[2px]"></div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-[#2D333B] flex items-center justify-center cursor-pointer hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-white/80 text-xl">folder</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-[#2D333B] flex items-center justify-center cursor-pointer hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-white/80 text-xl">public</span>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SDG Misyon Hub - PUSULA Lite</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111a22",
+                        "surface-dark": "#192633",
+                        "surface-darker": "#0d141c",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Lexend", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111a22; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233648; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334b61; 
+        }
+
+        .map-grid-bg {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display overflow-x-hidden selection:bg-primary selection:text-white">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-slate-200 dark:border-[#233648] bg-white dark:bg-[#111a22]/90 backdrop-blur-md px-6 py-3 lg:px-10">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[28px]">explore</span>
+</div>
+<div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">PUSULA Lite v1.3</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">UNDP x Eskişehir Digital Youth Center</p>
+</div>
+</div>
+<div class="hidden lg:flex flex-1 justify-center gap-8">
+<nav class="flex items-center gap-1 p-1 bg-slate-100 dark:bg-[#192633] rounded-full border border-slate-200 dark:border-[#233648]">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white px-4 py-2 text-sm font-medium transition-colors rounded-full" href="#">Ana Sayfa</a>
+<a class="bg-white dark:bg-primary shadow-sm text-slate-900 dark:text-white px-4 py-2 text-sm font-medium rounded-full" href="#">Misyonlarım</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white px-4 py-2 text-sm font-medium transition-colors rounded-full" href="#">Liderlik Tablosu</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex flex-col items-end mr-2">
+<span class="text-sm font-bold text-white">Can Yılmaz</span>
+<div class="flex items-center gap-1 text-xs text-primary">
+<span class="material-symbols-outlined text-[14px]">military_tech</span>
+<span>Lvl 12 Ranger</span>
+</div>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full bg-slate-100 dark:bg-[#233648] text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#2d465e] transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-[#233648]"></span>
+</button>
+<div class="size-10 rounded-full overflow-hidden border-2 border-[#233648]">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOsxJjXhH4tunN-JmYsAcfQ5quDfrs3uyE85IIhU0R07jRAp6asPHgeDuw8hu53Ubyia-KnIqYC8Tslql4ERmlfKqsXAldO5tLB0TkjNF0hj9yzpWqTWvWTNiYqv-uH2uU6b_BHWvNk4ZoHL7OSRGI4DzRsf1GwUwQb7jhRT0RnBDr_DClU6ItS79f-4sq2d8skdM7iz3gw7Q-BZXoeK7ywoRHAmuFALQNwLmO_iNq-UD_RYIHZ7NKSnSXbTqzXceVjofZsjDUGC4"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col lg:flex-row relative">
+<!-- Left Sidebar / Context -->
+<aside class="w-full lg:w-[360px] flex flex-col border-r border-slate-200 dark:border-[#233648] bg-white dark:bg-[#111a22] z-20">
+<div class="p-6 pb-2">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/20 text-primary uppercase tracking-wider">Sezon 1</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 uppercase tracking-wider">Aktif</span>
+</div>
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-2">SDG Misyon Hub</h1>
+<p class="text-slate-500 dark:text-[#92adc9] text-sm leading-relaxed">
+                    Dünyayı değiştirmek senin elinde. 6 lite görevi tamamla, yetkinliklerini geliştir ve küresel hedeflere katkıda bulun.
+                </p>
+</div>
+<!-- Current Mission Card -->
+<div class="p-6 pt-2 flex flex-col gap-4 overflow-y-auto">
+<div class="bg-gradient-to-br from-[#192633] to-[#111a22] border border-[#233648] rounded-xl p-1 shadow-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-10">
+<span class="material-symbols-outlined text-[100px] text-white">rocket_launch</span>
+</div>
+<div class="p-4 relative z-10">
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs font-bold text-[#92adc9] uppercase tracking-wider">Sıradaki Görev</span>
+<span class="bg-blue-500/20 text-blue-400 text-xs font-bold px-2 py-1 rounded">M2</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-1">Sahte Haber Dedektifi</h3>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs text-[#92adc9]">SDG 16: Barış, Adalet ve Güçlü Kurumlar</span>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex flex-col">
+<span class="text-[10px] text-[#92adc9] uppercase font-bold">Ödül</span>
+<span class="text-sm font-bold text-yellow-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">bolt</span> 750 XP
+                                </span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-[#92adc9] uppercase font-bold">Gereksinim</span>
+<span class="text-sm font-bold text-white">B4 Tamamlanmalı</span>
+</div>
+</div>
+</div>
+<div class="bg-[#192633] p-2 flex gap-2">
+<button class="flex-1 bg-primary hover:bg-blue-600 text-white text-sm font-bold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span>Göreve Başla</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-[#192633] rounded-xl p-4 border border-[#233648]">
+<div class="flex items-center gap-2 mb-2 text-[#92adc9]">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="text-xs font-bold uppercase">Tamamlanan</span>
+</div>
+<p class="text-2xl font-bold text-white">1/6</p>
+</div>
+<div class="bg-[#192633] rounded-xl p-4 border border-[#233648]">
+<div class="flex items-center gap-2 mb-2 text-[#92adc9]">
+<span class="material-symbols-outlined text-[20px]">leaderboard</span>
+<span class="text-xs font-bold uppercase">Sıralama</span>
+</div>
+<p class="text-2xl font-bold text-white">Top %15</p>
+</div>
+</div>
+</div>
+<!-- Bottom User Impact -->
+<div class="mt-auto p-6 border-t border-[#233648] bg-[#0d141c]">
+<div class="flex justify-between items-end mb-2">
+<div>
+<p class="text-[#92adc9] text-xs font-medium uppercase mb-1">Toplam Etki Puanı</p>
+<p class="text-white text-2xl font-black tracking-tight">1,250 <span class="text-sm font-normal text-[#92adc9]">/ 5000</span></p>
+</div>
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">social_leaderboard</span>
+</div>
+</div>
+<div class="h-2 w-full bg-[#233648] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[25%] rounded-full relative">
+<div class="absolute right-0 top-0 bottom-0 w-2 bg-white/20"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Map Area -->
+<section class="flex-1 relative overflow-hidden bg-[#0d141c] map-grid-bg cursor-grab active:cursor-grabbing min-h-[500px]">
+<!-- Decorative Background Elements -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#0d141c] via-transparent to-transparent pointer-events-none z-10"></div>
+<div class="absolute top-10 right-10 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-10 left-10 w-64 h-64 bg-purple-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+<!-- Map Container (Centering Wrapper) -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative w-[800px] h-[600px] scale-75 md:scale-90 lg:scale-100 transition-transform">
+<!-- Connection Lines (SVG) -->
+<svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" fill="none" viewbox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<!-- Path M1 -> M2 -->
+<path class="animate-pulse" d="M100 300 C 150 300, 200 200, 250 200" stroke="#137fec" stroke-dasharray="8 4" stroke-width="3"></path>
+<!-- Path M2 -> M3 -->
+<path d="M250 200 C 300 200, 350 400, 400 400" stroke="#233648" stroke-width="3"></path>
+<!-- Path M3 -> M4 -->
+<path d="M400 400 C 450 400, 500 250, 550 250" stroke="#233648" stroke-width="3"></path>
+<!-- Path M4 -> M5 -->
+<path d="M550 250 C 600 250, 600 150, 650 150" stroke="#233648" stroke-width="3"></path>
+<!-- Path M5 -> M6 -->
+<path d="M650 150 C 700 150, 700 350, 750 350" stroke="#233648" stroke-width="3"></path>
+</svg>
+<!-- Mission Node 1: Completed -->
+<div class="absolute left-[100px] top-[300px] -translate-x-1/2 -translate-y-1/2 z-10 group cursor-pointer">
+<div class="relative">
+<div class="absolute -inset-4 bg-emerald-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="size-16 rounded-2xl bg-[#192633] border-2 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)] flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+<div class="relative size-10 rounded bg-[#e5243b] flex items-center justify-center text-white font-black text-lg">
+<span class="material-symbols-outlined text-white">school</span>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-emerald-500 rounded-full p-0.5 border-2 border-[#192633]">
+<span class="material-symbols-outlined text-white text-[14px]">check</span>
+</div>
+</div>
+</div>
+<div class="absolute top-20 left-1/2 -translate-x-1/2 w-40 text-center pointer-events-none">
+<span class="text-xs font-bold text-emerald-400 mb-1 block">TAMAMLANDI</span>
+<h4 class="text-sm font-bold text-white shadow-black drop-shadow-md">M1: Dijital Okuryazarlık</h4>
+</div>
+</div>
+<!-- Mission Node 2: Active / Current -->
+<div class="absolute left-[250px] top-[200px] -translate-x-1/2 -translate-y-1/2 z-10 group cursor-pointer">
+<div class="relative">
+<!-- Pulsing rings for active mission -->
+<div class="absolute -inset-6 bg-primary/10 rounded-full animate-ping"></div>
+<div class="absolute -inset-4 bg-primary/20 rounded-full blur-sm"></div>
+<div class="size-20 rounded-2xl bg-[#192633] border-2 border-primary shadow-[0_0_20px_rgba(19,127,236,0.4)] flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 z-20 relative">
+<div class="size-12 rounded bg-[#00689d] flex items-center justify-center text-white font-black text-xl">
+<span class="material-symbols-outlined text-white text-[28px]">gavel</span>
+</div>
+</div>
+<!-- Tooltip Card (Always visible for active or on hover) -->
+<div class="absolute bottom-24 left-1/2 -translate-x-1/2 w-64 bg-[#1e293b] rounded-lg shadow-xl border border-primary/30 p-4 z-30 opacity-100 transition-all">
+<div class="absolute bottom-[-6px] left-1/2 -translate-x-1/2 size-3 bg-[#1e293b] border-r border-b border-primary/30 rotate-45"></div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">AKTİF GÖREV</span>
+<span class="text-xs font-bold text-slate-400">500 XP</span>
+</div>
+<h4 class="text-sm font-bold text-white mb-1">M2: Sahte Haber Dedektifi</h4>
+<p class="text-[10px] text-slate-400 mb-3">SDG 16 - Barış, Adalet</p>
+<button class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded transition-colors">
+                                    Devam Et
+                                </button>
+</div>
+</div>
+</div>
+<!-- Mission Node 3: Locked -->
+<div class="absolute left-[400px] top-[400px] -translate-x-1/2 -translate-y-1/2 z-10 group cursor-not-allowed">
+<div class="relative grayscale opacity-60 group-hover:opacity-80 transition-opacity">
+<div class="size-16 rounded-2xl bg-[#192633] border-2 border-[#233648] flex items-center justify-center">
+<div class="size-10 rounded bg-[#4c9f38] flex items-center justify-center text-white font-black text-lg">
+<span class="material-symbols-outlined">forest</span>
+</div>
+<div class="absolute inset-0 bg-black/40 rounded-2xl flex items-center justify-center backdrop-blur-[1px]">
+<span class="material-symbols-outlined text-white/70">lock</span>
+</div>
+</div>
+</div>
+<div class="absolute top-20 left-1/2 -translate-x-1/2 w-40 text-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-xs font-bold text-slate-500 mb-1 block">KİLİTLİ</span>
+<h4 class="text-sm font-bold text-slate-300">M3: İklim Eylemi</h4>
+<span class="text-[10px] text-red-400 bg-red-900/20 px-1 rounded">Önce M2'yi tamamla</span>
+</div>
+</div>
+<!-- Mission Node 4: Locked -->
+<div class="absolute left-[550px] top-[250px] -translate-x-1/2 -translate-y-1/2 z-10 group cursor-not-allowed">
+<div class="relative grayscale opacity-60 group-hover:opacity-80 transition-opacity">
+<div class="size-16 rounded-2xl bg-[#192633] border-2 border-[#233648] flex items-center justify-center">
+<div class="size-10 rounded bg-[#ff3a21] flex items-center justify-center text-white font-black text-lg">
+<span class="material-symbols-outlined">transgender</span>
+</div>
+<div class="absolute inset-0 bg-black/40 rounded-2xl flex items-center justify-center backdrop-blur-[1px]">
+<span class="material-symbols-outlined text-white/70">lock</span>
+</div>
+</div>
+</div>
+<div class="absolute top-20 left-1/2 -translate-x-1/2 w-40 text-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-xs font-bold text-slate-500 mb-1 block">KİLİTLİ</span>
+<h4 class="text-sm font-bold text-slate-300">M4: Cinsiyet Eşitliği</h4>
+</div>
+</div>
+<!-- Mission Node 5: Locked -->
+<div class="absolute left-[650px] top-[150px] -translate-x-1/2 -translate-y-1/2 z-10 group cursor-not-allowed">
+<div class="relative grayscale opacity-60 group-hover:opacity-80 transition-opacity">
+<div class="size-16 rounded-2xl bg-[#192633] border-2 border-[#233648] flex items-center justify-center">
+<div class="size-10 rounded bg-[#fd6925] flex items-center justify-center text-white font-black text-lg">
+<span class="material-symbols-outlined">apartment</span>
+</div>
+<div class="absolute inset-0 bg-black/40 rounded-2xl flex items-center justify-center backdrop-blur-[1px]">
+<span class="material-symbols-outlined text-white/70">lock</span>
+</div>
+</div>
+</div>
+<div class="absolute top-20 left-1/2 -translate-x-1/2 w-40 text-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-xs font-bold text-slate-500 mb-1 block">KİLİTLİ</span>
+<h4 class="text-sm font-bold text-slate-300">M5: Şehirler ve Topluluklar</h4>
+</div>
+</div>
+<!-- Mission Node 6: Boss/Final -->
+<div class="absolute left-[750px] top-[350px] -translate-x-1/2 -translate-y-1/2 z-10 group cursor-not-allowed">
+<div class="relative grayscale opacity-60 group-hover:opacity-80 transition-opacity">
+<div class="size-24 rounded-full bg-[#192633] border-4 border-[#233648] flex items-center justify-center shadow-2xl">
+<div class="size-16 rounded-full bg-[#fcc30b] flex items-center justify-center text-white font-black text-2xl">
+<span class="material-symbols-outlined text-[32px]">sunny</span>
+</div>
+<div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center backdrop-blur-[1px]">
+<span class="material-symbols-outlined text-white/70 text-[32px]">lock</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-28 left-1/2 -translate-x-1/2 w-48 text-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity bg-[#111a22] p-2 rounded border border-[#233648]">
+<span class="text-xs font-bold text-yellow-500 mb-1 block uppercase tracking-widest">Final Görevi</span>
+<h4 class="text-sm font-bold text-white">M6: Erişilebilir Enerji</h4>
+<span class="text-[10px] text-slate-400">900 XP Ödül</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute bottom-6 right-6 flex flex-col gap-2 z-20">
+<button class="size-10 bg-[#192633] hover:bg-[#233648] text-white rounded-lg flex items-center justify-center shadow-lg border border-[#233648] transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-10 bg-[#192633] hover:bg-[#233648] text-white rounded-lg flex items-center justify-center shadow-lg border border-[#233648] transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-10 bg-[#192633] hover:bg-[#233648] text-white rounded-lg flex items-center justify-center shadow-lg border border-[#233648] transition-colors mt-2">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Floating Label for Map Context -->
+<div class="absolute top-6 left-6 z-20 pointer-events-none">
+<div class="bg-[#111a22]/80 backdrop-blur-md border border-[#233648] px-4 py-2 rounded-lg shadow-lg">
+<span class="text-xs text-[#92adc9] font-medium block">HARİTA BÖLGESİ</span>
+<span class="text-sm font-bold text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">public</span>
+                        Eskişehir Lite Zone A
+                    </span>
+</div>
+</div>
+</section>
+</main>
+</body></html>

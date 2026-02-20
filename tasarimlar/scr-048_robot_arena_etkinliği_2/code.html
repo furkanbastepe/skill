@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-048 Robot Arena Event - DIGEM</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1a242f",
+                        "surface-darker": "#151e27",
+                        "border-dark": "#2a3745",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for terminal/logs */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(19, 127, 236, 0.3);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(19, 127, 236, 0.5);
+        }
+        
+        .glow-border {
+            box-shadow: 0 0 15px -3px rgba(19, 127, 236, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between border-b border-border-dark bg-surface-dark px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">smart_toy</span>
+</div>
+<h2 class="text-white text-lg font-bold tracking-tight">DIGEM | Robot Arena</h2>
+</div>
+<!-- Breadcrumbs -->
+<div class="hidden md:flex items-center gap-2 text-sm">
+<span class="text-slate-500 material-symbols-outlined text-lg">chevron_right</span>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Core Programming</a>
+<span class="text-slate-600">/</span>
+<span class="text-primary font-medium">SCR-048 Live Event</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Match Timer -->
+<div class="flex items-center gap-2 bg-surface-darker px-3 py-1.5 rounded-lg border border-border-dark">
+<span class="material-symbols-outlined text-red-500 text-sm animate-pulse">circle</span>
+<span class="text-white text-sm font-mono font-medium">04:22 remaining</span>
+</div>
+<!-- User Profile -->
+<div class="flex items-center gap-3 border-l border-border-dark pl-6">
+<div class="flex flex-col items-end hidden sm:flex">
+<span class="text-xs text-slate-400">Instructor Mode</span>
+<span class="text-sm font-bold text-white">Dr. Aris</span>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border-2 border-primary/30" data-alt="User avatar of instructor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCb7EUxxYZHhMQ8yRSNRrbdGgD6J44wOtw3_wPzHUdw5nlM9zKLT6mtvdiYvni47ypaYOAkq-NQSWgz8DHDjGBOhob3k7G4py2oYybeNJi6HdaeTgt_YcKIQnheBAYZUAaiybKxIN02FDV7YXHSuH-9DplpHoDhVTHiJqsHsIQVmBVtqym0H4gnfYz_GYKPKaiR3tSZtRIQXEKnBmNVplRxL-DzO91mV7VOLmvqU5np4tnD34wzZrJHfrSvEn2tOqkTRQbNZL6j8Q");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="flex-1 grid grid-cols-12 gap-0 overflow-hidden h-[calc(100vh-64px)]">
+<!-- Left Sidebar: Stats & Strategy (2.5 cols) -->
+<aside class="col-span-12 lg:col-span-3 xl:col-span-3 border-r border-border-dark bg-surface-dark flex flex-col overflow-y-auto custom-scrollbar">
+<!-- Robot Selector -->
+<div class="p-5 border-b border-border-dark">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Monitored Unit</label>
+<div class="relative">
+<select class="w-full bg-surface-darker border border-border-dark text-white text-sm rounded-lg focus:ring-primary focus:border-primary p-2.5 appearance-none cursor-pointer">
+<option>Unit Alpha-01 (Your Code)</option>
+<option>Unit Beta-X (Opponent)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Stats Cards -->
+<div class="p-5 flex flex-col gap-4 border-b border-border-dark">
+<h3 class="text-sm font-medium text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">ecg_heart</span>
+                    Vital Statistics
+                </h3>
+<!-- Health -->
+<div class="bg-surface-darker p-3 rounded-lg border border-border-dark">
+<div class="flex justify-between items-end mb-1">
+<span class="text-xs text-slate-400">Integrity</span>
+<span class="text-sm font-bold text-white">84%</span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2">
+<div class="bg-green-500 h-2 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+<!-- Energy -->
+<div class="bg-surface-darker p-3 rounded-lg border border-border-dark">
+<div class="flex justify-between items-end mb-1">
+<span class="text-xs text-slate-400">Energy Cell</span>
+<span class="text-sm font-bold text-white">65%</span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<!-- CPU -->
+<div class="bg-surface-darker p-3 rounded-lg border border-border-dark">
+<div class="flex justify-between items-end mb-1">
+<span class="text-xs text-slate-400">CPU Load</span>
+<span class="text-sm font-bold text-white">32%</span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2">
+<div class="bg-purple-500 h-2 rounded-full" style="width: 32%"></div>
+</div>
+</div>
+</div>
+<!-- Strategy Console -->
+<div class="flex-1 flex flex-col min-h-[300px]">
+<div class="px-5 py-3 border-b border-border-dark bg-surface-darker/50 flex justify-between items-center">
+<h3 class="text-sm font-medium text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">terminal</span>
+                        Live Console
+                    </h3>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+</div>
+<div class="p-4 font-mono text-xs flex-1 overflow-y-auto custom-scrollbar bg-[#0d131a]">
+<div class="flex flex-col gap-1.5">
+<span class="text-slate-500">[10:04:21] <span class="text-blue-400">system</span>: Match started</span>
+<span class="text-slate-500">[10:04:22] <span class="text-yellow-400">warn</span>: Shield low on Sector 4</span>
+<span class="text-slate-500">[10:04:23] <span class="text-green-400">exec</span>: function <span class="text-white">initiatescan()</span></span>
+<span class="text-slate-500">[10:04:24] <span class="text-green-400">exec</span>: function <span class="text-white">pathfind(target_beta)</span></span>
+<span class="text-slate-500">[10:04:25] <span class="text-blue-400">info</span>: Target acquired at [x:45, y:12]</span>
+<span class="text-slate-500">[10:04:26] <span class="text-green-400">exec</span>: function <span class="text-white">evasive_maneuver_A()</span></span>
+<span class="text-slate-500">[10:04:28] <span class="text-red-400">alert</span>: IMPACT DETECTED - DMG 12%</span>
+<span class="text-slate-500">[10:04:29] <span class="text-green-400">exec</span>: function <span class="text-white">reroute_power(shields)</span></span>
+<div class="border-l-2 border-primary pl-2 my-1 text-slate-300 italic">
+                            Running Loop: MainLogic.js:442
+                        </div>
+<span class="text-slate-500">[10:04:31] <span class="text-green-400">exec</span>: function <span class="text-white">deploy_trap()</span></span>
+<span class="text-slate-500">[10:04:33] <span class="text-blue-400">info</span>: Trap set successfully</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center: Arena Viewport (6.5 cols) -->
+<section class="col-span-12 lg:col-span-6 xl:col-span-7 bg-[#05090e] relative flex flex-col group">
+<!-- Top Controls Overlay -->
+<div class="absolute top-4 left-4 right-4 z-10 flex justify-between items-start pointer-events-none">
+<div class="bg-black/60 backdrop-blur-md rounded-lg px-3 py-1.5 border border-white/10 pointer-events-auto">
+<span class="text-xs font-bold text-white tracking-wider flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        LIVE FEED: ARENA 04
+                    </span>
+</div>
+<div class="flex gap-2 pointer-events-auto">
+<button class="bg-black/60 backdrop-blur-md hover:bg-white/10 text-white rounded-lg p-2 border border-white/10 transition-colors">
+<span class="material-symbols-outlined text-xl">fullscreen</span>
+</button>
+<button class="bg-black/60 backdrop-blur-md hover:bg-white/10 text-white rounded-lg p-2 border border-white/10 transition-colors">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+</div>
+</div>
+<!-- The Arena (Simulation Placeholder) -->
+<div class="flex-1 w-full h-full relative flex items-center justify-center overflow-hidden">
+<!-- Grid Background Effect -->
+<div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#137fec 1px, transparent 1px), linear-gradient(90deg, #137fec 1px, transparent 1px); background-size: 40px 40px; transform: perspective(500px) rotateX(60deg) translateY(-100px) scale(2);">
+</div>
+<!-- Robot 1 -->
+<div class="absolute top-1/3 left-1/3 w-16 h-16 bg-blue-500 rounded-full blur-[40px] opacity-40 animate-pulse"></div>
+<div class="absolute top-1/3 left-1/3 w-12 h-12 z-10">
+<img class="w-full h-full object-cover rounded-full border-2 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.6)]" data-alt="Abstract 3D robot model blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZbVevwzecE7ishO4o8vtI8pfH2yW5mC7yV9MV8Y9V8V_pEe85TBlLLvIIGz_-_HC75qx83mOxh5GOHFwYMI4D1U1sg4fbzumleVzjX8Hx39P3NxbH0BS1BpJ7XWiLt8FegKNCMndd2VzdGtJ6b6ndirOO64ay5GHp2wWMa3cGUbdgRORr19m2AKGTEoiswcQ2vRXtCeg05FpI0V1D-mg9Vtd3G0lHmedFoGlMj4phhAeifM6Hs-9AQkpBF8w6xq_qtDqJ3fIXwA"/>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] px-1.5 py-0.5 rounded font-bold whitespace-nowrap">Alpha-01</div>
+</div>
+<!-- Robot 2 -->
+<div class="absolute bottom-1/3 right-1/3 w-16 h-16 bg-red-500 rounded-full blur-[40px] opacity-40 animate-pulse" style="animation-delay: 0.5s;"></div>
+<div class="absolute bottom-1/3 right-1/3 w-12 h-12 z-10">
+<img class="w-full h-full object-cover rounded-full border-2 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.6)]" data-alt="Abstract 3D robot model red" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArS8tKCFz2UvFlv3LRqhMqtycDD3QyNHb73lTK4IzY_fyRSuz9FxfmIo1BRWDa9LezhMXWcjwhebtfNE_dI8GJ5AVWSVr0zzefFHdZSykLeKZyd2lvwuJ2d_js8mVOLpqNOfM-Nw4Vq8arV1VJHZwihkIdnskr7pMDxWxQDzkBvoOUChhFXEMLOfMdAuITe6i176H04NvpWaqAAQ5Al8X9RoGIr8jtjIumDUM4b54yo-UhnXSe-q_kPUIy7GiQONCfQKATAB2KiQ"/>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded font-bold whitespace-nowrap">Beta-X</div>
+</div>
+<!-- Visual Effect Lines -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-50">
+<line stroke="#137fec" stroke-dasharray="5,5" stroke-width="2" x1="33%" x2="66%" y1="33%" y2="66%">
+<animate attributename="stroke-dashoffset" dur="2s" from="100" repeatcount="indefinite" to="0"></animate>
+</line>
+</svg>
+<div class="absolute bottom-20 text-center pointer-events-none">
+<div class="text-slate-500 text-sm font-mono tracking-[0.2em] mb-2">RENDERING SIMULATION</div>
+<div class="flex gap-1 justify-center">
+<div class="w-1 h-1 bg-primary rounded-full animate-bounce"></div>
+<div class="w-1 h-1 bg-primary rounded-full animate-bounce delay-75"></div>
+<div class="w-1 h-1 bg-primary rounded-full animate-bounce delay-150"></div>
+</div>
+</div>
+</div>
+<!-- Playback Controls -->
+<div class="h-16 bg-surface-dark border-t border-border-dark flex items-center justify-between px-6 shrink-0 relative z-20">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined fill">pause</span>
+</button>
+<div class="flex items-center bg-surface-darker rounded-lg p-0.5 border border-border-dark">
+<button class="px-3 py-1 text-xs font-bold text-slate-400 hover:text-white transition-colors">1x</button>
+<button class="px-3 py-1 text-xs font-bold bg-primary/20 text-primary rounded transition-colors">2x</button>
+<button class="px-3 py-1 text-xs font-bold text-slate-400 hover:text-white transition-colors">4x</button>
+</div>
+</div>
+<!-- Timeline Scrubber -->
+<div class="flex-1 mx-8 group/timeline cursor-pointer">
+<div class="relative h-2 bg-surface-darker rounded-full border border-border-dark overflow-visible">
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-primary/50 to-primary w-[65%] rounded-full"></div>
+<!-- Scrubber Handle -->
+<div class="absolute left-[65%] top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg scale-0 group-hover/timeline:scale-100 transition-transform"></div>
+<!-- Event Markers -->
+<div class="absolute left-[20%] top-1/2 -translate-y-1/2 w-2 h-2 bg-yellow-500 rounded-full" title="Shield Break"></div>
+<div class="absolute left-[45%] top-1/2 -translate-y-1/2 w-2 h-2 bg-red-500 rounded-full" title="Damage Critical"></div>
+</div>
+<div class="flex justify-between mt-1.5 text-[10px] font-mono text-slate-500">
+<span>00:00</span>
+<span>05:00</span>
+</div>
+</div>
+<div>
+<button class="text-xs font-medium text-slate-400 hover:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">history</span>
+                        View Replay
+                    </button>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Leaderboard & Timeline (2.5 cols) -->
+<aside class="col-span-12 lg:col-span-3 xl:col-span-2 border-l border-border-dark bg-surface-dark flex flex-col">
+<!-- Cohort Leaderboard -->
+<div class="flex-1 flex flex-col border-b border-border-dark overflow-hidden">
+<div class="p-4 border-b border-border-dark flex justify-between items-center bg-surface-darker/30">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">Cohort A Ranking</h3>
+<span class="text-xs text-primary font-medium cursor-pointer hover:underline">View All</span>
+</div>
+<div class="overflow-y-auto custom-scrollbar flex-1 p-2 space-y-1">
+<!-- Rank 1 -->
+<div class="flex items-center gap-3 p-2 bg-primary/10 rounded-lg border border-primary/20">
+<div class="flex flex-col items-center justify-center w-8 text-yellow-500 font-bold text-sm">
+<span class="material-symbols-outlined text-base">emoji_events</span>
+                            1
+                        </div>
+<div class="w-8 h-8 rounded-full bg-cover bg-center bg-no-repeat" data-alt="Student avatar male" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBirM-UFAF7Xvk7FsYxpuK6tkE1n8fkHYmEeDroi9PunDXy81MG2RKqKMCVrzb2tjwXqxQegMPDwJrv8C1KCsvj0edFc12PmdUcB_MLjuDIVcRH6pmVwT4WIlCOw4sUTx7_JFwDMo2ONHNnTILucMG0PT7FHjRHydU5YuuQOeo99dPWjMETTvVgtB8YEALsYpdlQdFix1VCySf_y8CNyjjc5Ttu-QIXxS3vEZ2u4fMlIEavBrXRJ9K6IHs6dxjXokR314mgeOyJ4g");'></div>
+<div class="flex-1 min-w-0">
+<div class="text-white text-sm font-bold truncate">Ahmet Y.</div>
+<div class="text-slate-400 text-xs">1500 pts</div>
+</div>
+<span class="material-symbols-outlined text-green-500 text-sm">trending_up</span>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-3 p-2 hover:bg-surface-darker rounded-lg transition-colors border border-transparent hover:border-border-dark group">
+<div class="flex flex-col items-center justify-center w-8 text-slate-400 font-bold text-sm group-hover:text-white">
+                            2
+                        </div>
+<div class="w-8 h-8 rounded-full bg-cover bg-center bg-no-repeat" data-alt="Student avatar female" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8iiIVT1rln3nt3dt1aJyWUWx_fPstb85ZbDwcqpZEUa5gPJRXWGiTMHPYn_DT5Zv33JNsvQ3zuZB-K0hVOKYQTA6v41ChVZce9EZIFjB-QcuI9ZsQxPzRD4sEKAwV4fTaGTrtg52ijctrSmPGaDA9xmCqKLbcvB_oXCT0zZ-P3mFieM0ddesdK4APFfnsERvuNItOSSnaHpc6CVEdRN449lfvkQqOQkw1bqFspgNIWyZHVqq-cXn3LLH4YFQzPPv7v6DwJaGZkg");'></div>
+<div class="flex-1 min-w-0">
+<div class="text-white text-sm font-bold truncate">Elif K.</div>
+<div class="text-slate-400 text-xs">1450 pts</div>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-3 p-2 hover:bg-surface-darker rounded-lg transition-colors border border-transparent hover:border-border-dark group">
+<div class="flex flex-col items-center justify-center w-8 text-slate-400 font-bold text-sm group-hover:text-white">
+                            3
+                        </div>
+<div class="w-8 h-8 rounded-full bg-cover bg-center bg-no-repeat" data-alt="Student avatar male" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwMoCJVSh0vJ6K5Rl5lLtccs6uH5nkvBR1J2L1UTVkP6XcQc-TjtFaYEVlMcm4J6U4D4YgS0-S1mh88oglpYANHrMANJYk62su96OtfGcEzO23Kh_jTC5gxYfymvnNwhIIwk-rluBGh-bo05z54sAypbLrGpmQZmipwW45Bk_4uMtawFARbTUsxqZLTSIzXGUxeChv83gDpVS6FXMv0iAyaS3QAxlQGh1yQqrgQuvEua_TRQEHZn-41dR6NoXahNFubP8seZzGKA");'></div>
+<div class="flex-1 min-w-0">
+<div class="text-white text-sm font-bold truncate">Can B.</div>
+<div class="text-slate-400 text-xs">1200 pts</div>
+</div>
+</div>
+<!-- Rank 4 -->
+<div class="flex items-center gap-3 p-2 hover:bg-surface-darker rounded-lg transition-colors border border-transparent hover:border-border-dark group">
+<div class="flex flex-col items-center justify-center w-8 text-slate-400 font-bold text-sm group-hover:text-white">
+                            4
+                        </div>
+<div class="w-8 h-8 rounded-full bg-cover bg-center bg-no-repeat" data-alt="Student avatar female" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCUNnBgQGH1Vjq1N_ftUCOxDIlq4_9n_Ck6aR_XUgnZCRDHG4SnFnbCXBOoMU7jDClvSCI0O2kDPV49_J6B0EwoXsazz4HiDtTSvUxbixE2ZgurEGt-uEkohDT_geGWQN4sRpkNA54BUqY9pGV0HiaTdCpbtfVM4DNewlPqRVgLVByFM7EJk-1j-xMflxeQbYnddKcQI2NSUdN75vj8SOXgg-zi8puIwvI31tzCoo__OvzKFw3XLb7gu7YimRW7iyppAXab653hQg");'></div>
+<div class="flex-1 min-w-0">
+<div class="text-white text-sm font-bold truncate">Zeynep T.</div>
+<div class="text-slate-400 text-xs">1150 pts</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Match Timeline -->
+<div class="h-1/2 flex flex-col bg-surface-darker">
+<div class="p-4 border-b border-border-dark border-t bg-surface-dark flex justify-between items-center">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">Match Log</h3>
+<span class="material-symbols-outlined text-slate-500 text-lg">filter_list</span>
+</div>
+<div class="overflow-y-auto custom-scrollbar p-4">
+<div class="relative pl-4 border-l border-border-dark space-y-6">
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-darker"></div>
+<p class="text-xs text-slate-400 mb-1">04:15</p>
+<div class="text-sm text-white">
+<span class="font-bold text-blue-400">Alpha-01</span> triggered trap #44
+                            </div>
+</div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-red-500 ring-4 ring-surface-darker"></div>
+<p class="text-xs text-slate-400 mb-1">03:50</p>
+<div class="text-sm text-white">
+                                Critical hit on <span class="font-bold text-red-400">Beta-X</span> (-15HP)
+                            </div>
+</div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-purple-500 ring-4 ring-surface-darker"></div>
+<p class="text-xs text-slate-400 mb-1">03:22</p>
+<div class="text-sm text-white">
+                                Power-up spawned: <span class="text-purple-400">Overclock</span>
+</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-slate-500 ring-4 ring-surface-darker"></div>
+<p class="text-xs text-slate-400 mb-1">02:10</p>
+<div class="text-sm text-white">
+                                Environmental Hazard: Fog
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Floating Action Button for Mobile (Hidden on Desktop) -->
+<button class="lg:hidden fixed bottom-6 right-6 h-14 w-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center z-50">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</body></html>

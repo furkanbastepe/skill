@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM | SCR-043: Loops Challenge</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c252e",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        display: ["Lexend", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4754; 
+        }
+        .syntax-keyword { color: #c678dd; }
+        .syntax-function { color: #61afef; }
+        .syntax-string { color: #98c379; }
+        .syntax-number { color: #d19a66; }
+        .syntax-comment { color: #5c6370; font-style: italic; }
+        .syntax-operator { color: #56b6c2; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white overflow-hidden h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e7eb] dark:border-[#283039] bg-white dark:bg-[#111418] px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-4">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">terminal</span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM</h2>
+<span class="text-[#637588] dark:text-[#9dabb9] text-xs font-medium">SCR-043: Döngüler Challenge</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Progress Pill -->
+<div class="hidden md:flex items-center gap-2 bg-[#f0f2f4] dark:bg-[#283039] rounded-full px-4 py-1.5 border border-[#e5e7eb] dark:border-transparent">
+<span class="material-symbols-outlined text-[#637588] dark:text-[#9dabb9] text-sm">trophy</span>
+<span class="text-[#111418] dark:text-white text-sm font-semibold">XP: 450/1000</span>
+</div>
+<div class="h-6 w-px bg-[#e5e7eb] dark:bg-[#283039] mx-2"></div>
+<button class="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-blue-600 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-lg shadow-blue-500/20">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+<span class="truncate">Run Code</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-[#f0f2f4] dark:bg-[#283039] hover:bg-[#e5e7eb] dark:hover:bg-[#3b4754] text-[#111418] dark:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="size-10 bg-cover bg-center rounded-full border-2 border-[#e5e7eb] dark:border-[#3b4754]" data-alt="User profile avatar showing a young woman" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuCxjhrRmVELtWr2IgOA7bfuFUXs1h0eiubSNvkrTXu9sx1ut1DAddmX38piYBh2P2SZpNfmnHSuZ3FZ63nj_yJw8RuaHepFxRfDKkMD8BBBDLqryU8u61hSoFObjnWP3-G2n35ZpgcIFnZRD3ZCYAWjCE9Mk8LMqRi6yP838ZwjrSWX8nRw5cNABh5uGpH1Q5-8uzW2NuGxTuoc6Ap1D9h_F67ZB4Zl3P3EQMnbifprT5G8fH7CfNtBHlCvE53njIDnMVImBnJA');"></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Sidebar: Instructions & Theory -->
+<aside class="w-[350px] flex flex-col border-r border-[#e5e7eb] dark:border-[#283039] bg-white dark:bg-[#111418] overflow-y-auto shrink-0">
+<div class="p-6 flex flex-col gap-6">
+<!-- Challenge Header -->
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-blue-100 dark:bg-blue-900/30 text-primary text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wide">Step 1/5</span>
+<span class="text-[#637588] dark:text-[#9dabb9] text-xs font-medium">~ 5 min</span>
+</div>
+<h1 class="text-2xl font-bold text-[#111418] dark:text-white mb-2">Mastering the 'for' Loop</h1>
+<p class="text-[#637588] dark:text-[#9dabb9] text-sm leading-relaxed">
+                        In this challenge, you will write a loop that iterates through a provided array of numbers. Your goal is to sum only the 
+                        <span class="text-primary font-medium">even numbers</span>.
+                    </p>
+</div>
+<!-- Instructions Card -->
+<div class="bg-[#f0f2f4] dark:bg-[#1c252e] rounded-xl p-4 border border-[#e5e7eb] dark:border-[#283039]">
+<h3 class="flex items-center gap-2 text-sm font-bold text-[#111418] dark:text-white mb-3">
+<span class="material-symbols-outlined text-primary text-lg">checklist</span>
+                        Task Requirements
+                    </h3>
+<ul class="flex flex-col gap-2.5">
+<li class="flex items-start gap-2 text-sm text-[#4b5768] dark:text-[#d1d5db]">
+<div class="mt-1 size-1.5 rounded-full bg-[#9dabb9] shrink-0"></div>
+<span>Create a variable named <code class="bg-[#e5e7eb] dark:bg-[#283039] px-1 rounded text-primary text-xs font-mono">sum</code> initialized to 0.</span>
+</li>
+<li class="flex items-start gap-2 text-sm text-[#4b5768] dark:text-[#d1d5db]">
+<div class="mt-1 size-1.5 rounded-full bg-[#9dabb9] shrink-0"></div>
+<span>Use a <code class="bg-[#e5e7eb] dark:bg-[#283039] px-1 rounded text-primary text-xs font-mono">for</code> loop to iterate through the <code class="bg-[#e5e7eb] dark:bg-[#283039] px-1 rounded text-primary text-xs font-mono">numbers</code> array.</span>
+</li>
+<li class="flex items-start gap-2 text-sm text-[#4b5768] dark:text-[#d1d5db]">
+<div class="mt-1 size-1.5 rounded-full bg-[#9dabb9] shrink-0"></div>
+<span>Check if the current number is even using the modulo operator <code class="bg-[#e5e7eb] dark:bg-[#283039] px-1 rounded text-primary text-xs font-mono">%</code>.</span>
+</li>
+</ul>
+</div>
+<!-- Complexity Hint -->
+<details class="group bg-[#f0f2f4] dark:bg-[#1c252e] rounded-xl border border-[#e5e7eb] dark:border-[#283039] overflow-hidden">
+<summary class="flex cursor-pointer items-center justify-between p-4 hover:bg-[#e5e7eb] dark:hover:bg-[#283039] transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500">lightbulb</span>
+<span class="text-sm font-bold text-[#111418] dark:text-white">Complexity Hint: Big O</span>
+</div>
+<span class="material-symbols-outlined text-[#637588] group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0">
+<div class="h-px bg-[#e5e7eb] dark:bg-[#283039] mb-3"></div>
+<p class="text-xs text-[#637588] dark:text-[#9dabb9] leading-relaxed mb-2">
+                            A single loop that touches every element once is considered <strong>Linear Time</strong> or <strong>O(n)</strong>.
+                        </p>
+<p class="text-xs text-[#637588] dark:text-[#9dabb9] leading-relaxed">
+                            Be careful with nested loops! If you put a loop inside another loop, your complexity becomes <strong>O(n²)</strong>, which is much slower for large datasets.
+                        </p>
+</div>
+</details>
+<!-- Navigation -->
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-1 h-9 flex items-center justify-center gap-2 text-sm font-medium text-[#637588] dark:text-[#9dabb9] bg-[#f0f2f4] dark:bg-[#283039] rounded-lg hover:text-[#111418] dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+                        Prev
+                    </button>
+<button class="flex-1 h-9 flex items-center justify-center gap-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-blue-600 transition-colors">
+                        Next
+                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Center: Code Editor -->
+<section class="flex-1 flex flex-col min-w-0 bg-[#1c252e] relative">
+<!-- Editor Toolbar -->
+<div class="h-10 flex items-center justify-between px-4 border-b border-[#283039] bg-[#111418]">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-[#1c252e] rounded-t-lg border-t border-x border-[#283039] text-xs text-white relative top-[1px]">
+<span class="material-symbols-outlined text-sm text-yellow-400">javascript</span>
+                        script.js
+                    </div>
+<div class="flex items-center gap-2 px-3 py-1 text-xs text-[#637588] hover:text-[#9dabb9] cursor-pointer">
+<span class="material-symbols-outlined text-sm">css</span>
+                        styles.css
+                    </div>
+</div>
+<div class="flex items-center gap-3">
+<!-- Loop Detector Status -->
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#102a20] border border-[#1b4d3e]">
+<div class="size-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Loop Guard: Active</span>
+</div>
+<span class="text-xs text-[#637588]">Auto-save: On</span>
+</div>
+</div>
+<!-- Code Area -->
+<div class="flex-1 relative overflow-hidden flex">
+<!-- Line Numbers -->
+<div class="w-12 bg-[#111418] border-r border-[#283039] flex flex-col items-end pr-3 pt-4 text-[#4b5768] text-sm code-font select-none">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div>
+</div>
+<!-- Code Input -->
+<div class="flex-1 p-4 overflow-auto code-font text-sm leading-6 text-[#abb2bf]">
+<pre class="m-0"><span class="syntax-comment">// Challenge: Sum all even numbers in the array</span>
+<span class="syntax-keyword">let</span> numbers = [<span class="syntax-number">12</span>, <span class="syntax-number">45</span>, <span class="syntax-number">23</span>, <span class="syntax-number">8</span>, <span class="syntax-number">4</span>, <span class="syntax-number">101</span>, <span class="syntax-number">56</span>];
+<span class="syntax-keyword">let</span> sum = <span class="syntax-number">0</span>;
+
+<span class="syntax-comment">// TODO: Write your loop below</span>
+<span class="syntax-keyword">for</span> (<span class="syntax-keyword">let</span> i = <span class="syntax-number">0</span>; i <span class="syntax-operator">&lt;</span> numbers.length; i<span class="syntax-operator">++</span>) {
+    <span class="syntax-keyword">let</span> currentNum = numbers[i];
+    
+    <span class="syntax-comment">// Check if even</span>
+    <span class="syntax-keyword">if</span> (currentNum <span class="syntax-operator">%</span> <span class="syntax-number">2</span> <span class="syntax-operator">===</span> <span class="syntax-number">0</span>) {
+        sum <span class="syntax-operator">+=</span> currentNum;
+        <span class="syntax-function">console</span>.<span class="syntax-function">log</span>(<span class="syntax-string">"Added even number: "</span> <span class="syntax-operator">+</span> currentNum);
+    }
+}
+
+<span class="syntax-function">console</span>.<span class="syntax-function">log</span>(<span class="syntax-string">"Final Sum: "</span> <span class="syntax-operator">+</span> sum);</pre>
+<!-- Blinking Cursor -->
+<div class="w-2.5 h-5 bg-primary/50 absolute top-[216px] left-[260px] animate-pulse"></div>
+</div>
+</div>
+<!-- Bottom Console Panel -->
+<div class="h-1/3 min-h-[200px] border-t border-[#283039] bg-[#111418] flex flex-col">
+<div class="flex items-center justify-between px-4 py-2 border-b border-[#283039] bg-[#161b22]">
+<div class="flex items-center gap-4">
+<button class="text-xs font-bold text-white border-b-2 border-primary pb-2 -mb-2.5">Console</button>
+<button class="text-xs font-medium text-[#637588] hover:text-[#9dabb9] pb-2 -mb-2.5">Problems <span class="bg-[#283039] text-xs px-1.5 rounded-full ml-1">0</span></button>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-[#637588] hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+<button class="text-[#637588] hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">vertical_align_bottom</span>
+</button>
+</div>
+</div>
+<div class="flex-1 p-4 overflow-auto code-font text-xs flex gap-4">
+<!-- Console Output -->
+<div class="flex-1 flex flex-col gap-1">
+<div class="text-[#98c379]">&gt; Running script.js...</div>
+<div class="text-[#abb2bf]">Added even number: 12</div>
+<div class="text-[#abb2bf]">Added even number: 8</div>
+<div class="text-[#abb2bf]">Added even number: 4</div>
+<div class="text-[#abb2bf]">Added even number: 56</div>
+<div class="text-[#61afef] font-bold mt-2">Final Sum: 80</div>
+<div class="text-[#56b6c2] mt-2">&gt; Process finished with exit code 0</div>
+</div>
+<!-- Performance Meter -->
+<div class="w-64 border-l border-[#283039] pl-4 flex flex-col gap-3">
+<h4 class="text-[10px] uppercase font-bold text-[#637588] tracking-wider">Performance Metrics</h4>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs text-[#9dabb9]">
+<span>Execution Time</span>
+<span class="text-white font-mono">12ms</span>
+</div>
+<div class="h-1.5 w-full bg-[#283039] rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[15%]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs text-[#9dabb9]">
+<span>Memory Usage</span>
+<span class="text-white font-mono">2.4MB</span>
+</div>
+<div class="h-1.5 w-full bg-[#283039] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[32%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2 p-2 bg-[#283039]/50 rounded border border-[#283039]">
+<span class="material-symbols-outlined text-emerald-500 text-lg">check_circle</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-[#9dabb9]">Complexity Check</span>
+<span class="text-xs font-bold text-white">O(n) - Linear</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

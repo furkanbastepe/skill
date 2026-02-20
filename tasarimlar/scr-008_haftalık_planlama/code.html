@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-008 Haftalık Planlama | DIGEM</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "primary-dark": "#009e89",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101817",
+                        "surface-dark": "#1b2826",
+                        "border-dark": "#273a38",
+                        "accent-purple": "#8b5cf6",
+                        "accent-orange": "#f97316",
+                        "accent-blue": "#3b82f6",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the calendar grid */
+        .calendar-grid::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .calendar-grid::-webkit-scrollbar-track {
+            background: #1b2826;
+        }
+        .calendar-grid::-webkit-scrollbar-thumb {
+            background: #273a38;
+            border-radius: 4px;
+        }
+        .calendar-grid::-webkit-scrollbar-thumb:hover {
+            background: #395652;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden flex flex-col h-screen">
+<!-- Top Navigation -->
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-[#101817] px-10 py-3 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">DIGEM</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Ana Sayfa</a>
+<a class="text-white text-sm font-medium leading-normal relative after:content-[''] after:absolute after:-bottom-6 after:left-0 after:w-full after:h-0.5 after:bg-primary" href="#">Programlarım</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Laboratuvarlar</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Etkinlikler</a>
+</nav>
+<div class="h-6 w-px bg-border-dark hidden md:block"></div>
+<div class="flex gap-3 items-center">
+<button class="flex items-center justify-center rounded-lg size-10 hover:bg-surface-dark text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 hover:bg-surface-dark text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-border-dark ml-2 cursor-pointer" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPk1iStq4CRs4_jdSL83ZMhdc8nKq-EoFyJ7ytHjq_IEVwTjXsl0dmDkkLAaElEhQHYYhdoQ6_tV04cuYMNTE6riinBI7AOnfR6OQwr5mx5vGRkGMmhadBOp6tU_5xX2z-mvOBwJCPqjyMv6YAGB8-9TewTgYqg71_XY3i1XNowO3F7mTiIgDyOBjKPTwtq3Tb5Yb2J8AWp48uvDg9AK7UR4rKNuVS4BwvQKbAgAxD3iCMMaMDZOt0wt0q5SKtfF7P8q9KJ3yuQQ");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Sidebar: Planner Controls -->
+<aside class="w-80 flex-none bg-surface-dark border-r border-border-dark flex flex-col h-full overflow-y-auto">
+<div class="p-6 border-b border-border-dark">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-xs font-bold uppercase tracking-wider">Otomatik Planlayıcı</span>
+</div>
+<h1 class="text-white text-2xl font-bold leading-tight">Haftalık Plan</h1>
+<p class="text-slate-400 text-sm mt-2">Müsaitlik durumuna göre senin için en uygun planı oluşturalım.</p>
+</div>
+<div class="p-6 flex flex-col gap-6 flex-1">
+<!-- Stats Summary -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-background-dark/50 rounded-lg p-3 border border-border-dark">
+<span class="text-xs text-slate-400 block mb-1">Lab Saati</span>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-bold text-white">12s</span>
+<span class="text-xs text-green-500 font-medium">+2s</span>
+</div>
+</div>
+<div class="bg-background-dark/50 rounded-lg p-3 border border-border-dark">
+<span class="text-xs text-slate-400 block mb-1">Doluluk</span>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-bold text-white">%65</span>
+<span class="text-xs text-slate-500 font-medium">Orta</span>
+</div>
+</div>
+</div>
+<!-- Filters / Configuration -->
+<div class="space-y-5">
+<div class="space-y-2">
+<label class="text-sm font-medium text-white flex justify-between">
+                            Müsait Günler
+                            <span class="text-primary text-xs cursor-pointer hover:underline">Tümünü Seç</span>
+</label>
+<div class="flex flex-wrap gap-2">
+<button class="size-8 rounded bg-primary text-background-dark font-bold text-xs flex items-center justify-center">Pzt</button>
+<button class="size-8 rounded bg-border-dark text-slate-400 hover:text-white font-medium text-xs flex items-center justify-center transition-colors">Sal</button>
+<button class="size-8 rounded bg-primary text-background-dark font-bold text-xs flex items-center justify-center">Çar</button>
+<button class="size-8 rounded bg-border-dark text-slate-400 hover:text-white font-medium text-xs flex items-center justify-center transition-colors">Per</button>
+<button class="size-8 rounded bg-primary text-background-dark font-bold text-xs flex items-center justify-center">Cum</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white">Tercih Edilen Saatler</label>
+<div class="relative">
+<select class="w-full bg-background-dark border border-border-dark text-white text-sm rounded-lg focus:ring-primary focus:border-primary p-2.5 appearance-none">
+<option>Öğleden Sonra (13:00 - 17:00)</option>
+<option>Sabah (09:00 - 12:00)</option>
+<option>Akşam (17:00 - 20:00)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white flex items-center gap-2">
+                            Odaklanma Yoğunluğu
+                            <span class="material-symbols-outlined text-slate-500 text-[16px]" title="Daha yoğun program daha az mola demektir.">info</span>
+</label>
+<div class="flex items-center gap-3 bg-background-dark p-2 rounded-lg border border-border-dark">
+<span class="text-xs text-slate-400">Düşük</span>
+<input class="w-full h-1.5 bg-border-dark rounded-lg appearance-none cursor-pointer accent-primary" max="3" min="1" type="range" value="3"/>
+<span class="text-xs text-white font-bold">Yüksek</span>
+</div>
+</div>
+<div class="space-y-2 pt-2 border-t border-border-dark">
+<label class="text-sm font-medium text-white">Kategoriler</label>
+<div class="flex flex-col gap-2">
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5 bg-border-dark rounded border border-transparent group-hover:border-slate-500">
+<input checked="" class="peer appearance-none w-full h-full rounded checked:bg-primary" type="checkbox"/>
+<span class="material-symbols-outlined text-background-dark absolute opacity-0 peer-checked:opacity-100 text-[16px]">check</span>
+</div>
+<span class="text-sm text-slate-300">Yazılım Laboratuvarı</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5 bg-border-dark rounded border border-transparent group-hover:border-slate-500">
+<input checked="" class="peer appearance-none w-full h-full rounded checked:bg-accent-orange" type="checkbox"/>
+<span class="material-symbols-outlined text-background-dark absolute opacity-0 peer-checked:opacity-100 text-[16px]">check</span>
+</div>
+<span class="text-sm text-slate-300">Tasarım Atölyesi</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5 bg-border-dark rounded border border-transparent group-hover:border-slate-500">
+<input class="peer appearance-none w-full h-full rounded checked:bg-accent-purple" type="checkbox"/>
+<span class="material-symbols-outlined text-background-dark absolute opacity-0 peer-checked:opacity-100 text-[16px]">check</span>
+</div>
+<span class="text-sm text-slate-300">Etkinlikler</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Button -->
+<div class="p-6 border-t border-border-dark bg-surface-dark sticky bottom-0 z-10">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-background-dark font-bold py-3 px-4 rounded-lg transition-all shadow-[0_0_15px_rgba(0,194,168,0.2)]">
+<span class="material-symbols-outlined">magic_button</span>
+                    Önerilen Planı Oluştur
+                </button>
+</div>
+</aside>
+<!-- Right Panel: Calendar Grid -->
+<section class="flex-1 flex flex-col h-full bg-background-dark relative">
+<!-- Calendar Header -->
+<div class="flex-none h-16 border-b border-border-dark flex items-center justify-between px-6 bg-surface-dark/50 backdrop-blur-sm z-20">
+<div class="flex items-center gap-4">
+<button class="p-1.5 rounded-full hover:bg-border-dark text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex flex-col">
+<span class="text-white font-bold text-lg">14 - 20 Ekim 2023</span>
+<span class="text-slate-400 text-xs">42. Hafta</span>
+</div>
+<button class="p-1.5 rounded-full hover:bg-border-dark text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<button class="ml-2 text-xs font-medium text-primary border border-primary/30 px-3 py-1 rounded hover:bg-primary/10 transition-colors">
+                        Bugün
+                    </button>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-xs text-amber-500 flex items-center gap-1 bg-amber-500/10 px-3 py-1.5 rounded-full border border-amber-500/20">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                        Taslak Modu - Kaydedilmedi
+                    </div>
+<div class="h-6 w-px bg-border-dark mx-1"></div>
+<button class="text-slate-300 hover:text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-border-dark transition-colors">
+                        Temizle
+                    </button>
+<button class="bg-white text-background-dark text-sm font-bold px-6 py-2 rounded-lg hover:bg-slate-200 transition-colors shadow-lg">
+                        Onayla
+                    </button>
+</div>
+</div>
+<!-- Calendar Grid Container -->
+<div class="flex-1 overflow-auto calendar-grid relative">
+<!-- Grid Wrapper -->
+<div class="min-w-[800px] relative">
+<!-- Days Header -->
+<div class="grid grid-cols-8 border-b border-border-dark sticky top-0 bg-background-dark z-10">
+<div class="h-12 border-r border-border-dark flex items-center justify-center bg-surface-dark">
+<span class="text-xs font-medium text-slate-500">GMT+3</span>
+</div>
+<!-- Day Columns Header -->
+<div class="h-12 border-r border-border-dark flex flex-col items-center justify-center py-1 bg-surface-dark/50">
+<span class="text-xs text-slate-400">PZT</span>
+<span class="text-sm font-bold text-white">14</span>
+</div>
+<div class="h-12 border-r border-border-dark flex flex-col items-center justify-center py-1 bg-surface-dark/50">
+<span class="text-xs text-slate-400">SAL</span>
+<span class="text-sm font-bold text-white">15</span>
+</div>
+<div class="h-12 border-r border-border-dark flex flex-col items-center justify-center py-1 bg-surface-dark/50 border-b-2 border-b-primary">
+<span class="text-xs text-primary font-bold">ÇAR</span>
+<div class="size-6 rounded-full bg-primary flex items-center justify-center text-background-dark font-bold text-sm mt-0.5">16</div>
+</div>
+<div class="h-12 border-r border-border-dark flex flex-col items-center justify-center py-1 bg-surface-dark/50">
+<span class="text-xs text-slate-400">PER</span>
+<span class="text-sm font-bold text-white">17</span>
+</div>
+<div class="h-12 border-r border-border-dark flex flex-col items-center justify-center py-1 bg-surface-dark/50">
+<span class="text-xs text-slate-400">CUM</span>
+<span class="text-sm font-bold text-white">18</span>
+</div>
+<div class="h-12 border-r border-border-dark flex flex-col items-center justify-center py-1 bg-surface-dark/50">
+<span class="text-xs text-slate-400">CMT</span>
+<span class="text-sm font-bold text-white">19</span>
+</div>
+<div class="h-12 flex flex-col items-center justify-center py-1 bg-surface-dark/50">
+<span class="text-xs text-slate-400">PAZ</span>
+<span class="text-sm font-bold text-white">20</span>
+</div>
+</div>
+<!-- Time Slots & Events -->
+<div class="relative grid grid-cols-8">
+<!-- Time Column -->
+<div class="flex flex-col">
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">09:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">10:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">11:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">12:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">13:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">14:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">15:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">16:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">17:00</span></div>
+<div class="h-20 border-r border-b border-border-dark flex items-start justify-center pt-2"><span class="text-xs text-slate-500">18:00</span></div>
+</div>
+<!-- Grid Background Lines (One big absolute div per column) -->
+<div class="col-span-7 grid grid-cols-7 relative">
+<!-- Grid Lines Background -->
+<div class="absolute inset-0 grid grid-cols-7 pointer-events-none">
+<div class="border-r border-border-dark h-full">
+<!-- Horizontal Lines for times -->
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+</div>
+<div class="border-r border-border-dark h-full">
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+</div>
+<div class="border-r border-border-dark h-full bg-white/[0.02]"> <!-- Highlight Current Day -->
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+</div>
+<div class="border-r border-border-dark h-full">
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+</div>
+<div class="border-r border-border-dark h-full">
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+</div>
+<div class="border-r border-border-dark h-full bg-surface-dark/30"> <!-- Weekend shade -->
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+</div>
+<div class="h-full bg-surface-dark/30"> <!-- Weekend shade -->
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+<div class="h-20 border-b border-border-dark/50"></div>
+</div>
+</div>
+<!-- EVENT: Monday 10:00 - 12:00 (Python 101) -->
+<div class="absolute top-[80px] left-0 w-[14.28%] h-[160px] p-1 z-10">
+<div class="h-full w-full rounded-md bg-primary/20 border-l-4 border-primary p-2 cursor-pointer hover:bg-primary/30 transition-colors group">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-primary group-hover:text-white">Yazılım Lab.</span>
+<span class="material-symbols-outlined text-primary/70 text-[16px]">terminal</span>
+</div>
+<div class="mt-1">
+<h4 class="text-sm font-bold text-white leading-tight">Python 101</h4>
+<p class="text-[11px] text-slate-300 mt-1">10:00 - 12:00</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Lab A204</p>
+</div>
+</div>
+</div>
+<!-- EVENT: Monday 14:00 - 15:00 (Odak Saati) -->
+<div class="absolute top-[400px] left-0 w-[14.28%] h-[80px] p-1 z-10">
+<div class="h-full w-full rounded-md bg-slate-700/30 border-l-4 border-slate-500 p-2 cursor-pointer hover:bg-slate-700/50 transition-colors">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-400">Serbest Çalışma</span>
+<span class="material-symbols-outlined text-slate-500 text-[16px]">headphones</span>
+</div>
+<div class="mt-1">
+<h4 class="text-sm font-medium text-slate-300 leading-tight">Odak Saati</h4>
+</div>
+</div>
+</div>
+<!-- EVENT: Tuesday 13:00 - 16:00 (UI Design) -->
+<div class="absolute top-[320px] left-[14.28%] w-[14.28%] h-[240px] p-1 z-10">
+<div class="h-full w-full rounded-md bg-accent-orange/20 border-l-4 border-accent-orange p-2 cursor-pointer hover:bg-accent-orange/30 transition-colors group">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-accent-orange group-hover:text-white">Tasarım Atölyesi</span>
+<span class="material-symbols-outlined text-accent-orange/70 text-[16px]">palette</span>
+</div>
+<div class="mt-2">
+<h4 class="text-sm font-bold text-white leading-tight">UI/UX Temelleri</h4>
+<p class="text-[11px] text-slate-300 mt-1">13:00 - 16:00</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Stüdyo 1</p>
+</div>
+</div>
+</div>
+<!-- EVENT: Wednesday 11:00 - 12:00 (Mentörlük) -->
+<div class="absolute top-[160px] left-[28.56%] w-[14.28%] h-[80px] p-1 z-10">
+<div class="h-full w-full rounded-md bg-accent-purple/20 border-l-4 border-accent-purple p-2 cursor-pointer hover:bg-accent-purple/30 transition-colors group">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-accent-purple group-hover:text-white">Etkinlik</span>
+<span class="material-symbols-outlined text-accent-purple/70 text-[16px]">group</span>
+</div>
+<div class="mt-1">
+<h4 class="text-sm font-bold text-white leading-tight">Mentör Görüşmesi</h4>
+<p class="text-[10px] text-slate-400 mt-0.5">Online</p>
+</div>
+</div>
+</div>
+<!-- EVENT: Wednesday 14:00 - 17:00 (Advanced JS) -->
+<div class="absolute top-[400px] left-[28.56%] w-[14.28%] h-[240px] p-1 z-10">
+<div class="h-full w-full rounded-md bg-primary/20 border-l-4 border-primary p-2 cursor-pointer hover:bg-primary/30 transition-colors group">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-primary group-hover:text-white">Yazılım Lab.</span>
+<span class="material-symbols-outlined text-primary/70 text-[16px]">code</span>
+</div>
+<div class="mt-2">
+<h4 class="text-sm font-bold text-white leading-tight">Advanced JS</h4>
+<p class="text-[11px] text-slate-300 mt-1">14:00 - 17:00</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Lab B101</p>
+</div>
+<div class="absolute bottom-2 right-2">
+<span class="flex h-5 w-5 items-center justify-center rounded-full bg-background-dark/50 text-white text-[10px]">+2</span>
+</div>
+</div>
+</div>
+<!-- Current Time Indicator (Wednesday ~15:30) -->
+<div class="absolute top-[520px] left-0 w-full flex items-center z-20 pointer-events-none">
+<div class="w-[28.56%]"></div> <!-- Spacer for Mon, Tue -->
+<div class="w-[14.28%] relative">
+<div class="absolute left-0 -translate-y-1/2 -ml-1.5 h-3 w-3 rounded-full bg-primary ring-4 ring-primary/20"></div>
+<div class="border-t-2 border-primary w-full"></div>
+</div>
+<div class="flex-1"></div>
+</div>
+<!-- EVENT: Friday 10:00 - 12:00 (Robotics) -->
+<div class="absolute top-[80px] left-[57.12%] w-[14.28%] h-[160px] p-1 z-10">
+<div class="h-full w-full rounded-md bg-primary/20 border-l-4 border-primary p-2 cursor-pointer hover:bg-primary/30 transition-colors group opacity-60 hover:opacity-100">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-primary group-hover:text-white">Donanım</span>
+<span class="material-symbols-outlined text-primary/70 text-[16px]">precision_manufacturing</span>
+</div>
+<div class="mt-1">
+<h4 class="text-sm font-bold text-white leading-tight">Robotik 101</h4>
+<p class="text-[11px] text-slate-300 mt-1">10:00 - 12:00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Spacer -->
+<div class="h-10"></div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

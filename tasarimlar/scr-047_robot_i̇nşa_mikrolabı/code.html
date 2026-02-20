@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-047 Robot İnşa Mikrolabı - DIGEM</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111418", // Matching the provided component bg
+                        "surface-dark": "#1a222a", // Slightly lighter for cards
+                        "surface-lighter": "#283039", // Even lighter for borders/inputs
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Lexend", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom Scrollbar for panels */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111418; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-hidden h-screen flex flex-col">
+<!-- Header Section -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#283039] px-6 py-3 bg-[#111418] shrink-0 z-20">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Robotik Laboratuvarı</h2>
+<div class="flex items-center gap-2 text-xs text-[#9dabb9]">
+<span>Programlama Modülü</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span>Ünite 6</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-white font-medium">SCR-047: Robot İnşa</span>
+</div>
+</div>
+</div>
+<!-- Central Status Display -->
+<div class="hidden md:flex items-center gap-6 bg-[#1a222a] px-4 py-1.5 rounded-full border border-[#283039]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-sm">check_circle</span>
+<span class="text-xs font-medium text-emerald-500">Sistem Çevrimiçi</span>
+</div>
+<div class="w-px h-4 bg-[#283039]"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#9dabb9] text-sm">battery_charging_full</span>
+<span class="text-xs font-medium text-[#9dabb9]">Güç: 85%</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 mr-4">
+<button class="size-9 flex items-center justify-center rounded-full hover:bg-[#283039] text-[#9dabb9] transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="size-9 flex items-center justify-center rounded-full hover:bg-[#283039] text-[#9dabb9] transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<button class="flex items-center gap-2 cursor-pointer justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary hover:bg-blue-600 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(19,127,236,0.3)]">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+<span class="truncate">Test Sürüşü</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border-2 border-[#283039]" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6U_YrwDz2XfCgrGDtnPIhvBPD4214D6nTuSmxz2fXuuA1EFksb2vRR7Ow-aPXeV4gdFd2X8OUZoyfmxVa8DHaD-Ug7X_XEMVWwHwz_Zbr92DHiDHRGExL4zZshTOjEZtccbehsigAaXXeJX8XDOhP6Bm5ZQuzZLET4ig3goYPEeb--VWcdTfVDkPoO2ncQvcjU80GNTHS_IzvMSitSlRdozEjgvrhTUdioOqzz7UIMWlNOmftJ2a83VDJ3M_MuDqnK9QNqOvqag");'></div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex flex-1 overflow-hidden relative">
+<!-- Left Sidebar: Inventory (Hardware) -->
+<aside class="w-80 flex flex-col border-r border-[#283039] bg-[#111418] shrink-0 z-10">
+<div class="p-4 border-b border-[#283039]">
+<h3 class="text-white font-bold text-sm mb-1">Envanter</h3>
+<p class="text-[#9dabb9] text-xs">Parçaları sürükleyip robota takın.</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<!-- Sensors Section -->
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[#9dabb9] text-xs font-bold uppercase tracking-wider">Sensör Modülleri</span>
+<span class="bg-[#283039] text-white text-[10px] px-1.5 py-0.5 rounded">3 Mevcut</span>
+</div>
+<div class="space-y-2">
+<!-- Sensor Card 1 -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-[#1a222a] border border-[#283039] hover:border-primary hover:bg-[#1f2933] cursor-grab active:cursor-grabbing transition-all" draggable="true">
+<div class="size-10 rounded bg-[#283039] flex items-center justify-center text-blue-400 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">sensors</span>
+</div>
+<div>
+<div class="text-white text-sm font-medium">Mesafe Sensörü</div>
+<div class="text-[#9dabb9] text-xs">HC-SR04 • Ultrasonik</div>
+</div>
+<div class="ml-auto">
+<span class="material-symbols-outlined text-[#9dabb9] text-lg">drag_indicator</span>
+</div>
+</div>
+<!-- Sensor Card 2 -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-[#1a222a] border border-[#283039] hover:border-primary hover:bg-[#1f2933] cursor-grab active:cursor-grabbing transition-all" draggable="true">
+<div class="size-10 rounded bg-[#283039] flex items-center justify-center text-purple-400 group-hover:text-purple-300 transition-colors">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<div>
+<div class="text-white text-sm font-medium">Renk Sensörü</div>
+<div class="text-[#9dabb9] text-xs">TCS3200 • RGB</div>
+</div>
+<div class="ml-auto">
+<span class="material-symbols-outlined text-[#9dabb9] text-lg">drag_indicator</span>
+</div>
+</div>
+<!-- Sensor Card 3 -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-[#1a222a] border border-[#283039] hover:border-primary hover:bg-[#1f2933] cursor-grab active:cursor-grabbing transition-all" draggable="true">
+<div class="size-10 rounded bg-[#283039] flex items-center justify-center text-amber-400 group-hover:text-amber-300 transition-colors">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<div>
+<div class="text-white text-sm font-medium">Jiroskop</div>
+<div class="text-[#9dabb9] text-xs">MPU-6050 • 6-Eksen</div>
+</div>
+<div class="ml-auto">
+<span class="material-symbols-outlined text-[#9dabb9] text-lg">drag_indicator</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions Section -->
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[#9dabb9] text-xs font-bold uppercase tracking-wider">Aksiyon Ön Tanımları</span>
+<span class="bg-[#283039] text-white text-[10px] px-1.5 py-0.5 rounded">2 Mevcut</span>
+</div>
+<div class="space-y-2">
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-[#1a222a] border border-[#283039] hover:border-primary hover:bg-[#1f2933] cursor-grab active:cursor-grabbing transition-all" draggable="true">
+<div class="size-10 rounded bg-[#283039] flex items-center justify-center text-orange-400 group-hover:text-orange-300 transition-colors">
+<span class="material-symbols-outlined">settings_motion_mode</span>
+</div>
+<div>
+<div class="text-white text-sm font-medium">Servo Motor</div>
+<div class="text-[#9dabb9] text-xs">180° Dönüş</div>
+</div>
+<div class="ml-auto">
+<span class="material-symbols-outlined text-[#9dabb9] text-lg">drag_indicator</span>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-[#1a222a] border border-[#283039] hover:border-primary hover:bg-[#1f2933] cursor-grab active:cursor-grabbing transition-all" draggable="true">
+<div class="size-10 rounded bg-[#283039] flex items-center justify-center text-red-400 group-hover:text-red-300 transition-colors">
+<span class="material-symbols-outlined">light_mode</span>
+</div>
+<div>
+<div class="text-white text-sm font-medium">LED Matris</div>
+<div class="text-[#9dabb9] text-xs">8x8 Gösterge</div>
+</div>
+<div class="ml-auto">
+<span class="material-symbols-outlined text-[#9dabb9] text-lg">drag_indicator</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-[#283039] bg-[#161b22]">
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs text-[#9dabb9]">CPU Kullanımı</span>
+<span class="text-xs font-bold text-white">12%</span>
+</div>
+<div class="w-full bg-[#283039] rounded-full h-1.5 mb-4">
+<div class="bg-emerald-500 h-1.5 rounded-full" style="width: 12%"></div>
+</div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs text-[#9dabb9]">Batarya Tahmini</span>
+<span class="text-xs font-bold text-white">~45 dk</span>
+</div>
+<div class="w-full bg-[#283039] rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+</aside>
+<!-- Center: Assembly Area (Visual Editor) -->
+<section class="flex-1 flex flex-col relative bg-[#0d1014]">
+<!-- Background Grid Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#4a5568 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Toolbar Overlay -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[#1a222a]/80 backdrop-blur-md border border-[#283039] p-1.5 rounded-lg z-10">
+<button class="p-2 hover:bg-[#283039] rounded text-white" title="Yakınlaştır">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+<button class="p-2 hover:bg-[#283039] rounded text-white" title="Uzaklaştır">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<div class="w-px h-4 bg-[#283039]"></div>
+<button class="p-2 hover:bg-[#283039] rounded text-white" title="Sıfırla">
+<span class="material-symbols-outlined text-lg">center_focus_strong</span>
+</button>
+</div>
+<!-- Central Robot Visualization -->
+<div class="flex-1 flex items-center justify-center relative">
+<!-- Drop Zones Container (Absolute over image) -->
+<div class="relative w-[500px] h-[500px] flex items-center justify-center">
+<!-- Robot Image -->
+<img alt="3D render of a futuristic robot chassis on a dark background" class="w-full h-full object-contain opacity-90 drop-shadow-[0_0_50px_rgba(19,127,236,0.15)] pointer-events-none" data-alt="Futuristic robot chassis waiting for assembly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9WSPvdCnwDOf63vznGoEH58gOyIfZdiQTuzmUp1fMI4lobHt5DRVk3A3gwmsXH7TyCfvCgh1v2wTvrac8VzHlAXfi8VHKDTOH6YMOBJhCkCc89fNtCCnOC-BJuL_lVwEkAAUcAcVKQ6q-BRo7bj78WDXdbpQHh_UJxW9uGI99QqtoJEalI_foaJXdyPJoEwDLWBXkcp1i5vxC0XRephj4Q4QsE_XVAXnUyvniR_mivwMt-KYUyQ8k9NbYfukZX9Ve-xw0yGvFrA"/>
+<!-- Connection Point: Front (Distance) -->
+<div class="absolute top-[20%] left-1/2 -translate-x-1/2 size-16 border-2 border-dashed border-primary/50 bg-primary/10 rounded-full flex flex-col items-center justify-center cursor-pointer hover:bg-primary/20 hover:border-primary transition-all group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">add</span>
+<span class="text-[10px] text-primary font-medium mt-1">Ön Sensör</span>
+<!-- Pulsing effect -->
+<div class="absolute inset-0 rounded-full animate-ping bg-primary/20"></div>
+</div>
+<!-- Connection Point: Right Wheel -->
+<div class="absolute bottom-[25%] right-[15%] size-14 border-2 border-dashed border-[#283039] bg-[#1a222a]/50 rounded-full flex flex-col items-center justify-center cursor-pointer hover:border-[#9dabb9] transition-all">
+<span class="material-symbols-outlined text-[#9dabb9]">settings</span>
+</div>
+<!-- Connection Point: Left Wheel -->
+<div class="absolute bottom-[25%] left-[15%] size-14 border-2 border-dashed border-[#283039] bg-[#1a222a]/50 rounded-full flex flex-col items-center justify-center cursor-pointer hover:border-[#9dabb9] transition-all">
+<span class="material-symbols-outlined text-[#9dabb9]">settings</span>
+</div>
+<!-- Installed Component Indicator (Example) -->
+<div class="absolute top-[35%] right-[25%] bg-[#1a222a] border border-primary text-white text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-purple-400">palette</span>
+<span>Renk: Aktif</span>
+<button class="hover:text-red-400 ml-1"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+</div>
+</div>
+<!-- Bottom Action Bar -->
+<div class="h-16 border-t border-[#283039] bg-[#111418] flex items-center justify-between px-6 shrink-0">
+<div class="flex items-center gap-4">
+<button class="text-[#9dabb9] hover:text-white text-sm font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">restart_alt</span>
+                        İnşaatı Sıfırla
+                    </button>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs text-[#9dabb9]">Son kayıt: 2 dk önce</span>
+<button class="bg-[#283039] hover:bg-[#374151] text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors border border-[#3e4a56]">
+                        Taslağı Kaydet
+                    </button>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Logic Configurator -->
+<aside class="w-96 flex flex-col border-l border-[#283039] bg-[#111418] shrink-0 z-10">
+<div class="p-4 border-b border-[#283039] flex items-center justify-between">
+<div>
+<h3 class="text-white font-bold text-sm mb-1">Mantık Yapılandırıcı</h3>
+<p class="text-[#9dabb9] text-xs">Sensörleri eylemlere bağlayın.</p>
+</div>
+<button class="p-1.5 rounded hover:bg-[#283039] text-primary">
+<span class="material-symbols-outlined">code</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 bg-[#0d1014] relative">
+<!-- Visual Scripting Canvas Background -->
+<div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#283039 1px, transparent 1px), linear-gradient(90deg, #283039 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 space-y-4">
+<!-- Logic Block 1: Trigger -->
+<div class="bg-[#1a222a] border-l-4 border-l-purple-500 rounded-r-lg p-3 shadow-lg border-y border-r border-y-[#283039] border-r-[#283039]">
+<div class="flex items-center justify-between mb-2">
+<span class="text-purple-400 text-xs font-bold uppercase">Tetikleyici (Giriş)</span>
+<span class="material-symbols-outlined text-[#9dabb9] text-sm">drag_handle</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<div class="size-6 rounded bg-[#283039] flex items-center justify-center text-purple-400">
+<span class="material-symbols-outlined text-sm">palette</span>
+</div>
+<span class="text-white text-sm font-medium">Renk Sensörü</span>
+</div>
+<div class="bg-[#111418] rounded p-2 flex items-center gap-2 border border-[#283039]">
+<span class="text-[#9dabb9] text-xs">Eğer renk:</span>
+<select class="bg-transparent text-white text-xs font-bold focus:outline-none cursor-pointer">
+<option>Kırmızı</option>
+<option>Mavi</option>
+<option>Yeşil</option>
+</select>
+<span class="text-[#9dabb9] text-xs">ise</span>
+</div>
+<!-- Connector Output -->
+<div class="absolute -bottom-3 left-6 w-0.5 h-3 bg-purple-500/50"></div>
+</div>
+<!-- Connection Line Visual -->
+<div class="h-4 w-0.5 bg-purple-500/50 ml-6"></div>
+<!-- Logic Block 2: Action -->
+<div class="bg-[#1a222a] border-l-4 border-l-primary rounded-r-lg p-3 shadow-lg border-y border-r border-y-[#283039] border-r-[#283039]">
+<div class="flex items-center justify-between mb-2">
+<span class="text-primary text-xs font-bold uppercase">Aksiyon (Çıkış)</span>
+<span class="material-symbols-outlined text-[#9dabb9] text-sm">drag_handle</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<div class="size-6 rounded bg-[#283039] flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">settings_motion_mode</span>
+</div>
+<span class="text-white text-sm font-medium">Motor Kontrolü</span>
+</div>
+<div class="bg-[#111418] rounded p-2 flex flex-col gap-2 border border-[#283039]">
+<div class="flex items-center justify-between">
+<span class="text-[#9dabb9] text-xs">Durum:</span>
+<span class="text-white text-xs font-bold bg-red-500/20 text-red-400 px-1.5 rounded">DUR</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#9dabb9] text-xs">Süre:</span>
+<div class="flex items-center gap-1">
+<input class="w-8 bg-[#283039] text-white text-center text-xs rounded border-none p-0.5" type="number" value="2"/>
+<span class="text-[#9dabb9] text-xs">sn</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Add New Logic Block Button -->
+<div class="flex justify-center pt-2">
+<button class="flex items-center gap-2 text-[#9dabb9] hover:text-primary transition-colors text-xs font-medium border border-dashed border-[#283039] hover:border-primary rounded-lg px-4 py-2 w-full justify-center">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                            Yeni Mantık Bloğu Ekle
+                        </button>
+</div>
+</div>
+</div>
+<!-- Presets Section -->
+<div class="p-4 bg-[#161b22] border-t border-[#283039]">
+<h4 class="text-[#9dabb9] text-xs font-bold uppercase mb-3">Hızlı Senaryolar</h4>
+<div class="grid grid-cols-2 gap-2">
+<button class="bg-[#283039] hover:bg-primary/20 hover:border-primary border border-transparent transition-all rounded p-2 flex flex-col items-center gap-1 text-center group">
+<span class="material-symbols-outlined text-white group-hover:text-primary mb-1">local_police</span>
+<span class="text-white text-xs font-medium">Devriye</span>
+</button>
+<button class="bg-[#283039] hover:bg-primary/20 hover:border-primary border border-transparent transition-all rounded p-2 flex flex-col items-center gap-1 text-center group">
+<span class="material-symbols-outlined text-white group-hover:text-primary mb-1">radar</span>
+<span class="text-white text-xs font-medium">Takip</span>
+</button>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

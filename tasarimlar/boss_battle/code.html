@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pusula Flux - Boss Battle</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=Outfit:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f20d0d", // Electric Coral/Red
+                        "accent": "#4D7CFF", // Electric Blue
+                        "success": "#00E0B8", // Neon Mint
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#221010",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Outfit", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'liquid-gradient': 'linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 50%, #CCFBF1 100%)',
+                        'glass-sheen': 'linear-gradient(120deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%)',
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                        'neon-red': '0 0 20px rgba(242, 13, 13, 0.4)',
+                        'neon-blue': '0 0 15px rgba(77, 124, 255, 0.4)',
+                        '3d-primary': '0 4px 0 #b30909', // Darker shade for 3D depth
+                        '3d-accent': '0 4px 0 #335bc4',
+                        '3d-white': '0 4px 0 #e5e7eb',
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        shake: {
+                            '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
+                            '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
+                            '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
+                            '40%, 60%': { transform: 'translate3d(4px, 0, 0)' }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .glass-panel-dark {
+            background: rgba(20, 10, 10, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(242, 13, 13, 0.3);
+        }
+
+        .juicy-btn {
+            transition: all 0.1s;
+        }
+        .juicy-btn:active {
+            transform: translateY(4px);
+            box-shadow: none !important;
+        }
+
+        .progress-shine {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body class="bg-liquid-gradient h-screen w-full overflow-hidden font-body text-slate-800 relative selection:bg-accent selection:text-white">
+<!-- Background Desktop Environment (Blurred/Obscured) -->
+<div class="absolute inset-0 z-0 opacity-100 pointer-events-none">
+<!-- Desktop Icons (Decorative) -->
+<div class="absolute top-8 left-8 grid grid-cols-1 gap-8 opacity-40">
+<div class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 glass-panel rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-accent">folder</span>
+</div>
+<span class="text-xs font-display font-medium text-slate-600 bg-white/30 px-2 py-0.5 rounded">My Projects</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 glass-panel rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-success">terminal</span>
+</div>
+<span class="text-xs font-display font-medium text-slate-600 bg-white/30 px-2 py-0.5 rounded">Terminal</span>
+</div>
+</div>
+<!-- Taskbar (Decorative) -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[480px] h-20 glass-panel rounded-2xl flex items-center justify-center gap-6 shadow-glass opacity-40">
+<div class="w-12 h-12 rounded-xl bg-white/50 flex items-center justify-center"><span class="material-symbols-outlined">grid_view</span></div>
+<div class="w-12 h-12 rounded-xl bg-white/50 flex items-center justify-center"><span class="material-symbols-outlined">code</span></div>
+<div class="w-12 h-12 rounded-xl bg-white/50 flex items-center justify-center"><span class="material-symbols-outlined">school</span></div>
+</div>
+</div>
+<!-- BOSS BATTLE OVERLAY -->
+<!-- The main container for the modal interaction -->
+<div class="absolute inset-0 z-50 flex items-center justify-center">
+<!-- Dark Overlay Backdrop with Red Pulse Vignette -->
+<div class="absolute inset-0 bg-[#1c0d0d]/80 backdrop-blur-sm animate-pulse-slow">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(242,13,13,0.15)_100%)]"></div>
+</div>
+<!-- Main HUD Container -->
+<!-- Floating glass panel with aggressive styling -->
+<div class="relative w-full max-w-4xl mx-4 flex flex-col gap-6 animate-float">
+<!-- Top Status Bar: Timer & HP -->
+<div class="flex items-center justify-between gap-6">
+<!-- Timer Module -->
+<div class="glass-panel-dark p-1 rounded-xl shadow-neon-red flex-shrink-0">
+<div class="bg-background-dark/80 px-6 py-3 rounded-lg border border-primary/30 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary animate-pulse-fast">timer</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-primary/80 font-display tracking-widest uppercase">Time Remaining</span>
+<span class="font-mono text-3xl font-bold text-primary tabular-nums tracking-tighter drop-shadow-md">00:09.45</span>
+</div>
+</div>
+</div>
+<!-- Boss HP Bar -->
+<div class="flex-1 glass-panel-dark p-4 rounded-xl shadow-glass flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-20">
+<span class="material-symbols-outlined text-4xl text-primary">gpp_bad</span>
+</div>
+<div class="flex justify-between items-end px-1">
+<h2 class="text-white font-display font-bold text-lg tracking-tight flex items-center gap-2">
+<span class="text-primary">⚠️</span> BOSS: SYNTAX_ERROR
+                        </h2>
+<span class="font-mono text-primary font-bold">2,400 / 10,000 HP</span>
+</div>
+<!-- HP Container -->
+<div class="h-6 w-full bg-black/40 rounded-full border border-white/10 p-1 relative">
+<!-- Filled Bar -->
+<div class="h-full w-[24%] bg-gradient-to-r from-primary to-orange-500 rounded-full relative overflow-hidden transition-all duration-300 shadow-[0_0_10px_rgba(242,13,13,0.6)]">
+<div class="absolute inset-0 progress-shine w-full h-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Battle Arena (Split View) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-[500px]">
+<!-- Left: The Boss Visualization -->
+<div class="md:col-span-4 glass-panel-dark rounded-2xl p-8 flex flex-col items-center justify-center text-center relative overflow-hidden border-2 border-primary/20 shadow-neon-red">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-10"></div>
+<!-- Glitch/Boss Avatar -->
+<div class="relative size-48 mb-6 group">
+<!-- Pulsing rings -->
+<div class="absolute inset-0 rounded-full border-4 border-primary/30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+<div class="absolute inset-2 rounded-full border-2 border-primary/50 animate-[ping_2.5s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+<!-- Boss Image -->
+<div class="relative z-10 w-full h-full rounded-full bg-gradient-to-br from-gray-900 to-black border-4 border-primary flex items-center justify-center shadow-[0_0_30px_rgba(242,13,13,0.5)] overflow-hidden">
+<img alt="Pixel art robot boss avatar with glitch effects" class="w-32 h-32 animate-shake drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhV5GlOOv3BJ6Ks3jB238sS6G0FF3oGS2RK27Md_obbTtofeH0SEAq4jgEePNq1dLtsI8GMT4rVwG6ttHyX5GbQy_qGR7rnQiAPA2RcmEB-yoav74I0oFWFWaG_1JwkqYwIfMsYz7vVCGlMZ4s5sGThDyDtMHEFTiEexjfDZtYUfny4EX32mmKXfqIoBePniFSkOEXHtw1rdVSwI7uOysj16VQxKhPeXjQUl8S6PthNn0ZjiAH0KXK_NgU791vNz3y84lZca659Iw"/>
+<!-- Glitch Overlay -->
+<div class="absolute inset-0 bg-primary mix-blend-overlay opacity-20 animate-pulse"></div>
+</div>
+<!-- Level Badge -->
+<div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold font-display px-3 py-1 rounded-full border-2 border-white shadow-lg z-20">
+                            LVL 99
+                        </div>
+</div>
+<h3 class="text-white font-display text-xl font-bold mb-1">THE COMPILER</h3>
+<p class="text-primary/80 text-sm font-mono">Status: <span class="animate-pulse font-bold">ENRAGED</span></p>
+<!-- Debuffs / Status Effects -->
+<div class="flex gap-2 mt-6">
+<div class="bg-black/40 p-2 rounded-lg border border-white/10" title="Time Crunch">
+<span class="material-symbols-outlined text-orange-400 text-xl">hourglass_empty</span>
+</div>
+<div class="bg-black/40 p-2 rounded-lg border border-white/10" title="Obfuscated Code">
+<span class="material-symbols-outlined text-purple-400 text-xl">visibility_off</span>
+</div>
+</div>
+</div>
+<!-- Right: Interaction/Question Zone -->
+<div class="md:col-span-8 flex flex-col gap-4">
+<!-- Question Card -->
+<div class="glass-panel rounded-2xl p-8 flex-1 flex flex-col justify-center border-l-4 border-l-primary shadow-lg bg-white/80">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-1 bg-primary/10 text-primary text-xs font-bold font-mono rounded uppercase tracking-wider">Python Logic</span>
+<span class="px-2 py-1 bg-slate-100 text-slate-500 text-xs font-bold font-mono rounded uppercase tracking-wider">Q: 14/20</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-display font-bold text-slate-900 leading-tight mb-6">
+                            Which operator is used to perform <span class="text-primary underline decoration-4 decoration-primary/20">floor division</span> in Python?
+                        </h1>
+<!-- Code Snippet Hint (Optional) -->
+<div class="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm text-gray-300 border border-gray-700 shadow-inner relative group">
+<div class="absolute top-2 right-2 text-[10px] text-gray-500 uppercase">example.py</div>
+<p><span class="text-purple-400">print</span>(15 <span class="bg-white/10 text-white px-1 rounded animate-pulse">?</span> 4) <span class="text-gray-500"># Output: 3</span></p>
+</div>
+</div>
+<!-- Answer Grid -->
+<div class="grid grid-cols-2 gap-4 h-40">
+<button class="juicy-btn group relative bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-accent text-slate-700 rounded-xl shadow-3d-white hover:shadow-3d-accent active:translate-y-1 active:shadow-none transition-all flex items-center justify-center">
+<span class="font-mono text-2xl font-bold group-hover:text-accent">/</span>
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-slate-200 group-hover:bg-accent"></div>
+</button>
+<button class="juicy-btn group relative bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-accent text-slate-700 rounded-xl shadow-3d-white hover:shadow-3d-accent active:translate-y-1 active:shadow-none transition-all flex items-center justify-center">
+<span class="font-mono text-2xl font-bold group-hover:text-accent">%</span>
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-slate-200 group-hover:bg-accent"></div>
+</button>
+<button class="juicy-btn group relative bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-accent text-slate-700 rounded-xl shadow-3d-white hover:shadow-3d-accent active:translate-y-1 active:shadow-none transition-all flex items-center justify-center">
+<span class="font-mono text-2xl font-bold group-hover:text-accent">**</span>
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-slate-200 group-hover:bg-accent"></div>
+</button>
+<!-- Correct Answer (For visual demo, styled normally but implies choice) -->
+<button class="juicy-btn group relative bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-accent text-slate-700 rounded-xl shadow-3d-white hover:shadow-3d-accent active:translate-y-1 active:shadow-none transition-all flex items-center justify-center">
+<span class="font-mono text-2xl font-bold group-hover:text-accent">//</span>
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-slate-200 group-hover:bg-accent"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Actions / Streak -->
+<div class="flex justify-between items-center px-2">
+<button class="flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-lg">logout</span> Flee Battle
+                </button>
+<div class="flex items-center gap-4">
+<div class="bg-gradient-to-r from-orange-500 to-primary p-[2px] rounded-lg shadow-lg rotate-2 hover:rotate-0 transition-transform">
+<div class="bg-black/80 px-4 py-2 rounded-md flex items-center gap-2">
+<span class="text-orange-400 material-symbols-outlined text-xl">local_fire_department</span>
+<div class="flex flex-col leading-none">
+<span class="text-[10px] text-white/60 font-display uppercase">Combo</span>
+<span class="text-white font-display font-bold text-lg">3x</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

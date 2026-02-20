@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM Rehber Ana Paneli</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2d4",
+                        "secondary": "#f97316", // Orange accent as requested
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111817",
+                        "surface-dark": "#1e2928",
+                        "surface-light": "#283937",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for better look in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111817; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283937; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b5451; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#283937] px-6 py-3 bg-[#111817] sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-4xl">pentagon</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">DIGEM REHBERİ</h2>
+</div>
+<!-- Search Bar -->
+<label class="hidden md:flex flex-col min-w-40 !h-10 w-96">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#283937] group focus-within:ring-2 ring-primary/50 transition-all">
+<div class="text-[#9cbab6] flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-[#9cbab6] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Öğrenci, sınıf veya yetkinlik ara..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<button class="flex items-center justify-center rounded-full size-10 bg-[#283937] hover:bg-[#3b5451] text-white transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-secondary rounded-full animate-pulse"></span>
+</button>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-white">Ahmet Hoca</p>
+<p class="text-xs text-[#9cbab6]">Dijital Rehber</p>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-[#283937]" data-alt="Portrait of a male coach smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCx8vp8y8llORNrv7c7lt_wSl4_JQuxxBW1dxxTzIzgjYsL6EbyXixwloU6kocOqYT9Frgf4oza8xrCZThCrJ8GtTeb7AEe8_00Wd-Qsm2QAW86gopbLb_w-0kb6PM1enxnL3hWYhHRr_Y9DRyLg--WvT9ZZuuk4LiqTTggbJ_1MeVueSVfeviQCOzWse1X82hHqrBNfq070HY9NpQJRpLQOzMifqzQGYbUQoPGFOjCj_haILPwH9GSaGW2xE0Q02SrxR1C-8K3bA");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col lg:flex-row h-full">
+<!-- Left/Main Column -->
+<div class="flex-1 p-6 flex flex-col gap-6 overflow-y-auto">
+<!-- Greeting & Quick Stats -->
+<div class="flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-bold text-white mb-2">Genel Bakış</h1>
+<p class="text-[#9cbab6]">Merkez performans özetiniz ve risk altındaki öğrenci raporları.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-lg bg-[#283937] text-white text-sm font-medium hover:bg-[#3b5451] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                            Bu Hafta
+                        </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-[#111817] text-sm font-bold hover:bg-[#0be0c4] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                            Yeni Oturum
+                        </button>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Riskli Öğrenciler -->
+<div class="bg-surface-dark rounded-xl p-5 border border-[#283937] relative overflow-hidden group hover:border-secondary/50 transition-colors">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-secondary">warning</span>
+</div>
+<p class="text-[#9cbab6] text-sm font-medium mb-1">Riskli Öğrenciler</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-white">3</h3>
+<span class="text-secondary text-xs font-medium bg-secondary/10 px-2 py-0.5 rounded">+1 bu hafta</span>
+</div>
+<div class="w-full bg-[#283937] h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 15%"></div>
+</div>
+</div>
+<!-- Bekleyen Değerlendirmeler -->
+<div class="bg-surface-dark rounded-xl p-5 border border-[#283937] relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">pending_actions</span>
+</div>
+<p class="text-[#9cbab6] text-sm font-medium mb-1">Bekleyen İşlemler</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-white">12</h3>
+<span class="text-primary text-xs font-medium bg-primary/10 px-2 py-0.5 rounded">-4 dün</span>
+</div>
+<div class="w-full bg-[#283937] h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Gelecek Oturumlar -->
+<div class="bg-surface-dark rounded-xl p-5 border border-[#283937] relative overflow-hidden group hover:border-white/30 transition-colors">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">event_upcoming</span>
+</div>
+<p class="text-[#9cbab6] text-sm font-medium mb-1">Gelecek Oturumlar</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-white">5</h3>
+<span class="text-[#9cbab6] text-xs font-medium">Bugün 2</span>
+</div>
+<div class="w-full bg-[#283937] h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-white h-full rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<!-- Tamamlanan Görevler -->
+<div class="bg-surface-dark rounded-xl p-5 border border-[#283937] relative overflow-hidden group hover:border-emerald-500/50 transition-colors">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-emerald-500">task_alt</span>
+</div>
+<p class="text-[#9cbab6] text-sm font-medium mb-1">Tamamlanan</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-white">45</h3>
+<span class="text-emerald-500 text-xs font-medium bg-emerald-500/10 px-2 py-0.5 rounded">%92 Başarı</span>
+</div>
+<div class="w-full bg-[#283937] h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Heatmap Section -->
+<div class="bg-surface-dark rounded-xl border border-[#283937] p-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+<div>
+<h3 class="text-lg font-bold text-white">Sınıf Risk Isı Haritası</h3>
+<p class="text-[#9cbab6] text-sm">10A Sınıfı - Son 4 Hafta Performans &amp; Katılım Eğilimi</p>
+</div>
+<div class="flex items-center gap-2 bg-[#111817] p-1 rounded-lg">
+<button class="px-3 py-1 text-xs font-medium rounded text-primary bg-[#283937]">Genel</button>
+<button class="px-3 py-1 text-xs font-medium rounded text-[#9cbab6] hover:text-white">Kodlama</button>
+<button class="px-3 py-1 text-xs font-medium rounded text-[#9cbab6] hover:text-white">Tasarım</button>
+</div>
+</div>
+<!-- Mock Heatmap Grid -->
+<div class="overflow-x-auto">
+<div class="min-w-[600px]">
+<div class="grid grid-cols-[100px_repeat(10,1fr)] gap-2 mb-2">
+<div class="text-xs text-[#9cbab6] font-medium self-center">Öğrenci</div>
+<!-- Date headers mock -->
+<div class="text-[10px] text-center text-[#5c7a76]">H1</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H2</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H3</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H4</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H5</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H6</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H7</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H8</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H9</div>
+<div class="text-[10px] text-center text-[#5c7a76]">H10</div>
+</div>
+<!-- Rows -->
+<div class="space-y-2">
+<!-- Row 1 -->
+<div class="grid grid-cols-[100px_repeat(10,1fr)] gap-2 items-center group cursor-pointer">
+<div class="text-xs text-white font-medium truncate pr-2">Ali K.</div>
+<div class="h-8 rounded bg-primary/20 hover:bg-primary/40 transition-colors"></div>
+<div class="h-8 rounded bg-primary/40 hover:bg-primary/60 transition-colors"></div>
+<div class="h-8 rounded bg-primary/60 hover:bg-primary/80 transition-colors"></div>
+<div class="h-8 rounded bg-primary hover:bg-primary transition-colors shadow-[0_0_10px_rgba(13,242,212,0.3)]"></div>
+<div class="h-8 rounded bg-primary/80 hover:bg-primary transition-colors"></div>
+<div class="h-8 rounded bg-primary/60 hover:bg-primary/80 transition-colors"></div>
+<div class="h-8 rounded bg-secondary/80 hover:bg-secondary transition-colors" title="Devamsızlık"></div>
+<div class="h-8 rounded bg-primary/40 hover:bg-primary/60 transition-colors"></div>
+<div class="h-8 rounded bg-primary/20 hover:bg-primary/40 transition-colors"></div>
+<div class="h-8 rounded bg-primary/30 hover:bg-primary/50 transition-colors"></div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[100px_repeat(10,1fr)] gap-2 items-center group cursor-pointer">
+<div class="text-xs text-white font-medium truncate pr-2">Zeynep T.</div>
+<div class="h-8 rounded bg-primary hover:bg-primary transition-colors shadow-[0_0_10px_rgba(13,242,212,0.3)]"></div>
+<div class="h-8 rounded bg-primary hover:bg-primary transition-colors shadow-[0_0_10px_rgba(13,242,212,0.3)]"></div>
+<div class="h-8 rounded bg-primary/90 hover:bg-primary transition-colors"></div>
+<div class="h-8 rounded bg-primary/80 hover:bg-primary transition-colors"></div>
+<div class="h-8 rounded bg-primary/90 hover:bg-primary transition-colors"></div>
+<div class="h-8 rounded bg-primary hover:bg-primary transition-colors shadow-[0_0_10px_rgba(13,242,212,0.3)]"></div>
+<div class="h-8 rounded bg-primary/80 hover:bg-primary transition-colors"></div>
+<div class="h-8 rounded bg-primary/90 hover:bg-primary transition-colors"></div>
+<div class="h-8 rounded bg-primary hover:bg-primary transition-colors shadow-[0_0_10px_rgba(13,242,212,0.3)]"></div>
+<div class="h-8 rounded bg-primary/90 hover:bg-primary transition-colors"></div>
+</div>
+<!-- Row 3 (Risk) -->
+<div class="grid grid-cols-[100px_repeat(10,1fr)] gap-2 items-center group cursor-pointer">
+<div class="text-xs text-secondary font-bold truncate pr-2 flex items-center gap-1"><span class="size-1.5 rounded-full bg-secondary animate-pulse"></span>Bura E.</div>
+<div class="h-8 rounded bg-primary/40 hover:bg-primary/60 transition-colors"></div>
+<div class="h-8 rounded bg-secondary/30 hover:bg-secondary/50 transition-colors"></div>
+<div class="h-8 rounded bg-secondary/50 hover:bg-secondary/70 transition-colors"></div>
+<div class="h-8 rounded bg-secondary/70 hover:bg-secondary/90 transition-colors"></div>
+<div class="h-8 rounded bg-secondary hover:bg-secondary transition-colors shadow-[0_0_10px_rgba(249,115,22,0.3)]"></div>
+<div class="h-8 rounded bg-secondary hover:bg-secondary transition-colors shadow-[0_0_10px_rgba(249,115,22,0.3)]"></div>
+<div class="h-8 rounded bg-secondary/80 hover:bg-secondary transition-colors"></div>
+<div class="h-8 rounded bg-primary/20 hover:bg-primary/40 transition-colors"></div>
+<div class="h-8 rounded bg-primary/10 hover:bg-primary/30 transition-colors"></div>
+<div class="h-8 rounded bg-primary/20 hover:bg-primary/40 transition-colors"></div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-[100px_repeat(10,1fr)] gap-2 items-center group cursor-pointer">
+<div class="text-xs text-white font-medium truncate pr-2">Canan S.</div>
+<div class="h-8 rounded bg-primary/60 hover:bg-primary/80 transition-colors"></div>
+<div class="h-8 rounded bg-primary/50 hover:bg-primary/70 transition-colors"></div>
+<div class="h-8 rounded bg-primary/60 hover:bg-primary/80 transition-colors"></div>
+<div class="h-8 rounded bg-primary/70 hover:bg-primary/90 transition-colors"></div>
+<div class="h-8 rounded bg-primary/50 hover:bg-primary/70 transition-colors"></div>
+<div class="h-8 rounded bg-primary/60 hover:bg-primary/80 transition-colors"></div>
+<div class="h-8 rounded bg-primary/70 hover:bg-primary/90 transition-colors"></div>
+<div class="h-8 rounded bg-primary/80 hover:bg-primary transition-colors"></div>
+<div class="h-8 rounded bg-primary/90 hover:bg-primary transition-colors"></div>
+<div class="h-8 rounded bg-primary/70 hover:bg-primary/90 transition-colors"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6 mt-4 text-xs text-[#9cbab6]">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded bg-primary"></div>
+<span>Yüksek Başarı</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-3 rounded bg-primary/20"></div>
+<span>Düşük Başarı</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-3 rounded bg-secondary"></div>
+<span>Risk Uyarısı</span>
+</div>
+</div>
+</div>
+<!-- Priority Student List -->
+<div>
+<h3 class="text-xl font-bold text-white mb-4">Öncelikli Öğrenci Listesi</h3>
+<div class="bg-surface-dark rounded-xl border border-[#283937] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-[#9cbab6]">
+<thead class="bg-[#283937] text-white uppercase text-xs">
+<tr>
+<th class="px-6 py-4 font-semibold" scope="col">Öğrenci</th>
+<th class="px-6 py-4 font-semibold" scope="col">Yetkinlik Alanı</th>
+<th class="px-6 py-4 font-semibold" scope="col">Risk Skoru</th>
+<th class="px-6 py-4 font-semibold" scope="col">Son Aktivite</th>
+<th class="px-6 py-4 font-semibold text-right" scope="col">Aksiyon</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#283937]">
+<!-- Row 1 - High Risk -->
+<tr class="hover:bg-[#283937]/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-[#3b5451]" data-alt="Portrait of a young male student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCE0WuwBYhN8wN4_dxUVPE8J66aWlAffgyQrL4Kq5gEDKHg3PbRYcLec0Ht6ni5M_B_jiTbLJ8I8RmITRIA0l4HclAZW-BCSW-LyPsYr4IyAGAUw2rIgKYmA5jX4K6LSOdCkcGqklSsGfB0vw15N1tVCGMHSxfMShq6npoMWxrvPPTmhoLrwhy9YSl9gk6WKOq_r_-OO3fVzGrzg6_VOoaefrvisKrw8ZnRgipLgueEL6USTyRPrDwKl7q1jhXx1c2EkirgflJt6Q");'></div>
+<div>
+<div class="text-white font-medium">Ahmet Yılmaz</div>
+<div class="text-xs">10A Sınıfı</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-base">code</span>
+                                            Python Temelleri
+                                        </div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/20 text-secondary border border-secondary/30">
+                                            Yüksek
+                                            <span class="material-symbols-outlined text-[14px]">priority_high</span>
+</span>
+</td>
+<td class="px-6 py-4">
+                                        2 gün önce (Sınav: %45)
+                                    </td>
+<td class="px-6 py-4 text-right">
+<button class="bg-secondary hover:bg-orange-600 text-white text-xs font-bold py-1.5 px-3 rounded-lg inline-flex items-center gap-1 shadow-lg shadow-orange-900/20 transition-all">
+<span class="material-symbols-outlined text-[16px]">assignment_add</span>
+                                            Müdahale Ata
+                                        </button>
+</td>
+</tr>
+<!-- Row 2 - Medium Risk -->
+<tr class="hover:bg-[#283937]/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-[#3b5451]" data-alt="Portrait of a young female student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAdFn-GUBgc1Mfr3QEHk4ZzG6M13ocJ9GXMer8BdyoDOJqNOivXPlpoC0HtsM0Jjr1djGXSrZdK9Hpo1q22zBRKv5DTOTzamcRqCMmeZLPpXXGHuZvq8E3Q1KK7wyD3dncKoRQ1iKiXcyXS10EZswhLjLWsLib33Cv1l4Ryv8xxSaS0ITuOxfaXsLeaoguF20hbt5jQz8usLMrZ8bOIMkfqAPQNVcvLarFWRQTSn9e7Z5KiZ5VdcrYUDd_sn4Pw7yCUx-7mxEnP_g");'></div>
+<div>
+<div class="text-white font-medium">Ayşe Demir</div>
+<div class="text-xs">10A Sınıfı</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-base">brush</span>
+                                            UI/UX Tasarım
+                                        </div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-500 border border-yellow-500/30">
+                                            Orta
+                                            <span class="material-symbols-outlined text-[14px]">remove</span>
+</span>
+</td>
+<td class="px-6 py-4">
+                                        5 saat önce (Devamsızlık)
+                                    </td>
+<td class="px-6 py-4 text-right">
+<button class="bg-[#283937] hover:bg-[#3b5451] border border-[#3b5451] text-white text-xs font-bold py-1.5 px-3 rounded-lg inline-flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                            1:1 Planla
+                                        </button>
+</td>
+</tr>
+<!-- Row 3 - Low Risk -->
+<tr class="hover:bg-[#283937]/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-[#3b5451]" data-alt="Portrait of a male student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8Ji3N1syGG2Ga29TSLja8cpIXmj8d7ciqBgl9WXlqB8K1_O-vO1U3dt94uPk4AdMoWL9sTlXt0jGHkmUlyqeKY7LCtMwDXUyltfHfJu_OTl9N7X48G-UndEUL-Zwi0jgtzAZELvJJCN5KEazWtU7lpTcHhM-8AJfaFw7cy2BApx3Pnm4l23Bj29QyBqaOSCAFz5CG_DX_uEVR3yRKOUNy3jffVba4JrpDYRi1mKsqRwxU9cRsOd6Qx6yj1w7it3iJYxC4F8zIzg");'></div>
+<div>
+<div class="text-white font-medium">Mehmet Öztürk</div>
+<div class="text-xs">10B Sınıfı</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-base">terminal</span>
+                                            Siber Güvenlik
+                                        </div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
+                                            Düşük
+                                            <span class="material-symbols-outlined text-[14px]">check_circle</span>
+</span>
+</td>
+<td class="px-6 py-4">
+                                        12 dk önce (Ödev Teslim)
+                                    </td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#9cbab6] hover:text-white text-xs font-bold py-1.5 px-3 inline-flex items-center gap-1 transition-all">
+                                            Profili Görüntüle
+                                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar -->
+<div class="w-full lg:w-80 bg-[#111817] lg:border-l border-[#283937] p-6 flex flex-col gap-8 shrink-0">
+<!-- Notices Section -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-white">Duyurular</h3>
+<button class="text-primary text-xs font-bold hover:underline">Tümü</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Notice Card 1 -->
+<div class="p-4 rounded-xl bg-surface-dark border border-[#283937] hover:border-primary/30 transition-colors">
+<div class="flex items-start gap-3">
+<div class="bg-primary/20 p-2 rounded-lg text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<div>
+<h4 class="text-white text-sm font-bold leading-tight mb-1">Hackathon Kayıtları</h4>
+<p class="text-[#9cbab6] text-xs line-clamp-2">Kış dönemi hackathon kayıtları bugün açıldı. Öğrencilerinizi bilgilendirin.</p>
+<span class="text-[#5c7a76] text-[10px] mt-2 block">2 saat önce</span>
+</div>
+</div>
+</div>
+<!-- Notice Card 2 (System) -->
+<div class="p-4 rounded-xl bg-surface-dark border border-[#283937] hover:border-secondary/30 transition-colors">
+<div class="flex items-start gap-3">
+<div class="bg-secondary/20 p-2 rounded-lg text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">dns</span>
+</div>
+<div>
+<h4 class="text-white text-sm font-bold leading-tight mb-1">Sistem Bakımı</h4>
+<p class="text-[#9cbab6] text-xs line-clamp-2">Cuma gecesi 22:00 - 02:00 arası planlı bakım çalışması yapılacaktır.</p>
+<span class="text-[#5c7a76] text-[10px] mt-2 block">Dün</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Engagement Metrics -->
+<div>
+<h3 class="text-lg font-bold text-white mb-4">Katılım Metrikleri</h3>
+<div class="bg-surface-dark rounded-xl border border-[#283937] p-5 flex flex-col gap-6">
+<!-- Circular Progress Mock -->
+<div class="flex items-center justify-between">
+<div class="relative size-20">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<path class="text-[#283937]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-primary drop-shadow-[0_0_6px_rgba(13,242,212,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="85, 100" stroke-width="4"></path>
+</svg>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+<span class="text-white text-sm font-bold">%85</span>
+</div>
+</div>
+<div class="flex-1 pl-4">
+<h4 class="text-white text-sm font-medium">Haftalık Katılım</h4>
+<p class="text-[#9cbab6] text-xs mt-1">Geçen haftaya göre <span class="text-primary">+%2</span> artış var.</p>
+</div>
+</div>
+<div class="h-px w-full bg-[#283937]"></div>
+<!-- Linear Progress List -->
+<div class="flex flex-col gap-4">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-white font-medium">Ödev Tamamlama</span>
+<span class="text-primary font-bold">72%</span>
+</div>
+<div class="w-full bg-[#283937] h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-primary/50 to-primary h-full rounded-full" style="width: 72%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-white font-medium">Aktif Kullanıcılar</span>
+<span class="text-secondary font-bold">48%</span>
+</div>
+<div class="w-full bg-[#283937] h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-secondary/50 to-secondary h-full rounded-full" style="width: 48%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini Calendar Widget -->
+<div>
+<h3 class="text-lg font-bold text-white mb-4">Takvim</h3>
+<div class="bg-surface-dark rounded-xl border border-[#283937] p-4">
+<div class="grid grid-cols-7 gap-1 text-center text-xs mb-2">
+<span class="text-[#5c7a76]">Pt</span>
+<span class="text-[#5c7a76]">Sa</span>
+<span class="text-[#5c7a76]">Ça</span>
+<span class="text-[#5c7a76]">Pe</span>
+<span class="text-[#5c7a76]">Cu</span>
+<span class="text-[#5c7a76]">Ct</span>
+<span class="text-[#5c7a76]">Pa</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center text-sm">
+<span class="text-[#9cbab6] p-1">1</span>
+<span class="text-[#9cbab6] p-1">2</span>
+<span class="text-[#9cbab6] p-1">3</span>
+<span class="text-white bg-primary/20 rounded-md font-bold p-1 border border-primary/30">4</span>
+<span class="text-white p-1">5</span>
+<span class="text-white p-1">6</span>
+<span class="text-white p-1">7</span>
+<!-- Next week hint -->
+<span class="text-[#9cbab6] p-1">8</span>
+<span class="text-[#9cbab6] p-1">9</span>
+<span class="text-[#9cbab6] p-1">10</span>
+<span class="text-secondary font-bold p-1 relative">11<span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 size-1 bg-secondary rounded-full"></span></span>
+<span class="text-[#9cbab6] p-1">12</span>
+<span class="text-[#9cbab6] p-1">13</span>
+<span class="text-[#9cbab6] p-1">14</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

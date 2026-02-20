@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-045 Debug Kliniği - DIGEM</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922", // Deep dark blue-grey
+                        "surface-dark": "#18232e",    // Slightly lighter for panels
+                        "editor-bg": "#0d131a",       // Very dark for editor
+                        "code-comment": "#6a7c8f",
+                        "code-keyword": "#ff79c6",
+                        "code-func": "#82aaff",
+                        "code-string": "#c3e88d",
+                        "error-red": "#ff5555",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .gutter-line:hover .breakpoint-marker {
+            opacity: 0.5;
+        }
+        /* Custom scrollbar for code editor */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283442; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4d61; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283039] px-6 py-3 bg-white dark:bg-[#111418] z-20">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM | Core Programming</h2>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Modules</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Leaderboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Profile</a>
+</nav>
+<div class="h-6 w-px bg-slate-300 dark:bg-slate-700 mx-2"></div>
+<div class="flex items-center gap-3">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200 hidden sm:block">XP: 1,450</span>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 ring-2 ring-primary/20" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwwb4LbwirAcI9L8D0ntIhrt2rMSgQme_clSIlWrQg2y4tT351aA7OzgwimrTBjWSZjTFWMx97_ZZu_SIr01msLBkLdT9_O4Xw4_g8dMf62gtfJwYxJjrflEdGmPGZXrvRCh6qqXaRoKbq45AOFtIXCemQNmzez9P3am5vs-QEmLxY6zKzTQTZXI5zruuPRIglJJgnau_PLWOszlZK17hQRhESaRA9WJNdg6aNHeVcnC0x_1kdm7fa6G9nnhhhWkHu_n69ITzWNw");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Side: IDE & Instructions -->
+<div class="flex-1 flex flex-col min-w-0 bg-background-light dark:bg-background-dark">
+<!-- Breadcrumbs & Title -->
+<div class="px-6 pt-5 pb-2">
+<div class="flex items-center gap-2 mb-2 text-sm">
+<a class="text-slate-500 dark:text-[#9dabb9] hover:text-primary transition-colors" href="#">Core Programming</a>
+<span class="text-slate-400 dark:text-[#586472]">/</span>
+<a class="text-slate-500 dark:text-[#9dabb9] hover:text-primary transition-colors" href="#">Module 4</a>
+<span class="text-slate-400 dark:text-[#586472]">/</span>
+<span class="text-primary font-medium">Debug Clinic SCR-045</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">SCR-045: Debug Clinic</h1>
+<p class="text-slate-600 dark:text-[#9dabb9] mt-1 text-sm max-w-2xl">
+                            Identify the logical error causing the <code class="bg-slate-200 dark:bg-[#2c3642] px-1 py-0.5 rounded text-xs font-mono text-error-red">IndexError</code>. Use breakpoints to inspect the loop.
+                        </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-slate-200 rounded-lg text-sm font-semibold hover:bg-slate-300 dark:hover:bg-[#353f4b] transition-colors">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+                            Reset
+                        </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+                            Run Code
+                        </button>
+</div>
+</div>
+</div>
+<!-- Editor Container -->
+<div class="flex-1 px-6 py-4 flex flex-col min-h-0">
+<div class="flex-1 rounded-xl overflow-hidden border border-slate-300 dark:border-[#283039] bg-white dark:bg-editor-bg flex flex-col shadow-sm">
+<!-- Editor Tabs -->
+<div class="flex items-center bg-slate-100 dark:bg-[#111418] border-b border-slate-300 dark:border-[#283039]">
+<div class="px-4 py-2 bg-white dark:bg-editor-bg border-r border-slate-300 dark:border-[#283039] flex items-center gap-2 text-sm font-mono text-slate-700 dark:text-slate-300 border-t-2 border-t-primary">
+<span class="material-symbols-outlined text-[16px] text-blue-400">data_object</span>
+                            script.py
+                        </div>
+<div class="px-4 py-2 flex items-center gap-2 text-sm font-mono text-slate-500 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[16px]">description</span>
+                            tests.py
+                        </div>
+</div>
+<!-- Code Area -->
+<div class="flex-1 relative overflow-auto font-mono text-sm leading-6" style="font-variant-ligatures: none;">
+<!-- Line Numbers & Breakpoint Gutter -->
+<div class="absolute left-0 top-0 bottom-0 w-12 bg-slate-50 dark:bg-[#111418] border-r border-slate-200 dark:border-[#283039] flex flex-col items-end py-4 pr-2 select-none text-slate-400 dark:text-[#586472]">
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">1</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">2</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">3</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer group">
+<div class="absolute left-1.5 size-3 rounded-full bg-error-red/30 hidden group-hover:block transition-all"></div>
+                                4
+                            </div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer group">
+<div class="absolute left-1.5 size-3 rounded-full bg-error-red shadow-[0_0_8px_rgba(255,85,85,0.6)] z-10"></div>
+<span class="text-slate-800 dark:text-white font-bold">5</span>
+</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">6</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">7</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">8</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">9</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">10</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">11</div>
+<div class="h-6 w-full flex justify-end items-center gutter-line relative cursor-pointer">12</div>
+</div>
+<!-- Code Content -->
+<div class="pl-16 py-4 pr-4">
+<div class="h-6 whitespace-pre"><span class="text-primary dark:text-code-keyword">def</span> <span class="text-blue-600 dark:text-code-func">calculate_average</span>(numbers):</div>
+<div class="h-6 whitespace-pre"> <span class="text-slate-500 dark:text-code-comment"># Initialize total sum</span></div>
+<div class="h-6 whitespace-pre">    total = <span class="text-orange-500">0</span></div>
+<div class="h-6 whitespace-pre"> </div>
+<div class="h-6 whitespace-pre relative">
+<div class="absolute -left-4 -right-4 top-0 bottom-0 bg-error-red/10 border-l-2 border-error-red pointer-events-none"></div>
+<span class="text-slate-500 dark:text-code-comment"># ERROR: Watch the loop range carefully</span>
+</div>
+<div class="h-6 whitespace-pre"> <span class="text-primary dark:text-code-keyword">for</span> i <span class="text-primary dark:text-code-keyword">in</span> <span class="text-blue-600 dark:text-code-func">range</span>(<span class="text-blue-600 dark:text-code-func">len</span>(numbers) + <span class="text-orange-500">1</span>):</div>
+<div class="h-6 whitespace-pre">        total += numbers[i]</div>
+<div class="h-6 whitespace-pre"> </div>
+<div class="h-6 whitespace-pre"> <span class="text-primary dark:text-code-keyword">return</span> total / <span class="text-blue-600 dark:text-code-func">len</span>(numbers)</div>
+<div class="h-6 whitespace-pre"></div>
+<div class="h-6 whitespace-pre"><span class="text-slate-500 dark:text-code-comment"># Test with sample data</span></div>
+<div class="h-6 whitespace-pre">scores = [<span class="text-orange-500">85</span>, <span class="text-orange-500">92</span>, <span class="text-orange-500">78</span>, <span class="text-orange-500">90</span>]</div>
+<div class="h-6 whitespace-pre"><span class="text-blue-600 dark:text-code-func">print</span>(<span class="text-green-600 dark:text-code-string">f"Average score: {calculate_average(scores)}"</span>)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Diagnostics Panel -->
+<div class="w-[400px] border-l border-slate-300 dark:border-[#283039] bg-white dark:bg-surface-dark flex flex-col shadow-xl z-10">
+<!-- Tabs -->
+<div class="flex border-b border-slate-300 dark:border-[#283039]">
+<button class="flex-1 py-3 text-sm font-bold text-slate-900 dark:text-white border-b-2 border-primary bg-slate-50 dark:bg-[#1f2933]">
+                    Traceback
+                </button>
+<button class="flex-1 py-3 text-sm font-bold text-slate-500 dark:text-[#9dabb9] hover:text-slate-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-[#1f2933]/50 transition-colors">
+                    Variables
+                </button>
+<button class="flex-1 py-3 text-sm font-bold text-slate-500 dark:text-[#9dabb9] hover:text-slate-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-[#1f2933]/50 transition-colors">
+                    Hints (2)
+                </button>
+</div>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
+<!-- Error Card -->
+<div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/50 rounded-lg p-4 animate-pulse-short">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error-red mt-0.5">error</span>
+<div>
+<h3 class="text-red-700 dark:text-red-400 font-bold text-sm mb-1">IndexError</h3>
+<p class="text-red-600 dark:text-red-300 text-xs font-mono leading-relaxed">
+                                list index out of range<br/>
+<span class="opacity-75">File "script.py", line 6, in calculate_average</span>
+</p>
+</div>
+</div>
+</div>
+<!-- Call Stack -->
+<div>
+<h4 class="text-xs font-bold text-slate-500 dark:text-[#9dabb9] uppercase tracking-wider mb-2">Call Stack</h4>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between p-2 bg-slate-100 dark:bg-[#111418] rounded border border-slate-200 dark:border-[#283039] cursor-pointer hover:border-primary/50 transition-colors">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-700 dark:text-slate-300">calculate_average(scores)</span>
+<span class="text-[10px] text-slate-500 dark:text-slate-500">line 6</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded cursor-pointer hover:bg-slate-100 dark:hover:bg-[#111418] transition-colors opacity-60">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-700 dark:text-slate-300">&lt;module&gt;</span>
+<span class="text-[10px] text-slate-500 dark:text-slate-500">line 12</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Watch Variables (Mockup for paused state) -->
+<div class="mt-2">
+<div class="flex items-center justify-between mb-2">
+<h4 class="text-xs font-bold text-slate-500 dark:text-[#9dabb9] uppercase tracking-wider">Local Variables</h4>
+<span class="text-[10px] bg-slate-200 dark:bg-primary/20 text-slate-700 dark:text-primary px-1.5 py-0.5 rounded">Paused at line 5</span>
+</div>
+<div class="bg-slate-100 dark:bg-[#111418] rounded-lg border border-slate-200 dark:border-[#283039] overflow-hidden">
+<table class="w-full text-xs font-mono">
+<tbody class="divide-y divide-slate-200 dark:divide-[#283039]">
+<tr class="bg-primary/10">
+<td class="p-2 text-primary">i</td>
+<td class="p-2 text-right text-slate-700 dark:text-slate-200">4</td>
+</tr>
+<tr>
+<td class="p-2 text-slate-500 dark:text-slate-400">numbers</td>
+<td class="p-2 text-right text-slate-700 dark:text-slate-200">[85, 92, 78, 90]</td>
+</tr>
+<tr>
+<td class="p-2 text-slate-500 dark:text-slate-400">len(numbers)</td>
+<td class="p-2 text-right text-slate-700 dark:text-slate-200">4</td>
+</tr>
+<tr>
+<td class="p-2 text-slate-500 dark:text-slate-400">total</td>
+<td class="p-2 text-right text-slate-700 dark:text-slate-200">345</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-2 text-xs text-slate-500 italic">
+<span class="material-symbols-outlined text-[12px] align-middle mr-1">info</span>
+                        Notice the value of 'i' versus the length of 'numbers'.
+                    </div>
+</div>
+<div class="mt-auto"></div>
+<!-- Hint Teaser -->
+<div class="mt-4 p-4 bg-slate-100 dark:bg-[#111418] rounded-lg border border-slate-200 dark:border-[#283039]">
+<div class="flex items-center justify-between mb-2">
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">Need a hint?</h4>
+<span class="text-xs font-bold text-yellow-600 dark:text-yellow-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">monetization_on</span>
+                            Cost: 5 XP
+                        </span>
+</div>
+<p class="text-xs text-slate-600 dark:text-[#9dabb9] mb-3">
+                        Unlock the first hint to check the loop boundaries.
+                    </p>
+<button class="w-full py-2 bg-slate-200 dark:bg-[#283039] hover:bg-slate-300 dark:hover:bg-[#353f4b] text-slate-700 dark:text-slate-200 rounded text-xs font-bold transition-colors">
+                        Unlock Hint 1
+                    </button>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="p-4 border-t border-slate-300 dark:border-[#283039] bg-slate-50 dark:bg-surface-dark">
+<button class="w-full flex items-center justify-center gap-2 py-3 bg-green-600 hover:bg-green-500 text-white rounded-lg font-bold shadow-lg shadow-green-900/20 transition-all" onclick="document.getElementById('reflection-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined">check_circle</span>
+                    Submit Fix
+                </button>
+</div>
+</div>
+</main>
+<!-- Reflection Modal (Hidden by default) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200" id="reflection-modal">
+<div class="bg-white dark:bg-[#18232e] w-full max-w-lg rounded-2xl shadow-2xl border border-slate-200 dark:border-[#283039] overflow-hidden">
+<div class="bg-gradient-to-r from-green-600 to-green-500 p-6 flex items-center justify-between">
+<div>
+<h2 class="text-white text-xl font-bold">Bug Squashed! 🐛</h2>
+<p class="text-green-50 text-sm mt-1 opacity-90">Great job fixing the IndexError.</p>
+</div>
+<div class="bg-white/20 p-2 rounded-full">
+<span class="material-symbols-outlined text-white text-3xl">emoji_events</span>
+</div>
+</div>
+<div class="p-6">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    In your own words, explain why the original loop range caused an error:
+                </label>
+<textarea class="w-full h-32 bg-slate-50 dark:bg-[#111418] border border-slate-300 dark:border-[#283039] rounded-lg p-3 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-primary focus:outline-none resize-none placeholder-slate-400 dark:placeholder-slate-600" placeholder="e.g., The range went one step too far because..."></textarea>
+<div class="mt-6 flex justify-end gap-3">
+<button class="px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-medium transition-colors" onclick="document.getElementById('reflection-modal').classList.add('hidden')">
+                        Cancel
+                    </button>
+<button class="px-6 py-2 bg-primary text-white rounded-lg text-sm font-bold shadow-md hover:bg-primary/90 transition-colors">
+                        Complete Module
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

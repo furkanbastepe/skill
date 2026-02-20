@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-027 Computer Boss Mission - DIGEM</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c242c",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Space Mono", "monospace"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for terminal look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4754; 
+        }
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283039] px-6 py-3 bg-white dark:bg-[#111418] z-10">
+<div class="flex items-center gap-4">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">deployed_code</span>
+</div>
+<div>
+<h2 class="text-lg font-bold leading-tight">DIGEM Core</h2>
+<span class="text-xs text-slate-500 dark:text-[#9dabb9] font-mono">Module: SCR-027</span>
+</div>
+</div>
+<!-- Center Status -->
+<div class="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-[#1c242c] border border-slate-200 dark:border-[#283039]">
+<div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+<span class="text-sm font-medium text-red-500 uppercase tracking-wider">System Critical</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-[#9dabb9]">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span class="hidden sm:inline">Cadet: </span>
+<span class="font-bold text-slate-900 dark:text-white">Alex_D</span>
+</div>
+<div class="h-6 w-px bg-slate-200 dark:bg-[#283039]"></div>
+<button class="flex items-center justify-center gap-2 px-4 py-2 bg-slate-200 dark:bg-[#283039] hover:bg-slate-300 dark:hover:bg-[#3b4754] text-slate-900 dark:text-white rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[18px]">pause</span>
+<span class="hidden sm:inline">Pause</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+<!-- Left Sidebar: Mission Control -->
+<aside class="w-full lg:w-80 border-r border-slate-200 dark:border-[#283039] bg-white dark:bg-[#111418] flex flex-col overflow-y-auto z-0">
+<!-- Mission Title & Timer -->
+<div class="p-6 border-b border-slate-200 dark:border-[#283039]">
+<div class="flex flex-col gap-1 mb-6">
+<span class="text-xs font-bold text-primary uppercase tracking-widest">Final Challenge</span>
+<h1 class="text-2xl font-bold leading-tight">Sistem Kurtarma</h1>
+<p class="text-sm text-slate-500 dark:text-[#9dabb9]">Operasyon SCR-027</p>
+</div>
+<!-- Timer -->
+<div class="bg-red-500/10 border border-red-500/20 rounded-xl p-4 flex flex-col items-center gap-1 mb-6">
+<span class="text-xs font-medium text-red-500 uppercase">Time Remaining</span>
+<div class="text-4xl font-mono font-bold text-red-500 tracking-tighter">14:59</div>
+</div>
+<!-- Progress -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-xs font-medium">
+<span class="text-slate-500 dark:text-[#9dabb9]">Mission Progress</span>
+<span class="text-primary">33%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-[#283039] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/3 rounded-full relative overflow-hidden">
+<div class="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Objectives List -->
+<div class="p-6 flex-1 flex flex-col gap-6">
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#9dabb9] mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">checklist</span>
+                        Objectives
+                    </h3>
+<div class="flex flex-col gap-3">
+<!-- Active Item -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-primary/10 border border-primary/20">
+<div class="mt-0.5 text-primary">
+<span class="material-symbols-outlined text-[20px] animate-spin">sync</span>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Initialize Terminal</p>
+<p class="text-xs text-primary/70 mt-1">Access root directory via command line.</p>
+</div>
+</div>
+<!-- Pending Item -->
+<div class="flex items-start gap-3 p-3 rounded-lg border border-slate-200 dark:border-[#283039] opacity-60">
+<div class="mt-0.5 text-slate-400 dark:text-[#9dabb9]">
+<span class="material-symbols-outlined text-[20px]">check_box_outline_blank</span>
+</div>
+<div>
+<p class="text-sm font-medium">Locate Malware</p>
+<p class="text-xs text-slate-500 dark:text-[#9dabb9] mt-1">Scan /system for 'virus.exe'.</p>
+</div>
+</div>
+<!-- Pending Item -->
+<div class="flex items-start gap-3 p-3 rounded-lg border border-slate-200 dark:border-[#283039] opacity-60">
+<div class="mt-0.5 text-slate-400 dark:text-[#9dabb9]">
+<span class="material-symbols-outlined text-[20px]">check_box_outline_blank</span>
+</div>
+<div>
+<p class="text-sm font-medium">Activate Firewall</p>
+<p class="text-xs text-slate-500 dark:text-[#9dabb9] mt-1">Enable port blocking.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Mastery Score -->
+<div class="mt-auto pt-6 border-t border-slate-200 dark:border-[#283039]">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm font-bold">Mastery Score</span>
+<span class="text-sm font-mono text-primary">850/1000</span>
+</div>
+<div class="relative h-32 w-full bg-slate-900 rounded-lg overflow-hidden border border-slate-800 flex items-center justify-center">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent"></div>
+<!-- Abstract visual for score -->
+<svg class="w-full h-16 text-primary" preserveaspectratio="none" viewbox="0 0 100 20">
+<path d="M0 10 Q 10 5, 20 10 T 40 10 T 60 10 T 80 15 T 100 10" fill="none" stroke="currentColor" stroke-width="2"></path>
+<path d="M0 10 Q 10 15, 20 10 T 40 5 T 60 15 T 80 5 T 100 10" fill="none" opacity="0.5" stroke="currentColor" stroke-width="1"></path>
+</svg>
+<div class="absolute bottom-2 right-3 text-xs font-mono text-primary/80">Rank: Elite</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Workspace -->
+<section class="flex-1 bg-slate-50 dark:bg-[#0b1015] p-4 lg:p-6 overflow-hidden flex flex-col relative">
+<!-- Background Grid Pattern -->
+<div class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#9dabb9 1px, transparent 1px), linear-gradient(90deg, #9dabb9 1px, transparent 1px); background-size: 40px 40px;"></div>
+<!-- Workspace Tabs -->
+<div class="flex items-center gap-2 mb-4 z-10 overflow-x-auto pb-1">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-t-lg text-sm font-bold border-b-2 border-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+                    Terminal
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1c242c] text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#283039] rounded-t-lg text-sm font-medium border-b-2 border-transparent transition-colors">
+<span class="material-symbols-outlined text-[18px]">folder_open</span>
+                    File Explorer
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1c242c] text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#283039] rounded-t-lg text-sm font-medium border-b-2 border-transparent transition-colors">
+<span class="material-symbols-outlined text-[18px]">security</span>
+                    Security Panel
+                </button>
+</div>
+<!-- Terminal Window (Main Interaction) -->
+<div class="flex-1 bg-[#1e1e1e] rounded-b-lg rounded-tr-lg border border-slate-700 shadow-2xl overflow-hidden flex flex-col font-mono text-sm z-10">
+<!-- Terminal Header -->
+<div class="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-black">
+<div class="flex items-center gap-2">
+<div class="flex gap-1.5">
+<div class="size-3 rounded-full bg-[#ff5f56]"></div>
+<div class="size-3 rounded-full bg-[#ffbd2e]"></div>
+<div class="size-3 rounded-full bg-[#27c93f]"></div>
+</div>
+<span class="ml-3 text-xs text-gray-400">root@digem-core:~</span>
+</div>
+<div class="text-xs text-gray-500">bash — 80x24</div>
+</div>
+<!-- Terminal Body -->
+<div class="flex-1 p-4 overflow-y-auto text-gray-300 font-medium leading-relaxed">
+<div class="mb-2">
+<span class="text-green-500">DIGEM_OS v4.2.0</span> (tty1)<br/>
+                        System initialization complete...<br/>
+                        Welcome to the Rescue Interface.<br/>
+</div>
+<div class="mb-4 text-primary">
+                        [!] CRITICAL ALERT: Intrusion detected in sector 7.<br/>
+                        [!] UNAUTHORIZED ACCESS: File integrity compromised.
+                    </div>
+<div class="mb-2">
+<span class="text-blue-400">root@digem-core</span>:<span class="text-blue-300">~</span>$ system_check --full
+                    </div>
+<div class="mb-4 pl-2 border-l-2 border-gray-700">
+                        &gt; Scanning memory... [OK]<br/>
+                        &gt; Scanning storage... [WARNING]<br/>
+                        &gt; 3 corrupted files found in /system/bin<br/>
+                        &gt; Firewall status: DISABLED
+                    </div>
+<div class="mb-2">
+<span class="text-blue-400">root@digem-core</span>:<span class="text-blue-300">~</span>$ <span class="blinking-cursor">_</span>
+</div>
+</div>
+</div>
+<!-- Status Footer inside workspace -->
+<div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 z-10">
+<div class="bg-white dark:bg-[#1c242c] p-3 rounded-lg border border-slate-200 dark:border-[#283039] flex items-center gap-3 shadow-sm">
+<div class="p-2 rounded bg-green-500/10 text-green-500">
+<span class="material-symbols-outlined">memory</span>
+</div>
+<div>
+<div class="text-xs text-slate-500 dark:text-[#9dabb9]">CPU Usage</div>
+<div class="text-sm font-bold">12% <span class="text-xs font-normal text-slate-400">Stable</span></div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1c242c] p-3 rounded-lg border border-slate-200 dark:border-[#283039] flex items-center gap-3 shadow-sm">
+<div class="p-2 rounded bg-yellow-500/10 text-yellow-500">
+<span class="material-symbols-outlined">wifi_off</span>
+</div>
+<div>
+<div class="text-xs text-slate-500 dark:text-[#9dabb9]">Network</div>
+<div class="text-sm font-bold">Offline <span class="text-xs font-normal text-slate-400">Secure</span></div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1c242c] p-3 rounded-lg border border-slate-200 dark:border-[#283039] flex items-center gap-3 shadow-sm">
+<div class="p-2 rounded bg-red-500/10 text-red-500">
+<span class="material-symbols-outlined">bug_report</span>
+</div>
+<div>
+<div class="text-xs text-slate-500 dark:text-[#9dabb9]">Threat Level</div>
+<div class="text-sm font-bold">High <span class="text-xs font-normal text-slate-400">Action Required</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Helpers & Tools (Collapsed on smaller screens if needed) -->
+<aside class="w-full lg:w-72 bg-white dark:bg-[#111418] border-l border-slate-200 dark:border-[#283039] flex flex-col z-0">
+<div class="p-4 border-b border-slate-200 dark:border-[#283039]">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#9dabb9] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">build</span>
+                    Quick Tools
+                </h3>
+</div>
+<div class="p-4 flex flex-col gap-4 overflow-y-auto">
+<!-- Command Palette Hint -->
+<div class="bg-slate-50 dark:bg-[#1c242c] p-3 rounded-lg border border-slate-200 dark:border-[#283039]">
+<h4 class="text-xs font-bold text-slate-500 dark:text-[#9dabb9] mb-2 uppercase">Available Commands</h4>
+<div class="flex flex-col gap-2">
+<code class="text-xs bg-slate-200 dark:bg-[#283039] px-2 py-1 rounded text-primary font-mono block cursor-pointer hover:bg-slate-300 dark:hover:bg-[#3b4754] transition-colors">ls -la</code>
+<code class="text-xs bg-slate-200 dark:bg-[#283039] px-2 py-1 rounded text-primary font-mono block cursor-pointer hover:bg-slate-300 dark:hover:bg-[#3b4754] transition-colors">sudo scan_virus</code>
+<code class="text-xs bg-slate-200 dark:bg-[#283039] px-2 py-1 rounded text-primary font-mono block cursor-pointer hover:bg-slate-300 dark:hover:bg-[#3b4754] transition-colors">firewall --enable</code>
+<code class="text-xs bg-slate-200 dark:bg-[#283039] px-2 py-1 rounded text-primary font-mono block cursor-pointer hover:bg-slate-300 dark:hover:bg-[#3b4754] transition-colors">help</code>
+</div>
+</div>
+<!-- AI Assistant / Hint -->
+<div class="bg-primary/5 border border-primary/20 p-4 rounded-lg relative overflow-hidden">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="text-sm font-bold">System AI</span>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                        "It looks like you need to list the files first to find the malware. Try using the list command."
+                    </p>
+<button class="w-full py-1.5 px-3 bg-primary text-white text-xs font-bold rounded hover:bg-blue-600 transition-colors">
+                        Use Hint (-50 pts)
+                    </button>
+</div>
+<!-- Recent Activity Log -->
+<div class="flex-1">
+<h4 class="text-xs font-bold text-slate-500 dark:text-[#9dabb9] mb-3 uppercase mt-2">System Log</h4>
+<div class="font-mono text-xs flex flex-col gap-2 text-slate-500 dark:text-slate-400">
+<div class="flex gap-2">
+<span class="text-slate-400 dark:text-slate-600">10:42:01</span>
+<span>User login success</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-400 dark:text-slate-600">10:42:05</span>
+<span class="text-red-400">Warning: Port 8080 open</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-400 dark:text-slate-600">10:43:12</span>
+<span>Terminal Session #1 started</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-slate-200 dark:border-[#283039] mt-auto">
+<button class="w-full py-2 px-4 bg-[#283039] hover:bg-[#3b4754] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+                    Give Up
+                </button>
+</div>
+</aside>
+</main>
+</body></html>

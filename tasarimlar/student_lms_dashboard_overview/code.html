@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student LMS Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1173d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased">
+<div class="relative flex min-h-screen w-full flex-row overflow-hidden">
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex-col border-r border-slate-200 bg-white dark:bg-[#1A2634] dark:border-slate-800 hidden lg:flex">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- Brand -->
+<div class="flex items-center gap-3 px-2 py-2">
+<div class="flex items-center justify-center rounded-lg bg-primary/10 p-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">school</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-none">EduLearn</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Student Portal</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary group" href="#">
+<span class="material-symbols-outlined text-[24px] font-variation-settings-'FILL'1">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">local_library</span>
+<span class="text-sm font-medium">My Courses</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">calendar_month</span>
+<span class="text-sm font-medium">Schedule</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">assignment</span>
+<span class="text-sm font-medium">Assignments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">grade</span>
+<span class="text-sm font-medium">Grades</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">folder_open</span>
+<span class="text-sm font-medium">Resources</span>
+</a>
+</nav>
+</div>
+<!-- Profile / Logout -->
+<div class="border-t border-slate-100 dark:border-slate-800 pt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-red-50 hover:text-red-600 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">logout</span>
+<span class="text-sm font-medium">Log Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 flex flex-col min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-slate-200 bg-white/80 dark:bg-[#1A2634]/90 dark:border-slate-800 px-6 backdrop-blur-md">
+<div class="flex flex-col">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Welcome back, Alex!</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Continue where you left off.</p>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search -->
+<div class="hidden md:flex h-10 w-80 items-center overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
+<div class="flex items-center justify-center pl-3 text-slate-400">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="h-full w-full border-none bg-transparent px-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:ring-0" placeholder="Search courses, assignments..."/>
+</div>
+<!-- Notification -->
+<button class="relative flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white dark:ring-slate-800"></span>
+</button>
+<!-- Avatar -->
+<div class="h-10 w-10 overflow-hidden rounded-full border border-slate-200 dark:border-slate-700">
+<img alt="User profile avatar showing a smiling young man" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUnuXBMJNtub1Y97TFNvQru1yUOgNXR5RuRm25JcBUYqpSTCX2Pylz2IJF43VX4lb3d9bmVsbVVMZQ189kcV_-GGA_J9fCasZydlypncdJIKnDmRaQc3KL2sLTSpZashZsqufVuyTNgyKxQzDwR0QcCzuUPqst1f73OoHWAzKKX5IQwUD87_lBFecoA5RGxL0COJONrnisixtm7BPI9Se6m_-cpdVNUL-cizVboPFw3CZhHmXh51JOna1X4nNyirHteXzSOuOVflA"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 md:p-8">
+<div class="mx-auto max-w-6xl space-y-8">
+<!-- Stats Row -->
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+<div class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-900/5 dark:bg-[#1A2634] dark:ring-white/10">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">In Progress</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">school</span>
+</div>
+<p class="mt-4 text-3xl font-bold text-slate-900 dark:text-white">4</p>
+<p class="text-xs text-slate-400 mt-1">Courses active</p>
+</div>
+<div class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-900/5 dark:bg-[#1A2634] dark:ring-white/10">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Completed Lessons</p>
+<span class="material-symbols-outlined text-green-500 bg-green-500/10 p-1.5 rounded-lg">check_circle</span>
+</div>
+<p class="mt-4 text-3xl font-bold text-slate-900 dark:text-white">12</p>
+<p class="text-xs text-slate-400 mt-1">This semester</p>
+</div>
+<div class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-900/5 dark:bg-[#1A2634] dark:ring-white/10">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Average Score</p>
+<span class="material-symbols-outlined text-purple-500 bg-purple-500/10 p-1.5 rounded-lg">trending_up</span>
+</div>
+<p class="mt-4 text-3xl font-bold text-slate-900 dark:text-white">94%</p>
+<p class="text-xs text-green-600 font-medium mt-1">+2% from last week</p>
+</div>
+</div>
+<!-- Main Section: Continue Learning + Deadlines -->
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+<!-- Continue Learning Card -->
+<div class="lg:col-span-2">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Continue Learning</h3>
+<a class="text-sm font-medium text-primary hover:text-primary/80" href="#">View all</a>
+</div>
+<div class="group relative overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-900/5 transition-all hover:shadow-md dark:bg-[#1A2634] dark:ring-white/10">
+<div class="relative h-48 w-full">
+<img class="h-full w-full object-cover" data-alt="Abstract geometric shapes representing advanced mathematics and calculus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD62V-3pEnfolRYflZ_UecAL2KIQlyCwZOV8Sn9p7dWPwzfaN_U1HoDD3UIBG6zPeMsHTAn_DXRwtdMsciswFxQP38sAvmAIpVupHFjVKU-W7052G5hyjwAIuswCUZK5lMFL6hdxWHhaqX5LTsfNt0iHqWGnz-0RK0VnpwPS2AwjPFSoqAYry8KHWV7B60bCaPlPWfUhB4xmPW8EDZ6FTloX6XqmXHIIj2a2GFaOZDY6zIpE3d2aVovjiJVQgEKlUJ7T3w1vHbRvs0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<span class="inline-flex items-center rounded-md bg-white/20 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-white/30 backdrop-blur-sm mb-2">Advanced Level</span>
+<h3 class="text-2xl font-bold text-white">Calculus II: Multivariable Integration</h3>
+</div>
+</div>
+<div class="p-6">
+<div class="mb-4 flex items-center justify-between text-sm">
+<span class="font-medium text-slate-700 dark:text-slate-300">Module 4: Triple Integrals</span>
+<span class="font-bold text-primary">75% Complete</span>
+</div>
+<div class="mb-6 h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+<div class="h-full rounded-full bg-primary transition-all duration-500" style="width: 75%"></div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-[#1A2634]">
+<span class="material-symbols-outlined" style="font-size: 20px;">play_arrow</span>
+                                        Resume Learning
+                                    </button>
+<div class="flex -space-x-2">
+<img alt="Student avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#1A2634]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsF8NmGeRgfap70ai-_eHPH0T7z05qx1ctIIEsyIYYo-_11h1kQyc29Adj6LVCEqluPajJvPN4C9yr-Pnr9Cjvd8muhqo9NKzQ04OUoy7AbQsgI-oiXkYiI1_Ztx1r1k6eN2TusrWSp-Zd7gErwSxFvbxiVPcQL7LfUp_AfBEF0Xws6VXLQJky5zC5XgIdOf3mTIv5yVDEiDo-NjeFnwSsdKnWGwYKTl34V2nHwZQUNnWZsjDFLgp2GQ0bEEWMurAG7ZaxDFWEPGw"/>
+<img alt="Student avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#1A2634]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdVuEB421h8dUCBoyQt8N9q3wviWBq-YqZrans5lWoJef5a-lDcoUFNlVGLbWDEoqGEzoS_9gENZpp4exQAVDP2SLj6_TnjqVQFMBv-GS_8ccvvR5Ij5yWV7wT7cKaJzdQvi9WlbFwcj8nNgNTHZLAnnyiZtuw7_hY_TxpID_LbclC2g7qEcPbl4PdH9VztwF1ZZ9GfuImHQEjzJiAP3LhNjHBn4qBZJvEpp3DlFtKjGV34ObJpPTvp6NE1FBBc2SdFqUckG0wIEA"/>
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 ring-2 ring-white dark:bg-slate-700 dark:ring-[#1A2634]">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">+12</span>
+</div>
+</div>
+<span class="text-xs text-slate-500 dark:text-slate-400">classmates online</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Deadlines Widget -->
+<div class="lg:col-span-1">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Upcoming Deadlines</h3>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Task 1 -->
+<div class="flex flex-col gap-2 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-900/5 dark:bg-[#1A2634] dark:ring-white/10">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Physics Lab Report</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Physics 101</p>
+</div>
+</div>
+<span class="rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-600 dark:bg-red-500/20 dark:text-red-400">Today</span>
+</div>
+<div class="mt-2 flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-700">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Due 11:59 PM</span>
+<button class="text-xs font-medium text-primary hover:underline">Submit</button>
+</div>
+</div>
+<!-- Task 2 -->
+<div class="flex flex-col gap-2 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-900/5 dark:bg-[#1A2634] dark:ring-white/10">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">History Essay</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">World History</p>
+</div>
+</div>
+<span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-500/20 dark:text-amber-400">Friday</span>
+</div>
+<div class="mt-2 flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-700">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Due 2 days</span>
+<button class="text-xs font-medium text-primary hover:underline">Start Draft</button>
+</div>
+</div>
+<!-- Task 3 -->
+<div class="flex flex-col gap-2 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-900/5 dark:bg-[#1A2634] dark:ring-white/10 opacity-75">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Math Quiz</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Calculus II</p>
+</div>
+</div>
+<span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-700 dark:text-slate-400">Next Week</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Course Recommendations -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Recommended For You</h3>
+<div class="flex gap-2">
+<button class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:border-slate-700 dark:bg-[#1A2634] dark:text-slate-300">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+<button class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:border-slate-700 dark:bg-[#1A2634] dark:text-slate-300">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<!-- Rec Card 1 -->
+<div class="group flex cursor-pointer flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-900/5 transition-all hover:-translate-y-1 hover:shadow-md dark:bg-[#1A2634] dark:ring-white/10">
+<div class="h-32 w-full overflow-hidden">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Close up of python code on a computer screen representing programming" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6t1wwnHRxevdvbY7NqOTd01kYu6RUglRzg0Z2C9_Rfah3kG11K4RDBz7SxjXEUvhLn0N2-FZB5s1SvE0yoO83Ia1a2TAX3xC73sN78kCvVq5EhAj2yx4oPZhS9p88VV-CUspYgTj0bb3Zwl5wXmI9DxJpj13hdgysFWHcc-A6kbTFoCuwwazfnXbEh0jzL9krUg0joxBtthQ7rc-RS22M283VWCb6GCyJtviOMuPIs0l3dL6fxowSvrkmrWiNyVMVaR41Q8GuS9o"/>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="mb-2 flex items-center justify-between">
+<span class="rounded bg-blue-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">CS 101</span>
+<div class="flex items-center gap-1 text-amber-400">
+<span class="material-symbols-outlined text-[16px] font-variation-settings-'FILL'1">star</span>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300">4.8</span>
+</div>
+</div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Intro to Python</h4>
+<p class="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">Learn the fundamentals of programming with Python. Great for data science.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-700">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">8 Weeks</span>
+<span class="text-xs font-bold text-primary">Enroll Now</span>
+</div>
+</div>
+</div>
+<!-- Rec Card 2 -->
+<div class="group flex cursor-pointer flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-900/5 transition-all hover:-translate-y-1 hover:shadow-md dark:bg-[#1A2634] dark:ring-white/10">
+<div class="h-32 w-full overflow-hidden">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Abstract colorful oil painting texture representing modern art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbgZ_IBAJ1W2ASmCrwzG4UbMTCXQSbmeJ23EXMkwmQrMXeHe_cC1XZkkV2zHpvKMDzwo4BvgQ2xUw4Qc2FuMF-eh035UJEP12nhm-TzcWQ1Zb4cYx7JVUT7yCNldzw2XLUuxOKI-8A9d2Y_qVtKpvhunHiituivgh-7PbA9fvkf-YqMYSrcVFUcZpCXJO-I8ILKmurvRIPkIfW-Hb5EUsVUtAfAF3eFe8R5CO8lwIvY5BrUQoBoz-n6kJKLvi2JshF-fZmsSHx7X4"/>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="mb-2 flex items-center justify-between">
+<span class="rounded bg-pink-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-pink-600 dark:bg-pink-900/30 dark:text-pink-300">ART 204</span>
+<div class="flex items-center gap-1 text-amber-400">
+<span class="material-symbols-outlined text-[16px] font-variation-settings-'FILL'1">star</span>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300">4.9</span>
+</div>
+</div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Modern Art History</h4>
+<p class="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">Explore the movements that shaped the 20th century, from Cubism to Pop Art.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-700">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">12 Weeks</span>
+<span class="text-xs font-bold text-primary">Enroll Now</span>
+</div>
+</div>
+</div>
+<!-- Rec Card 3 -->
+<div class="group flex cursor-pointer flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-900/5 transition-all hover:-translate-y-1 hover:shadow-md dark:bg-[#1A2634] dark:ring-white/10">
+<div class="h-32 w-full overflow-hidden">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Chart graph on digital tablet showing economic trends" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMUE-6-T-um35dXZKtmrRk10rIAeevTDAjhd58Bjg3ZXKgKCxFY0tCr7l1vWXg-u_fK6A2PtckG6j9lRXaQ6jq7935hXZg-BCmwrGp4o3Tym_wKsjnf_6uhq_lL0PAFNGgYrNi3DH1tiQXJPcWOIZV5gB5I3yFhJch9r0ArFiiNM7qpJpfecKf4Jl8tfTjKBWoArSTZb_YkSuVrVdB-gJH4TZclMmSdp81e3hTwSqSh2Cyn5-25dCiDMGWxEToaSrZva-0S91J-uQ"/>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="mb-2 flex items-center justify-between">
+<span class="rounded bg-teal-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-teal-600 dark:bg-teal-900/30 dark:text-teal-300">ECO 301</span>
+<div class="flex items-center gap-1 text-amber-400">
+<span class="material-symbols-outlined text-[16px] font-variation-settings-'FILL'1">star</span>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300">4.5</span>
+</div>
+</div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Macroeconomics</h4>
+<p class="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">Understand global markets, fiscal policy, and economic indicators.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-700">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">10 Weeks</span>
+<span class="text-xs font-bold text-primary">Enroll Now</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirvanaBrowser: Politika Analiz Modu</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#16202a",
+                        "surface-darker": "#0d1319",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-hidden">
+<!-- Browser Chrome Header -->
+<header class="flex flex-col w-full bg-surface-dark border-b border-slate-700/50 flex-none z-20">
+<!-- Title Bar -->
+<div class="flex items-center justify-between px-6 py-2">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-xl">policy</span>
+</div>
+<h2 class="text-white text-lg font-bold tracking-tight">NirvanaBrowser <span class="text-slate-400 font-normal text-sm ml-2">Policy_Lab Mode</span></h2>
+</div>
+</div>
+<!-- Window Controls (Visual Only) -->
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-slate-600 hover:bg-slate-500"></div>
+<div class="w-3 h-3 rounded-full bg-slate-600 hover:bg-slate-500"></div>
+<div class="w-3 h-3 rounded-full bg-slate-600 hover:bg-slate-500"></div>
+</div>
+</div>
+<!-- Address & Tabs Bar -->
+<div class="flex items-center gap-4 px-6 pb-3">
+<div class="flex gap-2">
+<div class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-700 text-slate-400 cursor-pointer">
+<span class="material-symbols-outlined text-xl">arrow_back</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-700 text-slate-400 cursor-pointer">
+<span class="material-symbols-outlined text-xl">arrow_forward</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-700 text-slate-400 cursor-pointer">
+<span class="material-symbols-outlined text-xl">refresh</span>
+</div>
+</div>
+<div class="flex-1 bg-surface-darker border border-slate-700 rounded-full h-10 flex items-center px-4 relative group">
+<span class="material-symbols-outlined text-slate-500 mr-2 text-sm">lock</span>
+<span class="text-green-500 text-sm font-medium mr-1">https://</span>
+<span class="text-slate-300 text-sm">kurumsal.sirket-kvkk.com/gizlilik-politikasi</span>
+<div class="absolute right-3 flex items-center gap-2">
+<span class="text-xs px-2 py-0.5 rounded bg-primary/20 text-primary border border-primary/30">Güvenli</span>
+</div>
+</div>
+<div class="flex items-center gap-3 ml-2">
+<button class="bg-primary hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">shield_person</span>
+<span>Analizi Başlat</span>
+</button>
+<div class="w-9 h-9 rounded-full bg-slate-700 overflow-hidden border border-slate-600">
+<img class="w-full h-full object-cover" data-alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp06NdOmrn82LOEasLX-UXr3GITnHfQXyZL1904trPIHHJ-Ez39_M5Va0F6HeOAulDMbISWVLWZ4cv4ZSn5LYV4kHQsPLG5zy9z7F1v0KJ08SQssXhgHsU8AApisANo5hwBpoZ3PrcWRcwDnloz_kaAgJIu0WBiqJtNbyVTBYGKHw6gYnnNSlb0aNxsmQiNWNC8qtQ905DexmvVq1iTqpiOGdMWWsxgqj9jH1Qb6czNFPNhV5G4di0WPZ0Wm_mPuM-eh4E2ED26fI"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Context Bar -->
+<div class="bg-primary/10 border-b border-primary/20 px-6 py-1.5 flex justify-center items-center text-xs font-medium text-primary tracking-wide">
+<span>UNDP x Eskişehir Digital Youth Center - PUSULA Lite v1.3</span>
+<span class="mx-3 text-slate-600">|</span>
+<span class="text-slate-300">Ders B3-L4: İleri Seviye Politika Analizi</span>
+</div>
+<!-- Main Workspace -->
+<main class="flex-1 overflow-hidden flex flex-row p-6 gap-6 h-[calc(100vh-140px)]">
+<!-- COLUMN 1: Document Viewer -->
+<section class="flex-1 bg-surface-dark border border-slate-700/50 rounded-xl flex flex-col overflow-hidden shadow-xl shadow-black/20">
+<div class="px-5 py-4 border-b border-slate-700/50 flex justify-between items-center bg-surface-darker">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">description</span>
+<h3 class="font-semibold text-slate-200">Gizlilik Politikası Metni</h3>
+</div>
+<span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">Versiyon 2.4</span>
+</div>
+<div class="flex-1 overflow-y-auto p-8 font-serif leading-relaxed text-slate-300 space-y-6 custom-scrollbar">
+<h1 class="text-2xl font-bold text-white mb-6">Gizlilik ve Kişisel Verilerin Korunması Politikası</h1>
+<p class="text-sm text-slate-500 mb-4">Son Güncelleme: 15 Nisan 2024</p>
+<p>
+                    Şirketimiz ("Veri Sorumlusu"), 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, kullanıcılarımızın kişisel verilerinin güvenliğine azami hassasiyet göstermektedir. İşbu Aydınlatma Metni ile, toplanan verilerin hangi amaçlarla işlendiği aşağıda açıklanmıştır.
+                </p>
+<div class="relative group/highlight">
+<div class="absolute -inset-2 bg-primary/10 rounded-lg border border-primary/20 opacity-100 transition-opacity"></div>
+<h4 class="text-white font-bold text-lg mt-4 mb-2 relative z-10">1. Toplanan Veriler</h4>
+<p class="relative z-10">
+                        Hizmetlerimizi kullanırken tarafınızdan sağlanan <span class="bg-yellow-500/20 text-yellow-200 px-1 rounded border-b border-yellow-500/50 cursor-help" title="Hassas Veri">Ad, Soyad</span>, <span class="bg-yellow-500/20 text-yellow-200 px-1 rounded border-b border-yellow-500/50 cursor-help" title="Hassas Veri">T.C. Kimlik Numarası</span> ve <span class="bg-primary/20 text-primary-200 px-1 rounded border-b border-primary/50 cursor-help" title="Standart Veri">E-posta adresi</span> gibi kimlik ve iletişim bilgileri kayıt altına alınmaktadır.
+                    </p>
+</div>
+<p>
+                    Ayrıca, sistem güvenliğini sağlamak amacıyla <span class="bg-primary/20 text-primary-200 px-1 rounded border-b border-primary/50">IP adresi</span>, tarayıcı bilgileri ve <span class="bg-red-500/20 text-red-200 px-1 rounded border-b border-red-500/50 cursor-help" title="Kritik Veri">Konum Verileri (GPS)</span> otomatik yollarla işlenmektedir.
+                </p>
+<h4 class="text-white font-bold text-lg mt-4 mb-2">2. Verilerin İşlenme Amacı</h4>
+<p>
+                    Toplanan kişisel verileriniz; hukuki yükümlülüklerin yerine getirilmesi, hizmet kalitesinin artırılması ve pazarlama faaliyetlerinin yürütülmesi amacıyla işlenebilir. <span class="bg-orange-500/20 text-orange-200 px-1 rounded border-b border-orange-500/50">Üçüncü taraf iş ortakları</span> ile paylaşım, açık rızanız olmaksızın yapılmamaktadır.
+                </p>
+<h4 class="text-white font-bold text-lg mt-4 mb-2">3. Veri Güvenliği Tedbirleri</h4>
+<p>
+                    Kişisel verileriniz, yetkisiz erişime karşı SSL şifreleme ve güvenlik duvarları ile korunmaktadır.
+                </p>
+<p class="text-slate-500 italic mt-8 border-t border-slate-800 pt-4">
+                    [Belge Sonu]
+                </p>
+</div>
+</section>
+<!-- COLUMN 2: Analysis Core -->
+<section class="w-[340px] flex flex-col gap-6">
+<!-- Score Card -->
+<div class="bg-surface-dark border border-slate-700/50 rounded-xl p-6 flex flex-col items-center justify-center relative overflow-hidden shadow-lg">
+<div class="absolute top-0 right-0 p-3 opacity-10">
+<span class="material-symbols-outlined text-8xl text-primary">analytics</span>
+</div>
+<h3 class="text-slate-400 text-sm font-medium uppercase tracking-wider mb-4 z-10">Uyumluluk Skoru</h3>
+<div class="relative size-40 flex items-center justify-center mb-4 z-10">
+<!-- Circular Progress Background -->
+<svg class="size-full -rotate-90 transform" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#1e293b" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#137fec" stroke-dasharray="251.2" stroke-dashoffset="60" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<!-- Center Text -->
+<div class="absolute flex flex-col items-center">
+<span class="text-4xl font-bold text-white">78</span>
+<span class="text-xs text-primary font-medium">/ 100</span>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+<span class="material-symbols-outlined text-yellow-500 text-sm">warning</span>
+<span class="text-yellow-500 text-xs font-bold">Orta Risk Seviyesi</span>
+</div>
+</div>
+<!-- Classification Panel -->
+<div class="flex-1 bg-surface-dark border border-slate-700/50 rounded-xl p-5 flex flex-col shadow-lg overflow-hidden">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-semibold text-slate-200 text-sm">Veri Sınıflandırma</h3>
+<button class="text-xs text-primary hover:text-white transition-colors">Tümünü Gör</button>
+</div>
+<div class="flex-1 overflow-y-auto pr-1 custom-scrollbar space-y-3">
+<!-- Data Item 1 -->
+<div class="bg-surface-darker p-3 rounded-lg border border-slate-700/50 hover:border-primary/30 transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500 text-lg">fingerprint</span>
+<span class="text-sm font-medium text-slate-200">Biyometrik Veri</span>
+</div>
+<span class="text-[10px] bg-red-500/10 text-red-400 border border-red-500/20 px-1.5 py-0.5 rounded">Kritik</span>
+</div>
+<p class="text-xs text-slate-500">Mevcut belgede açık rıza şartı bulunamadı.</p>
+</div>
+<!-- Data Item 2 -->
+<div class="bg-surface-darker p-3 rounded-lg border border-slate-700/50 hover:border-primary/30 transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-lg">badge</span>
+<span class="text-sm font-medium text-slate-200">TC Kimlik No</span>
+</div>
+<span class="text-[10px] bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 px-1.5 py-0.5 rounded">Hassas</span>
+</div>
+<p class="text-xs text-slate-500">İşleme amacı belirtilmiş ancak saklama süresi eksik.</p>
+</div>
+<!-- Data Item 3 -->
+<div class="bg-surface-darker p-3 rounded-lg border border-slate-700/50 hover:border-primary/30 transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span class="text-sm font-medium text-slate-200">Konum Verisi</span>
+</div>
+<span class="text-[10px] bg-primary/10 text-primary border border-primary/20 px-1.5 py-0.5 rounded">İzleme</span>
+</div>
+<p class="text-xs text-slate-500">GPS verisi otomatik olarak toplanıyor.</p>
+</div>
+<!-- Data Item 4 -->
+<div class="bg-surface-darker p-3 rounded-lg border border-slate-700/50 hover:border-primary/30 transition-colors group opacity-60">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-lg">mail</span>
+<span class="text-sm font-medium text-slate-200">E-Posta</span>
+</div>
+<span class="text-[10px] bg-green-500/10 text-green-400 border border-green-500/20 px-1.5 py-0.5 rounded">Uyumlu</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- COLUMN 3: QuestDock -->
+<section class="w-[280px] flex flex-col bg-surface-darker border-l border-slate-800 -m-6 p-6 shadow-2xl z-10">
+<div class="flex items-center gap-2 mb-6 text-primary">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<h2 class="font-bold tracking-tight text-lg">QuestDock</h2>
+</div>
+<!-- Task Status -->
+<div class="bg-surface-dark border border-slate-700/50 rounded-lg p-4 mb-6">
+<h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Aktif Görev</h4>
+<p class="text-sm text-white font-medium mb-3">Politika İhlallerini Tespit Et</p>
+<div class="w-full bg-slate-700 h-1.5 rounded-full mb-2">
+<div class="bg-green-500 h-1.5 rounded-full" style="width: 80%"></div>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-400">%80 Tamamlandı</span>
+<span class="text-green-400">Devam Ediyor</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-4">
+<h4 class="text-xs font-semibold text-slate-400 uppercase">Analiz Raporu</h4>
+<!-- Report Item -->
+<div class="flex gap-3 items-start">
+<div class="mt-0.5 size-5 rounded-full bg-red-500/20 flex items-center justify-center flex-none">
+<span class="material-symbols-outlined text-xs text-red-500">close</span>
+</div>
+<div>
+<p class="text-sm text-slate-200 font-medium">Açık Rıza Eksikliği</p>
+<p class="text-xs text-slate-500 mt-1">Biyometrik veriler için ayrı bir rıza metni sunulmamış.</p>
+</div>
+</div>
+<!-- Report Item -->
+<div class="flex gap-3 items-start">
+<div class="mt-0.5 size-5 rounded-full bg-yellow-500/20 flex items-center justify-center flex-none">
+<span class="material-symbols-outlined text-xs text-yellow-500">priority_high</span>
+</div>
+<div>
+<p class="text-sm text-slate-200 font-medium">Saklama Süresi Belirsiz</p>
+<p class="text-xs text-slate-500 mt-1">Verilerin imha edileceği tarih belirtilmemiş.</p>
+</div>
+</div>
+<!-- Report Item -->
+<div class="flex gap-3 items-start">
+<div class="mt-0.5 size-5 rounded-full bg-green-500/20 flex items-center justify-center flex-none">
+<span class="material-symbols-outlined text-xs text-green-500">check</span>
+</div>
+<div>
+<p class="text-sm text-slate-200 font-medium">Veri Sorumlusu İletişim</p>
+<p class="text-xs text-slate-500 mt-1">KVKK başvuru kanalları açıkça belirtilmiş.</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-auto pt-6 border-t border-slate-800 flex flex-col gap-3">
+<button class="w-full bg-surface-dark hover:bg-slate-700 border border-slate-600 text-slate-200 text-sm font-medium py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">edit_note</span>
+                    Not Ekle
+                </button>
+<button class="w-full bg-primary hover:bg-blue-600 text-white text-sm font-bold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">download</span>
+                    Raporu İndir
+                </button>
+</div>
+</section>
+</main>
+<style>
+        /* Custom Scrollbar for dark theme */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+    </style>
+</body></html>

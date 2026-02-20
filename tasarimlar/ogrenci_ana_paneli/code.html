@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ogrenci Ana Paneli - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                        "surface-dark": "#1b2d2a",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "2xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(27, 45, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #ffffff, #9abcb7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .neon-glow:hover {
+            box-shadow: 0 0 15px rgba(0, 194, 168, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-white overflow-x-hidden selection:bg-primary selection:text-background-dark">
+<div class="flex flex-col min-h-screen">
+<!-- Header / Navigation -->
+<header class="flex items-center justify-between px-6 py-4 md:px-10 border-b border-slate-200 dark:border-[#273a38] bg-white dark:bg-[#101817] sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-4xl">hexagon</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight uppercase">Ogrenci Paneli</h2>
+</div>
+<!-- Search Bar -->
+<div class="hidden md:flex items-center h-10 w-64 bg-slate-100 dark:bg-[#273a38] rounded-full px-4 border border-transparent focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#9abcb7]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-[#9abcb7]" placeholder="Search modules..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 rounded-full hover:bg-slate-100 dark:hover:bg-[#273a38] transition-colors group">
+<span class="material-symbols-outlined text-slate-600 dark:text-white">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-[#273a38] transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-white">settings</span>
+</button>
+<div aria-label="Profile picture of a student" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-[#273a38] overflow-hidden border-2 border-transparent hover:border-primary transition-colors cursor-pointer" role="img" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDeAoYAUUdRAX8bDTGKvfp49rR5R0lU_iEYOyzO6KwYsfyU74l2Wu6maG53u0h1G4h7GytJeZxbOo8Jy-W8eH1Y-hsY0FRqS70dwCwSW7QujUXaF4ooA39nIfQOHcZnG3vjxp1uc1JKRP7lP6TKuNFioaTAqYtzlNEopJ6EwMegKUDPXvn-Bq9ojKfEARI33kDd-M6O8wQ5TUewVbYnxzghwG8qxhjsXW9SzX8oMY-CR39JlyzGQmMBPkbBMoX8PFQ7MO9WDfqGsHYL'); background-size: cover; background-position: center;"></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col lg:flex-row gap-6 p-6 md:p-8 max-w-[1600px] mx-auto w-full">
+<!-- Left Column: Main Content -->
+<div class="flex-1 flex flex-col gap-8">
+<!-- Welcome Section -->
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-bold tracking-tight gradient-text w-fit">Welcome back, Alex</h1>
+<p class="text-slate-500 dark:text-[#9abcb7] text-lg">Ready to crush some code today? Your streak is on fire!</p>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Streak Card -->
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-3 group hover:border-primary/50 transition-colors cursor-default">
+<div class="flex justify-between items-start">
+<span class="text-slate-400 dark:text-[#9abcb7] text-sm font-medium uppercase tracking-wider">Day Streak</span>
+<div class="p-2 rounded-full bg-orange-500/10 text-orange-500">
+<span class="material-symbols-outlined">local_fire_department</span>
+</div>
+</div>
+<div>
+<span class="text-3xl font-bold">7 Days</span>
+<div class="w-full bg-slate-200 dark:bg-[#273a38] h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-orange-500 h-full rounded-full w-[70%]"></div>
+</div>
+</div>
+</div>
+<!-- XP Card -->
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-3 group hover:border-primary/50 transition-colors cursor-default">
+<div class="flex justify-between items-start">
+<span class="text-slate-400 dark:text-[#9abcb7] text-sm font-medium uppercase tracking-wider">Total XP</span>
+<div class="p-2 rounded-full bg-purple-500/10 text-purple-400">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+</div>
+<div>
+<span class="text-3xl font-bold">2,450 XP</span>
+<div class="flex items-center gap-2 mt-2">
+<span class="text-xs text-primary font-bold bg-primary/10 px-2 py-0.5 rounded-md">LEVEL 5</span>
+<span class="text-xs text-slate-500 dark:text-[#9abcb7]">550 XP to Level 6</span>
+</div>
+</div>
+</div>
+<!-- Mastery Card -->
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-3 group hover:border-primary/50 transition-colors cursor-default">
+<div class="flex justify-between items-start">
+<span class="text-slate-400 dark:text-[#9abcb7] text-sm font-medium uppercase tracking-wider">Course Mastery</span>
+<div class="p-2 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-3xl font-bold">42%</span>
+<div class="flex-1 h-12 flex items-center">
+<!-- Simple visual representation of progress -->
+<div class="flex gap-1 h-2 w-full">
+<div class="bg-primary flex-1 rounded-sm opacity-100"></div>
+<div class="bg-primary flex-1 rounded-sm opacity-100"></div>
+<div class="bg-primary flex-1 rounded-sm opacity-100"></div>
+<div class="bg-primary flex-1 rounded-sm opacity-40"></div>
+<div class="bg-primary flex-1 rounded-sm opacity-20"></div>
+<div class="bg-primary flex-1 rounded-sm opacity-20"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Module Card (Hero) -->
+<div class="relative overflow-hidden rounded-3xl bg-surface-dark border border-[#273a38] shadow-2xl group">
+<div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-[#00c2a8]/10 to-transparent"></div>
+<div class="relative p-8 flex flex-col md:flex-row gap-8 items-center">
+<!-- Image -->
+<div class="w-full md:w-1/3 aspect-video rounded-2xl overflow-hidden shadow-lg border border-[#273a38] relative">
+<div class="absolute inset-0 bg-black/20 z-10"></div>
+<img alt="Computer screen displaying code syntax in dark mode" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBFQPjves6myjYfRbp28F5rg8nifU6ur6LrntZFhTwdpsq8eaw5ktAjYU2mWaIXDrobobYgQtW7u6F6r6QyvMKLo69wALcAOcdsKkLsBtOpPbGRA9t07BTmbJTQM2MKv0czNvJfJb8I7KxZEBH_OQWRPim9l_1C8IpFIzQ0x6gF7PBYlSPbdrvqJRp5BxPVz-JfeMdr54ga_MOhEV7j5Yh3AOzyEdEy9h6s-GtVLV_WF5kBi5bAXF1WQiq0hWQVfdKZ3NEYowYHBUo"/>
+<div class="absolute bottom-3 left-3 z-20 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-lg border border-white/10">
+<span class="text-xs font-bold text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">play_circle</span> 45 min
+                                </span>
+</div>
+</div>
+<!-- Content -->
+<div class="flex-1 flex flex-col gap-4 items-start">
+<div class="flex items-center gap-2">
+<span class="bg-primary text-background-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Current Module</span>
+<span class="text-slate-400 dark:text-[#9abcb7] text-xs font-medium uppercase tracking-wider">Advanced Python Structures</span>
+</div>
+<h2 class="text-2xl md:text-3xl font-bold text-white leading-tight">Lab 04: Data Visualization &amp; Pandas</h2>
+<p class="text-slate-400 dark:text-[#9abcb7] text-base leading-relaxed max-w-xl">
+                                Resume where you left off. In this lab, you'll learn how to transform raw data into meaningful charts using the Pandas library.
+                            </p>
+<div class="flex flex-wrap gap-4 mt-2">
+<button class="neon-glow bg-primary hover:bg-[#00e0c2] text-background-dark font-bold text-base px-8 py-3 rounded-full transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">play_arrow</span>
+                                    Continue Learning
+                                </button>
+<button class="bg-transparent border border-[#273a38] hover:bg-[#273a38] text-white font-medium text-base px-6 py-3 rounded-full transition-all">
+                                    View Syllabus
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity / Quick Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Activity Graph Placeholder -->
+<div class="glass-panel p-6 rounded-2xl border border-[#273a38]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-lg">Weekly Focus</h3>
+<button class="text-xs text-primary hover:underline">View Report</button>
+</div>
+<div class="flex items-end justify-between gap-2 h-32 px-2">
+<div class="w-full bg-[#273a38] rounded-t-lg h-[40%] hover:bg-primary/50 transition-colors"></div>
+<div class="w-full bg-[#273a38] rounded-t-lg h-[65%] hover:bg-primary/50 transition-colors"></div>
+<div class="w-full bg-[#273a38] rounded-t-lg h-[30%] hover:bg-primary/50 transition-colors"></div>
+<div class="w-full bg-[#273a38] rounded-t-lg h-[80%] hover:bg-primary/50 transition-colors"></div>
+<div class="w-full bg-primary rounded-t-lg h-[95%] relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">2.5hr</div>
+</div>
+<div class="w-full bg-[#273a38] rounded-t-lg h-[20%] hover:bg-primary/50 transition-colors"></div>
+<div class="w-full bg-[#273a38] rounded-t-lg h-[10%] hover:bg-primary/50 transition-colors"></div>
+</div>
+<div class="flex justify-between mt-3 text-xs text-slate-500 dark:text-[#9abcb7] px-2">
+<span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+</div>
+</div>
+<!-- Recommended Resources -->
+<div class="glass-panel p-6 rounded-2xl border border-[#273a38] flex flex-col justify-between">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-lg">Recommended for You</h3>
+<button class="p-1 rounded-full hover:bg-[#273a38]">
+<span class="material-symbols-outlined text-sm">more_horiz</span>
+</button>
+</div>
+<div class="space-y-3">
+<a class="flex items-center gap-4 p-3 rounded-xl bg-[#273a38]/50 hover:bg-[#273a38] transition-colors group" href="#">
+<div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">article</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-white">Pandas Documentation Cheat Sheet</h4>
+<p class="text-xs text-slate-400">Reference Material • 5 min read</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl bg-[#273a38]/50 hover:bg-[#273a38] transition-colors group" href="#">
+<div class="w-10 h-10 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">smart_display</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-white">Data Viz Best Practices</h4>
+<p class="text-xs text-slate-400">Video • 12 min watch</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar -->
+<aside class="w-full lg:w-80 flex flex-col gap-6">
+<!-- DIGEM Coach Widget -->
+<div class="bg-gradient-to-b from-[#1b2d2a] to-[#131f1d] p-6 rounded-3xl border border-[#273a38] shadow-lg relative overflow-hidden">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-blue-500 flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-white">DIGEM Coach</h3>
+<p class="text-xs text-primary">Online • AI Assistant</p>
+</div>
+</div>
+<div class="bg-[#0f1917] p-4 rounded-xl rounded-tl-none border border-[#273a38] mb-4">
+<p class="text-sm text-slate-300 leading-relaxed">
+                            "Hey Alex! Don't forget to review your syntax errors from yesterday's quiz. Would you like a quick refresher on list comprehensions?"
+                        </p>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#273a38] hover:bg-[#324a47] text-primary text-sm font-bold transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">chat</span>
+                        Chat with Coach
+                    </button>
+</div>
+<!-- Upcoming Events Timeline -->
+<div class="glass-panel p-6 rounded-3xl border border-[#273a38] flex-1">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-lg">Upcoming</h3>
+<button class="text-primary hover:bg-[#273a38] p-1 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</button>
+</div>
+<div class="space-y-6 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-[2px] before:bg-[#273a38]">
+<!-- Event 1 -->
+<div class="relative pl-10">
+<div class="absolute left-[13px] top-1 w-3.5 h-3.5 rounded-full border-2 border-primary bg-background-dark z-10"></div>
+<h4 class="text-sm font-bold text-white">Live Coding Session</h4>
+<p class="text-xs text-slate-400 mb-1">Today, 14:00 PM</p>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-400">ZOOM</span>
+</div>
+<!-- Event 2 -->
+<div class="relative pl-10">
+<div class="absolute left-[13px] top-1 w-3.5 h-3.5 rounded-full border-2 border-slate-600 bg-background-dark z-10"></div>
+<h4 class="text-sm font-bold text-slate-300">Project Submission</h4>
+<p class="text-xs text-slate-500 mb-1">Tomorrow, 23:59 PM</p>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400">DEADLINE</span>
+</div>
+<!-- Event 3 -->
+<div class="relative pl-10">
+<div class="absolute left-[13px] top-1 w-3.5 h-3.5 rounded-full border-2 border-slate-600 bg-background-dark z-10"></div>
+<h4 class="text-sm font-bold text-slate-300">Peer Review: SQL Basics</h4>
+<p class="text-xs text-slate-500 mb-1">Wed, Oct 24</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Bottom Quick Links Dock (Floating) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-auto">
+<div class="glass-panel px-6 py-3 rounded-full shadow-2xl border border-[#273a38] flex items-center gap-6 md:gap-8">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="w-10 h-10 rounded-full bg-[#273a38] text-slate-400 flex items-center justify-center group-hover:bg-primary group-hover:text-background-dark transition-all transform group-hover:-translate-y-2 duration-300">
+<span class="material-symbols-outlined">code</span>
+</div>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-white transition-colors">Editor</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="w-10 h-10 rounded-full bg-[#273a38] text-slate-400 flex items-center justify-center group-hover:bg-primary group-hover:text-background-dark transition-all transform group-hover:-translate-y-2 duration-300">
+<span class="material-symbols-outlined">library_books</span>
+</div>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-white transition-colors">Library</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="w-12 h-12 rounded-full bg-primary text-background-dark flex items-center justify-center shadow-[0_0_15px_rgba(0,194,168,0.5)] hover:scale-110 transition-transform transform -translate-y-4 border-4 border-background-dark">
+<span class="material-symbols-outlined text-2xl">add</span>
+</div>
+<span class="text-[10px] font-medium text-white -mt-3">New</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="w-10 h-10 rounded-full bg-[#273a38] text-slate-400 flex items-center justify-center group-hover:bg-primary group-hover:text-background-dark transition-all transform group-hover:-translate-y-2 duration-300">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-white transition-colors">Community</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="w-10 h-10 rounded-full bg-[#273a38] text-slate-400 flex items-center justify-center group-hover:bg-primary group-hover:text-background-dark transition-all transform group-hover:-translate-y-2 duration-300">
+<span class="material-symbols-outlined">grade</span>
+</div>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-white transition-colors">Grades</span>
+</a>
+</div>
+</div>
+</div>
+</body></html>

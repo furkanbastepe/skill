@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite - Hoş Geldin</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#192633",
+                        "surface-dark-lighter": "#233648",
+                        "text-secondary": "#92adc9",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem", 
+                        "lg": "1rem", 
+                        "xl": "1.5rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col antialiased text-slate-900 dark:text-slate-100 overflow-x-hidden">
+<!-- Header -->
+<header class="w-full h-16 border-b border-slate-200 dark:border-surface-dark-lighter bg-white dark:bg-background-dark px-6 md:px-10 flex items-center justify-between sticky top-0 z-50">
+<!-- Brand / Logo Area -->
+<div class="flex items-center gap-4">
+<!-- Logo Icon -->
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.578 8.578C5.528 11.628 3.451 15.514 2.609 19.745C1.768 23.976 2.2 28.361 3.85 32.346C5.501 36.331 8.297 39.738 11.883 42.134C15.47 44.53 19.687 45.81 24 45.81C28.314 45.81 32.53 44.53 36.117 42.134C39.703 39.738 42.499 36.331 44.149 32.346C45.8 28.361 46.232 23.976 45.39 19.745C44.549 15.514 42.472 11.628 39.422 8.578L24 24L8.578 8.578Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<h1 class="text-base font-bold tracking-tight text-slate-900 dark:text-white leading-none">PUSULA Lite</h1>
+<span class="text-[10px] font-medium text-text-secondary mt-1">UNDP x Eskişehir Digital Youth</span>
+</div>
+<div class="hidden sm:flex px-2 py-0.5 rounded bg-surface-dark-lighter text-primary text-[10px] font-bold uppercase tracking-wider">v1.3</div>
+</div>
+<!-- User Profile Area -->
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex flex-col items-end mr-2">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Hoş geldin, Can</span>
+<span class="text-xs text-text-secondary">Öğrenci</span>
+</div>
+<div class="size-9 rounded-full bg-slate-200 dark:bg-surface-dark-lighter border border-slate-300 dark:border-surface-dark relative bg-cover bg-center" data-alt="Portrait of a young user" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6bbqkY7-N-LEdWQWKw6fHVO1_VvluYF6WYz-Yrp5VRBZMbUETfZd9zP4Qa-ntjEoOtf8I9EXlZzm6637pXlwf74xl-mRNU52cWjsyk7ttIbpf6P0AI2suuyuODG_1bXRoNqW9Zt4sr5hQ8_mAGoQ-Y56ejYMoozpJs6eCSmlFvPh7dP8hIvOUrJFfwUulkUTyniBAeW51v8Am5F3jaACAUVaqW716ERokEur2jmVdIESIH4naNryIdUyvlKoVdNxrRp00itthE9w');">
+<div class="absolute bottom-0 right-0 size-2.5 bg-green-500 rounded-full border-2 border-white dark:border-background-dark"></div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<main class="flex-1 flex flex-col items-center justify-center p-4 md:p-8 relative">
+<!-- Background Elements for Atmosphere -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- Content Container -->
+<div class="w-full max-w-4xl flex flex-col gap-6 relative z-10">
+<!-- Greeting & Title -->
+<div class="text-center mb-8 animate-fade-in-up">
+<h2 class="text-4xl md:text-5xl font-black tracking-tight mb-3 bg-gradient-to-r from-white to-text-secondary bg-clip-text text-transparent">Yolculuğun Başlıyor</h2>
+<p class="text-text-secondary text-lg max-w-2xl mx-auto font-light">Sana özel, yapay zeka destekli bir öğrenme rotası oluşturmamız için seni biraz daha yakından tanımamız gerekiyor.</p>
+</div>
+<!-- Central Card Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<!-- Main Action Card -->
+<div class="lg:col-span-8 bg-white dark:bg-surface-dark rounded-xl shadow-lg border border-slate-200 dark:border-surface-dark-lighter overflow-hidden group hover:border-primary/50 transition-all duration-300">
+<div class="flex flex-col h-full md:flex-row">
+<!-- Card Image / Hero -->
+<div class="w-full md:w-2/5 relative h-48 md:h-auto overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 md:hidden"></div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Abstract digital network or learning path visualization" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABSF4X0YUjfIjmuES7oU-cBQ6h5bbqr2HBNNqVPGN4QPq-p-RRqQFG_v3HhMvz0adVu9AJTzjA53TmqcX-0RKmlTzy9ntO38M-9xMcdCTLoSpCRVwArJUDyw7ntiW2poEtBL4EmdPj1qKoXqOpX-aWfMwWOgpbJ8JyL4SIaofWcYdFXDW0X-bYT5WVoGgQ21MV9jnwen2BItDDxhKupTcDQ7Z4q7d7V9Fj61jt7WxdAOOZMJpS19xYbuI0JT0dJAxw9n-utGbU1r0');">
+</div>
+<!-- Mobile Badge -->
+<div class="absolute bottom-4 left-4 z-20 md:hidden flex items-center gap-2 px-3 py-1 bg-surface-dark/90 backdrop-blur-sm rounded-full border border-surface-dark-lighter/50">
+<span class="material-symbols-outlined text-primary text-[18px]">school</span>
+<span class="text-xs font-bold text-white">Mentor Destekli</span>
+</div>
+</div>
+<!-- Card Content -->
+<div class="flex-1 p-6 md:p-8 flex flex-col justify-between relative">
+<!-- Desktop Badge -->
+<div class="hidden md:flex absolute top-6 right-6 items-center gap-2 px-3 py-1.5 bg-background-dark/50 rounded-full border border-surface-dark-lighter">
+<span class="material-symbols-outlined text-primary text-[16px]">verified_user</span>
+<span class="text-xs font-medium text-text-secondary">Mentor Onboarding</span>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-primary text-sm font-bold uppercase tracking-wider mb-1">İlk Adım</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white leading-tight">Tanısal Değerlendirme</h3>
+</div>
+<p class="text-text-secondary text-base leading-relaxed">
+                                    Mevcut yetkinliklerini analiz etmek ve hedeflerine en uygun başlangıç noktasını belirlemek için hazırladığımız 15 soruluk özel bir değerlendirme.
+                                </p>
+</div>
+<div class="mt-8 space-y-4">
+<!-- Meta Data -->
+<div class="flex flex-wrap gap-4 text-sm text-text-secondary border-t border-slate-100 dark:border-surface-dark-lighter pt-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span>Tahmini Süre: <span class="text-slate-900 dark:text-white font-medium">5-7 Dakika</span></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">quiz</span>
+<span>Soru Sayısı: <span class="text-slate-900 dark:text-white font-medium">15 Soru</span></span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row gap-3 pt-2">
+<button class="flex-1 bg-primary hover:bg-blue-600 text-white font-bold h-12 px-6 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40">
+<span>Değerlendirmeye Başla</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="sm:flex-none bg-transparent hover:bg-surface-dark-lighter text-text-secondary hover:text-white font-medium h-12 px-6 rounded-lg transition-colors border border-transparent hover:border-surface-dark-lighter">
+                                        Daha Sonra
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Panel / Info -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<!-- Tip Card -->
+<div class="bg-surface-dark-lighter/30 border border-surface-dark-lighter rounded-xl p-5 flex-1 flex flex-col justify-center backdrop-blur-sm">
+<div class="size-10 rounded-lg bg-surface-dark-lighter flex items-center justify-center mb-4 text-yellow-500">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<h4 class="text-lg font-bold text-white mb-2">Neden Önemli?</h4>
+<p class="text-sm text-text-secondary leading-relaxed">
+                            Bu değerlendirme bir sınav değildir. Sonuçlar sadece sana en uygun içerikleri sunmak ve mentorunun seni daha iyi tanıması için kullanılacaktır. Lütfen cevaplarken dürüst ol.
+                        </p>
+</div>
+<!-- Tech Stack / Category Preview -->
+<div class="bg-surface-dark-lighter/30 border border-surface-dark-lighter rounded-xl p-5 backdrop-blur-sm">
+<h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 opacity-80">Değerlendirme Alanları</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-md bg-surface-dark border border-surface-dark-lighter text-xs text-text-secondary">Yazılım Temelleri</span>
+<span class="px-3 py-1.5 rounded-md bg-surface-dark border border-surface-dark-lighter text-xs text-text-secondary">Problem Çözme</span>
+<span class="px-3 py-1.5 rounded-md bg-surface-dark border border-surface-dark-lighter text-xs text-text-secondary">Algoritma</span>
+<span class="px-3 py-1.5 rounded-md bg-surface-dark border border-surface-dark-lighter text-xs text-text-secondary">Sayısal Analiz</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="w-full py-6 text-center text-text-secondary text-xs border-t border-surface-dark-lighter mt-auto bg-background-dark z-10">
+<p>© 2024 Eskişehir Digital Youth Center. Tüm hakları saklıdır. UNDP işbirliği ile geliştirilmiştir.</p>
+</footer>
+</body></html>

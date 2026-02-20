@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-016 Sınıf Canlı Durum Takibi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                        "surface-dark": "#162e2a",
+                        "surface-darker": "#0a1715",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "sans": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Lexend', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-hidden">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="flex w-72 flex-col justify-between border-r border-white/10 bg-surface-darker transition-all duration-300 hidden lg:flex">
+<div class="flex flex-col gap-6 p-4">
+<!-- User Profile -->
+<div class="flex items-center gap-3 rounded-xl bg-white/5 p-3">
+<div class="h-12 w-12 rounded-full bg-cover bg-center ring-2 ring-primary/20" data-alt="Portrait of a male trainer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBH3rmpX0ERRC-1odsEF3Cohcf4ztJzJrPARyh52P8QWGsjaeAkGHmYib35KyXFlTE2bUYwy1aOt9w_4n3sbL4SqJp8TX75ekCwUTJaJOAuEAPrmBcIsAOskq67mhSduwpicUSE4crIOoWmvtd8M-o4gracmmPcVupHkFQlM738kdVl4RRCjUUi0Ij1HCCudFODXdYWFcNdiBdVSysHUYWn0zuyuMrlm5xCeEG9Q2mz3YapqTshL-fY1M7JI0FLDf7eGIceIUK4-A");'></div>
+<div class="flex flex-col">
+<h1 class="text-sm font-bold text-white">Ahmet Yılmaz</h1>
+<p class="text-xs font-medium text-primary">DIGEM Eğitmen</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg bg-primary/20 px-4 py-3 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">monitor_heart</span>
+<span class="text-sm font-bold">Sınıf Takibi</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-sm font-medium">Müfredat</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-medium">Öğrenciler</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="text-sm font-medium">Raporlar</span>
+</a>
+</nav>
+</div>
+<div class="p-4">
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Ayarlar</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex flex-1 flex-col overflow-hidden bg-background-light dark:bg-background-dark relative">
+<!-- Mobile Header Trigger -->
+<div class="lg:hidden p-4 bg-surface-darker flex justify-between items-center border-b border-white/10">
+<span class="font-bold text-lg">Sınıf Takibi</span>
+<button class="text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Top Bar / Header -->
+<header class="flex flex-col border-b border-white/10 bg-surface-dark/50 backdrop-blur-md px-6 py-4 gap-4 z-10">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-sm text-slate-400 mb-1">
+<span>Sınıflar</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span>Python 101</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-medium">Lab 3 Oturumu</span>
+</div>
+<h2 class="text-2xl font-bold text-white tracking-tight">Sınıf Canlı Durum Takibi</h2>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold animate-pulse">
+<div class="w-2 h-2 rounded-full bg-red-500"></div>
+                            CANLI: 00:42:15
+                        </div>
+<button class="hidden sm:flex h-10 items-center justify-center gap-2 rounded-lg bg-surface-dark border border-white/10 px-4 text-sm font-medium text-white hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">campaign</span>
+<span>Duyuru Yap</span>
+</button>
+<button class="h-10 items-center justify-center rounded-lg bg-red-500 hover:bg-red-600 text-white px-4 text-sm font-bold transition-colors shadow-lg shadow-red-500/20 flex gap-2">
+<span class="material-symbols-outlined text-[20px]">power_settings_new</span>
+<span>Oturumu Bitir</span>
+</button>
+</div>
+</div>
+<!-- Stats Overview -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="flex items-center gap-4 rounded-xl border border-white/5 bg-surface-dark p-4">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<p class="text-xs text-slate-400">Aktif Öğrenci</p>
+<div class="flex items-baseline gap-2">
+<p class="text-xl font-bold text-white">24</p>
+<span class="text-xs font-medium text-primary">+2</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-transparent pointer-events-none"></div>
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20 text-amber-500 z-10">
+<span class="material-symbols-outlined">waving_hand</span>
+</div>
+<div class="z-10">
+<p class="text-xs text-amber-200/70">Yardım İsteği</p>
+<div class="flex items-baseline gap-2">
+<p class="text-xl font-bold text-white">3</p>
+<span class="text-xs font-medium text-amber-400 animate-pulse">!</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-xl border border-white/5 bg-surface-dark p-4">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-500">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="text-xs text-slate-400">Tamamlanan</p>
+<div class="flex items-baseline gap-2">
+<p class="text-xl font-bold text-white">12</p>
+<span class="text-xs font-medium text-emerald-400">+5</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-xl border border-white/5 bg-surface-dark p-4">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-700/50 text-slate-400">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div>
+<p class="text-xs text-slate-400">Kilitli Ekran</p>
+<div class="flex items-baseline gap-2">
+<p class="text-xl font-bold text-white">0</p>
+<span class="text-xs font-medium text-slate-500">--</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content Area -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left: Station Map -->
+<div class="flex-1 flex flex-col overflow-hidden relative">
+<!-- Map Controls -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 rounded-full bg-surface-darker/90 p-1.5 shadow-xl border border-white/10 backdrop-blur-sm">
+<button class="h-8 w-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" title="Zoom In">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-slate-400 hover:bg-white/10 transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<div class="h-4 w-px bg-white/10 mx-1"></div>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-slate-400 hover:bg-white/10 transition-colors" title="Fit to Screen">
+<span class="material-symbols-outlined text-[18px]">fit_screen</span>
+</button>
+</div>
+<div class="flex-1 overflow-auto bg-background-dark p-8 relative">
+<!-- Floor Pattern Background -->
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Stations Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto relative z-10 pb-20">
+<!-- Station Card: Working -->
+<div class="group relative flex flex-col gap-3 rounded-xl border border-white/5 bg-surface-dark p-4 hover:border-primary/50 transition-all cursor-pointer hover:shadow-lg hover:shadow-primary/5">
+<div class="flex items-center justify-between">
+<span class="rounded bg-white/5 px-2 py-0.5 text-xs font-medium text-slate-400">S-01</span>
+<div class="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Student Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4nQ6VGoLskE3FegrkWhCUFAJR_hOOOZ4Q0dIp0JvKDC5ruWj53DJyAMHXiaKraF2nOyssjGGqP1K-jBE7uME4HuJX02xA6qJ9g4YFK4dcnOLJgm_oFr8kfKyp1hKLQq4iTn2M_MVBetSTEjwnJSG_35j8rgrogNO2DQaVT6rh4eg6HeJmaiMlEIYO9APKU7TIl5E4XRWTFwzkR1vmm7EkWO_qhB4Yt42nzbmYcPVLJSArPGAe_ubjzRSc3i7x5FhXN9idZplTkQ");'></div>
+<div>
+<p class="text-sm font-bold text-white">Can Yıldız</p>
+<p class="text-xs text-emerald-400">Çalışıyor</p>
+</div>
+</div>
+<!-- Hover Actions -->
+<div class="absolute inset-0 flex items-center justify-center gap-2 rounded-xl bg-surface-darker/90 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-[2px]">
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-primary hover:text-white transition-colors" title="Mesaj Gönder">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</button>
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-amber-500 hover:text-white transition-colors" title="İpucu Gönder">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</button>
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-red-500 hover:text-white transition-colors" title="Ekranı Kilitle">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</button>
+</div>
+</div>
+<!-- Station Card: Help Requested -->
+<div class="group relative flex flex-col gap-3 rounded-xl border border-amber-500/50 bg-surface-dark p-4 shadow-[0_0_15px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/20 animate-[pulse_3s_ease-in-out_infinite]">
+<div class="flex items-center justify-between">
+<span class="rounded bg-amber-500/10 px-2 py-0.5 text-xs font-bold text-amber-500">S-02</span>
+<div class="flex items-center gap-1 text-amber-500">
+<span class="material-symbols-outlined text-[16px]">front_hand</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center ring-2 ring-amber-500/50" data-alt="Student Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYSPgkHZU8ipIWi9A1A8EQ2lzQAC1vpsySugLkvJpKnfptwfQyy1rT7gIIg18RMl9NhxNmDa_lpgYlIpuxQxBfblbjaD5JLEwKw1vtghIxDqjmxNP_zHVc_v5bcmMgMtB5I5vgDNWTUbJPR13bR0z7lktE1iD-1-kRLd4u8ifBFX-dTHhhTqrE2_AS9F4IIGyVtchqtncZnrHENjX3k2U7RPSO6OVL-NYP7oSMdrnxiFE09jim1oSpa2CDo12gEzwJVhmUau2tIg");'></div>
+<div>
+<p class="text-sm font-bold text-white">Elif Demir</p>
+<p class="text-xs font-bold text-amber-400">Yardım İstiyor</p>
+</div>
+</div>
+<!-- Hover Actions -->
+<div class="absolute inset-0 flex items-center justify-center gap-2 rounded-xl bg-surface-darker/90 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-[2px]">
+<button class="rounded-lg bg-amber-500 p-2 text-white hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/20" title="Yanıtla">
+<span class="material-symbols-outlined text-[20px]">reply</span>
+</button>
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-primary hover:text-white transition-colors" title="Çözüldü İşaretle">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+</div>
+</div>
+<!-- Station Card: Working -->
+<div class="group relative flex flex-col gap-3 rounded-xl border border-white/5 bg-surface-dark p-4 hover:border-primary/50 transition-all cursor-pointer hover:shadow-lg hover:shadow-primary/5">
+<div class="flex items-center justify-between">
+<span class="rounded bg-white/5 px-2 py-0.5 text-xs font-medium text-slate-400">S-03</span>
+<div class="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Student Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjhbRdwLdelxO12PWdZjzDcfbCWIJoJv-KxUdDEyd8A2gyk1PGHRfhz8g_67H--VtcCx7o7RXuI1r2ugm3-bNyK65jtsOF8TNkfS0yuezvgeP-bOCpGCbWUVE8cCqax7mjNJfqUPnshh2NNdBcd_vLvozjSBSrptstSp7waIevDjVycrQpdJvOejZR6GenzG5c1C9aSKvEoGfo1s00XMN_h-c00SpstULsp0PpKgF0Xt0m-SSeYk63dYjpGRAf7gd6BbeiSRzzDA");'></div>
+<div>
+<p class="text-sm font-bold text-white">Kerem S.</p>
+<p class="text-xs text-emerald-400">Çalışıyor</p>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center gap-2 rounded-xl bg-surface-darker/90 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-[2px]">
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</button>
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-amber-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</button>
+</div>
+</div>
+<!-- Station Card: Stuck/Idle -->
+<div class="group relative flex flex-col gap-3 rounded-xl border border-white/5 bg-surface-dark p-4 hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="rounded bg-white/5 px-2 py-0.5 text-xs font-medium text-slate-400">S-04</span>
+<div class="flex h-2 w-2 rounded-full bg-purple-500"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center grayscale opacity-70" data-alt="Student Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7hpfONVw0Fl6skKrKt3ZuH95nEf3POo0ZvAuiK6jKaXFWRHFx4quhqKvHuE4Qg1Kz6J_Rm9fcnKWHulbu3WFrwAQYObj1IHpNAqIQSp9xgpmtiOtamqcqhIILxAxQqkgXxAJS9VNQ9vKg4LRfpEYW8i2lSx5EqqXYeQ-wT7sMhfGirOLlsPIhA62F9sHtYaevMwVKdmO_prdqojjsYbsswvWj01_MqmKO0eGqWXG_n3Ji3_BQ5JkATp-7-9Gw6LD9sUzzYn37PQ");'></div>
+<div>
+<p class="text-sm font-bold text-slate-300">Mert Y.</p>
+<p class="text-xs text-purple-400">Beklemede (5dk)</p>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center gap-2 rounded-xl bg-surface-darker/90 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-[2px]">
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</button>
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-amber-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</button>
+</div>
+</div>
+<!-- Station Card: Help Requested -->
+<div class="group relative flex flex-col gap-3 rounded-xl border border-amber-500/50 bg-surface-dark p-4 shadow-[0_0_15px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/20 animate-[pulse_3s_ease-in-out_infinite]">
+<div class="flex items-center justify-between">
+<span class="rounded bg-amber-500/10 px-2 py-0.5 text-xs font-bold text-amber-500">S-05</span>
+<div class="flex items-center gap-1 text-amber-500">
+<span class="material-symbols-outlined text-[16px]">front_hand</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center ring-2 ring-amber-500/50" data-alt="Student Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9E3QBeuGqZxPBtobMKUtzlrTglQRuLgIoqxA1T00CoskSgazsgfCb6fugxnLPVULcCdyQnA4f69kuwuQWCabpbThjHx_4AbNnBZcwLiqRCY-OY1PjCtmZyAZiX5qrw50Z0AR-ISnsE-tLBuByWpyaJESK8yoN6MbU3ddZMebQUuUimbGeenRPHWg534xXxpCrQJUw7k_PstsE5SlnnwZiIupXwrt0PO3aeCr3wgbRMLr2whLZIu5jpJRO01a_BUcyorR57dBC8w");'></div>
+<div>
+<p class="text-sm font-bold text-white">Zeynep K.</p>
+<p class="text-xs font-bold text-amber-400">Yardım İstiyor</p>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center gap-2 rounded-xl bg-surface-darker/90 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-[2px]">
+<button class="rounded-lg bg-amber-500 p-2 text-white hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/20">
+<span class="material-symbols-outlined text-[20px]">reply</span>
+</button>
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+</div>
+</div>
+<!-- Station Card: Completed -->
+<div class="group relative flex flex-col gap-3 rounded-xl border border-white/5 bg-surface-dark/50 p-4 hover:border-primary/50 transition-all cursor-pointer opacity-80 hover:opacity-100">
+<div class="flex items-center justify-between">
+<span class="rounded bg-white/5 px-2 py-0.5 text-xs font-medium text-slate-500">S-06</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Student Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuVhzGKsgHrQwZiVjKB0IHFiIEsrLegn5pS9-TTQGBtIGyQUA1F_wJktZ-z8UWkrkWL_CUi_02I3zyrPEUd6XXUSQP7OiYoVZsaXNeLfm4YCWS-haE0qocyuMqtI41PZws9ky6JSEiIBDVaYFYLkfW4vTa6rTiSkLyTCTdQDAo-42xhigWFCwvojOXHjNBWahvNy4SZBbFzWbiR4tE008aos3eNiqdrYu8et2vnpcq5ZflCeWQwUd8XL3bYiXWebKtfg-KnuIkYg");'></div>
+<div>
+<p class="text-sm font-bold text-white">Burak T.</p>
+<p class="text-xs text-primary">Tamamladı</p>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center gap-2 rounded-xl bg-surface-darker/90 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-[2px]">
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</button>
+</div>
+</div>
+<!-- Station Card: Working -->
+<div class="group relative flex flex-col gap-3 rounded-xl border border-white/5 bg-surface-dark p-4 hover:border-primary/50 transition-all cursor-pointer hover:shadow-lg hover:shadow-primary/5">
+<div class="flex items-center justify-between">
+<span class="rounded bg-white/5 px-2 py-0.5 text-xs font-medium text-slate-400">S-07</span>
+<div class="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Student Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA4eKpowZ4RT11U5Q7nQO89H25d8cxuiq093ySPdtUXOx5wZ0mfv3lLF-PF83NkHsq2lnaClxCGZjoXXPy5DVbVazDGaBVIr7RO8wXm62BUAlnmrNafB7lYuGotV4TSIlNLxrfsKjLkxPTGeKpGLBjlSt6zbOuzqZhC9xcVC0qiUosIg742sGLOYlw-9bLRqPav8H9m_uLmqXY7tfJ7tWrtW8q2AEOUCk4slU1VKmIipD4yqhSXEthxhwjJvNjsQhpeeB0BoSxxYQ");'></div>
+<div>
+<p class="text-sm font-bold text-white">Ayşe Nur</p>
+<p class="text-xs text-emerald-400">Çalışıyor</p>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center gap-2 rounded-xl bg-surface-darker/90 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-[2px]">
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</button>
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-amber-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</button>
+</div>
+</div>
+<!-- Station Card: Working -->
+<div class="group relative flex flex-col gap-3 rounded-xl border border-white/5 bg-surface-dark p-4 hover:border-primary/50 transition-all cursor-pointer hover:shadow-lg hover:shadow-primary/5">
+<div class="flex items-center justify-between">
+<span class="rounded bg-white/5 px-2 py-0.5 text-xs font-medium text-slate-400">S-08</span>
+<div class="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Student Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4seve4DHNg6oMjcZ7XP9u_ctDvitn01GVTj1lxtMn6pJJ41noiWzvZpYX5GOicdiY0TWwpI0TqPPuFlwQk3P71OlMjM8wSv-4BNmsRuoABxGHPN7pW8kLk__t99kw1mx-B2N1Lk2Q0vyZoyWN9zT6xzC0Fg0534_mk-CSDLeAYxrV2RTDLBPP7RUME0-3eQH4I1wQYLsrafrHtwsQndhFUKOhtAYI3GhGvNCAjvvN1aJCVhy4RCU9bjpWvaOEy6kjq5qthffJjA");'></div>
+<div>
+<p class="text-sm font-bold text-white">Deniz K.</p>
+<p class="text-xs text-emerald-400">Çalışıyor</p>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center gap-2 rounded-xl bg-surface-darker/90 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-[2px]">
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</button>
+<button class="rounded-lg bg-white/10 p-2 text-white hover:bg-amber-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Controls Toolbar -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-3xl z-20">
+<div class="flex flex-col sm:flex-row items-center gap-4 rounded-xl bg-surface-darker/95 p-3 shadow-2xl ring-1 ring-white/10 backdrop-blur-md">
+<div class="flex items-center gap-3 px-2">
+<div class="flex items-center justify-center h-8 w-8 rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[20px]">check_box_outline_blank</span>
+</div>
+<span class="text-sm font-medium text-slate-300 whitespace-nowrap">0 Seçili</span>
+</div>
+<div class="h-8 w-px bg-white/10 hidden sm:block"></div>
+<div class="flex items-center gap-2 w-full overflow-x-auto scrollbar-hide">
+<button class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">lock_open</span>
+                                    Kilidi Aç
+                                </button>
+<button class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+                                    İpucu Gönder
+                                </button>
+<button class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">visibility_off</span>
+                                    Ekran Karart
+                                </button>
+<button class="ml-auto flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold text-surface-darker hover:bg-primary/90 transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                                    Mesaj
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Live Feed Sidebar -->
+<aside class="w-80 border-l border-white/10 bg-surface-dark flex flex-col hidden xl:flex">
+<div class="p-4 border-b border-white/10 flex items-center justify-between">
+<h3 class="font-bold text-white">Canlı Akış</h3>
+<button class="text-slate-400 hover:text-white">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Filters -->
+<div class="flex gap-2 p-4 pb-2">
+<button class="rounded-full bg-primary/20 px-3 py-1 text-xs font-bold text-primary ring-1 ring-primary/20">Tümü</button>
+<button class="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-slate-400 hover:bg-white/10">Uyarılar</button>
+<button class="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-slate-400 hover:bg-white/10">Bitenler</button>
+</div>
+<!-- Feed List -->
+<div class="flex-1 overflow-auto p-4 flex flex-col gap-4">
+<!-- Feed Item: Alert -->
+<div class="flex gap-3 relative pl-4">
+<div class="absolute left-0 top-2 h-full w-px bg-white/5"></div>
+<div class="absolute left-[-4px] top-2 h-2 w-2 rounded-full bg-amber-500 ring-4 ring-surface-dark"></div>
+<div class="flex flex-1 flex-col gap-1 rounded-lg bg-amber-500/5 p-3 border border-amber-500/10">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-amber-500">S-02 • Yardım İsteği</span>
+<span class="text-[10px] text-slate-500">Şimdi</span>
+</div>
+<p class="text-sm text-slate-300">Elif Demir yardım butonuna bastı.</p>
+<button class="mt-2 w-full rounded bg-amber-500/20 py-1 text-xs font-bold text-amber-500 hover:bg-amber-500 hover:text-white transition-colors">
+                                    Görüntüle
+                                </button>
+</div>
+</div>
+<!-- Feed Item: Warning -->
+<div class="flex gap-3 relative pl-4">
+<div class="absolute left-0 top-2 h-full w-px bg-white/5"></div>
+<div class="absolute left-[-4px] top-2 h-2 w-2 rounded-full bg-purple-500 ring-4 ring-surface-dark"></div>
+<div class="flex flex-1 flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-purple-400">S-04 • Beklemede</span>
+<span class="text-[10px] text-slate-500">5dk önce</span>
+</div>
+<p class="text-sm text-slate-400">Mert Y. 5 dakikadır işlem yapmıyor.</p>
+</div>
+</div>
+<!-- Feed Item: Completion -->
+<div class="flex gap-3 relative pl-4">
+<div class="absolute left-0 top-2 h-full w-px bg-white/5"></div>
+<div class="absolute left-[-4px] top-2 h-2 w-2 rounded-full bg-primary ring-4 ring-surface-dark"></div>
+<div class="flex flex-1 flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-primary">S-06 • Tamamlandı</span>
+<span class="text-[10px] text-slate-500">12dk önce</span>
+</div>
+<p class="text-sm text-slate-400">Burak T. Lab 3 görevini tamamladı.</p>
+</div>
+</div>
+<!-- Feed Item: System -->
+<div class="flex gap-3 relative pl-4">
+<div class="absolute left-0 top-2 h-full w-px bg-white/5"></div>
+<div class="absolute left-[-4px] top-2 h-2 w-2 rounded-full bg-slate-500 ring-4 ring-surface-dark"></div>
+<div class="flex flex-1 flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-400">Sistem</span>
+<span class="text-[10px] text-slate-500">45dk önce</span>
+</div>
+<p class="text-sm text-slate-500">Oturum Ahmet Yılmaz tarafından başlatıldı.</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>

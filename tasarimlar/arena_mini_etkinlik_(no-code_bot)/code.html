@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite - Arena Mini Etkinlik</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0b5db0",
+                        "secondary": "#ef4444", // Red for enemy
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1a2634",
+                        "surface-darker": "#111a22",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["monospace"] // For combat log
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'grid-move': 'gridMove 20s linear infinite',
+                    },
+                    keyframes: {
+                        gridMove: {
+                            '0%': { transform: 'translateY(0)' },
+                            '100%': { transform: 'translateY(40px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111a22; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233648; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #324d67; 
+        }
+
+        /* Grid Background Effect */
+        .arena-grid {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(19, 127, 236, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(19, 127, 236, 0.1) 1px, transparent 1px);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(19, 127, 236, 0.5);
+        }
+        
+        .glow-box {
+            box-shadow: 0 0 20px rgba(19, 127, 236, 0.15);
+        }
+
+        /* Slider Customization */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            margin-top: -8px; 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #324d67;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<div class="w-full bg-surface-darker border-b border-[#233648] z-20">
+<div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold tracking-tight">PUSULA Lite <span class="text-primary text-xs font-normal px-1.5 py-0.5 rounded bg-primary/10 ml-2">v1.3</span></h1>
+<p class="text-slate-400 text-[10px] leading-none">UNDP x Eskişehir Digital Youth Center</p>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#">Ana Sayfa</a>
+<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#">Derslerim</a>
+<a class="text-white text-sm font-medium border-b-2 border-primary py-5" href="#">Arena</a>
+<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#">Liderlik Tablosu</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-px bg-[#233648]"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-white leading-none">Ahmet Y.</p>
+<p class="text-xs text-primary mt-1">Lvl 12 Pilot</p>
+</div>
+<div class="size-10 rounded-full bg-gradient-to-tr from-primary to-purple-500 p-0.5">
+<img alt="User profile picture" class="w-full h-full rounded-full object-cover border-2 border-surface-darker" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKgpyTp2fEEkgrv5g5_8h900qIlQiP_6vrKYtQ8GPNPy-Zsjr0NhSuvEjQWHJTcKYe-xjcx9OJvT993oKxum9WBLCbg_w2czAg5ARNpiV8mt6GfN6JVoroBYJpisOqI01rAPzWh5X4zOJ3hXCathSfTSFtnJdflRxrbOBSRUQFDA_5NN1hZ3bpKnlxjWm2Fk84VRxVwU50K20FnusNEBB7PB_4MBn1P64owdRbj9nph-E02w-xSI4WIjwCyoJfwi1ktTUe1kkK_1c"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col lg:flex-row h-[calc(100vh-64px)] overflow-hidden relative">
+<!-- Left Panel: Configuration -->
+<aside class="w-full lg:w-[360px] bg-surface-dark border-r border-[#233648] flex flex-col z-10 overflow-y-auto">
+<div class="p-6 border-b border-[#233648]">
+<h2 class="text-2xl font-black text-white mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+                    Bot Yapılandırma
+                </h2>
+<p class="text-slate-400 text-sm">Toplam 100 puanı Hız, Saldırı ve Savunma arasında stratejik olarak dağıt.</p>
+</div>
+<div class="flex-1 p-6 flex flex-col gap-8">
+<!-- Total Points Counter -->
+<div class="bg-surface-darker p-4 rounded-xl border border-[#233648] flex items-center justify-between">
+<div>
+<p class="text-slate-400 text-xs uppercase tracking-wider font-bold">Kalan Puan</p>
+<p class="text-3xl font-black text-white glow-text">0 / 100</p>
+</div>
+<div class="size-10 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<!-- Sliders -->
+<div class="space-y-6">
+<!-- Speed -->
+<div class="space-y-3">
+<div class="flex justify-between items-end">
+<label class="text-white font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-lg">bolt</span> Hız (Speed)
+                            </label>
+<span class="text-blue-400 font-mono text-xl font-bold">40</span>
+</div>
+<input class="w-full h-2 bg-[#233648] rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="40"/>
+</div>
+<!-- Attack -->
+<div class="space-y-3">
+<div class="flex justify-between items-end">
+<label class="text-white font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-red-400 text-lg">swords</span> Saldırı (Attack)
+                            </label>
+<span class="text-red-400 font-mono text-xl font-bold">35</span>
+</div>
+<input class="w-full h-2 bg-[#233648] rounded-lg appearance-none cursor-pointer accent-secondary" max="100" min="0" type="range" value="35"/>
+</div>
+<!-- Defense -->
+<div class="space-y-3">
+<div class="flex justify-between items-end">
+<label class="text-white font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-lg">shield</span> Savunma (Defense)
+                            </label>
+<span class="text-emerald-400 font-mono text-xl font-bold">25</span>
+</div>
+<input class="w-full h-2 bg-[#233648] rounded-lg appearance-none cursor-pointer accent-emerald-500" max="100" min="0" type="range" value="25"/>
+</div>
+</div>
+<!-- Stats Visualizer -->
+<div class="flex gap-2 h-2 mt-2 w-full rounded-full overflow-hidden bg-[#233648]">
+<div class="h-full bg-blue-500" style="width: 40%"></div>
+<div class="h-full bg-red-500" style="width: 35%"></div>
+<div class="h-full bg-emerald-500" style="width: 25%"></div>
+</div>
+</div>
+<div class="p-6 border-t border-[#233648] bg-surface-darker/50">
+<button class="w-full bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 px-6 rounded-xl shadow-lg shadow-primary/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">swords</span>
+                    ARENAYA GİR
+                </button>
+<p class="text-center text-slate-500 text-xs mt-3">Şampiyon ile karşılaşmaya hazırsın!</p>
+</div>
+</aside>
+<!-- Center Panel: The Arena -->
+<section class="flex-1 bg-surface-darker relative flex flex-col items-center justify-center p-4 lg:p-10 overflow-hidden">
+<!-- Background Decorative Elements -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+<!-- Header for Arena -->
+<div class="absolute top-6 left-0 right-0 text-center z-10 pointer-events-none">
+<div class="inline-flex items-center gap-2 bg-[#233648]/80 backdrop-blur px-4 py-2 rounded-full border border-primary/30">
+<div class="size-2 rounded-full bg-red-500 animate-pulse"></div>
+<span class="text-xs font-bold text-white uppercase tracking-widest">Canlı Simülasyon</span>
+</div>
+</div>
+<!-- The Arena Container -->
+<div class="relative w-full max-w-3xl aspect-square lg:aspect-video bg-[#0f151b] rounded-2xl border border-[#233648] shadow-2xl overflow-hidden glow-box">
+<!-- Grid Overlay -->
+<div class="absolute inset-0 arena-grid opacity-30"></div>
+<!-- HUD Overlay -->
+<div class="absolute top-4 left-4 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-32 h-2 bg-[#233648] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[80%]"></div>
+</div>
+<span class="text-xs font-bold text-primary">SİZ (80%)</span>
+</div>
+</div>
+<div class="absolute top-4 right-4 flex flex-col gap-1 items-end">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-secondary">ŞAMPİYON (65%)</span>
+<div class="w-32 h-2 bg-[#233648] rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[65%]"></div>
+</div>
+</div>
+</div>
+<!-- Simulation Visuals -->
+<div class="absolute inset-0 flex items-center justify-center">
+<!-- Player Bot -->
+<div class="absolute left-[30%] top-[50%] -translate-y-1/2 flex flex-col items-center gap-4 transition-all duration-500">
+<div class="relative group">
+<!-- Shield Effect -->
+<div class="absolute -inset-4 rounded-full border border-primary/30 opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-100 transition-all duration-300"></div>
+<div class="size-16 bg-surface-dark border-2 border-primary rounded-lg flex items-center justify-center shadow-[0_0_30px_rgba(19,127,236,0.4)] relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl">smart_toy</span>
+</div>
+<!-- Laser Beam (Attack) -->
+<div class="absolute top-1/2 left-full w-40 h-1 bg-gradient-to-r from-primary to-transparent opacity-80 animate-pulse"></div>
+</div>
+<div class="text-center">
+<div class="bg-primary/20 text-primary px-2 py-0.5 rounded text-[10px] font-bold inline-block mb-1">LVL 1</div>
+<p class="text-white text-xs font-bold">Mavi Bot</p>
+</div>
+</div>
+<!-- Enemy Bot -->
+<div class="absolute right-[30%] top-[50%] -translate-y-1/2 flex flex-col items-center gap-4">
+<div class="relative">
+<!-- Impact Effect -->
+<div class="absolute -left-4 top-1/2 -translate-y-1/2 size-8 bg-orange-500/50 rounded-full blur-xl animate-pulse"></div>
+<div class="size-20 bg-surface-dark border-2 border-secondary rounded-xl flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.4)] relative z-10 rotate-45">
+<span class="material-symbols-outlined text-secondary text-5xl -rotate-45">robot_2</span>
+</div>
+</div>
+<div class="text-center mt-4">
+<div class="bg-secondary/20 text-secondary px-2 py-0.5 rounded text-[10px] font-bold inline-block mb-1">BOSS</div>
+<p class="text-white text-xs font-bold">Kızıl Şampiyon</p>
+</div>
+</div>
+<!-- Floating Damage Numbers -->
+<div class="absolute top-[40%] right-[32%] text-white font-black text-2xl animate-bounce" style="text-shadow: 2px 2px 0 #ef4444;">
+                        -15
+                    </div>
+</div>
+<!-- Bottom Status Bar in Arena -->
+<div class="absolute bottom-0 left-0 right-0 h-10 bg-[#111a22]/90 backdrop-blur border-t border-[#233648] flex items-center justify-between px-6">
+<div class="text-[10px] text-slate-400 font-mono">CORD: 12.45, 88.21</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-1 text-[10px] text-slate-300">
+<span class="size-2 rounded-full bg-primary"></span> Çevrimiçi
+                        </div>
+<div class="flex items-center gap-1 text-[10px] text-slate-300">
+<span class="size-2 rounded-full bg-yellow-500 animate-pulse"></span> Savaş Modu
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Intel & Logs -->
+<aside class="w-full lg:w-[320px] bg-surface-dark border-l border-[#233648] flex flex-col z-10">
+<!-- Combat Log -->
+<div class="flex-1 flex flex-col min-h-[300px] border-b border-[#233648]">
+<div class="p-4 border-b border-[#233648] bg-surface-darker flex justify-between items-center">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">terminal</span>
+                        Savaş Günlüğü
+                    </h3>
+<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 font-mono text-xs space-y-3 bg-[#0c1218]">
+<div class="text-slate-500 border-l-2 border-slate-700 pl-2">
+<span class="text-slate-600">[14:02:01]</span> Sistem başlatıldı.
+                    </div>
+<div class="text-primary border-l-2 border-primary pl-2">
+<span class="text-slate-600">[14:02:05]</span> <span class="font-bold">Mavi Bot</span> arenaya giriş yaptı.
+                    </div>
+<div class="text-secondary border-l-2 border-secondary pl-2">
+<span class="text-slate-600">[14:02:06]</span> <span class="font-bold">Kızıl Şampiyon</span> tespit edildi!
+                    </div>
+<div class="text-slate-300 border-l-2 border-slate-600 pl-2">
+<span class="text-slate-600">[14:02:08]</span> Savaş başlıyor...
+                    </div>
+<div class="text-white bg-primary/10 p-2 rounded border border-primary/20">
+<span class="text-slate-400">[14:02:10]</span> <span class="text-primary font-bold">KRİTİK VURUŞ!</span> Mavi Bot, Şampiyona 15 hasar verdi.
+                    </div>
+<div class="text-slate-300 border-l-2 border-slate-600 pl-2">
+<span class="text-slate-600">[14:02:12]</span> Şampiyon kalkan devreye soktu.
+                    </div>
+<div class="text-slate-500 border-l-2 border-slate-700 pl-2 opacity-50">
+<span class="text-slate-600">...</span>
+</div>
+</div>
+</div>
+<!-- Mini Leaderboard -->
+<div class="h-auto max-h-[40%] flex flex-col bg-surface-dark">
+<div class="p-4 border-b border-[#233648] bg-surface-darker">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-sm">trophy</span>
+                        En İyi Pilotlar
+                    </h3>
+</div>
+<div class="overflow-y-auto p-2">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] text-slate-500 border-b border-[#233648]">
+<th class="p-2 font-medium">#</th>
+<th class="p-2 font-medium">Pilot</th>
+<th class="p-2 font-medium text-right">Süre</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="hover:bg-[#233648] transition-colors group cursor-pointer">
+<td class="p-2 text-yellow-500 font-bold">1</td>
+<td class="p-2 flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNweIeL5M2RS-qYUdeo5IZ6EVgUgFm-gESXzNJ1Bxick4Mh7wumXXS1Ff80IStqUgJjJoc9-4f8RmVw-WiHhth0l2NTFF29wl9N5UE1ripM0FRvZHfswuBUjaFVH6c-rk93z6scZagUl9LYxdLC7M9Ou1z8e2HtD0QfTaanqEosDCFlm89LGBnuIofze-e8Nm7Ry4qc__v2WakbWPDQWdLnhzS35A5u-DVr38IG9Lp8nzQ84aZDJoVrzMP0s5acwedYegLBibwQJM"/>
+</div>
+<span class="text-white font-medium group-hover:text-primary">Elif K.</span>
+</td>
+<td class="p-2 text-right text-slate-400 font-mono">00:42</td>
+</tr>
+<tr class="hover:bg-[#233648] transition-colors group cursor-pointer">
+<td class="p-2 text-slate-400 font-bold">2</td>
+<td class="p-2 flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpPLE8mKVz1rpsx9NzT7UlPjnQfxIunGxP1Iw5hYrblAbdu0d6P5KWMaxmCmXTJcrlEzNZTqV87xlm0LoHH_3nijnyQl9VHrT1bGtsdyVtYJletx2CHhdCPKPxuS_roJJ1bdcJgfUOdzKkegq7BbFEtFBGFFg6IU3KnyAIajIifuFU8DAjn1fs4nJFGEBSEhU3SPyBx0ztLyvu34VLYfXqybS0Q2h_n_uOGdQtWXusJxt9_nC1fG-b3xnLDQFsOB5w-TNxc6pz2QY"/>
+</div>
+<span class="text-white font-medium group-hover:text-primary">Mert S.</span>
+</td>
+<td class="p-2 text-right text-slate-400 font-mono">00:45</td>
+</tr>
+<tr class="hover:bg-[#233648] transition-colors group cursor-pointer">
+<td class="p-2 text-orange-700 font-bold">3</td>
+<td class="p-2 flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO6zScbJiiGK-a3wWxRoAn5bvysN1zHa6kp1cO_c_EYi2OuWPsGizlik5Xgmy5w8OFsiE8K-uXi-ngVP44PbVvAge4HqCjrF4b9SyIagsnRtSuT3IRAQKqQI1_BpaQWND2L9_Y0ClH0iRcHQ5T17GFi5IlJg82CeET0nJNcxq9clAPlPR9WFllpgw9wl081nMeBha7NWmVVAyPo0sSNIoF7no8qLQ-83o0dJJ9A-3hhtKk2IKcXeVwjkLbeWAZuBNV3TZC9g1NMVU"/>
+</div>
+<span class="text-white font-medium group-hover:text-primary">Can B.</span>
+</td>
+<td class="p-2 text-right text-slate-400 font-mono">00:48</td>
+</tr>
+<tr class="hover:bg-[#233648] transition-colors group cursor-pointer">
+<td class="p-2 text-slate-500 font-bold">4</td>
+<td class="p-2 flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-700 text-xs flex items-center justify-center text-white">
+                                        AZ
+                                    </div>
+<span class="text-white font-medium group-hover:text-primary">Ayşe Z.</span>
+</td>
+<td class="p-2 text-right text-slate-400 font-mono">00:51</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

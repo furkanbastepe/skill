@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-029 Ofis Modül Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; 
+        }
+        
+        .roadmap-line {
+            background-image: linear-gradient(to bottom, #3b4754 50%, transparent 50%);
+            background-size: 2px 20px;
+            background-repeat: repeat-y;
+        }
+        
+        .roadmap-line-active {
+            background-image: linear-gradient(to bottom, #137fec 50%, transparent 50%);
+            background-size: 2px 20px;
+            background-repeat: repeat-y;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display selection:bg-primary selection:text-white">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283039] px-6 lg:px-10 py-3 bg-white dark:bg-[#111418] sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Platform</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Ana Sayfa</a>
+<a class="text-slate-900 dark:text-white text-sm font-medium leading-normal" href="#">Eğitimlerim</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Topluluk</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Profil</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-none">
+<div class="text-slate-500 dark:text-[#9dabb9] flex border-none bg-slate-50 dark:bg-[#283039] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg rounded-l-none border-none bg-slate-50 dark:bg-[#283039] text-slate-900 dark:text-white focus:outline-0 focus:ring-0 placeholder:text-slate-400 dark:placeholder:text-[#9dabb9] px-4 pl-2 text-sm font-normal leading-normal" placeholder="Eğitimlerde ara..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-[#283039]">
+<div class="hidden sm:flex flex-col items-end">
+<span class="text-sm font-bold text-slate-900 dark:text-white">Ahmet Yılmaz</span>
+<span class="text-xs text-primary font-medium">Lvl 12 Student</span>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-[#3b4754]" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAC15AqULjc_sHVnPFPee3AXsrZ3XOqSIdpsCy8xWFN5RWKWIszDBnZGE9Keh2grpZOEhXRkFez79InoLvo7VzPn643eKBT8DShOggcbLjf_gpp_8fagfL1hZRzlgdgHVSxJPsTeIm3iV06xHpX547KaAHHNgSTvqBV4Jx8uql2DGQ-ZkHGDbwnUxpT7vA9hyJo5usX-nwmbRDhv19T7GMcFsPprveTU8C-gNNalnn5V_0oGFxCm1zMzh0INZb2yhkarHvs-ByWrQ");'></div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-[1440px] mx-auto p-6 lg:p-10 flex flex-col gap-8">
+<!-- Header & Breadcrumbs -->
+<div class="flex flex-col gap-4">
+<div class="flex flex-wrap gap-2 items-center text-sm">
+<a class="text-slate-500 dark:text-[#9dabb9] font-medium hover:text-primary transition-colors" href="#">DIGEM</a>
+<span class="material-symbols-outlined text-slate-500 dark:text-[#9dabb9] text-[16px]">chevron_right</span>
+<a class="text-slate-500 dark:text-[#9dabb9] font-medium hover:text-primary transition-colors" href="#">Eğitimler</a>
+<span class="material-symbols-outlined text-slate-500 dark:text-[#9dabb9] text-[16px]">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-medium">Temel Ofis Modülü</span>
+</div>
+<div class="flex flex-wrap lg:flex-nowrap justify-between gap-6 items-end">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black tracking-tight">Temel Ofis Modül Hub</h1>
+<p class="text-slate-600 dark:text-[#9dabb9] text-base md:text-lg leading-relaxed">
+                        Dijital yetkinlik yolculuğunuzda ofis araçlarında uzmanlaşın. Dokümanlardan sunumlara kadar her aşamada ustalaşarak final görevine hazırlanın.
+                    </p>
+</div>
+<!-- Quick Stats Cards -->
+<div class="flex gap-4 w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0">
+<div class="flex min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a2027] border border-slate-200 dark:border-[#3b4754] shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary">donut_large</span>
+<p class="text-slate-500 dark:text-[#9dabb9] text-xs font-bold uppercase tracking-wider">İlerleme</p>
+</div>
+<p class="text-slate-900 dark:text-white text-2xl font-black">%45</p>
+</div>
+<div class="flex min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a2027] border border-slate-200 dark:border-[#3b4754] shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<p class="text-slate-500 dark:text-[#9dabb9] text-xs font-bold uppercase tracking-wider">Üniteler</p>
+</div>
+<p class="text-slate-900 dark:text-white text-2xl font-black">2/5</p>
+</div>
+<div class="flex min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a2027] border border-slate-200 dark:border-[#3b4754] shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<p class="text-slate-500 dark:text-[#9dabb9] text-xs font-bold uppercase tracking-wider">XP Puanı</p>
+</div>
+<p class="text-slate-900 dark:text-white text-2xl font-black">1250</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area: Roadmap + Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-2">
+<!-- Left: Roadmap (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Roadmap Container -->
+<div class="relative flex flex-col gap-0 pb-12 pl-4">
+<!-- Vertical Connector Line Background -->
+<div class="absolute left-[36px] top-8 bottom-0 w-[2px] bg-[#3b4754] opacity-20 dark:opacity-100 z-0"></div>
+<!-- Unit 1: Completed -->
+<div class="relative z-10 flex gap-6 group">
+<div class="flex flex-col items-center pt-2">
+<div class="flex items-center justify-center size-14 rounded-full bg-primary text-white border-4 border-white dark:border-[#111418] shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-2xl">description</span>
+</div>
+<div class="h-full w-[2px] bg-primary my-2"></div>
+</div>
+<div class="flex-1 pb-8">
+<div class="bg-white dark:bg-[#1e2329] border border-slate-200 dark:border-[#3b4754] p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:border-primary/50 group-hover:-translate-y-1 duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Tamamlandı
+                                    </span>
+<span class="text-slate-400 dark:text-slate-500 text-xs font-medium">Modül 1</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Doküman Oluşturma</h3>
+<p class="text-slate-600 dark:text-[#9dabb9] text-sm mb-4">Kelime işlemci temelleri, biçimlendirme ve profesyonel rapor hazırlama teknikleri.</p>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-slate-100 dark:border-[#2f363d]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300">500 XP Kazanıldı</span>
+</div>
+<button class="text-primary hover:text-primary/80 text-sm font-bold flex items-center gap-1 transition-colors">
+                                        Tekrar Et <span class="material-symbols-outlined text-[16px]">replay</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Unit 2: In Progress (Active) -->
+<div class="relative z-10 flex gap-6 group">
+<div class="flex flex-col items-center pt-2">
+<div class="flex items-center justify-center size-14 rounded-full bg-white dark:bg-[#1a2027] text-primary border-4 border-primary shadow-[0_0_15px_rgba(19,127,236,0.3)] animate-pulse">
+<span class="material-symbols-outlined text-2xl">table_chart</span>
+</div>
+<!-- Dashed line for remaining path -->
+<div class="h-full w-[2px] bg-gradient-to-b from-primary to-[#3b4754] my-2"></div>
+</div>
+<div class="flex-1 pb-8">
+<div class="bg-white dark:bg-[#1e2329] border-2 border-primary p-6 rounded-2xl shadow-lg shadow-primary/5 transition-all relative overflow-hidden group-hover:-translate-y-1 duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-9xl text-primary">table_view</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-blue-100 dark:bg-primary/20 text-primary text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] animate-spin">sync</span> Devam Ediyor
+                                        </span>
+<span class="text-slate-400 dark:text-slate-500 text-xs font-medium">Modül 2</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Hesap Tabloları</h3>
+<p class="text-slate-600 dark:text-[#9dabb9] text-sm mb-4">Formüller, veri girişi ve temel analiz yöntemleri ile verileri yönetin.</p>
+<!-- Inner Progress Bar -->
+<div class="w-full bg-slate-100 dark:bg-[#2f363d] rounded-full h-2.5 mb-4">
+<div class="bg-primary h-2.5 rounded-full" style="width: 65%"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">%65 Tamamlandı</span>
+<button class="bg-primary hover:bg-blue-600 text-white text-sm font-bold px-5 py-2 rounded-lg transition-colors flex items-center gap-2">
+                                            Devam Et <span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Unit 3: Locked -->
+<div class="relative z-10 flex gap-6 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex flex-col items-center pt-2">
+<div class="flex items-center justify-center size-14 rounded-full bg-slate-100 dark:bg-[#283039] text-slate-400 dark:text-[#5e6a75] border-4 border-white dark:border-[#111418]">
+<span class="material-symbols-outlined text-2xl">bar_chart</span>
+</div>
+<div class="h-full w-[2px] bg-[#3b4754] opacity-30 my-2"></div>
+</div>
+<div class="flex-1 pb-8">
+<div class="bg-slate-50 dark:bg-[#161b21] border border-slate-200 dark:border-[#283039] p-6 rounded-2xl relative">
+<div class="absolute inset-0 bg-white/50 dark:bg-[#101922]/50 backdrop-blur-[1px] rounded-2xl z-10 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+<span class="bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full">Önceki modülü tamamla</span>
+</div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-slate-200 dark:bg-[#283039] text-slate-500 dark:text-[#9dabb9] text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> Kilitli
+                                    </span>
+<span class="text-slate-400 dark:text-slate-600 text-xs font-medium">Modül 3</span>
+</div>
+<h3 class="text-xl font-bold text-slate-700 dark:text-slate-400 mb-2">Veri Görselleştirme</h3>
+<p class="text-slate-500 dark:text-[#5e6a75] text-sm">Karmaşık verileri anlaşılır grafiklere ve raporlara dönüştürün.</p>
+</div>
+</div>
+</div>
+<!-- Unit 4: Locked -->
+<div class="relative z-10 flex gap-6 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex flex-col items-center pt-2">
+<div class="flex items-center justify-center size-14 rounded-full bg-slate-100 dark:bg-[#283039] text-slate-400 dark:text-[#5e6a75] border-4 border-white dark:border-[#111418]">
+<span class="material-symbols-outlined text-2xl">slideshow</span>
+</div>
+<div class="h-full w-[2px] bg-[#3b4754] opacity-30 my-2"></div>
+</div>
+<div class="flex-1 pb-8">
+<div class="bg-slate-50 dark:bg-[#161b21] border border-slate-200 dark:border-[#283039] p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-slate-200 dark:bg-[#283039] text-slate-500 dark:text-[#9dabb9] text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> Kilitli
+                                    </span>
+<span class="text-slate-400 dark:text-slate-600 text-xs font-medium">Modül 4</span>
+</div>
+<h3 class="text-xl font-bold text-slate-700 dark:text-slate-400 mb-2">Sunum Hazırlama</h3>
+<p class="text-slate-500 dark:text-[#5e6a75] text-sm">Etkileyici ve profesyonel slayt tasarımları oluşturma.</p>
+</div>
+</div>
+</div>
+<!-- Unit 5: Locked -->
+<div class="relative z-10 flex gap-6 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex flex-col items-center pt-2">
+<div class="flex items-center justify-center size-14 rounded-full bg-slate-100 dark:bg-[#283039] text-slate-400 dark:text-[#5e6a75] border-4 border-white dark:border-[#111418]">
+<span class="material-symbols-outlined text-2xl">groups</span>
+</div>
+<div class="h-full w-[2px] bg-[#3b4754] opacity-30 my-2"></div>
+</div>
+<div class="flex-1 pb-8">
+<div class="bg-slate-50 dark:bg-[#161b21] border border-slate-200 dark:border-[#283039] p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-slate-200 dark:bg-[#283039] text-slate-500 dark:text-[#9dabb9] text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> Kilitli
+                                    </span>
+<span class="text-slate-400 dark:text-slate-600 text-xs font-medium">Modül 5</span>
+</div>
+<h3 class="text-xl font-bold text-slate-700 dark:text-slate-400 mb-2">İşbirliği Araçları</h3>
+<p class="text-slate-500 dark:text-[#5e6a75] text-sm">Bulut tabanlı çalışma ve takım içi iletişim yönetimi.</p>
+</div>
+</div>
+</div>
+<!-- Boss Mission -->
+<div class="relative z-10 flex gap-6 mt-4">
+<div class="flex flex-col items-center pt-2">
+<div class="flex items-center justify-center size-20 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 border-4 border-primary/30 shadow-[0_0_25px_rgba(19,127,236,0.15)] relative">
+<span class="material-symbols-outlined text-4xl text-white/50">verified_user</span>
+<div class="absolute -bottom-1 -right-1 bg-slate-800 rounded-full p-1 border-2 border-[#111418]">
+<span class="material-symbols-outlined text-sm text-red-400">lock</span>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<div class="bg-gradient-to-r from-slate-100 to-white dark:from-[#1A202C] dark:to-[#111418] border border-slate-200 dark:border-[#3b4754] p-8 rounded-3xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-3">
+<h3 class="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-wide">Final Görevi: Ofis Simülasyonu</h3>
+</div>
+<p class="text-slate-600 dark:text-[#9dabb9] mb-6 max-w-xl">
+                                        Tüm modülleri tamamladıktan sonra açılacak olan bu simülasyonda, gerçek bir ofis senaryosunu baştan sona yöneteceksiniz. Başarılı olursanız sertifikanızı almaya hak kazanacaksınız.
+                                    </p>
+<button class="bg-slate-200 dark:bg-[#283039] text-slate-400 dark:text-[#5e6a75] cursor-not-allowed font-bold px-6 py-3 rounded-xl flex items-center gap-2" disabled="">
+<span class="material-symbols-outlined">lock</span>
+                                        Erişime Kapalı
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Sidebar (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6 sticky top-24 h-fit">
+<!-- Artifacts Checklist Panel -->
+<div class="bg-white dark:bg-[#1a2027] border border-slate-200 dark:border-[#2f363d] rounded-2xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-[#2f363d]">
+<div class="p-2 bg-purple-500/10 rounded-lg text-purple-400">
+<span class="material-symbols-outlined">assignment</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Gerekli Çıktılar</h3>
+<p class="text-xs text-slate-500 dark:text-[#9dabb9]">Modülü geçmek için tamamla</p>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Checked Item -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/20 group cursor-default transition-all">
+<div class="flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-green-500 text-[20px]">check_box</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-slate-300 line-through decoration-slate-500">Kişisel Özgeçmiş (CV)</p>
+<p class="text-xs text-green-500 mt-1">Onaylandı</p>
+</div>
+</div>
+<!-- In Progress Item -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 dark:bg-[#283039] border border-slate-200 dark:border-[#3b4754] group cursor-pointer hover:border-primary/50 transition-colors">
+<div class="flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5e6a75] text-[20px]">check_box_outline_blank</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Aylık Bütçe Tablosu</p>
+<p class="text-xs text-primary mt-1 font-medium">Şu anki görev</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+<!-- Pending Items -->
+<div class="flex items-start gap-3 p-3 rounded-lg opacity-60">
+<div class="flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5e6a75] text-[20px]">check_box_outline_blank</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Satış Raporu Grafiği</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg opacity-60">
+<div class="flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#5e6a75] text-[20px]">check_box_outline_blank</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Proje Sunumu (.pptx)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Motivation Widget -->
+<div class="bg-gradient-to-br from-primary to-blue-700 rounded-2xl p-6 shadow-lg text-white relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-10 -mt-10 blur-2xl"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="text-xs font-bold uppercase tracking-wider bg-white/20 px-2 py-1 rounded">Sıradaki Ödül</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-1">Veri Analisti Rozeti</h4>
+<p class="text-blue-100 text-sm">Hesap Tabloları modülünü tamamla, rozeti kap!</p>
+</div>
+<div class="w-full bg-black/20 rounded-full h-2 mt-2">
+<div class="bg-white h-2 rounded-full" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-[#283039] bg-white dark:bg-[#111418] py-8 mt-12">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 dark:text-[#9dabb9] text-sm">© 2024 DIGEM Platform. Tüm hakları saklıdır.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 dark:text-[#9dabb9] hover:text-primary text-sm font-medium" href="#">Gizlilik Politikası</a>
+<a class="text-slate-500 dark:text-[#9dabb9] hover:text-primary text-sm font-medium" href="#">Kullanım Şartları</a>
+<a class="text-slate-500 dark:text-[#9dabb9] hover:text-primary text-sm font-medium" href="#">Destek</a>
+</div>
+</div>
+</footer>
+</body></html>

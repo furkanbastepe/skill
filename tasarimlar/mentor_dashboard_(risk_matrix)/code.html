@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mentor Dashboard - PUSULA Lite</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c252e",
+                        "surface-light": "#ffffff",
+                        "risk-green": "#22c55e",
+                        "risk-yellow": "#eab308",
+                        "risk-orange": "#f97316",
+                        "risk-red": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom scrollbar for data-heavy table */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4754; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">PUSULA Lite</h2>
+</div>
+<nav class="hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+<a class="bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white px-4 py-1.5 rounded-md text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-4 py-1.5 rounded-md text-sm font-medium leading-normal transition-colors" href="#">Cohorts</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-4 py-1.5 rounded-md text-sm font-medium leading-normal transition-colors" href="#">Resources</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-4 py-1.5 rounded-md text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<label class="hidden lg:flex items-center relative min-w-40 h-10 w-64">
+<span class="absolute left-3 text-slate-400 material-symbols-outlined">search</span>
+<input class="w-full h-full rounded-lg bg-slate-100 dark:bg-slate-800 border-none pl-10 pr-4 text-sm text-slate-900 dark:text-white placeholder:text-slate-500 focus:ring-2 focus:ring-primary/50" placeholder="Search student..."/>
+</label>
+<button class="relative p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-slate-200 dark:ring-slate-700 cursor-pointer" data-alt="User profile picture of mentor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBW4AGXgq2UFuWJsXA7mbSUjbSvkUnHe70WDVXW_LO5FqvKMhEOyKMfrlmmATkfjVJEWKoFrZMfjo9UDo8SVZhTDGbnesJ_AnVHgX8KOkl58FqrbRV-745KTv9CR90r8pF_PWicfNDfP1qtJvXqGdN36Rc1wpWknSCuyXtJV8ZXKTCEFyuTOAfJ5wUB1z9oCtnXb4Y-N4Ar0Wti0X1f-k1eSQ__1w3J9lF-ncs8wKZmrJs2TdIKePOP9e_lf1LB-PaB5jPiwRE7LCrd");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Risk Matrix & Student List -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto p-6 scroll-smooth">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary uppercase tracking-wider">Week 4</span>
+<span class="text-slate-400 dark:text-slate-500 text-sm">Oct 24 - Oct 30</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Cohort Alpha Dashboard</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-2 text-base">Overview of student performance and risk status.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+                        Export Report
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-white transition-colors text-sm font-bold shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        Add Student
+                    </button>
+</div>
+</div>
+<!-- Risk Matrix Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<!-- Critical -->
+<div class="group cursor-pointer flex flex-col p-5 rounded-xl border border-risk-red/20 bg-risk-red/5 dark:bg-risk-red/10 hover:border-risk-red/50 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-risk-red/10 rounded-lg text-risk-red">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-risk-red/10 text-risk-red">ACTION REQ</span>
+</div>
+<div>
+<p class="text-slate-600 dark:text-slate-300 text-sm font-medium">Critical (Red)</p>
+<p class="text-3xl font-bold text-slate-900 dark:text-white mt-1">3 <span class="text-sm font-normal text-slate-500 dark:text-slate-400">Students</span></p>
+</div>
+</div>
+<!-- At Risk -->
+<div class="group cursor-pointer flex flex-col p-5 rounded-xl border border-risk-orange/20 bg-surface-light dark:bg-surface-dark hover:border-risk-orange/50 transition-all shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-risk-orange/10 rounded-lg text-risk-orange">
+<span class="material-symbols-outlined">priority_high</span>
+</div>
+</div>
+<div>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium">At Risk (Orange)</p>
+<p class="text-3xl font-bold text-slate-900 dark:text-white mt-1">5 <span class="text-sm font-normal text-slate-500 dark:text-slate-400">Students</span></p>
+</div>
+</div>
+<!-- Monitoring -->
+<div class="group cursor-pointer flex flex-col p-5 rounded-xl border border-risk-yellow/20 bg-surface-light dark:bg-surface-dark hover:border-risk-yellow/50 transition-all shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-risk-yellow/10 rounded-lg text-risk-yellow">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+</div>
+<div>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium">Monitoring (Yellow)</p>
+<p class="text-3xl font-bold text-slate-900 dark:text-white mt-1">12 <span class="text-sm font-normal text-slate-500 dark:text-slate-400">Students</span></p>
+</div>
+</div>
+<!-- On Track -->
+<div class="group cursor-pointer flex flex-col p-5 rounded-xl border border-risk-green/20 bg-surface-light dark:bg-surface-dark hover:border-risk-green/50 transition-all shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-risk-green/10 rounded-lg text-risk-green">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium">On Track (Green)</p>
+<p class="text-3xl font-bold text-slate-900 dark:text-white mt-1">45 <span class="text-sm font-normal text-slate-500 dark:text-slate-400">Students</span></p>
+</div>
+</div>
+</div>
+<!-- Student Data Table -->
+<div class="flex-1 bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col shadow-sm overflow-hidden">
+<div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Student Roster</h3>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 dark:bg-[#151c24] text-slate-500 dark:text-slate-400 text-xs uppercase font-medium">
+<tr>
+<th class="px-6 py-4 font-medium tracking-wider">Student</th>
+<th class="px-6 py-4 font-medium tracking-wider">Risk Status</th>
+<th class="px-6 py-4 font-medium tracking-wider">Progress</th>
+<th class="px-6 py-4 font-medium tracking-wider text-center">Hearts</th>
+<th class="px-6 py-4 font-medium tracking-wider">Streak</th>
+<th class="px-6 py-4 font-medium tracking-wider">Last Active</th>
+<th class="px-6 py-4 font-medium tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-sm">
+<!-- Row 1: Sarah Jones (Critical) -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer bg-risk-red/5 dark:bg-risk-red/5 border-l-4 border-l-risk-red">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-risk-red/30" data-alt="Portrait of Sarah Jones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgt9sOD52uoG8-SguIFbNTT3G4CQP9A9RaKEsOV5K5kNMsDtDkuTfZCYL_jCbVTpntYHeideihjWX5YRsnBw3KD2fWxacMheDso78csAGO_QeaCIZrNkAfT5pqEzsL8nINsO-o8HuNLhGONFQpPHY-H07JOCMv6GuGYNCOuKrj9e6A9PDKmNUKdQcvfOlgiy2FwTtYkl-uHwl4z10B764uhiA2Y7WRbe9tH7BiahXmCOVyNfNhPNDS_MAHdZNkxKR7_OAEBJiw9Ama');"></div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Sarah Jones</p>
+<p class="text-xs text-slate-500">sarah.j@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-risk-red/10 text-risk-red border border-risk-red/20">
+                                        Critical
+                                    </span>
+</td>
+<td class="px-6 py-4 w-48">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full rounded-full bg-risk-red" style="width: 22%"></div>
+</div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">22%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="inline-flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1">favorite</span>
+<span class="font-bold">1</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-base text-slate-400">local_fire_department</span>
+                                        0 Days
+                                    </div>
+</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">
+                                    5d ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-primary/80 font-medium text-sm">View</button>
+</td>
+</tr>
+<!-- Row 2: Louis Litt (Critical) -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-slate-200 dark:ring-slate-700" data-alt="Portrait of Louis Litt" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyNQcVC4ZSkAKVh6e78NPDhWeJaC2_9em_hYScR--ILr37p-y93a6l6huBlyhBR2PoGSFU6DTAtCdybsmzlkMRH5SdzTDp3SY02yrNZvCGFG-vBXf1W5SRXTs8wWZIck2bOzzardaaXQS735n59eRsPwG19J9lmDXDaCl_efPj4NVF1MVm1jEv6VJ9t25gNsZzHCmfU1csrl-f1UT3R47D5Z2rh4g2vJwvp9FyD6dPPLCfzdF1fWuNgGYvEWKgfw-ksH8uZCFkzzUH');"></div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Louis Litt</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-risk-red/10 text-risk-red border border-risk-red/20">
+                                        Critical
+                                    </span>
+</td>
+<td class="px-6 py-4 w-48">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full rounded-full bg-risk-red" style="width: 15%"></div>
+</div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">15%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="inline-flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-base">favorite</span>
+<span class="font-bold">0</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-base text-slate-400">local_fire_department</span>
+                                        0 Days
+                                    </div>
+</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">
+                                    6d ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-white font-medium text-sm">View</button>
+</td>
+</tr>
+<!-- Row 3: Mike Ross (At Risk) -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-slate-200 dark:ring-slate-700" data-alt="Portrait of Mike Ross" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQeqVDk3YCB4xjZI1RJ4RoG4TimQsB6brKvPWCH7vYS7k0epMKHvmQi9091ucEVaM_O6JafX0pPV3HF71E7lgHk_UptT_TLeAW5FMAG83gsc27XKxhrgXlf3HIZu7KxUt-Qzkf3rcIQ5UMiYE9XR_rmu7foFyti0yZM2rIwN04pTQm6fzxfVUZ4VPwn-0LFbhIF12uiJekUuHgsSYTquowSbyozMg1UFG0v7PvUOqsga8NAP6cb6hpzzD45f2jgzujYnIJmIqqY1TL');"></div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Mike Ross</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-risk-orange/10 text-risk-orange border border-risk-orange/20">
+                                        At Risk
+                                    </span>
+</td>
+<td class="px-6 py-4 w-48">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full rounded-full bg-risk-orange" style="width: 51%"></div>
+</div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">51%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="inline-flex items-center gap-1 text-risk-red">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1">favorite</span>
+<span class="font-bold">2</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-base text-slate-400">local_fire_department</span>
+                                        1 Day
+                                    </div>
+</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">
+                                    1d ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-white font-medium text-sm">View</button>
+</td>
+</tr>
+<!-- Row 4: Rachel Zane (Monitoring) -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-slate-200 dark:ring-slate-700" data-alt="Portrait of Rachel Zane" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVf51LhXQSnF0QaBr50djWGm8Ee8HEVBewlqXVQhftCNfIYNFRTMfu2MVprquulc7n8HNPvfNaK7V28fsV-QvabUDH0DT06wfwdR8SAO3uPhe0Kq3OSWe_1qCXEzBnyeZ9E-QffWspWpaFhJZaE6glND4IEoahMtN-gcvVUML-bqVpmvQ4jtRWDaZAOxWJaRMYtARjK_fnw7Df3VfD0OW75iPbluDT0CQVErVfTNfqsnr-cA8JXsaGP8JusBC0VPbOJw8sIg41yJxU');"></div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Rachel Zane</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-risk-yellow/10 text-risk-yellow border border-risk-yellow/20">
+                                        Monitoring
+                                    </span>
+</td>
+<td class="px-6 py-4 w-48">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full rounded-full bg-risk-yellow" style="width: 68%"></div>
+</div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">68%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="inline-flex items-center gap-1 text-risk-red">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1">favorite</span>
+<span class="font-bold">3</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-base text-risk-orange">local_fire_department</span>
+                                        3 Days
+                                    </div>
+</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">
+                                    12h ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-white font-medium text-sm">View</button>
+</td>
+</tr>
+<!-- Row 5: Alex Chen (On Track) -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-slate-200 dark:ring-slate-700" data-alt="Portrait of Alex Chen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIhvfagO0pA7sa0iK623JI4ohF9X5wQ2D1H9L3np5jW3eBzYKLBl-cuc8TSzQvRwQclCSAPOnJYm5jt_U4AX7bz4iU5M7Vyij7lH6pnYikiaMS26ayzbc2GViVt7wG1RsoZaYehBJyJOc1cYOEBJ8PuhgFRhfproHy40SqDGWw509RT_RKXKHeQbwIzxnY05xNwiRbn7mX3FeGaJQrgUlsQpWqRi3VRnVreG12N7svE6agehiNvHvz-18w7Sr3j0LH-kLm8ZQC32Bo');"></div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Alex Chen</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-risk-green/10 text-risk-green border border-risk-green/20">
+                                        On Track
+                                    </span>
+</td>
+<td class="px-6 py-4 w-48">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full rounded-full bg-risk-green" style="width: 85%"></div>
+</div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">85%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="inline-flex items-center gap-1 text-risk-red">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1">favorite</span>
+<span class="font-bold">5</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-slate-900 dark:text-white font-medium">
+<span class="material-symbols-outlined text-base text-risk-orange" style="font-variation-settings: 'FILL' 1">local_fire_department</span>
+                                        12 Days
+                                    </div>
+</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">
+                                    2h ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-white font-medium text-sm">View</button>
+</td>
+</tr>
+<!-- Row 6: Harvey Specter (On Track) -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center ring-2 ring-slate-200 dark:ring-slate-700" data-alt="Portrait of Harvey Specter" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcC2a9_5SUcJliOe-nNPd8p5sxl7GLkBoKPHIQnCM_-rof5IiIXzZO_5r6awUCx9oktGXgBoh-Y_VjR5fFQ1MAlTD6JEzhrUpkwa2nc184PnE38eUGteR3XN1xVD-7ZQX18gdLViGPGLVWtRhGDfx0lpcW5FAEBgMoizzvQXne-qVL4wsKf-Admdu4teeNtcTtC6TDz0t069LNTilKVjd5le6QuodweBhjPX9WL46q7bdARFME6pW2DPjpuHd-LSdRxDmvcK38UgyR');"></div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Harvey Specter</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-risk-green/10 text-risk-green border border-risk-green/20">
+                                        On Track
+                                    </span>
+</td>
+<td class="px-6 py-4 w-48">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full rounded-full bg-risk-green" style="width: 95%"></div>
+</div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">95%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="inline-flex items-center gap-1 text-risk-red">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1">favorite</span>
+<span class="font-bold">10</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-slate-900 dark:text-white font-medium">
+<span class="material-symbols-outlined text-base text-risk-orange" style="font-variation-settings: 'FILL' 1">local_fire_department</span>
+                                        30 Days
+                                    </div>
+</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">
+                                    1h ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-white font-medium text-sm">View</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="border-t border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between">
+<span class="text-sm text-slate-500 dark:text-slate-400">Showing 1-6 of 65 students</span>
+<div class="flex items-center gap-2">
+<button class="size-8 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-primary text-white text-sm font-medium">1</button>
+<button class="size-8 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">2</button>
+<button class="size-8 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">3</button>
+<button class="size-8 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side Panel: Intervention Details -->
+<aside class="w-96 bg-surface-light dark:bg-surface-dark border-l border-slate-200 dark:border-slate-800 flex flex-col shrink-0 shadow-2xl z-10 relative">
+<div class="absolute inset-0 bg-gradient-to-b from-risk-red/5 to-transparent pointer-events-none"></div>
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 relative z-10">
+<div class="flex justify-between items-start mb-6">
+<span class="bg-risk-red/10 text-risk-red text-xs font-bold px-2 py-1 rounded uppercase tracking-wide border border-risk-red/20">Critical Attention Needed</span>
+<button class="text-slate-400 hover:text-slate-900 dark:hover:text-white">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="size-24 rounded-full bg-cover bg-center ring-4 ring-risk-red/20" data-alt="Enlarged profile picture of Sarah Jones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxgi67bFOdjAs0hnnbZsJOrbcbm0B1dpgm0gYHqs5rrxU34ZQIjJyjqexYflAV2PCsLQH4CBhwkhoUYlNn4QTw6EPkZdjos4sCdMHi7bB2o-Kp-ghDj6JhKANOotNIkodC-5KrIIcjNny44vsGf1B8AguEuT0xYqkUyAyrFQSh6Df3lKJN-jOBjAyN4ORZbWfWGvJGLl3SJG6fsWXrQkYZNdoynwUMV_guuB3aL6jQ0RFSUZc0EN3jh2f1aGbenlyjtycxj5O5vIsU');"></div>
+<span class="absolute bottom-0 right-0 size-6 bg-risk-red border-4 border-surface-light dark:border-surface-dark rounded-full"></span>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Sarah Jones</h2>
+<p class="text-slate-500 dark:text-slate-400">Cohort Alpha • UX Design Track</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 relative z-10">
+<!-- Detected Issue -->
+<div class="mb-8">
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Detected Risk Factors</h4>
+<div class="bg-background-light dark:bg-background-dark rounded-xl p-4 border border-risk-red/20 flex gap-3 items-start">
+<span class="material-symbols-outlined text-risk-red shrink-0 mt-0.5">report_problem</span>
+<div>
+<p class="text-slate-900 dark:text-white font-medium text-sm">High Risk: Inactivity</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">No login activity detected for 5+ days. Missed last 2 assignment deadlines.</p>
+</div>
+</div>
+</div>
+<!-- Metrics Summary -->
+<div class="grid grid-cols-2 gap-3 mb-8">
+<div class="bg-background-light dark:bg-background-dark p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+<p class="text-xs text-slate-500 mb-1">Assignment Rate</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">45%</p>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+<p class="text-xs text-slate-500 mb-1">Avg. Quiz Score</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">62%</p>
+</div>
+</div>
+<!-- Intervention Actions -->
+<div>
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Intervention Actions</h4>
+<div class="flex flex-col gap-3">
+<label class="block">
+<span class="sr-only">Message</span>
+<textarea class="w-full bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-500 focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[100px] resize-none" placeholder="Type your message here...">Hi Sarah, I noticed you haven't been active lately. Is everything okay? Let's chat if you need help catching up.</textarea>
+</label>
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">send</span>
+                            Send Intervention Message
+                        </button>
+<div class="relative flex py-2 items-center">
+<div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+<span class="flex-shrink-0 mx-4 text-slate-400 text-xs font-medium uppercase">Or</span>
+<div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-white font-bold py-3 px-4 rounded-lg transition-all">
+<span class="material-symbols-outlined">calendar_month</span>
+                            Schedule 1:1 Session
+                        </button>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#151c24] text-center">
+<p class="text-xs text-slate-500">Last contact: Oct 15, 2023 via Email</p>
+</div>
+</aside>
+</main>
+</body></html>

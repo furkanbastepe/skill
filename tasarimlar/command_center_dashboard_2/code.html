@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enhanced Command Center Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1f68f9",
+                        "cyan-neon": "#00f3ff",
+                        "background-dark": "#0a0e14",
+                        "glass-bg": "rgba(15, 22, 35, 0.7)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Space Grotesk', sans-serif;
+                background-color: #0a0e14;
+            }
+        }
+        .cyber-glow {
+            box-shadow: 0 0 20px rgba(31, 104, 249, 0.1);
+        }
+        .neon-border-blue {
+            border: 1px solid rgba(31, 104, 249, 0.3);
+            box-shadow: inset 0 0 10px rgba(31, 104, 249, 0.1);
+        }
+        .neon-border-cyan {
+            border: 1px solid rgba(0, 243, 255, 0.3);
+        }
+        .terminal-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: rgba(31, 104, 249, 0.05);
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: rgba(31, 104, 249, 0.3);
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(15, 22, 35, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 50;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(31, 104, 249, 0.03) 50%, rgba(0, 0, 0, 0) 100%);
+            position: absolute;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+        }
+        .waterfall-data {
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+        }
+        .grid-bg {
+            background-image: linear-gradient(rgba(31, 104, 249, 0.05) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(31, 104, 249, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 antialiased overflow-hidden selection:bg-primary/30">
+<div class="relative flex h-screen w-full bg-background-dark grid-bg">
+<div class="scanline"></div>
+<aside class="flex flex-col w-20 border-r border-white/5 bg-background-dark/80 backdrop-blur-xl z-20">
+<div class="flex items-center justify-center h-20 border-b border-white/5">
+<div class="size-10 bg-primary/20 rounded-lg flex items-center justify-center text-cyan-neon shadow-[0_0_15px_rgba(0,243,255,0.2)]">
+<span class="material-symbols-outlined font-bold">radar</span>
+</div>
+</div>
+<nav class="flex-1 flex flex-col items-center py-8 gap-8">
+<button class="p-3 rounded-xl bg-primary/20 text-cyan-neon border border-cyan-neon/30 shadow-[0_0_15px_rgba(0,243,255,0.1)]" title="Dashboard">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-3 rounded-xl text-slate-500 hover:text-primary transition-all" title="Portfolio">
+<span class="material-symbols-outlined">account_tree</span>
+</button>
+<button class="p-3 rounded-xl text-slate-500 hover:text-primary transition-all" title="OS Simulation">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+<button class="p-3 rounded-xl text-slate-500 hover:text-primary transition-all" title="The Forge">
+<span class="material-symbols-outlined">rocket_launch</span>
+</button>
+<button class="p-3 rounded-xl text-slate-500 hover:text-primary transition-all" title="Data Vault">
+<span class="material-symbols-outlined">database</span>
+</button>
+</nav>
+<div class="pb-8 flex flex-col items-center gap-6">
+<button class="p-3 rounded-xl text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined">settings_suggest</span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/40 p-0.5 glow-sm">
+<img alt="Operator avatar silhouette" class="rounded-full w-full h-full object-cover grayscale brightness-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsSZxKqO6AJZlpWezQhxaBkeVCYianXkvmTv9DCzHCO6X-2bhNbGRrq-szzYdauma8T8CyMsDhwI2Bo90HhpThcOjp3DOz65PofNTlzjZRfxu5jbTzu-T9Fs1mXAD9c5jZN12SxUtF944pdhAJekQnP3ITwQHkIvRRoyYMO-ugfDrV0en5vZHjkILkC58Dy5RPFLQJeXMkRQ47FDJA5jwl1PfdLg1crTuWdrmFMNnWWJat237fXVJZKQhQcgpoE8ZaxgFSG0DrgFkG"/>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col overflow-hidden">
+<header class="h-20 border-b border-white/5 flex items-center justify-between px-8 bg-background-dark/40 backdrop-blur-md">
+<div class="flex items-center gap-6">
+<div>
+<h1 class="text-xl font-bold tracking-[0.2em] text-white flex items-center gap-2">
+<span class="text-primary">NEURAL</span>COMMAND_V8
+                    </h1>
+<div class="flex items-center gap-2">
+<span class="size-1.5 rounded-full bg-cyan-neon animate-pulse shadow-[0_0_8px_#00f3ff]"></span>
+<p class="text-[10px] font-bold text-cyan-neon uppercase tracking-widest">Link Stability: 98.4%</p>
+</div>
+</div>
+<div class="h-8 w-px bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10 group focus-within:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-primary text-sm group-focus-within:text-cyan-neon">terminal</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs font-mono text-slate-300 w-80 placeholder:text-slate-600 uppercase tracking-widest" placeholder="EXECUTE_SYSTEM_QUERY..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex flex-col items-end">
+<span class="text-lg font-mono font-bold text-white tracking-tighter">23:59:59:04</span>
+<span class="text-[9px] uppercase tracking-[0.3em] text-primary">System_Uptime_Synchronized</span>
+</div>
+<div class="flex gap-3">
+<button class="size-10 rounded-lg border border-white/10 glass-panel flex items-center justify-center hover:border-cyan-neon/50 text-slate-400 hover:text-cyan-neon transition-all">
+<span class="material-symbols-outlined text-xl">satellite_alt</span>
+</button>
+<button class="size-10 rounded-lg border border-white/10 glass-panel flex items-center justify-center hover:border-cyan-neon/50 text-slate-400 hover:text-cyan-neon transition-all">
+<span class="material-symbols-outlined text-xl">security</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex-1 p-6 overflow-y-auto terminal-scroll">
+<div class="grid grid-cols-12 gap-6 max-w-[1600px] mx-auto">
+<div class="col-span-12 grid grid-cols-4 gap-6">
+<div class="glass-panel p-5 rounded-xl border border-white/5 cyber-glow flex items-center gap-6">
+<div class="relative size-20 flex-shrink-0">
+<svg class="size-full -rotate-90" viewBox="0 0 36 36">
+<circle class="stroke-white/5" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-primary shadow-lg" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="35" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-xs font-bold text-white">65%</span>
+</div>
+</div>
+<div class="flex-1">
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest block mb-1">Compute Load</span>
+<div class="text-xl font-bold text-white">4.2 <span class="text-[10px] text-slate-500 font-normal">GHz</span></div>
+<div class="mt-2 flex gap-0.5">
+<div class="h-1 flex-1 bg-primary"></div>
+<div class="h-1 flex-1 bg-primary"></div>
+<div class="h-1 flex-1 bg-primary"></div>
+<div class="h-1 flex-1 bg-primary/20"></div>
+<div class="h-1 flex-1 bg-primary/20"></div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-5 rounded-xl border border-white/5 cyber-glow flex items-center gap-6">
+<div class="relative size-20 flex-shrink-0">
+<svg class="size-full -rotate-90" viewBox="0 0 36 36">
+<circle class="stroke-white/5" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-cyan-neon" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="15" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-xs font-bold text-white">85%</span>
+</div>
+</div>
+<div class="flex-1">
+<span class="text-[10px] font-bold text-cyan-neon uppercase tracking-widest block mb-1">Neural Cache</span>
+<div class="text-xl font-bold text-white">27.4 <span class="text-[10px] text-slate-500 font-normal">TB</span></div>
+<div class="mt-2 flex gap-0.5">
+<div class="h-1 flex-1 bg-cyan-neon"></div>
+<div class="h-1 flex-1 bg-cyan-neon"></div>
+<div class="h-1 flex-1 bg-cyan-neon"></div>
+<div class="h-1 flex-1 bg-cyan-neon"></div>
+<div class="h-1 flex-1 bg-cyan-neon/20"></div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-5 rounded-xl border border-white/5 cyber-glow flex items-center gap-6">
+<div class="relative size-20 flex-shrink-0">
+<svg class="size-full -rotate-90" viewBox="0 0 36 36">
+<circle class="stroke-white/5" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="70" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-xs font-bold text-white">30%</span>
+</div>
+</div>
+<div class="flex-1">
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest block mb-1">Signal Stream</span>
+<div class="text-xl font-bold text-white">1.2 <span class="text-[10px] text-slate-500 font-normal">Gbps</span></div>
+<div class="mt-2 flex gap-0.5">
+<div class="h-1 flex-1 bg-primary"></div>
+<div class="h-1 flex-1 bg-primary/20"></div>
+<div class="h-1 flex-1 bg-primary/20"></div>
+<div class="h-1 flex-1 bg-primary/20"></div>
+<div class="h-1 flex-1 bg-primary/20"></div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-5 rounded-xl border border-white/5 cyber-glow flex items-center gap-6">
+<div class="relative size-20 flex-shrink-0">
+<svg class="size-full -rotate-90" viewBox="0 0 36 36">
+<circle class="stroke-white/5" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-cyan-neon" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="55" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-xs font-bold text-white">45%</span>
+</div>
+</div>
+<div class="flex-1">
+<span class="text-[10px] font-bold text-cyan-neon uppercase tracking-widest block mb-1">Thermal Index</span>
+<div class="text-xl font-bold text-white">32<span class="text-[10px] text-slate-500 font-normal">°C</span></div>
+<div class="mt-2 flex gap-0.5">
+<div class="h-1 flex-1 bg-cyan-neon"></div>
+<div class="h-1 flex-1 bg-cyan-neon"></div>
+<div class="h-1 flex-1 bg-cyan-neon/20"></div>
+<div class="h-1 flex-1 bg-cyan-neon/20"></div>
+<div class="h-1 flex-1 bg-cyan-neon/20"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-8 space-y-6">
+<div class="glass-panel rounded-xl border border-white/5 p-6 cyber-glow h-[320px] flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div class="flex flex-col">
+<h3 class="text-xs font-bold tracking-[0.2em] uppercase text-white">Neural Link Stability</h3>
+<span class="text-[10px] text-primary/70 font-mono">ENCRYPTION_MODE: AES-QUANTUM-256</span>
+</div>
+<div class="flex gap-4 items-center">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-primary shadow-[0_0_8px_#1f68f9]"></div>
+<span class="text-[9px] font-bold text-slate-400 uppercase">Primary Node</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-cyan-neon shadow-[0_0_8px_#00f3ff]"></div>
+<span class="text-[9px] font-bold text-slate-400 uppercase">Aux Bridge</span>
+</div>
+</div>
+</div>
+<div class="flex-1 relative flex items-end gap-1 px-2">
+<div class="absolute inset-0 flex items-end justify-between px-2 pb-2">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 100">
+<path class="drop-shadow-[0_0_5px_rgba(31,104,249,0.8)]" d="M0,50 L50,45 L100,55 L150,40 L200,60 L250,55 L300,45 L350,50 L400,30 L450,40 L500,50 L550,60 L600,45 L650,40 L700,55 L750,45 L800,35 L850,50 L900,45 L950,55 L1000,50" fill="none" stroke="rgba(31,104,249,0.8)" stroke-width="2"></path>
+<path class="drop-shadow-[0_0_3px_rgba(0,243,255,0.6)]" d="M0,70 L50,65 L100,75 L150,60 L200,80 L250,75 L300,65 L350,70 L400,50 L450,60 L500,70 L550,80 L600,65 L650,60 L700,75 L750,65 L800,55 L850,70 L900,65 L950,75 L1000,70" fill="none" stroke="rgba(0,243,255,0.6)" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="absolute inset-0 grid grid-cols-10 grid-rows-5 pointer-events-none opacity-10">
+<div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-b border-white"></div>
+<div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-b border-white"></div>
+<div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-b border-white"></div>
+<div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-b border-white"></div>
+</div>
+</div>
+<div class="mt-4 flex justify-between text-[9px] font-mono text-slate-500 uppercase">
+<span>00:00:00</span>
+<span>00:00:15</span>
+<span>00:00:30</span>
+<span>00:00:45</span>
+<span>00:01:00</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="glass-panel rounded-xl border border-white/5 overflow-hidden h-[300px] relative group cyber-glow">
+<div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-screen transition-transform duration-[20s] linear animate-slow-zoom" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACY67KtO5bz_eB5oQa4IoX5MdkYMO7pcjaVfs03hH6-sbyb4PEWFZQYTVr5io9OJILiU3NZXbYK7ExkOxJ8RfzbqN9If8tYhKanM8KWYLuNoL3uFIgGWDcnubmhyb8pA_ZEPtwEdn5wtMsWLu5qUHt3N439AEt3JzitccBQJwKVWeAbIvOZdTu70Lu58LEDbhZ1INZFfNf2Ee9Ds5znsDUT0qrX6_4o81XTBySzccLFgczKvqLeAsnkCIChWLMelXocTBCvwgxkxma');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+<div class="relative p-5 h-full flex flex-col">
+<h3 class="text-xs font-bold tracking-widest uppercase text-white mb-2">Tactical Map: Sector_7</h3>
+<div class="mt-auto space-y-2">
+<div class="flex items-center justify-between text-[10px] bg-black/40 p-2 rounded border border-white/5">
+<span class="text-primary font-bold">NODE_01</span>
+<span class="text-white">SYNCHRONIZED</span>
+</div>
+<div class="flex items-center justify-between text-[10px] bg-black/40 p-2 rounded border border-white/5">
+<span class="text-cyan-neon font-bold">NODE_02</span>
+<span class="text-white">ACTIVE</span>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-xl border border-white/5 p-5 cyber-glow h-[300px] flex flex-col">
+<h3 class="text-xs font-bold tracking-widest uppercase text-white mb-4 flex items-center justify-between">
+                                Live Sector Activity
+                                <span class="text-[9px] text-cyan-neon font-mono">RX: 442.1 Kb/s</span>
+</h3>
+<div class="flex-1 waterfall-data overflow-hidden relative font-mono text-[9px] leading-tight space-y-1">
+<div class="text-cyan-neon/80">[ 23:58:12 ] PACKET_RECV :: ID: 0x921A - STATUS: OK</div>
+<div class="text-primary/80">[ 23:58:12 ] TRACE_ROUTE :: HOP: 12 - LAT: 14ms</div>
+<div class="text-slate-400">[ 23:58:13 ] HANDSHAKE_INIT :: ADDR: 192.168.0.25</div>
+<div class="text-emerald-500/80">[ 23:58:13 ] ENCRYPT_SUCCESS :: LAYER: TLS_1.3</div>
+<div class="text-cyan-neon/80">[ 23:58:14 ] PACKET_RECV :: ID: 0x921B - STATUS: OK</div>
+<div class="text-primary/80">[ 23:58:14 ] TRACE_ROUTE :: HOP: 12 - LAT: 15ms</div>
+<div class="text-amber-500/80">[ 23:58:15 ] WARNING :: RE-ROUTING_PACKETS_CLUSTER_B</div>
+<div class="text-cyan-neon/80">[ 23:58:16 ] PACKET_RECV :: ID: 0x921C - STATUS: OK</div>
+<div class="text-slate-400">[ 23:58:16 ] HANDSHAKE_INIT :: ADDR: 192.168.1.104</div>
+<div class="text-cyan-neon/80">[ 23:58:17 ] PACKET_RECV :: ID: 0x921D - STATUS: OK</div>
+<div class="text-primary/80">[ 23:58:17 ] TRACE_ROUTE :: HOP: 14 - LAT: 18ms</div>
+<div class="text-emerald-500/80">[ 23:58:18 ] ENCRYPT_SUCCESS :: LAYER: TLS_1.3</div>
+<div class="text-cyan-neon/80">[ 23:58:18 ] PACKET_RECV :: ID: 0x921E - STATUS: OK</div>
+<div class="text-slate-400">[ 23:58:19 ] SYSTEM_PING :: 0.01ms response</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-4 space-y-6">
+<div class="glass-panel rounded-xl border border-white/5 cyber-glow flex flex-col h-[400px]">
+<div class="p-4 border-b border-white/5 flex items-center justify-between bg-white/5">
+<h3 class="text-[10px] font-bold tracking-[0.2em] uppercase text-cyan-neon">System Encounters</h3>
+<span class="material-symbols-outlined text-cyan-neon text-sm">history_toggle_off</span>
+</div>
+<div class="flex-1 overflow-y-auto terminal-scroll p-4 space-y-4">
+<div class="group cursor-pointer p-3 rounded-lg border border-white/5 bg-white/5 hover:border-primary/50 transition-all">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[9px] font-bold text-primary tracking-widest uppercase">Encryption Alert</span>
+<span class="text-[8px] font-mono text-slate-500">23:45:01</span>
+</div>
+<div class="text-xs font-bold text-white mb-1">UNAUTHORIZED_ACCESS_BLOCK</div>
+<div class="text-[10px] text-slate-400 line-clamp-1">Targeting node: 142.0.9.1 / Encryption compromised.</div>
+</div>
+<div class="group cursor-pointer p-3 rounded-lg border border-white/5 bg-white/5 hover:border-cyan-neon/50 transition-all">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[9px] font-bold text-cyan-neon tracking-widest uppercase">Network Sync</span>
+<span class="text-[8px] font-mono text-slate-500">23:40:55</span>
+</div>
+<div class="text-xs font-bold text-white mb-1">CORE_MESH_STABILIZED</div>
+<div class="text-[10px] text-slate-400 line-clamp-1">All primary hubs report 100% coherence.</div>
+</div>
+<div class="group cursor-pointer p-3 rounded-lg border border-white/5 bg-white/5 hover:border-amber-500/50 transition-all opacity-70">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[9px] font-bold text-amber-500 tracking-widest uppercase">Thermal Spike</span>
+<span class="text-[8px] font-mono text-slate-500">23:35:12</span>
+</div>
+<div class="text-xs font-bold text-white mb-1">CLUSTER_B_OVERLOAD</div>
+<div class="text-[10px] text-slate-400 line-clamp-1">Temperature reached 54°C in processing block.</div>
+</div>
+<div class="group cursor-pointer p-3 rounded-lg border border-white/5 bg-white/5 hover:border-emerald-500/50 transition-all">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[9px] font-bold text-emerald-500 tracking-widest uppercase">System Clean</span>
+<span class="text-[8px] font-mono text-slate-500">23:30:44</span>
+</div>
+<div class="text-xs font-bold text-white mb-1">LOG_PURGE_COMPLETE</div>
+<div class="text-[10px] text-slate-400 line-clamp-1">Temporary memory buffers cleared successfully.</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-xl border border-white/5 cyber-glow p-5">
+<h3 class="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-400 mb-4">Operator Clearance</h3>
+<div class="flex items-center gap-4 p-3 bg-white/5 rounded-lg border border-white/5">
+<div class="size-12 rounded bg-primary/20 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+</div>
+<div>
+<div class="text-sm font-bold text-white uppercase tracking-tighter">Level_9_Operator</div>
+<div class="text-[10px] text-primary font-mono">ID: X-882-ALPHA-9</div>
+</div>
+<div class="ml-auto">
+<div class="size-3 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 grid grid-cols-3 gap-6">
+<div class="glass-panel p-4 rounded-xl border border-white/5 cyber-glow flex justify-between items-center">
+<div>
+<span class="text-[9px] font-bold text-primary uppercase tracking-[0.2em]">Global Ping</span>
+<div class="text-lg font-mono font-bold text-white">14.002<span class="text-[10px] text-primary ml-1">ms</span></div>
+</div>
+<span class="material-symbols-outlined text-primary/40">language</span>
+</div>
+<div class="glass-panel p-4 rounded-xl border border-white/5 cyber-glow flex justify-between items-center">
+<div>
+<span class="text-[9px] font-bold text-cyan-neon uppercase tracking-[0.2em]">Packet Loss</span>
+<div class="text-lg font-mono font-bold text-white">0.000<span class="text-[10px] text-cyan-neon ml-1">%</span></div>
+</div>
+<span class="material-symbols-outlined text-cyan-neon/40">signal_cellular_alt</span>
+</div>
+<div class="glass-panel p-4 rounded-xl border border-white/5 cyber-glow flex justify-between items-center">
+<div>
+<span class="text-[9px] font-bold text-primary uppercase tracking-[0.2em]">System Version</span>
+<div class="text-lg font-mono font-bold text-white">OS_HYBRID_8.4</div>
+</div>
+<span class="material-symbols-outlined text-primary/40">memory</span>
+</div>
+</div>
+</div>
+</div>
+<footer class="h-10 border-t border-white/5 bg-background-dark/80 backdrop-blur-md px-8 flex items-center justify-between z-20">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="size-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></span>
+<span class="text-[9px] font-bold uppercase tracking-[0.2em] text-emerald-500">Connection Secure</span>
+</div>
+<div class="h-3 w-px bg-white/10"></div>
+<div class="text-[9px] font-mono text-slate-500 uppercase">Gateway: 10.0.0.1_HIDDEN</div>
+<div class="h-3 w-px bg-white/10"></div>
+<div class="text-[9px] font-mono text-slate-500 uppercase">Latency: 2ms (Internal)</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">Protocol: NEURAL-LINK-STABLE</span>
+<div class="flex gap-1.5">
+<div class="w-1.5 h-3 bg-primary/20"></div>
+<div class="w-1.5 h-3 bg-primary/40"></div>
+<div class="w-1.5 h-3 bg-primary/60"></div>
+<div class="w-1.5 h-3 bg-primary"></div>
+</div>
+</div>
+</footer>
+</main>
+</div>
+
+</body></html>

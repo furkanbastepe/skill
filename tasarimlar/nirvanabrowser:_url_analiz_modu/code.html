@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirvanaBrowser: URL Analiz Modu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "primary-dark": "#0e62b8",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "surface-dark": "#1b2733",
+              "surface-light": "#ffffff",
+              "border-dark": "#2d3b4a",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Space Grotesk", "sans-serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "0.5rem", 
+              "lg": "1rem", 
+              "xl": "1.5rem", 
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom scrollbar for the dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3b4a; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #137fec; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display selection:bg-primary selection:text-white">
+<!-- Main Container -->
+<div class="relative flex h-full w-full flex-col overflow-hidden">
+<!-- Header / Browser Chrome -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark px-6 py-3 z-20 shadow-sm">
+<div class="flex items-center gap-6 w-full max-w-[960px] mx-auto">
+<!-- Browser Controls & Logo -->
+<div class="flex items-center gap-4 text-slate-900 dark:text-white min-w-fit">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">public</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">NirvanaBrowser</h2>
+</div>
+<!-- Address Bar -->
+<div class="flex flex-col flex-1 max-w-2xl mx-auto">
+<div class="flex w-full items-stretch rounded-xl h-10 ring-1 ring-slate-200 dark:ring-border-dark bg-slate-50 dark:bg-background-dark overflow-hidden transition-all focus-within:ring-2 focus-within:ring-primary">
+<div class="text-slate-400 dark:text-slate-500 flex items-center justify-center pl-4 pr-2">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="w-full bg-transparent border-none focus:ring-0 text-slate-600 dark:text-slate-300 placeholder:text-slate-400 text-sm font-medium" readonly="" value="https://hesap-guvenlik-banka.com/login"/>
+<div class="flex items-center pr-2 gap-2">
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">URL Analiz Modu</span>
+</div>
+</div>
+</div>
+<!-- Window Actions -->
+<div class="flex items-center gap-4 min-w-fit justify-end hidden md:flex">
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-400">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">minimize</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">check_box_outline_blank</span></button>
+<button class="hover:text-red-500 transition-colors"><span class="material-symbols-outlined">close</span></button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:flex-row h-[calc(100vh-64px)] overflow-hidden">
+<!-- Left Side: URL Analysis Stage -->
+<div class="flex-1 overflow-y-auto p-6 md:p-10 flex flex-col items-center">
+<div class="w-full max-w-4xl space-y-8">
+<!-- Instruction Header -->
+<div class="text-left space-y-2">
+<div class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-lg">school</span>
+<span>B2-L1: URL İnceleme</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Şüpheli Bağlantı Analizi</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">
+                            Aşağıdaki URL parçalarına tıklayarak her bir segmenti inceleyin. Güvenlik açıklarını ve sahte alan adlarını tespit etmeye çalışın.
+                        </p>
+</div>
+<!-- Interactive URL Breakdown -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-8 border border-slate-200 dark:border-border-dark shadow-xl">
+<div class="flex flex-wrap gap-4 items-center justify-center md:justify-start">
+<!-- Segment: Protocol -->
+<button class="group flex flex-col items-center gap-2 transition-all hover:-translate-y-1">
+<div class="h-14 px-5 flex items-center justify-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 group-hover:bg-emerald-500/20 group-hover:border-emerald-500 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-emerald-500">lock</span>
+<span class="text-emerald-500 font-bold text-lg">https://</span>
+</div>
+<span class="text-xs font-medium text-slate-400 uppercase tracking-wider group-hover:text-emerald-500 transition-colors">Protokol</span>
+</button>
+<!-- Segment: Subdomain -->
+<button class="group flex flex-col items-center gap-2 transition-all hover:-translate-y-1">
+<div class="h-14 px-5 flex items-center justify-center gap-2 rounded-lg bg-orange-500/10 border border-orange-500/20 group-hover:bg-orange-500/20 group-hover:border-orange-500 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-orange-500">warning</span>
+<span class="text-orange-500 font-bold text-lg">hesap-guvenlik</span>
+</div>
+<span class="text-xs font-medium text-slate-400 uppercase tracking-wider group-hover:text-orange-500 transition-colors">Subdomain</span>
+</button>
+<!-- Segment: Domain -->
+<button class="group flex flex-col items-center gap-2 transition-all hover:-translate-y-1">
+<div class="h-14 px-5 flex items-center justify-center gap-2 rounded-lg bg-red-500/10 border border-red-500/20 group-hover:bg-red-500/20 group-hover:border-red-500 transition-colors cursor-pointer relative">
+<span class="material-symbols-outlined text-red-500">language</span>
+<span class="text-red-500 font-bold text-lg">banka</span>
+<div class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold animate-pulse">SAHTE?</div>
+</div>
+<span class="text-xs font-medium text-slate-400 uppercase tracking-wider group-hover:text-red-500 transition-colors">Domain</span>
+</button>
+<!-- Segment: TLD -->
+<button class="group flex flex-col items-center gap-2 transition-all hover:-translate-y-1">
+<div class="h-14 px-5 flex items-center justify-center gap-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 group-hover:border-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-300">public</span>
+<span class="text-slate-600 dark:text-slate-200 font-bold text-lg">.com</span>
+</div>
+<span class="text-xs font-medium text-slate-400 uppercase tracking-wider group-hover:text-primary transition-colors">Uzantı</span>
+</button>
+<!-- Segment: Path -->
+<button class="group flex flex-col items-center gap-2 transition-all hover:-translate-y-1">
+<div class="h-14 px-5 flex items-center justify-center gap-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 group-hover:border-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-300">folder</span>
+<span class="text-slate-600 dark:text-slate-200 font-bold text-lg">/login</span>
+</div>
+<span class="text-xs font-medium text-slate-400 uppercase tracking-wider group-hover:text-primary transition-colors">Yol</span>
+</button>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-200 dark:border-border-dark">
+<div class="flex items-start gap-4">
+<div class="p-3 rounded-full bg-primary/10 text-primary shrink-0">
+<span class="material-symbols-outlined">info</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Analiz İpucu</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                                        Saldırganlar genellikle güvenilir markaların isimlerini <strong>subdomain</strong> (alt alan adı) kısmına yazar. Gerçek domain her zaman uzantıdan (.com) hemen önce gelen kısımdır. Bu örnekte gerçek domain "banka" değil, "banka-guvenlik" olabilirdi ancak burada sadece "banka" yazılmış. Dikkatli inceleyin.
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-4 pt-4">
+<button class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-colors shadow-lg shadow-red-500/20">
+<span class="material-symbols-outlined">report</span>
+                            Şüpheli Olarak Raporla
+                        </button>
+<button class="flex-1 bg-surface-dark border border-border-dark hover:bg-surface-dark/80 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-colors">
+<span class="material-symbols-outlined">verified_user</span>
+                            Güvenli İşaretle
+                        </button>
+</div>
+</div>
+</div>
+<!-- Right Side: QuestDock Sidebar -->
+<div class="w-full md:w-80 lg:w-96 bg-white dark:bg-surface-dark border-l border-slate-200 dark:border-border-dark flex flex-col shrink-0">
+<!-- Sidebar Header -->
+<div class="p-6 border-b border-slate-200 dark:border-border-dark bg-gradient-to-r from-surface-dark to-background-dark">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-white font-bold text-xl tracking-tight">QuestDock</h2>
+<div class="bg-primary/20 text-primary px-2 py-1 rounded text-xs font-bold">5 GÖREV</div>
+</div>
+<p class="text-slate-400 text-xs">Aşağıdaki güvenlik kontrollerini tamamlayın.</p>
+</div>
+<!-- Checklist -->
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Task Item 1: Done -->
+<label class="group flex gap-4 p-4 rounded-xl border border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-background-dark/50 cursor-pointer hover:border-primary/50 transition-colors">
+<div class="relative flex items-start pt-0.5">
+<input checked="" class="peer h-5 w-5 rounded border-slate-400 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-slate-200 font-medium text-sm group-hover:text-primary transition-colors">Protokolü (HTTPS) kontrol et</span>
+<span class="text-slate-500 dark:text-slate-500 text-xs mt-1">Bağlantı şifreli mi?</span>
+</div>
+</label>
+<!-- Task Item 2: Active -->
+<label class="group flex gap-4 p-4 rounded-xl border-2 border-primary bg-primary/5 cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="relative flex items-start pt-0.5">
+<input class="peer h-5 w-5 rounded border-slate-400 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-bold text-sm">Subdomain (alt alan adı) tespiti</span>
+<span class="text-primary dark:text-primary-300 text-xs mt-1">Ana domainden ayırt et.</span>
+</div>
+</label>
+<!-- Task Item 3 -->
+<label class="group flex gap-4 p-4 rounded-xl border border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-background-dark/50 cursor-pointer hover:border-primary/50 transition-colors">
+<div class="relative flex items-start pt-0.5">
+<input class="peer h-5 w-5 rounded border-slate-400 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-slate-200 font-medium text-sm group-hover:text-primary transition-colors">Gerçek Domain kontrolü</span>
+<span class="text-slate-500 dark:text-slate-500 text-xs mt-1">"banka.com" mu?</span>
+</div>
+</label>
+<!-- Task Item 4 -->
+<label class="group flex gap-4 p-4 rounded-xl border border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-background-dark/50 cursor-pointer hover:border-primary/50 transition-colors">
+<div class="relative flex items-start pt-0.5">
+<input class="peer h-5 w-5 rounded border-slate-400 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-slate-200 font-medium text-sm group-hover:text-primary transition-colors">Yazım hatalarını incele</span>
+<span class="text-slate-500 dark:text-slate-500 text-xs mt-1">Typosquatting var mı?</span>
+</div>
+</label>
+<!-- Task Item 5 -->
+<label class="group flex gap-4 p-4 rounded-xl border border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-background-dark/50 cursor-pointer hover:border-primary/50 transition-colors">
+<div class="relative flex items-start pt-0.5">
+<input class="peer h-5 w-5 rounded border-slate-400 bg-transparent text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-slate-200 font-medium text-sm group-hover:text-primary transition-colors">Uzantıyı (.com) doğrula</span>
+<span class="text-slate-500 dark:text-slate-500 text-xs mt-1">TLD güvenilir mi?</span>
+</div>
+</label>
+</div>
+<!-- Footer / Status -->
+<div class="p-6 bg-slate-50 dark:bg-background-dark border-t border-slate-200 dark:border-border-dark">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-300">Güvenlik Puanı</span>
+<span class="text-2xl font-bold text-primary">20/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
+<div class="bg-primary h-2.5 rounded-full" style="width: 20%"></div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<div class="size-6 rounded-full bg-cover bg-center border border-slate-300 dark:border-slate-600" data-alt="Small circular logo for UNDP or Youth Center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgWPDdTa8n_y9ZeD1DyVxnJhHmiRgA8shwOsZLrt739Zi_AnDjvmSx1x7ti_cO3M2la3rzraEGP90pKZ_q6q3aHk1HBXKKV4nfakYwF0dSUU5TRenB92NJ0dYOrCin0NjcJmdLquAlPqeuQ7byWXgFVa6xCsVo5ODdRzWrDVKSDLeX0xIIhWSEz-yU42XeSx1ar1SOrSjea5ZAQljgBQzer2dGvVqY4yZXWqWEUqtsKDPQxswIpkaXFUGVSrCJFXC2FXGbR1rrcMk');"></div>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">UNDP x PUSULA Lite v1.3</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

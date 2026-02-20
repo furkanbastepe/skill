@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Command Center Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1f68f9",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1623",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0f1623;
+        }
+        .cyber-glow {
+            box-shadow: 0 0 15px rgba(31, 104, 249, 0.15);
+        }
+        .terminal-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: rgba(31, 104, 249, 0.05);
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: rgba(31, 104, 249, 0.3);
+            border-radius: 10px;
+        }
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 10;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(31, 104, 249, 0.02) 50%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0.1;
+            position: absolute;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="relative flex h-screen w-full bg-background-light dark:bg-background-dark">
+<!-- Overlay Effects -->
+<div class="scanline top-0 left-0"></div>
+<!-- Side Navigation (Mini Style) -->
+<aside class="flex flex-col w-20 border-r border-slate-200 dark:border-primary/20 bg-white dark:bg-background-dark/80 backdrop-blur-md z-20">
+<div class="flex items-center justify-center h-20 border-b border-slate-200 dark:border-primary/20">
+<div class="size-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined font-bold">terminal</span>
+</div>
+</div>
+<nav class="flex-1 flex flex-col items-center py-8 gap-8">
+<button class="p-3 rounded-xl bg-primary text-white shadow-lg shadow-primary/30" title="Dashboard">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" title="Portfolio">
+<span class="material-symbols-outlined">work</span>
+</button>
+<button class="p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" title="OS Simulation">
+<span class="material-symbols-outlined">settings_input_component</span>
+</button>
+<button class="p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" title="The Forge">
+<span class="material-symbols-outlined">sports_esports</span>
+</button>
+<button class="p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors" title="Data Vault">
+<span class="material-symbols-outlined">database</span>
+</button>
+</nav>
+<div class="pb-8 flex flex-col items-center gap-6">
+<button class="p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-primary/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/40 p-0.5">
+<img alt="Operator avatar silhouette" class="rounded-full w-full h-full object-cover" data-alt="Futuristic digital portrait of a system operator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsSZxKqO6AJZlpWezQhxaBkeVCYianXkvmTv9DCzHCO6X-2bhNbGRrq-szzYdauma8T8CyMsDhwI2Bo90HhpThcOjp3DOz65PofNTlzjZRfxu5jbTzu-T9Fs1mXAD9c5jZN12SxUtF944pdhAJekQnP3ITwQHkIvRRoyYMO-ugfDrV0en5vZHjkILkC58Dy5RPFLQJeXMkRQ47FDJA5jwl1PfdLg1crTuWdrmFMNnWWJat237fXVJZKQhQcgpoE8ZaxgFSG0DrgFkG"/>
+</div>
+</div>
+</aside>
+<!-- Main Dashboard Area -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-20 border-b border-slate-200 dark:border-primary/20 flex items-center justify-between px-8 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md">
+<div class="flex items-center gap-6">
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">COMMAND_CENTER</h1>
+<p class="text-xs font-medium text-primary uppercase tracking-widest">Operator Session: Active</p>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-primary/20 mx-2"></div>
+<div class="flex items-center gap-3 bg-slate-100 dark:bg-primary/5 px-4 py-2 rounded-lg border border-slate-200 dark:border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-display text-slate-600 dark:text-slate-300 w-64 placeholder:text-slate-400 dark:placeholder:text-primary/40 uppercase" placeholder="EXECUTE COMMAND..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-slate-500 dark:text-slate-400">
+<div class="flex flex-col items-end">
+<span class="text-sm font-bold text-slate-900 dark:text-white leading-none">23:42:01</span>
+<span class="text-[10px] uppercase tracking-tighter">System Uptime: 142h</span>
+</div>
+<div class="flex gap-2">
+<button class="size-10 rounded-lg border border-slate-200 dark:border-primary/20 flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="size-10 rounded-lg border border-slate-200 dark:border-primary/20 flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-xl">wifi</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Grid -->
+<div class="flex-1 p-8 overflow-y-auto terminal-scroll">
+<div class="grid grid-cols-12 gap-6 max-w-7xl mx-auto">
+<!-- Stats Section -->
+<div class="col-span-12 grid grid-cols-4 gap-6">
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-slate-200 dark:border-primary/20 cyber-glow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-500 dark:text-primary uppercase tracking-widest">CPU Load</span>
+<span class="material-symbols-outlined text-primary">memory</span>
+</div>
+<div class="mt-4">
+<div class="text-3xl font-bold dark:text-white">42.8<span class="text-primary text-lg">%</span></div>
+<div class="w-full bg-slate-200 dark:bg-primary/10 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[42%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-slate-200 dark:border-primary/20 cyber-glow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-500 dark:text-primary uppercase tracking-widest">Memory</span>
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div class="mt-4">
+<div class="text-3xl font-bold dark:text-white">12.4<span class="text-primary text-lg">GB</span></div>
+<div class="w-full bg-slate-200 dark:bg-primary/10 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[68%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-slate-200 dark:border-primary/20 cyber-glow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-500 dark:text-primary uppercase tracking-widest">Network</span>
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+<div class="mt-4">
+<div class="text-3xl font-bold dark:text-white">842<span class="text-primary text-lg">mb/s</span></div>
+<div class="text-[10px] text-emerald-500 font-bold uppercase mt-1">Status: High Speed</div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-slate-200 dark:border-primary/20 cyber-glow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-500 dark:text-primary uppercase tracking-widest">Core Temp</span>
+<span class="material-symbols-outlined text-primary">thermostat</span>
+</div>
+<div class="mt-4">
+<div class="text-3xl font-bold dark:text-white">54<span class="text-primary text-lg">°C</span></div>
+<div class="text-[10px] text-amber-500 font-bold uppercase mt-1">Status: Nominal</div>
+</div>
+</div>
+</div>
+<!-- Sector Map (Navigation) -->
+<div class="col-span-8 bg-white dark:bg-primary/5 rounded-xl border border-slate-200 dark:border-primary/20 cyber-glow overflow-hidden h-[400px] relative group">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-screen transition-transform duration-700 group-hover:scale-105" data-alt="Cyberpunk digital map wireframe of city sectors" data-location="Cyber City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACY67KtO5bz_eB5oQa4IoX5MdkYMO7pcjaVfs03hH6-sbyb4PEWFZQYTVr5io9OJILiU3NZXbYK7ExkOxJ8RfzbqN9If8tYhKanM8KWYLuNoL3uFIgGWDcnubmhyb8pA_ZEPtwEdn5wtMsWLu5qUHt3N439AEt3JzitccBQJwKVWeAbIvOZdTu70Lu58LEDbhZ1INZFfNf2Ee9Ds5znsDUT0qrX6_4o81XTBySzccLFgczKvqLeAsnkCIChWLMelXocTBCvwgxkxma');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+<div class="relative p-6 flex flex-col h-full">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold tracking-widest uppercase text-white">Sector Map: Alpha-9</h3>
+<div class="flex gap-2">
+<button class="size-8 rounded border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+<button class="size-8 rounded border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+</div>
+</div>
+<div class="mt-auto flex gap-4">
+<div class="bg-primary/90 backdrop-blur-md px-4 py-3 rounded-lg border border-white/20 cursor-pointer hover:bg-primary transition-colors">
+<div class="text-[10px] font-bold uppercase text-white/70">Target</div>
+<div class="text-sm font-bold text-white tracking-wide">PORTFOLIO_NODE</div>
+</div>
+<div class="bg-black/60 backdrop-blur-md px-4 py-3 rounded-lg border border-white/10 cursor-pointer hover:bg-black/80 transition-colors">
+<div class="text-[10px] font-bold uppercase text-white/70">Sector</div>
+<div class="text-sm font-bold text-white tracking-wide">THE_VAULT</div>
+</div>
+<div class="bg-black/60 backdrop-blur-md px-4 py-3 rounded-lg border border-white/10 cursor-pointer hover:bg-black/80 transition-colors">
+<div class="text-[10px] font-bold uppercase text-white/70">Sector</div>
+<div class="text-sm font-bold text-white tracking-wide">DEEP_FEED</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Encounters -->
+<div class="col-span-4 bg-white dark:bg-primary/5 rounded-xl border border-slate-200 dark:border-primary/20 cyber-glow flex flex-col h-[400px]">
+<div class="p-4 border-b border-slate-200 dark:border-primary/20 flex items-center justify-between">
+<h3 class="text-xs font-bold tracking-widest uppercase text-slate-500 dark:text-primary">Encounters</h3>
+<span class="material-symbols-outlined text-primary text-sm">history</span>
+</div>
+<div class="flex-1 overflow-y-auto terminal-scroll p-4 space-y-4">
+<div class="flex gap-4 p-3 rounded-lg hover:bg-primary/5 transition-colors border border-transparent hover:border-primary/10">
+<div class="size-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+<span class="material-symbols-outlined">key</span>
+</div>
+<div>
+<div class="text-xs font-bold dark:text-white">ACCESS GRANTED</div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400">Node: Encryption_Layer_01</div>
+<div class="text-[9px] text-emerald-500/60 font-mono mt-1">T-Minus: 02:45:11</div>
+</div>
+</div>
+<div class="flex gap-4 p-3 rounded-lg hover:bg-primary/5 transition-colors border border-transparent hover:border-primary/10">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">upload_file</span>
+</div>
+<div>
+<div class="text-xs font-bold dark:text-white">FILE UPLOADED</div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400">Project: NEURAL_INTERFACE.v2</div>
+<div class="text-[9px] text-primary/60 font-mono mt-1">T-Minus: 04:12:00</div>
+</div>
+</div>
+<div class="flex gap-4 p-3 rounded-lg hover:bg-primary/5 transition-colors border border-transparent hover:border-primary/10 opacity-60">
+<div class="size-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<div class="text-xs font-bold dark:text-white">SCAN DETECTED</div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400">Source: External_IP_7712</div>
+<div class="text-[9px] text-amber-500/60 font-mono mt-1">T-Minus: 12:01:45</div>
+</div>
+</div>
+<div class="flex gap-4 p-3 rounded-lg hover:bg-primary/5 transition-colors border border-transparent hover:border-primary/10">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div>
+<div class="text-xs font-bold dark:text-white">NEW PEER CONNECTED</div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400">User: VISITOR_8829</div>
+<div class="text-[9px] text-primary/60 font-mono mt-1">T-Minus: 14:55:20</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Neural Feed -->
+<div class="col-span-12 bg-white dark:bg-primary/5 rounded-xl border border-slate-200 dark:border-primary/20 cyber-glow flex flex-col">
+<div class="p-4 border-b border-slate-200 dark:border-primary/20 flex items-center justify-between">
+<h3 class="text-xs font-bold tracking-widest uppercase text-slate-500 dark:text-primary">Neural Feed // Global Stream</h3>
+<div class="flex gap-2">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] font-bold text-primary uppercase">Live Intercepts</span>
+</div>
+</div>
+<div class="p-6 grid grid-cols-3 gap-6">
+<div class="space-y-3 p-4 bg-slate-50 dark:bg-primary/5 rounded-lg border border-slate-100 dark:border-white/5 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">INTEL</span>
+<span class="text-[10px] text-slate-400 font-mono">09:42 PM</span>
+</div>
+<h4 class="font-bold text-sm dark:text-white group-hover:text-primary transition-colors">Neural Mesh Protocol Update 4.0</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">System architecture migrated to decentralized clusters for increased throughput.</p>
+<div class="pt-2 flex items-center text-[10px] text-primary font-bold gap-1">
+                                    READ LOG <span class="material-symbols-outlined text-[10px]">arrow_forward</span>
+</div>
+</div>
+<div class="space-y-3 p-4 bg-slate-50 dark:bg-primary/5 rounded-lg border border-slate-100 dark:border-white/5 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded">MARKET</span>
+<span class="text-[10px] text-slate-400 font-mono">08:15 PM</span>
+</div>
+<h4 class="font-bold text-sm dark:text-white group-hover:text-amber-500 transition-colors">Digital Asset Volatility: High</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Deep-net exchanges reporting unexpected fluctuations in tokenized compute credits.</p>
+<div class="pt-2 flex items-center text-[10px] text-amber-500 font-bold gap-1">
+                                    VIEW TRENDS <span class="material-symbols-outlined text-[10px]">arrow_forward</span>
+</div>
+</div>
+<div class="space-y-3 p-4 bg-slate-50 dark:bg-primary/5 rounded-lg border border-slate-100 dark:border-white/5 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">OPS</span>
+<span class="text-[10px] text-slate-400 font-mono">07:50 PM</span>
+</div>
+<h4 class="font-bold text-sm dark:text-white group-hover:text-emerald-500 transition-colors">The Forge: Expansion Pack Alpha</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">New gaming modules being stress-tested in simulation sector Sigma-9.</p>
+<div class="pt-2 flex items-center text-[10px] text-emerald-500 font-bold gap-1">
+                                    JOIN SIM <span class="material-symbols-outlined text-[10px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Status -->
+<footer class="h-10 border-t border-slate-200 dark:border-primary/20 bg-white/50 dark:bg-background-dark/80 backdrop-blur-md px-8 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-emerald-500">Connection Secure</span>
+</div>
+<div class="h-3 w-px bg-slate-300 dark:bg-primary/20"></div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-mono text-slate-400 uppercase">Ping: 14ms</span>
+</div>
+<div class="h-3 w-px bg-slate-300 dark:bg-primary/20"></div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-mono text-slate-400 uppercase">IP: 192.168.1.104</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">System Version v8.12.0-Alpha</span>
+<div class="flex gap-1">
+<div class="w-1 h-3 bg-primary"></div>
+<div class="w-1 h-3 bg-primary/60"></div>
+<div class="w-1 h-3 bg-primary/30"></div>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

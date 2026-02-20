@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cuma Çözüm Atölyesi: Klan Çalışma Alanı</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0d59f2",
+              "background-light": "#f5f6f8",
+              "background-dark": "#101622",
+              "surface-dark": "#1c2333",
+              "surface-light": "#ffffff",
+              "border-dark": "#282e39",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101622; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b4354; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555e70; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased overflow-hidden h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-border-dark px-6 py-3 bg-white dark:bg-[#111318] shrink-0 z-20">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">explore</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">PUSULA <span class="text-primary font-normal">Lite</span></h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 h-9 px-4 rounded-lg bg-gray-100 dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-[#282e39] text-slate-700 dark:text-white text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+<span class="hidden sm:inline">Profilim</span>
+</button>
+<button class="flex items-center gap-2 h-9 px-4 rounded-lg bg-gray-100 dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-[#282e39] text-slate-700 dark:text-white text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Sidebar: Klan Members -->
+<aside class="w-72 bg-white dark:bg-[#111318] border-r border-gray-200 dark:border-border-dark flex flex-col shrink-0 overflow-y-auto hidden lg:flex">
+<div class="p-5 border-b border-gray-200 dark:border-border-dark">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Klan Detayları</h3>
+<span class="bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold px-2 py-0.5 rounded">Aktif</span>
+</div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Kuzey Yıldızı</h2>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-yellow-500 text-sm">trophy</span>
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">1,250 XP</span>
+</div>
+</div>
+<div class="p-4 flex-1 overflow-y-auto">
+<h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4 px-1">Üyeler &amp; Roller</h3>
+<div class="space-y-3">
+<!-- Member 1: Facilitator -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-primary/10 border border-primary/20">
+<div class="relative shrink-0">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-primary" data-alt="Portrait of a young woman with a confident smile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAq5bSfbOLRkJ7gT5JgV207KY3u7jaYU_lQwaYyXUrCy94yTRYgIay-kgpwvPT0xl3ICTdRylNtUvmZMxJ181eGSLvmISezgnfIHtGMnrjjU6Xh_-UIFYCsee6qMQWPPYKbQWo2Mb4VFz9vRuRncAtGODBw1Pl22Tip1Vd_WagPVARoOuWo81YI2eza8PkNTG5ng_1SGPzlzKZha3DkR_jmWYqjqwhkcFqzeB14VcyjaeuV8C-vZI7sF9M5vif0-gUFaFw7ZM2EjAs')"></div>
+<span class="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-2 ring-white dark:ring-[#111318]">
+<span class="material-symbols-outlined text-[10px] text-white">mic</span>
+</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Zeynep (Sen)</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="inline-flex items-center rounded bg-primary/20 px-1.5 py-0.5 text-[10px] font-medium text-primary uppercase">Kolaylaştırıcı</span>
+</div>
+</div>
+</div>
+<!-- Member 2: Scribe -->
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-surface-dark transition-colors group cursor-pointer">
+<div class="relative shrink-0">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-transparent group-hover:border-slate-300 dark:group-hover:border-slate-600 transition-colors" data-alt="Portrait of a smiling man with glasses" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA__63Q6M87MOv-LXs5hMqjYK5djtZJfC9LqTYfFmVBkeUC8rF7k8aW_TodNYBCj_vFqLKhZ5thTLXEOcgrqSYdNfjRSxsCP4c36NfG37gatKUT_nheDHkuNf1iSoFQzinOSYHgNccVmzy4jPaUiICMAes0BS3-F-Pr3qFEZqyoyE1wdy-dvWw_xjiHwnKcP-TfknfvP154VD4DNTMWYgJs-SxwerBf-XWEyKIjgdBL1FOO3BakzNZjal2FST0Nr43Sw1V_fxla8iE')"></div>
+<span class="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-green-500 ring-2 ring-white dark:ring-[#111318]">
+<span class="material-symbols-outlined text-[10px] text-white">edit</span>
+</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-slate-200 truncate">Ali</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="inline-flex items-center rounded bg-purple-500/20 px-1.5 py-0.5 text-[10px] font-medium text-purple-400 uppercase">Yazman</span>
+</div>
+</div>
+</div>
+<!-- Member 3: Presenter -->
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-surface-dark transition-colors group cursor-pointer">
+<div class="relative shrink-0">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-transparent group-hover:border-slate-300 dark:group-hover:border-slate-600 transition-colors" data-alt="Portrait of a young man looking focused" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ_cOY2LVFWR9E6K2v7AS5KjMvJAzyO-RfWpph9ceR8cs_gKRB5MvB8tDxjMLhyP7DtcZRfNQrXKII5QRJvuXHyR-yEWEcRYs4gz-_MTycLItPIfk8_Hvmp_E40NdlmOP-yxXPyhC4wJdnAEEGgSoVZhCY0iDRE2KoaoK_uqSVsDskXrh_ZI6oUoZ5uB0gpnr_oCJmfwQ0Jmeu7E3qUoglR2-1-iQXjufjR7z8nGUaFzqrfeGDn0aI7Ae8kmZ2lLUxZYEQ9RQsb6M')"></div>
+<span class="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-orange-500 ring-2 ring-white dark:ring-[#111318]">
+<span class="material-symbols-outlined text-[10px] text-white">co_present</span>
+</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-slate-200 truncate">Mehmet</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="inline-flex items-center rounded bg-orange-500/20 px-1.5 py-0.5 text-[10px] font-medium text-orange-400 uppercase">Sunucu</span>
+</div>
+</div>
+</div>
+<!-- Member 4: Member -->
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-surface-dark transition-colors group cursor-pointer opacity-75">
+<div class="relative shrink-0">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-transparent group-hover:border-slate-300 dark:group-hover:border-slate-600 transition-colors grayscale" data-alt="Portrait of a young woman" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4tWW3aB_R7h45Faz7mdH-U9hXGj9NUZ2u0TKmdl94t82Icj4CfwXJHkFN9q4lP8KopO0DpiQ6PQbP5kchBDiutkuo04FdKHyHc0Tauq4NbCGdmDZrvDqORxdSgZhbnvr29_CyffgkpW-4oGeuOjjWjC_U_bN6xfeSN3CqvGvPZ8akex4iyDIl8dV2cZx_9Idm_EB53vpBGlEl1iB4QetjQAW0qXILkU4f38iv1ADc0a6wUim4pEN07gToBOFjEbVZx0ROvtBlqn0')"></div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-slate-200 truncate">Ayşe</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="inline-flex items-center rounded bg-slate-700 px-1.5 py-0.5 text-[10px] font-medium text-slate-300 uppercase">Üye</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-gray-200 dark:border-border-dark mt-auto">
+<button class="w-full flex items-center justify-center gap-2 h-10 px-4 rounded-lg bg-gray-100 dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-[#282e39] text-slate-700 dark:text-white text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-lg">settings</span>
+                    Klan Ayarları
+                </button>
+</div>
+</aside>
+<!-- Center Stage: Shared Canvas -->
+<section class="flex-1 flex flex-col relative bg-background-light dark:bg-background-dark overflow-hidden">
+<!-- Top Status Bar & Timer -->
+<div class="shrink-0 p-4 md:p-6 pb-2">
+<div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-6">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center rounded bg-primary/20 px-2 py-0.5 text-xs font-bold text-primary uppercase tracking-wide">Cuma Çözüm Atölyesi</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Hafta #42</span>
+</div>
+<h1 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">Mahalle Esnafı için Dijital Stok Takibi</h1>
+</div>
+<!-- Timer Component -->
+<div class="flex items-center gap-4 bg-white dark:bg-surface-dark rounded-xl p-3 shadow-sm border border-gray-200 dark:border-border-dark">
+<div class="flex flex-col items-center px-2">
+<span class="text-2xl font-bold font-mono text-slate-900 dark:text-white leading-none">01</span>
+<span class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">Saat</span>
+</div>
+<div class="text-slate-300 text-xl font-light">:</div>
+<div class="flex flex-col items-center px-2">
+<span class="text-2xl font-bold font-mono text-primary leading-none">29</span>
+<span class="text-[10px] text-primary uppercase tracking-wider">Dakika</span>
+</div>
+<div class="text-slate-300 text-xl font-light">:</div>
+<div class="flex flex-col items-center px-2">
+<span class="text-2xl font-bold font-mono text-slate-900 dark:text-white leading-none">45</span>
+<span class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">Saniye</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Canvas Grid -->
+<div class="flex-1 overflow-y-auto px-4 md:px-6 pb-20 md:pb-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-full min-h-[600px]">
+<!-- Section 1: Problem Definition -->
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-border-dark shadow-sm hover:border-primary/50 dark:hover:border-primary/50 transition-colors group">
+<div class="p-3 border-b border-gray-200 dark:border-border-dark flex justify-between items-center bg-gray-50/50 dark:bg-[#111318]/50 rounded-t-xl">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-md bg-rose-500/20 text-rose-500 flex items-center justify-center font-bold text-xs">1</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Problem Tanımı</h3>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-lg group-hover:text-primary transition-colors">edit_note</span>
+</div>
+<div class="flex-1 p-4 relative">
+<textarea class="w-full h-full bg-transparent border-0 p-0 text-slate-700 dark:text-slate-300 text-sm resize-none focus:ring-0 placeholder:text-slate-400 dark:placeholder:text-slate-600 leading-relaxed" placeholder="Sorunu tek cümleyle özetleyin. Kimin sorunu? Nerede yaşanıyor? Neden önemli?"></textarea>
+<!-- Collaborator cursor indicator -->
+<div class="absolute top-1/2 left-1/3 flex items-center gap-1 z-10 pointer-events-none opacity-50">
+<span class="material-symbols-outlined text-purple-400 text-lg -ml-1.5 -mt-3 drop-shadow-md">near_me</span>
+<span class="bg-purple-500 text-white text-[10px] px-1.5 py-0.5 rounded shadow-sm font-medium">Ali yazıyor...</span>
+</div>
+</div>
+</div>
+<!-- Section 2: Root Causes -->
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-border-dark shadow-sm hover:border-primary/50 dark:hover:border-primary/50 transition-colors group">
+<div class="p-3 border-b border-gray-200 dark:border-border-dark flex justify-between items-center bg-gray-50/50 dark:bg-[#111318]/50 rounded-t-xl">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-md bg-amber-500/20 text-amber-500 flex items-center justify-center font-bold text-xs">2</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Kök Nedenler</h3>
+</div>
+<button class="text-xs font-medium text-slate-500 hover:text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span>
+                                Madde Ekle
+                            </button>
+</div>
+<div class="flex-1 p-4">
+<ul class="space-y-3">
+<li class="flex gap-2 group/item">
+<span class="text-slate-400 mt-1">•</span>
+<input class="flex-1 bg-transparent border-b border-transparent hover:border-slate-700 focus:border-primary text-slate-700 dark:text-slate-300 text-sm focus:ring-0 p-1 transition-colors" placeholder="Neden 1..." type="text" value="Esnaf teknolojiye yabancı"/>
+</li>
+<li class="flex gap-2 group/item">
+<span class="text-slate-400 mt-1">•</span>
+<input class="flex-1 bg-transparent border-b border-transparent hover:border-slate-700 focus:border-primary text-slate-700 dark:text-slate-300 text-sm focus:ring-0 p-1 transition-colors" placeholder="Neden 2..." type="text" value="Stok takip yazılımları çok pahalı"/>
+</li>
+<li class="flex gap-2 group/item">
+<span class="text-slate-400 mt-1">•</span>
+<input class="flex-1 bg-transparent border-b border-transparent hover:border-slate-700 focus:border-primary text-slate-700 dark:text-slate-300 text-sm focus:ring-0 p-1 transition-colors" placeholder="Neden 3..." type="text"/>
+</li>
+</ul>
+<p class="text-xs text-slate-500 mt-4 italic">İpucu: 5 Neden tekniğini kullanarak derine inin.</p>
+</div>
+</div>
+<!-- Section 3: Solution Proposal -->
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-border-dark shadow-sm hover:border-primary/50 dark:hover:border-primary/50 transition-colors group relative overflow-hidden">
+<!-- Active Focus Highlight -->
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="p-3 border-b border-gray-200 dark:border-border-dark flex justify-between items-center bg-gray-50/50 dark:bg-[#111318]/50 rounded-t-xl pl-5">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-md bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">3</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200 text-sm">3 Adımlı Çözüm Önerisi</h3>
+</div>
+<span class="material-symbols-outlined text-primary text-lg animate-pulse">edit</span>
+</div>
+<div class="flex-1 p-4 space-y-3 pl-5">
+<div class="flex gap-3">
+<span class="font-bold text-slate-400 text-sm">01.</span>
+<textarea class="w-full bg-transparent border rounded border-slate-700/50 p-2 text-slate-700 dark:text-slate-300 text-sm resize-none focus:ring-1 focus:ring-primary focus:border-primary h-16" placeholder="İlk adım: Ne yapılacak?"></textarea>
+</div>
+<div class="flex gap-3">
+<span class="font-bold text-slate-400 text-sm">02.</span>
+<textarea class="w-full bg-transparent border rounded border-slate-700/50 p-2 text-slate-700 dark:text-slate-300 text-sm resize-none focus:ring-1 focus:ring-primary focus:border-primary h-16" placeholder="İkinci adım: Nasıl uygulanacak?"></textarea>
+</div>
+<div class="flex gap-3">
+<span class="font-bold text-slate-400 text-sm">03.</span>
+<textarea class="w-full bg-transparent border rounded border-slate-700/50 p-2 text-slate-700 dark:text-slate-300 text-sm resize-none focus:ring-1 focus:ring-primary focus:border-primary h-16" placeholder="Üçüncü adım: Sonuç ne olacak?"></textarea>
+</div>
+</div>
+</div>
+<!-- Section 4: Expected Impact -->
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-border-dark shadow-sm hover:border-primary/50 dark:hover:border-primary/50 transition-colors group">
+<div class="p-3 border-b border-gray-200 dark:border-border-dark flex justify-between items-center bg-gray-50/50 dark:bg-[#111318]/50 rounded-t-xl">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-md bg-emerald-500/20 text-emerald-500 flex items-center justify-center font-bold text-xs">4</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Beklenen Etki</h3>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-lg group-hover:text-primary transition-colors">monitoring</span>
+</div>
+<div class="flex-1 p-4">
+<textarea class="w-full h-full bg-transparent border-0 p-0 text-slate-700 dark:text-slate-300 text-sm resize-none focus:ring-0 placeholder:text-slate-400 dark:placeholder:text-slate-600 leading-relaxed" placeholder="Bu çözüm hayata geçerse ne değişecek? Mahalle esnafı nasıl bir fayda sağlayacak? Somut çıktılar neler?"></textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action Bar -->
+<div class="absolute bottom-0 left-0 right-0 bg-white/90 dark:bg-[#111318]/90 backdrop-blur-md border-t border-gray-200 dark:border-border-dark p-4 flex justify-center z-20">
+<button class="bg-primary hover:bg-blue-600 text-white font-bold py-3 px-10 rounded-xl shadow-lg shadow-blue-500/30 flex items-center gap-3 transition-all transform hover:scale-105 active:scale-95 group">
+<span>Sunumu Hazırla</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Right Sidebar: Resources & Chat -->
+<aside class="w-80 bg-white dark:bg-[#111318] border-l border-gray-200 dark:border-border-dark flex flex-col shrink-0 hidden xl:flex">
+<!-- Resource Library -->
+<div class="h-1/2 flex flex-col border-b border-gray-200 dark:border-border-dark">
+<div class="p-4 border-b border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-surface-dark">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">library_books</span>
+                        Kaynak Kütüphanesi
+                    </h3>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<div class="p-3 rounded-lg border border-gray-200 dark:border-slate-700 hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-slate-800 transition-all cursor-pointer group">
+<div class="flex items-start justify-between">
+<span class="text-xs font-bold text-blue-500 bg-blue-500/10 px-2 py-0.5 rounded">MODÜL 1</span>
+<span class="material-symbols-outlined text-slate-400 text-sm group-hover:text-primary">open_in_new</span>
+</div>
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200 mt-2 group-hover:underline">Tasarım Odaklı Düşünme</p>
+</div>
+<div class="p-3 rounded-lg border border-gray-200 dark:border-slate-700 hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-slate-800 transition-all cursor-pointer group">
+<div class="flex items-start justify-between">
+<span class="text-xs font-bold text-purple-500 bg-purple-500/10 px-2 py-0.5 rounded">ARAÇ</span>
+<span class="material-symbols-outlined text-slate-400 text-sm group-hover:text-primary">download</span>
+</div>
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200 mt-2 group-hover:underline">Empati Haritası Şablonu</p>
+</div>
+<div class="p-3 rounded-lg border border-gray-200 dark:border-slate-700 hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-slate-800 transition-all cursor-pointer group">
+<div class="flex items-start justify-between">
+<span class="text-xs font-bold text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded">VAKA</span>
+<span class="material-symbols-outlined text-slate-400 text-sm group-hover:text-primary">visibility</span>
+</div>
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200 mt-2 group-hover:underline">Geçen Haftanın En İyi Çözümü</p>
+</div>
+</div>
+</div>
+<!-- Klan Chat -->
+<div class="h-1/2 flex flex-col bg-gray-50 dark:bg-surface-dark/30">
+<div class="p-4 border-b border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-lg">chat</span>
+                        Klan Sohbeti
+                    </h3>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Message 1 -->
+<div class="flex items-start gap-2">
+<div class="w-6 h-6 rounded-full bg-cover bg-center shrink-0" data-alt="Portrait of Ali" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGkHjBIeXnqJLULsOiR_skpq1DgKO9jkiFG3mcDa0uNpla9WjAQtXRZpP1JI_rNT8u_gCEgS2Q-yHjb6WW3rmFIRkZb-ib94GvSeENI2Jr28Xyj5Qu137Wm7oBf5MII9-x6YIcqBlnt9PU_SmHb8C0SFovl8iNwVCD6prA3YXOwM_qUwUDyde2CGiCm8hTrLU_eT_byTyu0z14AJ9-2Sd_8uUp2SrFFa4pkWzojCjsIens-W8W_lZxZqIdkkTXXL5S7GwRrof-3BQ')"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-500 ml-1 mb-0.5">Ali • 14:02</span>
+<div class="bg-white dark:bg-surface-dark p-2 rounded-lg rounded-tl-none border border-gray-200 dark:border-slate-700 shadow-sm">
+<p class="text-xs text-slate-700 dark:text-slate-300">Stok takibi için QR kod fikrini yazıyorum.</p>
+</div>
+</div>
+</div>
+<!-- Message 2 -->
+<div class="flex items-start gap-2 flex-row-reverse">
+<div class="w-6 h-6 rounded-full bg-cover bg-center shrink-0 border border-primary" data-alt="Portrait of Zeynep" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFEMPgBvkRV6prYLWJ_rDArWItmb8SHoAVIW2tWzf9S7gVPauLvfmOTzMJrdkF3Qjn9lyzlOITjIa0JhPRuokDrGXcE71xEHUobshQ0iZiWUvfN3OkAfC3oG2uD_bhZuhwMICwNqaHOcvV_C0YQY0VIsnMZKJdgTJC78im-wsCJZ5VIzV0vl2NG1Vp2rGMcsJq77Xk8cQdxEpI8RuyrWMqa6CP8AiqfZpszT21L11it-AEYD-lAhdfmnSQCBHOQ5s9dWSJeVsNeiI')"></div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-slate-500 mr-1 mb-0.5">Sen • 14:03</span>
+<div class="bg-primary/20 dark:bg-primary/20 p-2 rounded-lg rounded-tr-none border border-primary/30 shadow-sm">
+<p class="text-xs text-slate-900 dark:text-white">Harika! Maliyeti düşük tutmalıyız.</p>
+</div>
+</div>
+</div>
+<!-- Message 3 -->
+<div class="flex items-start gap-2">
+<div class="w-6 h-6 rounded-full bg-cover bg-center shrink-0" data-alt="Portrait of Mehmet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJ3ONT1n2h7xybRv7P_Z2siFXmyNqdlshxbcb8z5EwLSYQGHNMort_YAaU4B21Crl1CquFCt-65VMOgKAFT7kfkMLAjIBMYJf2ccQkCpkJAs9ZBAywasbEGy24KB-YKRd0_7CCQWSu_NpZiwBTwGdHHOLFVlJQY6HJPs1Xbx2x6u-x4B2pLXdn6ZOL8BiGG08nJsgfuTwkC6n8Z_xB6F_bQBZMoD91h7Pk_cK26a0qWAqr380qIhrUBurXsshsuhfE_7FDDkWsM2c')"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-500 ml-1 mb-0.5">Mehmet • 14:05</span>
+<div class="bg-white dark:bg-surface-dark p-2 rounded-lg rounded-tl-none border border-gray-200 dark:border-slate-700 shadow-sm">
+<p class="text-xs text-slate-700 dark:text-slate-300">Ben sunum taslağına başladım, ilk adımı netleştirelim.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-3 border-t border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark">
+<div class="relative">
+<input class="w-full bg-gray-100 dark:bg-[#111318] border-none rounded-full py-2 pl-4 pr-10 text-sm text-slate-900 dark:text-white focus:ring-1 focus:ring-primary placeholder:text-slate-500" placeholder="Mesaj yaz..." type="text"/>
+<button class="absolute right-1 top-1 p-1 text-primary hover:text-blue-400 rounded-full transition-colors">
+<span class="material-symbols-outlined text-xl">send</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

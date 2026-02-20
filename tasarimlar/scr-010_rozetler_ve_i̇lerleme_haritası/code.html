@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM - Badges &amp; Progress Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                        "surface-dark": "#162b28",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .neon-shadow {
+            box-shadow: 0 0 10px rgba(0, 194, 168, 0.4), 0 0 20px rgba(0, 194, 168, 0.2);
+        }
+        .neon-text {
+            text-shadow: 0 0 5px rgba(0, 194, 168, 0.5);
+        }
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f2320; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273a38; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00c2a8; 
+        }
+        
+        .hex-container {
+            position: relative;
+            width: 100px;
+            height: 110px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .hex-container:hover {
+            transform: scale(1.05);
+        }
+
+        .skill-node {
+            transition: all 0.3s ease;
+        }
+        .skill-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 194, 168, 0.6);
+            border-color: #00c2a8;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .pulse::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            border: 2px solid #00c2a8;
+            animation: pulse-ring 2s infinite;
+        }
+
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-hidden">
+<div class="flex h-screen w-full flex-row overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="flex w-64 flex-col border-r border-[#273a38] bg-[#101817] hidden md:flex shrink-0 z-20">
+<div class="flex flex-col h-full justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- User Profile -->
+<div class="flex gap-3 items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full h-12 w-12 border-2 border-primary" data-alt="User Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAB36e6zDYIuK5GjYE3O8Zd_YyFpJSAXLtcf4q3bcEJneX81I1pD88E55LMlSSbsAtQdWJoWuQStUK6Nh0uRxRNQiHC2Vdu1DL7ZkG45FqHkSukU8Kk5dPj5Hhku1lBvPhQACvgHrfBSQwwZxDcnM42OLVR1yiVHtOPQRGsCS_YX7tuoHkYRHMnQQRD_NFK1IiX7Jq2jXEI0NAfgk75xYcmJfJ5wDiKh7h3rlHWoQ5mWRedld5D5k6_9ufS9OfNdV6RUsOZAIM0qQ");'></div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-primary rounded-full border-2 border-[#101817]"></div>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-normal">DIGEM Student</h1>
+<p class="text-primary/80 text-xs font-medium uppercase tracking-wider">Level 5 Explorer</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#273a38] transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#273a38] transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">school</span>
+<span class="text-sm font-medium">Modules</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/20 text-white border-l-4 border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-primary neon-text">hub</span>
+<span class="text-sm font-medium">Badges &amp; Map</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#273a38] transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">groups</span>
+<span class="text-sm font-medium">Community</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#273a38] transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">leaderboard</span>
+<span class="text-sm font-medium">Leaderboard</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Links -->
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#273a38] transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto relative bg-[#0f2320]">
+<!-- Subtle Background Pattern -->
+<div class="absolute inset-0 z-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#00c2a8 1px, transparent 1px); background-size: 30px 30px;">
+</div>
+<div class="relative z-10 flex flex-col p-6 lg:p-10 gap-8 max-w-[1400px] mx-auto w-full">
+<!-- Header & Stats -->
+<div class="flex flex-col gap-6">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Yetenek Ağacı &amp; Başarılar</h1>
+<p class="text-slate-400 mt-1">Track your progress and unlock new potentials in the DIGEM ecosystem.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-[#273a38] hover:bg-[#344d4a] rounded-lg text-white text-sm font-medium transition-colors border border-white/10">
+<span class="material-symbols-outlined text-sm">history</span> History
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 rounded-lg text-[#0f2320] text-sm font-bold transition-colors shadow-[0_0_15px_rgba(0,194,168,0.4)]">
+<span class="material-symbols-outlined text-sm">share</span> Share Profile
+                            </button>
+</div>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-dark border border-white/5 rounded-2xl p-6 flex flex-col relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">bolt</span>
+</div>
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Total XP</p>
+<div class="flex items-end gap-3 mt-2">
+<span class="text-3xl font-bold text-white tracking-tight">12,450</span>
+<span class="text-primary text-sm font-bold mb-1">+1,200 this week</span>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full w-[75%] neon-shadow"></div>
+</div>
+</div>
+<div class="bg-surface-dark border border-white/5 rounded-2xl p-6 flex flex-col relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">military_tech</span>
+</div>
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Badges Earned</p>
+<div class="flex items-end gap-3 mt-2">
+<span class="text-3xl font-bold text-white tracking-tight">8 <span class="text-slate-500 text-xl font-normal">/ 24</span></span>
+</div>
+<div class="flex -space-x-2 mt-4">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center border-2 border-surface-dark text-[#0f2320] text-xs font-bold">1</div>
+<div class="w-8 h-8 rounded-full bg-primary/80 flex items-center justify-center border-2 border-surface-dark text-[#0f2320] text-xs font-bold">2</div>
+<div class="w-8 h-8 rounded-full bg-primary/60 flex items-center justify-center border-2 border-surface-dark text-[#0f2320] text-xs font-bold">3</div>
+</div>
+</div>
+<div class="bg-surface-dark border border-white/5 rounded-2xl p-6 flex flex-col relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">rocket_launch</span>
+</div>
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Current Level</p>
+<div class="flex items-end gap-3 mt-2">
+<span class="text-3xl font-bold text-white tracking-tight">Level 5</span>
+<span class="text-slate-400 text-sm font-medium mb-1">Explorer</span>
+</div>
+<p class="text-slate-500 text-xs mt-4">Next reward: Advanced Robotics Kit Access</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8 h-full">
+<!-- Radial Skill Tree (Hero Component) -->
+<div class="xl:col-span-2 bg-surface-dark border border-white/5 rounded-2xl p-6 md:p-10 relative min-h-[500px] flex flex-col overflow-hidden">
+<div class="flex justify-between items-center mb-6 z-10">
+<h2 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+                                Core Competencies Map
+                            </h2>
+<div class="flex gap-4 text-xs font-medium">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary neon-shadow"></span> Completed</div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full border border-primary"></span> In Progress</div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full border border-slate-600 bg-slate-800"></span> Locked</div>
+</div>
+</div>
+<!-- Radial Map Container -->
+<div class="flex-1 relative flex items-center justify-center w-full h-full min-h-[400px]">
+<!-- Connecting Lines SVG Layer -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-0" style="opacity: 0.6;">
+<!-- Lines from Center -->
+<line stroke="#00c2a8" stroke-dasharray="5,5" stroke-width="2" x1="50%" x2="50%" y1="50%" y2="20%"></line>
+<line stroke="#00c2a8" stroke-width="2" x1="50%" x2="20%" y1="50%" y2="65%"></line>
+<line stroke="#334155" stroke-width="2" x1="50%" x2="80%" y1="50%" y2="65%"></line>
+<!-- Sub-branches Left -->
+<line stroke="#00c2a8" stroke-width="1" x1="20%" x2="10%" y1="65%" y2="45%"></line>
+<line stroke="#334155" stroke-width="1" x1="20%" x2="10%" y1="65%" y2="85%"></line>
+<!-- Sub-branches Top -->
+<line stroke="#334155" stroke-width="1" x1="50%" x2="35%" y1="20%" y2="10%"></line>
+<line stroke="#334155" stroke-width="1" x1="50%" x2="65%" y1="20%" y2="10%"></line>
+<!-- Sub-branches Right -->
+<line stroke="#334155" stroke-width="1" x1="80%" x2="90%" y1="65%" y2="50%"></line>
+</svg>
+<!-- Center Node -->
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 rounded-full bg-background-dark border-4 border-primary flex items-center justify-center neon-shadow relative pulse skill-node">
+<span class="material-symbols-outlined text-4xl text-primary">all_inclusive</span>
+</div>
+<span class="mt-2 text-primary font-bold tracking-wide bg-background-dark/80 px-2 rounded">START</span>
+</div>
+<!-- Top Node (Coding - In Progress) -->
+<div class="absolute left-1/2 top-[20%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-background-dark border-2 border-primary flex items-center justify-center hover:bg-primary/10 skill-node">
+<span class="material-symbols-outlined text-2xl text-primary">terminal</span>
+</div>
+<span class="mt-2 text-white text-sm font-medium bg-background-dark/80 px-2 rounded">Coding</span>
+</div>
+<!-- Top Left Leaf (Locked) -->
+<div class="absolute left-[35%] top-[10%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-not-allowed opacity-60">
+<div class="w-12 h-12 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg text-slate-400">lock</span>
+</div>
+<span class="mt-1 text-slate-400 text-xs">Python</span>
+</div>
+<!-- Top Right Leaf (Locked) -->
+<div class="absolute left-[65%] top-[10%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-not-allowed opacity-60">
+<div class="w-12 h-12 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg text-slate-400">lock</span>
+</div>
+<span class="mt-1 text-slate-400 text-xs">Java</span>
+</div>
+<!-- Left Node (Design - Completed) -->
+<div class="absolute left-[20%] top-[65%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center neon-shadow skill-node">
+<span class="material-symbols-outlined text-3xl text-[#0f2320]">palette</span>
+</div>
+<span class="mt-2 text-primary text-sm font-bold bg-background-dark/80 px-2 rounded neon-text">Design</span>
+</div>
+<!-- Left Sub Leaf (Completed) -->
+<div class="absolute left-[10%] top-[45%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-primary/20 border border-primary flex items-center justify-center skill-node">
+<span class="material-symbols-outlined text-lg text-primary">brush</span>
+</div>
+<span class="mt-1 text-white text-xs">UI/UX</span>
+</div>
+<!-- Left Sub Leaf (Locked) -->
+<div class="absolute left-[10%] top-[85%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-not-allowed opacity-60">
+<div class="w-12 h-12 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg text-slate-400">view_in_ar</span>
+</div>
+<span class="mt-1 text-slate-400 text-xs">3D Model</span>
+</div>
+<!-- Right Node (Robotics - Locked) -->
+<div class="absolute left-[80%] top-[65%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-not-allowed grayscale">
+<div class="w-16 h-16 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-slate-400">precision_manufacturing</span>
+</div>
+<span class="mt-2 text-slate-400 text-sm font-medium bg-background-dark/80 px-2 rounded">Robotics</span>
+</div>
+<!-- Right Sub Leaf (Locked) -->
+<div class="absolute left-[90%] top-[50%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-not-allowed grayscale opacity-60">
+<div class="w-12 h-12 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg text-slate-400">smart_toy</span>
+</div>
+<span class="mt-1 text-slate-400 text-xs">Circuits</span>
+</div>
+</div>
+</div>
+<!-- Badge Wall & Details -->
+<div class="flex flex-col gap-6">
+<!-- Badge Wall -->
+<div class="bg-surface-dark border border-white/5 rounded-2xl p-6 flex flex-col flex-1">
+<h2 class="text-xl font-bold text-white mb-6 flex items-center justify-between">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">stars</span> Badge Wall</span>
+<span class="text-xs font-normal text-slate-400 bg-white/5 px-2 py-1 rounded">Filter: All</span>
+</h2>
+<div class="grid grid-cols-3 gap-2 justify-items-center">
+<!-- Badge 1: Earned -->
+<div class="group relative flex flex-col items-center gap-2">
+<div class="hex-container bg-gradient-to-br from-primary to-emerald-600 cursor-pointer neon-shadow">
+<span class="material-symbols-outlined text-3xl text-white">code_blocks</span>
+</div>
+<div class="absolute -bottom-8 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+                                        Logic Master
+                                    </div>
+</div>
+<!-- Badge 2: Earned -->
+<div class="group relative flex flex-col items-center gap-2">
+<div class="hex-container bg-gradient-to-br from-purple-500 to-indigo-600 cursor-pointer shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+<span class="material-symbols-outlined text-3xl text-white">design_services</span>
+</div>
+<div class="absolute -bottom-8 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+                                        Pixel Perfect
+                                    </div>
+</div>
+<!-- Badge 3: Earned -->
+<div class="group relative flex flex-col items-center gap-2">
+<div class="hex-container bg-gradient-to-br from-orange-500 to-red-600 cursor-pointer shadow-[0_0_15px_rgba(249,115,22,0.4)]">
+<span class="material-symbols-outlined text-3xl text-white">local_fire_department</span>
+</div>
+<div class="absolute -bottom-8 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+                                        Streak: 7 Days
+                                    </div>
+</div>
+<!-- Badge 4: Locked -->
+<div class="group relative flex flex-col items-center gap-2 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+<div class="hex-container bg-slate-700 cursor-not-allowed">
+<span class="material-symbols-outlined text-3xl text-slate-400">psychology</span>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-white/50 text-xl">lock</span>
+</div>
+<div class="absolute -bottom-8 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+                                        Mastermind (Locked)
+                                    </div>
+</div>
+<!-- Badge 5: Locked -->
+<div class="group relative flex flex-col items-center gap-2 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+<div class="hex-container bg-slate-700 cursor-not-allowed">
+<span class="material-symbols-outlined text-3xl text-slate-400">group_work</span>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-white/50 text-xl">lock</span>
+</div>
+<div class="absolute -bottom-8 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+                                        Team Player (Locked)
+                                    </div>
+</div>
+<!-- Badge 6: Locked -->
+<div class="group relative flex flex-col items-center gap-2 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+<div class="hex-container bg-slate-700 cursor-not-allowed">
+<span class="material-symbols-outlined text-3xl text-slate-400">trophy</span>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-white/50 text-xl">lock</span>
+</div>
+<div class="absolute -bottom-8 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+                                        Champion (Locked)
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Badge Detail "Modal" (Static representation) -->
+<div class="bg-[#1a2e2b] border border-primary/20 rounded-2xl p-5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3">
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined text-lg">close</span></button>
+</div>
+<div class="flex gap-4 items-start">
+<div class="min-w-[80px]">
+<div class="hex-container w-[80px] h-[90px] bg-gradient-to-br from-primary to-emerald-600 neon-shadow">
+<span class="material-symbols-outlined text-3xl text-white">code_blocks</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-white font-bold text-lg">Logic Master</h3>
+<p class="text-xs text-slate-400">Earned on Oct 12, 2023</p>
+<p class="text-sm text-slate-300 mt-2">Successfully completed 5 complex Python algorithm challenges without hints.</p>
+<div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2">
+<p class="text-xs uppercase tracking-wider text-slate-500 font-bold">Evidence</p>
+<a class="flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-base">link</span>
+                                            View Project on Github
+                                        </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

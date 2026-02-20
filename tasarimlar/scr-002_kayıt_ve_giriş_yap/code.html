@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM - Kayıt ve Giriş Yap</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#00c2a8",
+              "primary-hover": "#00a08b",
+              "background-light": "#f5f8f8",
+              "background-dark": "#0f2320", // Deep dark teal/green base
+              "surface-dark": "#162e2b", // Slightly lighter for cards
+              "surface-contrast": "#111A2E", // Requested deep blue/gray for specific cards
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.5rem", 
+                "lg": "0.75rem", 
+                "xl": "1rem", 
+                "2xl": "1.5rem"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f2320; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273a38; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00c2a8; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white h-screen overflow-hidden flex flex-col">
+<div class="flex flex-1 w-full h-full">
+<!-- Left Panel: Brand & Motivation -->
+<div class="hidden lg:flex lg:w-1/2 relative flex-col justify-between p-12 bg-cover bg-center overflow-hidden" data-alt="Futuristic digital network background with dark blue and cyan tones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBVOwQpFMf0uJ0gNuV-KYaAe83QIHF4pxeFBnZMrAKmKeIdkoJ5ODPBevUWe326g7_Rr7zarCI2PZoyL1MmiZhnO7PyAwhEBAnC9P82VxoNu-0WM021QeR_Ne6He2wBT-rB6PEEIRZPaBz6dw9SPpXIbAJtuk9cUnR3iE9Hdcph6p8Y_MvDplck8uHGBchBOD0JNXC_Wc_jgQJdYP18xWIExjxPeqq-hc4PWeuq-omC_YpwRQJZjuyxEwnwKBya6ws0Dp8w6QSOHg');">
+<!-- Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-contrast/95 via-surface-contrast/80 to-surface-contrast/60 backdrop-blur-[2px]"></div>
+<!-- Header Content -->
+<div class="relative z-10 flex items-center gap-3">
+<div class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<h2 class="text-white text-2xl font-bold tracking-tight">DIGEM</h2>
+</div>
+<!-- Main Content -->
+<div class="relative z-10 max-w-lg mb-12">
+<div class="mb-6 inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary ring-1 ring-inset ring-primary/20">
+<span class="mr-2">🚀</span> Geleceğin Teknolojileri
+                </div>
+<h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight tracking-tight">
+                    Dijital Yetkinliklerini <span class="text-primary">Keşfet</span>
+</h1>
+<p class="text-lg text-slate-300 leading-relaxed mb-8">
+                    Yapay zeka, kodlama ve dijital tasarım dünyasına adım at. DIGEM ile kendini geliştir, sertifikalı eğitimlere katıl ve geleceği şimdiden kodlamaya başla.
+                </p>
+<!-- Testimonial / Social Proof -->
+<div class="flex items-center gap-4 pt-8 border-t border-white/10">
+<div class="flex -space-x-3">
+<img alt="Profile picture of a smiling young student" class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-contrast object-cover" data-alt="Student profile 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrh2IvkZxegQ6D26gfdsrZ4QVfWbY6u5zAe90ZgwrFUYYFvc8G-SayezBYxp8ts6QLMuHr4BaMJurqeirAdc-oFymPxU5eTkET8C3E5lKmn0RxI34Bv59RzaNiAJPaKgsazjcPx_jnsDmPL2rB5lDWXletKzM-Qcrkm8aGeSmWXIC46W3e-J6kPXvHmpM_GbR5c-IwjCbM3n1FqG4JKc5PVKVeroq5w8m83s8W08B9LRELtBMSe5DS-65RKdcUnRC51FIolzxbIQ"/>
+<img alt="Profile picture of a focused young developer" class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-contrast object-cover" data-alt="Student profile 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUeP5fErCJqbRdgwmaxhTrrtdIUgAxZpR5h6SqR0IjOp4R3mchHO6ZYfg3JGZ_4nhgekhYOSKiob_J0cps6kQxB1laKMKLPq9VWoAA1YInVKZcPB2GTPntIbtnNaI-WqwryMQE6wGRWil3aGMsYcuQ1m658z02i7ooQIdRyoAauBMsQfNWFGyXjNyAeazpCRnpzScZK0Yfgl_u2qaNoKmx7AhOF1EC00kpqVURYgO3MwRwReqz7-pBKXkIhwG385KD6akuCowtoA"/>
+<img alt="Profile picture of a creative designer" class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-contrast object-cover" data-alt="Student profile 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSBMC5IOje0sX9kv0cwonQOJX_5p8MrTZOLkY9YdNw-3czazpCSrdNlqQvUrw41oT3Osj9dkrxstyNiULIfZ28F2OkdYgzO1wh5xkw5FVlhW1ZhcA1bBQ3ndaULGXdt4w40yGUMgDsSwHzvhN7D5Y5BOy43uzP0St3pDQFrBLGC55PyD7dROK2XoLNQf4ZdnnlOK1vYkCngzeQlsNz9ukUPg3-HpV1RvQpvwLhAJMyf-wsBv76TFl55trEnMGqH1pVGMvjJ-qJ9A"/>
+<div class="flex items-center justify-center h-10 w-10 rounded-full ring-2 ring-surface-contrast bg-surface-contrast text-white text-xs font-bold border border-white/20">
+                            +2k
+                        </div>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-semibold text-sm">2000+ Öğrenci</span>
+<span class="text-slate-400 text-xs">Eğitimlere katıldı</span>
+</div>
+</div>
+</div>
+<!-- Footer decorations -->
+<div class="relative z-10 flex justify-between items-end text-xs text-slate-500 font-mono">
+<span>DIGEM v2.4.0</span>
+<span>© 2024 Tüm hakları saklıdır.</span>
+</div>
+</div>
+<!-- Right Panel: Auth Form -->
+<div class="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 sm:p-12 lg:p-24 overflow-y-auto bg-background-light dark:bg-background-dark relative">
+<!-- Mobile Logo (Visible only on small screens) -->
+<div class="lg:hidden absolute top-8 left-8 flex items-center gap-2 mb-8">
+<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-xl">hub</span>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight">DIGEM</h2>
+</div>
+<!-- Auth Card -->
+<div class="w-full max-w-md bg-white dark:bg-surface-contrast rounded-2xl shadow-xl border border-slate-200 dark:border-white/5 p-8 relative overflow-hidden">
+<!-- Decorative top gradient line -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<div class="text-center mb-8">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Hoş Geldiniz</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Hesabınıza giriş yapın veya ücretsiz kayıt olun.</p>
+</div>
+<!-- Tabs -->
+<div class="flex p-1 bg-slate-100 dark:bg-[#0b1221] rounded-xl mb-8">
+<button class="flex-1 py-2.5 text-sm font-semibold rounded-lg bg-white dark:bg-primary text-slate-900 dark:text-surface-contrast shadow-sm transition-all duration-200">
+                        Giriş Yap
+                    </button>
+<button class="flex-1 py-2.5 text-sm font-medium rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all duration-200">
+                        Kayıt Ol
+                    </button>
+</div>
+<form class="flex flex-col gap-5">
+<!-- Email / Phone Input -->
+<div class="space-y-1.5">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="email">E-Posta veya Telefon</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="block w-full rounded-lg border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#1a2642] pl-10 pr-3 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary dark:focus:ring-primary transition-colors" id="email" placeholder="ornek@digem.org" type="text"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="password">Şifre</label>
+<a class="text-xs font-semibold text-primary hover:text-primary-hover transition-colors" href="#">Şifremi Unuttum?</a>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="block w-full rounded-lg border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#1a2642] pl-10 pr-10 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary dark:focus:ring-primary transition-colors" id="password" placeholder="••••••••" type="password"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-slate-400 hover:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+</div>
+<!-- Password Strength Meter -->
+<div class="mt-2">
+<div class="flex gap-1 h-1">
+<div class="flex-1 bg-red-500 rounded-full h-full"></div>
+<div class="flex-1 bg-yellow-500/30 dark:bg-yellow-500/20 rounded-full h-full"></div>
+<div class="flex-1 bg-primary/30 dark:bg-primary/20 rounded-full h-full"></div>
+<div class="flex-1 bg-primary/30 dark:bg-primary/20 rounded-full h-full"></div>
+</div>
+<p class="text-[10px] text-red-500 mt-1 font-medium text-right">Zayıf Şifre</p>
+</div>
+</div>
+<!-- KVKK Checkbox -->
+<div class="flex items-start">
+<div class="flex h-5 items-center">
+<input class="h-4 w-4 rounded border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-[#1a2642] text-primary focus:ring-primary focus:ring-offset-0" id="kvkk" name="kvkk" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<label class="font-light text-slate-600 dark:text-slate-400" for="kvkk">
+<a class="font-medium text-primary hover:underline" href="#">KVKK metnini</a> okudum ve onaylıyorum.
+                            </label>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-surface-contrast bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all transform active:scale-[0.98]" type="button">
+                        Giriş Yap
+                        <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+</button>
+<!-- OTP Option -->
+<div class="relative my-2">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200 dark:border-white/10"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-white dark:bg-surface-contrast text-slate-500">veya</span>
+</div>
+</div>
+<button class="w-full flex justify-center items-center gap-2 py-3 px-4 border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 bg-transparent hover:bg-slate-50 dark:hover:bg-white/5 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">smartphone</span>
+                        Tek Seferlik Şifre (OTP) ile Giriş
+                    </button>
+</form>
+<div class="mt-8 text-center text-sm">
+<p class="text-slate-500 dark:text-slate-400">
+                        Hesabın yok mu? 
+                        <a class="font-bold text-primary hover:text-primary-hover transition-colors" href="#">Hemen Kayıt Ol</a>
+</p>
+</div>
+</div>
+<!-- Mobile Footer -->
+<div class="mt-8 lg:hidden text-center">
+<p class="text-xs text-slate-500">© 2024 DIGEM. Tüm hakları saklıdır.</p>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-032 Veri Hikayeleştirme Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1e293b",
+                        "surface-darker": "#16202a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display antialiased">
+<!-- Top Navbar -->
+<div class="relative flex w-full flex-col bg-background-dark border-b border-[#283039]">
+<header class="flex items-center justify-between whitespace-nowrap px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-2xl">science</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Core Office</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Modules</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Settings</a>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[#283039]" data-alt="User profile picture placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDiwhSve0SjuXDIVBEIoqrE_7jrUJelDACiRf1nTqoFMTFEWbgFZweFrX-S1x0blCzEPPQyGk1MEeuzmlkB3ohLbDIRJVfCqIQvIhPAoB_8qD1W6c46Q0Qh-FgyyHvxdgUU5UAHVGoe88gODIKdePEBI5SpH4dtCDlJfING9L0nKIoJCISDUi54pMiDw6BkebJWpZW-NcHDyfj4KRaNGPYYJHXEBsOD1ffnJWo2smtLBysNm9MHXg6I5R5yG3yYLwGjtkAoSVE3aw");'></div>
+</div>
+</header>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col max-w-[1600px] w-full mx-auto p-4 md:p-8 gap-6">
+<!-- Breadcrumbs & Title -->
+<div class="flex flex-col gap-2">
+<div class="flex flex-wrap items-center gap-2 text-sm text-[#9dabb9]">
+<a class="hover:text-white transition-colors" href="#">DIGEM</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<a class="hover:text-white transition-colors" href="#">Core Office</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<span class="text-white font-medium">Veri Hikayeleştirme Lab</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="text-white text-3xl font-black leading-tight tracking-tight">Veri Hikayeleştirme Lab (SCR-032)</h1>
+<p class="text-[#9dabb9] text-base mt-1">Ham verileri anlamlı grafiklere dönüştürün ve hikayenizi oluşturun.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#283039] hover:bg-[#343e49] text-white text-sm font-medium transition-colors border border-[#3b4754]">
+<span class="material-symbols-outlined text-lg">save</span>
+                        Taslağı Kaydet
+                    </button>
+</div>
+</div>
+</div>
+<!-- Workbench Layout: 3 Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full flex-1">
+<!-- Column 1: Data Input (3 cols) -->
+<div class="lg:col-span-3 flex flex-col gap-4">
+<div class="bg-surface-dark border border-[#283039] rounded-xl p-4 flex flex-col gap-4 h-full">
+<div class="flex items-center justify-between">
+<h3 class="text-white font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">dataset</span>
+                            Veri Kaynağı
+                        </h3>
+<span class="px-2 py-0.5 rounded text-xs font-medium bg-primary/20 text-primary border border-primary/20">Aktif</span>
+</div>
+<div class="p-3 bg-surface-darker rounded-lg border border-[#283039]">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-semibold text-[#9dabb9] uppercase tracking-wider">Veri Seti</span>
+<button class="text-xs text-primary hover:text-white transition-colors">Düzenle</button>
+</div>
+<div class="text-white text-sm font-medium mb-1">Dijital Okuryazarlık 2020-2023</div>
+<div class="text-[#9dabb9] text-xs">4 satır, 3 sütun</div>
+</div>
+<!-- Mini Data Table Preview -->
+<div class="flex-1 overflow-hidden flex flex-col">
+<div class="overflow-x-auto rounded-lg border border-[#3b4754]">
+<table class="w-full text-left text-sm">
+<thead class="bg-[#283039] text-xs uppercase text-[#9dabb9]">
+<tr>
+<th class="px-3 py-2 font-medium">Yıl</th>
+<th class="px-3 py-2 font-medium">Oran</th>
+<th class="px-3 py-2 font-medium">Fark</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#3b4754] text-white">
+<tr><td class="px-3 py-2">2020</td><td class="px-3 py-2">45%</td><td class="px-3 py-2 text-green-400">+5%</td></tr>
+<tr><td class="px-3 py-2">2021</td><td class="px-3 py-2">52%</td><td class="px-3 py-2 text-green-400">+7%</td></tr>
+<tr><td class="px-3 py-2">2022</td><td class="px-3 py-2">68%</td><td class="px-3 py-2 text-green-400">+16%</td></tr>
+<tr><td class="px-3 py-2">2023</td><td class="px-3 py-2">74%</td><td class="px-3 py-2 text-green-400">+6%</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-auto">
+<label class="text-sm font-medium text-[#9dabb9]">Eksen Ayarları</label>
+<div class="grid grid-cols-2 gap-2">
+<div class="p-2 bg-[#283039] rounded border border-[#3b4754]">
+<span class="text-xs text-[#9dabb9] block mb-1">X Ekseni</span>
+<span class="text-sm text-white font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-base">calendar_today</span> Yıl
+                                </span>
+</div>
+<div class="p-2 bg-[#283039] rounded border border-[#3b4754]">
+<span class="text-xs text-[#9dabb9] block mb-1">Y Ekseni</span>
+<span class="text-sm text-white font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-base">percent</span> Oran
+                                </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 2: Visualization Canvas (6 cols) -->
+<div class="lg:col-span-6 flex flex-col gap-4">
+<!-- Chart Type Selector -->
+<div class="bg-surface-dark border border-[#283039] rounded-xl p-2 flex gap-2">
+<button class="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-primary text-white font-medium transition-all shadow-lg shadow-primary/20 ring-1 ring-white/10">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Sütun</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg hover:bg-[#283039] text-[#9dabb9] hover:text-white font-medium transition-all">
+<span class="material-symbols-outlined">show_chart</span>
+<span>Çizgi</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg hover:bg-[#283039] text-[#9dabb9] hover:text-white font-medium transition-all group relative">
+<span class="material-symbols-outlined">pie_chart</span>
+<span>Pasta</span>
+<!-- Educational Tooltip -->
+<span class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-48 bg-black text-xs text-white p-2 rounded hidden group-hover:block z-50 text-center pointer-events-none">
+                            Zaman serisi verileri için önerilmez.
+                        </span>
+</button>
+</div>
+<!-- Canvas Area -->
+<div class="bg-surface-dark border border-[#283039] rounded-xl p-6 flex-1 flex flex-col relative min-h-[400px]">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h4 class="text-xl font-bold text-white">Dijital Okuryazarlık Trendi</h4>
+<p class="text-sm text-[#9dabb9]">Yıllık gelişim oranları (2020-2023)</p>
+</div>
+<div class="flex gap-1">
+<button class="p-2 rounded hover:bg-[#283039] text-[#9dabb9] hover:text-white" title="Metin Ekle">
+<span class="material-symbols-outlined">title</span>
+</button>
+<button class="p-2 rounded hover:bg-[#283039] text-[#9dabb9] hover:text-white" title="Vurgula">
+<span class="material-symbols-outlined">ink_highlighter</span>
+</button>
+<button class="p-2 rounded hover:bg-[#283039] text-[#9dabb9] hover:text-white" title="Renk Teması">
+<span class="material-symbols-outlined">palette</span>
+</button>
+</div>
+</div>
+<!-- Actual Chart Simulation -->
+<div class="flex-1 flex items-end justify-between px-8 pb-8 pt-12 relative border-l border-b border-[#3b4754]">
+<!-- Grid Lines -->
+<div class="absolute inset-0 border-b border-[#3b4754]/30 pointer-events-none" style="bottom: 25%"></div>
+<div class="absolute inset-0 border-b border-[#3b4754]/30 pointer-events-none" style="bottom: 50%"></div>
+<div class="absolute inset-0 border-b border-[#3b4754]/30 pointer-events-none" style="bottom: 75%"></div>
+<!-- Bar 1 -->
+<div class="w-1/6 bg-primary/30 hover:bg-primary/50 transition-all rounded-t-md relative group h-[45%] flex flex-col justify-end">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#283039] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">45%</div>
+</div>
+<!-- Bar 2 -->
+<div class="w-1/6 bg-primary/50 hover:bg-primary/70 transition-all rounded-t-md relative group h-[52%] flex flex-col justify-end">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#283039] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">52%</div>
+</div>
+<!-- Bar 3 -->
+<div class="w-1/6 bg-primary/80 hover:bg-primary transition-all rounded-t-md relative group h-[68%] flex flex-col justify-end">
+<!-- Annotation Badge -->
+<div class="absolute -top-16 left-1/2 -translate-x-1/2 flex flex-col items-center">
+<div class="bg-white text-black text-[10px] font-bold px-2 py-1 rounded shadow-lg mb-1 whitespace-nowrap">Büyük Sıçrama!</div>
+<div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-white"></div>
+</div>
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#283039] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">68%</div>
+</div>
+<!-- Bar 4 -->
+<div class="w-1/6 bg-primary hover:bg-primary-light transition-all rounded-t-md relative group h-[74%] flex flex-col justify-end">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#283039] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">74%</div>
+</div>
+</div>
+<!-- X Axis Labels -->
+<div class="flex justify-between px-8 pt-2">
+<span class="w-1/6 text-center text-xs text-[#9dabb9]">2020</span>
+<span class="w-1/6 text-center text-xs text-[#9dabb9]">2021</span>
+<span class="w-1/6 text-center text-xs text-[#9dabb9]">2022</span>
+<span class="w-1/6 text-center text-xs text-[#9dabb9]">2023</span>
+</div>
+<!-- Y Axis Labels -->
+<div class="absolute left-0 top-12 bottom-8 w-8 flex flex-col justify-between items-end pr-2 text-xs text-[#9dabb9]">
+<span>100%</span>
+<span>75%</span>
+<span>50%</span>
+<span>25%</span>
+<span>0%</span>
+</div>
+</div>
+</div>
+<!-- Column 3: Storytelling Context (3 cols) -->
+<div class="lg:col-span-3 flex flex-col gap-4">
+<div class="bg-surface-dark border border-[#283039] rounded-xl p-5 flex flex-col h-full gap-6">
+<div class="flex items-center gap-2 pb-4 border-b border-[#283039]">
+<span class="material-symbols-outlined text-yellow-500">lightbulb</span>
+<h3 class="text-white font-bold text-lg">Hikayeni Oluştur</h3>
+</div>
+<!-- Audience Selector -->
+<div class="flex flex-col gap-3">
+<label class="text-sm font-semibold text-white">Hedef Kitle Seçimi</label>
+<p class="text-xs text-[#9dabb9] mb-1">Bu grafiği kime sunacaksın?</p>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-3 rounded-lg border border-[#3b4754] bg-surface-darker cursor-pointer hover:border-primary transition-colors group">
+<input class="w-4 h-4 text-primary bg-[#283039] border-gray-500 focus:ring-primary focus:ring-2" name="audience" type="radio"/>
+<span class="text-sm text-white group-hover:text-primary transition-colors">Yatırımcılar</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-primary bg-primary/10 cursor-pointer">
+<input checked="" class="w-4 h-4 text-primary bg-[#283039] border-gray-500 focus:ring-primary focus:ring-2" name="audience" type="radio"/>
+<span class="text-sm text-white font-medium">Genel Kamuoyu</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-[#3b4754] bg-surface-darker cursor-pointer hover:border-primary transition-colors group">
+<input class="w-4 h-4 text-primary bg-[#283039] border-gray-500 focus:ring-primary focus:ring-2" name="audience" type="radio"/>
+<span class="text-sm text-white group-hover:text-primary transition-colors">Proje Ekibi</span>
+</label>
+</div>
+</div>
+<!-- Justification Input -->
+<div class="flex flex-col gap-2 flex-1">
+<label class="text-sm font-semibold text-white">Seçim Gerekçesi</label>
+<div class="relative flex-1">
+<textarea class="w-full h-full min-h-[150px] bg-surface-darker border border-[#3b4754] rounded-lg p-3 text-sm text-white placeholder-[#5c6b7f] focus:ring-1 focus:ring-primary focus:border-primary resize-none" placeholder="Neden sütun grafiği bu kitle için en doğru seçim? Açıklayınız... (Örn: Yıllar arasındaki net artışı göstermek için...)"></textarea>
+<div class="absolute bottom-2 right-2 text-xs text-[#5c6b7f]">0/300</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-auto pt-4 border-t border-[#283039]">
+<button class="w-full py-3 px-4 bg-primary hover:bg-blue-600 text-white font-bold rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+<span>Analizi Tamamla</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

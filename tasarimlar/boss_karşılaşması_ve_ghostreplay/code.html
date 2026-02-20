@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Boss Karşılaşması - PUSULA Lite</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "card-dark": "#192633",
+                        "danger": "#e11d48",
+                        "success": "#22c55e",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .boss-glow {
+            box-shadow: 0 0 50px -12px rgba(225, 29, 72, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-primary selection:text-white">
+<!-- Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#233648] px-6 py-4 bg-white dark:bg-[#111a22] z-20 relative">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">PUSULA Lite</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Ana Sayfa</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Liderlik Tablosu</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Profilim</a>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-xl size-10 bg-slate-100 dark:bg-[#233648] text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-[#2d445a] transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-slate-200 dark:border-[#233648]" data-alt="User profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSLMUnLJr7OfDI7EmjSsvPgwiQ3wGvzWwLszijVZJSpklQA9YN6av6Lyq8E-9XSK51uNP3gkr3lkNI0c6Q8IDs4j7vFrOHmkcmcxtuRiPQSS5kUfLk7oFwVkSvU2IJ6TXeu0AdVi-u_BGcpU6GrJQODf8_tBRP3gxo71ZPUuxgkfWG5q32yKJDKZSzNhsdnB4al_MZS5I9LGpFiLfVwo6bLbXPZT_TE50QR-o5Yu2B9moPzAwc7_7Bb_5FWZyN3dROUcu3lvBR1jU');"></div>
+</div>
+</div>
+<!-- Mobile Menu Icon -->
+<button class="md:hidden text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex-grow flex flex-col items-center justify-start p-4 md:p-8 relative">
+<!-- Decorative Background Elements -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-primary/10 dark:bg-primary/5 blur-[100px] rounded-full pointer-events-none z-0"></div>
+<div class="w-full max-w-5xl z-10 flex flex-col gap-8">
+<!-- Boss Header Section -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 rounded-2xl bg-white dark:bg-card-dark shadow-xl border border-slate-200 dark:border-[#2a3c50] boss-glow relative overflow-hidden">
+<!-- Status Background Pattern -->
+<div class="absolute inset-0 opacity-5 dark:opacity-10 bg-[radial-gradient(#e11d48_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<div class="flex items-center gap-6 relative z-10">
+<div class="relative">
+<div class="size-20 rounded-2xl bg-gradient-to-br from-slate-800 to-black flex items-center justify-center shadow-lg border border-slate-700">
+<span class="material-symbols-outlined text-4xl text-danger animate-pulse-slow">lock_person</span>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-danger text-white text-[10px] font-bold px-2 py-0.5 rounded-full border-2 border-white dark:border-card-dark">BOSS</div>
+</div>
+<div class="flex flex-col">
+<span class="text-danger font-bold text-xs tracking-wider uppercase mb-1">Seviye: Zor</span>
+<h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Phishing Tuzağı</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Kimlik avı saldırılarını tespit et ve engelle.</p>
+</div>
+</div>
+<!-- Health/Hearts -->
+<div class="flex items-center gap-4 bg-slate-50 dark:bg-[#111a22]/50 px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700/50 backdrop-blur-sm relative z-10">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-danger text-3xl fill-1" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;">favorite</span>
+<span class="material-symbols-outlined text-danger text-3xl fill-1" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;">favorite</span>
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-3xl" style="font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;">favorite</span>
+</div>
+<div class="h-8 w-px bg-slate-300 dark:bg-slate-700"></div>
+<div class="text-right">
+<div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kalan Can</div>
+<div class="text-lg font-bold text-slate-900 dark:text-white leading-none">2/3</div>
+</div>
+</div>
+</div>
+<!-- Main Challenge Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left: Task & Instructions -->
+<div class="lg:col-span-8 flex flex-col gap-4">
+<div class="bg-white dark:bg-card-dark rounded-2xl shadow-sm border border-slate-200 dark:border-[#2a3c50] overflow-hidden">
+<div class="p-4 border-b border-slate-200 dark:border-[#2a3c50] bg-slate-50 dark:bg-[#111a22]/50 flex justify-between items-center">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-sm font-medium">Gelen E-postayı Analiz Et</span>
+</div>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">Soru 4/10</span>
+</div>
+<div class="p-6 md:p-10 flex flex-col items-center justify-center min-h-[300px] relative">
+<!-- Challenge Card: Email Simulation -->
+<div class="w-full max-w-lg bg-white dark:bg-[#1e2d3d] rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transform transition-all hover:scale-[1.01]">
+<div class="bg-red-50 dark:bg-red-900/10 p-4 border-b border-slate-100 dark:border-slate-700/50 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-600 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-200">G</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-900 dark:text-white">Goggle Support Team</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">support@goggle-security-alert.com</span>
+</div>
+</div>
+<span class="text-xs text-slate-400">14:02</span>
+</div>
+<div class="p-6 space-y-4">
+<h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Hesabınızda şüpheli giriş tespit edildi!</h3>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        Sayın Kullanıcı,<br/><br/>
+                                        Hesabınıza tanımadığımız bir cihazdan giriş yapılmaya çalışıldı. Lütfen hesabınızı güvenceye almak için aşağıdaki bağlantıya tıklayın ve şifrenizi hemen sıfırlayın.
+                                    </p>
+<div class="pt-2">
+<button class="bg-primary hover:bg-primary-dark text-white text-sm font-medium py-2.5 px-4 rounded-lg w-full transition-colors flex items-center justify-center gap-2 group">
+<span>Şifremi Sıfırla</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="text-center mt-2">
+<span class="text-[10px] text-slate-400">Bu bağlantı güvenli bir sunucuya yönlendirir: <span class="font-mono text-danger">http://goggle-login-secure-x82.net</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="p-4 bg-slate-50 dark:bg-[#131d27] border-t border-slate-200 dark:border-[#2a3c50] flex flex-col sm:flex-row gap-4 justify-center">
+<button class="flex-1 flex items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-success hover:bg-success/5 dark:hover:bg-success/10 hover:text-success text-slate-600 dark:text-slate-300 font-bold transition-all group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">verified_user</span>
+<span>Güvenli</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-danger hover:bg-danger/5 dark:hover:bg-danger/10 hover:text-danger text-slate-600 dark:text-slate-300 font-bold transition-all group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">warning</span>
+<span>Tehdit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right: Stats & GhostReplay -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Stats Card -->
+<div class="bg-white dark:bg-card-dark rounded-2xl shadow-sm border border-slate-200 dark:border-[#2a3c50] p-6">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">stadia_controller</span>
+                            Oyun Modu
+                        </h3>
+<div class="flex flex-col gap-3">
+<button class="w-full py-3 px-4 rounded-xl border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors flex items-center justify-between group">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">school</span>
+                                    Alıştırma Modu
+                                </span>
+<span class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded">Sınırsız</span>
+</button>
+<button class="w-full py-3 px-4 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold shadow-lg shadow-primary/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-between">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined">swords</span>
+                                    Gerçek Deneme
+                                </span>
+<span class="flex items-center gap-1 text-xs bg-white/20 text-white px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">favorite</span> 3 Hak
+                                </span>
+</button>
+</div>
+</div>
+<!-- GhostReplay Module (Hidden/Conditional Logic: shown here as part of design) -->
+<div class="relative overflow-hidden rounded-2xl border border-primary/30 dark:border-primary/20 bg-gradient-to-br from-slate-900 to-black p-6 shadow-xl">
+<!-- Background glow effect -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[50px] rounded-full"></div>
+<div class="relative z-10">
+<div class="flex items-start justify-between mb-4">
+<div class="bg-primary/20 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">mist</span>
+</div>
+<span class="text-[10px] uppercase tracking-wider text-slate-400 font-bold border border-slate-700 px-2 py-1 rounded-full">Pro Özellik</span>
+</div>
+<h4 class="text-white font-bold text-xl mb-2">Takıldın mı?</h4>
+<p class="text-slate-400 text-sm mb-5">Bir önceki turda başarısız oldun. Nasıl çözüldüğünü görmek için anonim bir akranının kaydını izle.</p>
+<button class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium border border-slate-700 flex items-center justify-center gap-2 transition-colors group">
+<span class="size-6 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[16px] text-white">play_arrow</span>
+</span>
+<span>GhostReplay İzle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

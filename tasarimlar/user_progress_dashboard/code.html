@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA - User Progress Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#895af6",
+                        "secondary": "#0bda6f",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#161023",
+                        "surface-dark": "#2e2249",
+                        "surface-dark-hover": "#3a2b5b",
+                        "text-muted": "#a290cb",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #161023; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e2249; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #895af6; 
+        }
+        
+        .glass-panel {
+            background: rgba(46, 34, 73, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-white">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2e2249] bg-[#161023]/80 backdrop-blur-md px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs>
+<clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">PUSULA</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-full size-10 bg-surface-dark hover:bg-surface-dark-hover transition-colors text-white">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-full size-10 bg-surface-dark hover:bg-surface-dark-hover transition-colors text-white">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<div class="hidden sm:flex items-center gap-3 ml-2 pl-4 border-l border-[#2e2249]">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-purple-400 p-[2px]">
+<img alt="User Avatar Small" class="rounded-full w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVt1V4rK9g1y0WkoQts8ss3QjcQfzJpxpnLzkX4GMltnuK4dWDwgdwSP_jDcMdwfTLlNlzMg51R7tHARzIOEdVlwf3zWzgrW5hz_mfTXg7TGJbXX7AZ_TfnqjaOhDZWLA8uazxMe_FaJBmB6Z0OaJ8XIYqaf4QGVgZIeAgJp6RqfFFIhjdhHQVY6oECQFNsB2tU6F_7ZO_-E0Vj2UcMDEoLGST0V7Dn_YM1TwrFOKIMngCliLV-N8WUhqMVkpHHIbr08LMT2ZxZ2M"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center w-full px-4 py-8 md:px-8 lg:px-12">
+<div class="max-w-[1200px] w-full flex flex-col gap-8">
+<!-- Hero Profile Section -->
+<section class="relative w-full overflow-hidden rounded-2xl bg-surface-dark p-8 md:p-10 border border-white/5 shadow-2xl">
+<!-- Background decorative glow -->
+<div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-secondary/10 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+<!-- Avatar with Level Ring -->
+<div class="relative group">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-br from-primary via-purple-400 to-secondary relative">
+<div class="absolute -bottom-2 inset-x-0 flex justify-center z-20">
+<span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-white/20">Lvl 23</span>
+</div>
+<img alt="Profile picture of a young woman looking confident" class="w-full h-full rounded-full object-cover border-4 border-[#161023]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmHwYloaGNUqfGFKwcW56TVG6LgNDTJ1YR-upDbl992v5uB2WQpNtOtboCgGCr8TBdgvP88Z-To4oFY6mIG3Clcn8-xjJga2kWIOlqGQ3TegCzLRXZjEohf4QMLbnXE3hMtZu3sN5tHMWIgCy3s8JlRU9LdKnEXHThL7ta6hIBZPkqc81rHSwQmOzCkdjLk_PANNj0s-VN2OQaEDvfBM4DgzdqOudzR2AVLkJonXrt8DBAmFZqleZfxX2rbtoV-xBvE6LQ6tnMdYQ"/>
+</div>
+</div>
+<!-- User Info & League -->
+<div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-2 pt-2">
+<div class="flex flex-col md:flex-row items-center gap-3">
+<h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Ahmet Yılmaz</h1>
+<span class="inline-flex items-center gap-1 bg-white/10 text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-[16px] text-gray-300">verified</span>
+                                Dijital Uzman
+                            </span>
+</div>
+<div class="flex items-center gap-2 mt-1 mb-4 text-text-muted">
+<span class="material-symbols-outlined text-yellow-400 text-[20px]">emoji_events</span>
+<span class="text-sm font-medium tracking-wide uppercase text-yellow-400">Silver League</span>
+<span class="text-xs text-gray-500">•</span>
+<span class="text-sm">Top 5% this week</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full max-w-md flex flex-col gap-2">
+<div class="flex justify-between text-xs font-medium text-text-muted">
+<span>XP Progress</span>
+<span>2,450 / 3,000 XP</span>
+</div>
+<div class="h-3 w-full bg-black/40 rounded-full overflow-hidden border border-white/5">
+<div class="h-full bg-gradient-to-r from-primary to-purple-400 rounded-full" style="width: 82%;"></div>
+</div>
+<p class="text-xs text-secondary mt-1 text-right">+150 XP earned today</p>
+</div>
+</div>
+<!-- Action Buttons (Desktop) -->
+<div class="hidden md:flex gap-3 mt-4 md:mt-0">
+<button class="bg-primary hover:bg-purple-600 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg shadow-primary/25 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                            Edit Profile
+                        </button>
+<button class="bg-surface-dark hover:bg-surface-dark-hover border border-white/10 text-white px-4 py-2.5 rounded-full transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Navigation Tabs -->
+<nav class="flex overflow-x-auto pb-2 border-b border-surface-dark hide-scrollbar gap-8">
+<a class="pb-3 border-b-2 border-primary text-white font-bold text-sm tracking-wide flex items-center gap-2 whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Overview
+                </a>
+<a class="pb-3 border-b-2 border-transparent text-text-muted hover:text-white transition-colors font-medium text-sm tracking-wide flex items-center gap-2 whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+                    Achievements
+                </a>
+<a class="pb-3 border-b-2 border-transparent text-text-muted hover:text-white transition-colors font-medium text-sm tracking-wide flex items-center gap-2 whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px]">stadium</span>
+                    Arena Stats
+                </a>
+<a class="pb-3 border-b-2 border-transparent text-text-muted hover:text-white transition-colors font-medium text-sm tracking-wide flex items-center gap-2 whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                    Settings
+                </a>
+</nav>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Stat Card 1 -->
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-1 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">bolt</span>
+</div>
+<span class="text-text-muted text-sm font-medium">Total XP</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">12,450</span>
+</div>
+<span class="text-secondary text-xs font-medium flex items-center gap-1 mt-auto pt-2">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                        Top 10% of users
+                    </span>
+</div>
+<!-- Stat Card 2 -->
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-1 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">local_fire_department</span>
+</div>
+<span class="text-text-muted text-sm font-medium">Current Streak</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">47 Days</span>
+</div>
+<span class="text-secondary text-xs font-medium flex items-center gap-1 mt-auto pt-2">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                        Keep it up!
+                    </span>
+</div>
+<!-- Stat Card 3 -->
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-1 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">military_tech</span>
+</div>
+<span class="text-text-muted text-sm font-medium">Badges Earned</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">12</span>
+<span class="text-text-muted text-sm font-normal">/ 50</span>
+</div>
+<span class="text-secondary text-xs font-medium flex items-center gap-1 mt-auto pt-2">
+<span class="material-symbols-outlined text-[14px]">add</span>
+                        2 new this week
+                    </span>
+</div>
+<!-- Stat Card 4 -->
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-1 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">leaderboard</span>
+</div>
+<span class="text-text-muted text-sm font-medium">Arena Rank</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">#42</span>
+</div>
+<span class="text-secondary text-xs font-medium flex items-center gap-1 mt-auto pt-2">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                        Up 5 spots
+                    </span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Activity Heatmap Section -->
+<div class="lg:col-span-2 glass-panel p-6 md:p-8 rounded-2xl border border-white/5">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-white">Learning Activity</h3>
+<div class="flex gap-2">
+<select class="bg-surface-dark text-xs text-white border-none rounded-lg py-1 px-3 focus:ring-1 focus:ring-primary cursor-pointer">
+<option>2023</option>
+<option>2022</option>
+</select>
+</div>
+</div>
+<!-- Fake Heatmap Grid -->
+<div class="w-full overflow-x-auto pb-2">
+<div class="min-w-[600px] flex flex-col gap-1">
+<div class="flex text-xs text-text-muted mb-2 justify-between px-1">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+</div>
+<div class="grid grid-rows-7 grid-flow-col gap-1 w-full h-[140px]">
+<!-- Generating lots of little squares to simulate heatmap -->
+<!-- We will use style to randomize colors slightly for demo purposes -->
+<!-- Using JS loop logic but manually written for HTML output requirement -->
+<!-- A sample block of squares -->
+<div class="w-full h-full bg-surface-dark/50 rounded-sm" title="No activity"></div>
+<div class="w-full h-full bg-primary/20 rounded-sm" title="Low activity"></div>
+<div class="w-full h-full bg-primary/40 rounded-sm" title="Medium activity"></div>
+<div class="w-full h-full bg-primary/60 rounded-sm" title="High activity"></div>
+<div class="w-full h-full bg-primary rounded-sm shadow-[0_0_8px_rgba(137,90,246,0.6)]" title="Max activity"></div>
+<div class="w-full h-full bg-surface-dark/50 rounded-sm"></div>
+<div class="w-full h-full bg-primary/20 rounded-sm"></div>
+<!-- Repeat patterns to fill space visually -->
+<script>
+                                    // Small inline script just to render the boxes to keep code clean
+                                    // Since NO JS allowed in prompt instructions for interactivity, I will hardcode a few columns
+                                    // and rely on CSS grid-flow-col to lay them out. 
+                                    // ACTUALLY: The prompt says "DO NOT add any JavaScript or React code." 
+                                    // I will manually write a representative set of divs.
+                                </script>
+<!-- Column 1 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div>
+<!-- Column 2 --> <div class="bg-primary rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 3 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div>
+<!-- Column 4 --> <div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 5 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 6 --> <div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div>
+<!-- Column 7 --> <div class="bg-primary rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 8 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div>
+<!-- Column 9 --> <div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 10 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div>
+<!-- Column 11 --> <div class="bg-primary rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 12 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div>
+<!-- Column 13 --> <div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 14 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 15 --> <div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div>
+<!-- Column 16 --> <div class="bg-primary rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 17 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div>
+<!-- Column 18 --> <div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 19 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div>
+<!-- Column 20 --> <div class="bg-primary rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 21 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div>
+<!-- Column 22 --> <div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 23 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 24 --> <div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div>
+<!-- Column 25 --> <div class="bg-primary rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 26 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div>
+<!-- Column 27 --> <div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 28 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div>
+<!-- Column 29 --> <div class="bg-primary rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 30 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div>
+<!-- Column 31 --> <div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 32 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 33 --> <div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div>
+<!-- Column 34 --> <div class="bg-primary rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+<!-- Column 35 --> <div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/60 rounded-sm"></div><div class="bg-primary/80 rounded-sm"></div><div class="bg-primary rounded-sm"></div>
+<!-- Column 36 --> <div class="bg-primary/20 rounded-sm"></div><div class="bg-primary/40 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div><div class="bg-primary/20 rounded-sm"></div><div class="bg-surface-dark/50 rounded-sm"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-4 text-xs text-text-muted justify-end">
+<span>Less</span>
+<div class="flex gap-1">
+<div class="w-3 h-3 bg-surface-dark/50 rounded-sm"></div>
+<div class="w-3 h-3 bg-primary/20 rounded-sm"></div>
+<div class="w-3 h-3 bg-primary/40 rounded-sm"></div>
+<div class="w-3 h-3 bg-primary/60 rounded-sm"></div>
+<div class="w-3 h-3 bg-primary rounded-sm"></div>
+</div>
+<span>More</span>
+</div>
+</div>
+<!-- Recent Achievements Section -->
+<div class="glass-panel p-6 rounded-2xl border border-white/5 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-white">Latest Badges</h3>
+<a class="text-xs font-bold text-primary hover:text-purple-400" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-4 flex-1">
+<!-- Earned Badge Item -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-dark/50 hover:bg-surface-dark transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 p-[1px] shadow-lg shadow-cyan-500/20">
+<div class="w-full h-full bg-[#161023] rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-cyan-400">code</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-white group-hover:text-primary transition-colors">Python Basics</h4>
+<p class="text-xs text-text-muted">Mastered loops &amp; variables</p>
+</div>
+<div class="text-xs text-secondary font-bold">Earned</div>
+</div>
+<!-- Earned Badge Item -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-dark/50 hover:bg-surface-dark transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-br from-pink-500 to-rose-400 p-[1px] shadow-lg shadow-pink-500/20">
+<div class="w-full h-full bg-[#161023] rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-pink-400">lightbulb</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-white group-hover:text-primary transition-colors">Design Thinking</h4>
+<p class="text-xs text-text-muted">Completed 5 workshops</p>
+</div>
+<div class="text-xs text-secondary font-bold">Earned</div>
+</div>
+<!-- Locked Badge Item -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-dark/30 border border-white/5 opacity-70">
+<div class="w-12 h-12 rounded-lg bg-surface-dark flex items-center justify-center relative">
+<span class="material-symbols-outlined text-gray-500 text-2xl">smart_toy</span>
+<div class="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg backdrop-blur-[1px]">
+<span class="material-symbols-outlined text-white text-xs">lock</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-gray-400">AI Master</h4>
+<p class="text-xs text-gray-600">Complete Neural Networks</p>
+</div>
+<div class="h-1.5 w-16 bg-surface-dark rounded-full overflow-hidden">
+<div class="h-full bg-gray-500 w-[60%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Achievement Gallery -->
+<div class="glass-panel p-6 md:p-8 rounded-2xl border border-white/5">
+<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">trophy</span>
+                    Trophy Case
+                </h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+<!-- Badge 1 -->
+<div class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface-dark hover:bg-surface-dark-hover transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 border border-transparent hover:border-primary/30 cursor-pointer group">
+<div class="relative w-16 h-16">
+<img class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.4)]" data-alt="Golden medal icon with a star" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_7FAS7oSf8TDhYkZUf8rHtfj8e_dzkba6tFAMuii1Z3t5Nuq8lKNhhyHPrATrp8mOppagKhw1gQHz_ME8ApEK2K9ME6i06hPdTVJlyI1GhZBXdMECvWasgO-iOT1FrrH4JeA50ce0rX1NmZ1etTU0cEsT57ONmVxwekU-dUotGF_go791eVyOplnUlMgcx5V0dLnmV6XbvU18LbnLhOAU8adJGbBMxWd4FS1Q7dV4W38F82JA7NjBE-iUiVMV-sM66fjSW61G9YI"/>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-white group-hover:text-primary transition-colors">Early Bird</p>
+<p class="text-[10px] text-text-muted">Joined in beta</p>
+</div>
+</div>
+<!-- Badge 2 -->
+<div class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface-dark hover:bg-surface-dark-hover transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 border border-transparent hover:border-primary/30 cursor-pointer group">
+<div class="relative w-16 h-16">
+<img class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(137,90,246,0.4)]" data-alt="Rocket ship launching icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBALEg469URd63qSmcsl-UK5c6kXj7ttPcHNKH2gCqzd3RRaGWsP5HbQg15rL1eEW-qvf1hc6UZ3ezf4DsfmGXctDnl75HsTuQvf7NE5eVMj3fco_wqkISGMaWJliYGW1ICC-hoU-Nl6r_CFFJS5XDBVDnMT6f-WUzAKoIDVPm5ZuAr3iDjguS7kT-XMhm0kioWg0aViNhkh1254pL2FCRivAROBNVcOEIwZzzzEDnQvERENVunxXtwwejdf27RS62pcasKP7lk2U"/>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-white group-hover:text-primary transition-colors">Fast Learner</p>
+<p class="text-[10px] text-text-muted">10 lessons / day</p>
+</div>
+</div>
+<!-- Badge 3 -->
+<div class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface-dark hover:bg-surface-dark-hover transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 border border-transparent hover:border-primary/30 cursor-pointer group">
+<div class="relative w-16 h-16">
+<img class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(11,218,111,0.4)]" data-alt="Book with magic sparkles icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8FENiT0OKmvF24qRGJc18hmP_gGAqPjxMr-EMk9iE5dIuT3RABji8aMVEymr45GlgXoZFw9M_LB73Qw8zntRZku9Fal4iNJkbHoYRYPOvIDwavjM-sHRw78X8eHSNPV-j2f_H0qXo_50l9CMyBAjH0MbazYDJ0jmXK7ora_sfBZHb1z0hvlILWWAIZhMv73il6xdreuPzBuuDvAGR3QxDztzNW-n3qCjPNGkS77wdcbKib4apuvVJNqBJPKlqbdQoqDnlA2mrdb8"/>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-white group-hover:text-primary transition-colors">Scholar</p>
+<p class="text-[10px] text-text-muted">Passed 50 quizzes</p>
+</div>
+</div>
+<!-- Badge 4 -->
+<div class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface-dark hover:bg-surface-dark-hover transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 border border-transparent hover:border-primary/30 cursor-pointer group">
+<div class="relative w-16 h-16">
+<img class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,100,100,0.4)]" data-alt="Crown icon representing leadership" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwH294vTO3w6UM-XtpXkeGPxnm2BBOvW_m1W2oPZwDwvwhx3ZwpKHWpiEo4ySj01k87TO_fqBuRcryXEAaF1mm7nn56skLLYnmX_gi8SDoZMbVlorsRg089lwRAljZ-iGKh6riG-QZ9itmYfKh0i1tES7hdtpkPyz8AIdplADVPhkz0SICP_8wpMQv6UF7tvLYNl7S-PVG0MrBGJO048Sk2ABlsOx9EL3Fi2fLHL8evJzPi8H2Og4T2If7aXUdNH_yamH4nr0aUiE"/>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-white group-hover:text-primary transition-colors">Team Lead</p>
+<p class="text-[10px] text-text-muted">Led a group project</p>
+</div>
+</div>
+<!-- Badge 5 Locked -->
+<div class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface-dark/40 border border-white/5 opacity-60">
+<div class="relative w-16 h-16 grayscale opacity-50">
+<img class="w-full h-full object-contain" data-alt="Shield icon representing security" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoitsTKpcCRbfHVSP0sn6fseeNbNY8KwZt69QEDj36nsNryDh5580geBkug6LKBqA6dBD-LDLvXuMuiq5LlhJnrQsXS-h637Pxi8GGwlGy1XL3bFk8lpjHYt1OxdD_8bc1KxsbKHG4-hF9tDhB9Sp2znbW5HB4sKPXYqxp5DtD14y4_bUlp5XxYDxzBf66A2CqkpxkNR_mYkx3VX3fMoWCe_dXsA1ol297Q5LwFpRB8KJkdulwAVce9YorqWDY1PwdiYVu0GJINoI"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl drop-shadow-md">lock</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-gray-400">Cyber Guardian</p>
+<p class="text-[10px] text-gray-600">Locked</p>
+</div>
+</div>
+<!-- Badge 6 Locked -->
+<div class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface-dark/40 border border-white/5 opacity-60">
+<div class="relative w-16 h-16 grayscale opacity-50">
+<img class="w-full h-full object-contain" data-alt="Globe icon representing community" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3VBiemuGAkzUhDOZL2vXlAcGx2KP4PjJ2MeO6p9kdDdeDLO-TygpVgi6TNrFOY7EaltY-dntjrJXp_QLmKjriu_ihFxyq_7P3EvsFVfoPJtRg5TVPjc4SX11JmFxBEN-L6fLREYaJK7TMMKx41w7MhnHv53bUP3n8nkITPR7bS2-oHFvucpc0_mWkLjd1lprXTY1MU3NXnYF7WJnIcP5MphT4Mt9AlPN96upc6HpTpGJVjSNFGbAaTN-A9TUa16_KqgnvEJ0iO7A"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl drop-shadow-md">lock</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-gray-400">Community Pillar</p>
+<p class="text-[10px] text-gray-600">Locked</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple footer -->
+<footer class="w-full border-t border-[#2e2249] mt-8 py-6 text-center text-text-muted text-sm">
+<p>© 2024 PUSULA Platform. All rights reserved.</p>
+</footer>
+</body></html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-050 Programming Boss Briefing</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a more technical feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1c2127; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b4754; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #137fec; 
+        }
+        
+        /* Scanline effect overlay */
+        .scanline {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.1) 50%,
+                rgba(0,0,0,0.1)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283039] px-6 py-4 lg:px-10 bg-white dark:bg-[#111418]">
+<div class="flex items-center gap-4">
+<div class="size-8 flex items-center justify-center rounded bg-primary/10 text-primary">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">DIGEM | SCR-050</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary py-1" href="#">Missions</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Leaderboard</a>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-[#283039]">
+<div class="flex flex-col items-end">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Cadet Level 4</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">Alex_Dev</span>
+</div>
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-[#283039] overflow-hidden border-2 border-slate-100 dark:border-[#3b4754]">
+<img alt="Profile Avatar" class="h-full w-full object-cover" data-alt="User profile avatar showing a young person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwuFDk8L0qCJ26S0bleYA-di3P4YKleXRF22CQgcf3ocz2pbWTmjiQ9tdyVCsV3pUotHIRovtsRefPX6LWA2ir6noCtJIzsXKTWeW-GS81Xk4srJxkLuVIjWNXRTirs32JJXBLvUvQQDSXdduLaPe7WZxadqIukd1rTHs3DU4BwJliySsJg_dQG8D9ESV3dZLRrm7O65rHTQRXAddtRfCiKvYJC-acpzs_d6FIaksC9xj4Vf-X3YMwfYNi1J3QoxjCF2XapS6img"/>
+</div>
+</div>
+</div>
+<div class="md:hidden text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 flex-col lg:flex-row max-w-[1600px] mx-auto w-full p-4 lg:p-8 gap-6">
+<!-- Left Column: Mission Details -->
+<div class="flex flex-col flex-1 gap-6 min-w-0">
+<!-- Mission Title Card -->
+<div class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-[#283039] bg-white dark:bg-[#111418] p-6 shadow-sm">
+<div class="flex flex-wrap items-start justify-between gap-4">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded bg-red-500/10 text-red-600 dark:text-red-400 text-xs font-bold border border-red-500/20 uppercase tracking-wider">Boss Level</span>
+<span class="px-2 py-1 rounded bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 text-xs font-bold border border-yellow-500/20 uppercase tracking-wider">Status: Pending</span>
+</div>
+<h1 class="text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+                                Arena Protocol: Sentry Maze
+                            </h1>
+<p class="text-slate-500 dark:text-[#9dabb9] text-sm lg:text-base max-w-2xl">
+                                Mission SCR-050 requires advanced pathfinding logic. Your unit must navigate a dynamic maze, retrieve the artifact, and reach the extraction point without engaging static sentries.
+                            </p>
+</div>
+<div class="flex flex-col items-end justify-center min-w-[120px] rounded-lg bg-slate-50 dark:bg-[#1c2127] p-3 border border-slate-200 dark:border-[#283039]">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Reward</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-lg">hotel_class</span>
+<span class="text-2xl font-bold">500 XP</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-4 flex flex-wrap gap-3">
+<button class="flex items-center justify-center gap-2 rounded-lg bg-primary hover:bg-primary/90 text-white px-6 py-3 font-bold shadow-[0_0_15px_rgba(19,127,236,0.3)] transition-all transform active:scale-95 flex-1 md:flex-none min-w-[200px]">
+<span class="material-symbols-outlined">code</span>
+                            Launch IDE
+                        </button>
+<button class="flex items-center justify-center gap-2 rounded-lg border border-slate-200 dark:border-[#3b4754] bg-white dark:bg-[#1c2127] hover:bg-slate-50 dark:hover:bg-[#283039] text-slate-700 dark:text-white px-4 py-3 font-medium transition-colors">
+<span class="material-symbols-outlined">download</span>
+                            Download Assets
+                        </button>
+</div>
+</div>
+<!-- Technical Specs Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Stat Card 1 -->
+<div class="group relative overflow-hidden rounded-xl border border-slate-200 dark:border-[#283039] bg-white dark:bg-[#1c2127] p-5 transition-colors hover:border-primary/50">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-4xl">memory</span>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Memory Limit</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">256 MB</p>
+<div class="w-full bg-slate-100 dark:bg-[#283039] h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full w-3/4 rounded-full"></div>
+</div>
+<p class="text-xs text-slate-400 mt-1">Strict heap allocation limits enforced.</p>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="group relative overflow-hidden rounded-xl border border-slate-200 dark:border-[#283039] bg-white dark:bg-[#1c2127] p-5 transition-colors hover:border-primary/50">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-4xl">timer</span>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Time / Tick</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">&lt; 150ms</p>
+<div class="w-full bg-slate-100 dark:bg-[#283039] h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-orange-500 h-full w-1/2 rounded-full"></div>
+</div>
+<p class="text-xs text-slate-400 mt-1">Optimization required for pathfinding.</p>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="group relative overflow-hidden rounded-xl border border-slate-200 dark:border-[#283039] bg-white dark:bg-[#1c2127] p-5 transition-colors hover:border-primary/50">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-4xl">library_books</span>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Environment</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">Python 3.9</p>
+<div class="flex gap-2 mt-2">
+<span class="bg-slate-100 dark:bg-[#283039] px-2 py-0.5 rounded text-xs text-slate-600 dark:text-slate-300 font-mono">math</span>
+<span class="bg-slate-100 dark:bg-[#283039] px-2 py-0.5 rounded text-xs text-slate-600 dark:text-slate-300 font-mono">random</span>
+<span class="bg-slate-100 dark:bg-[#283039] px-2 py-0.5 rounded text-xs text-slate-600 dark:text-slate-300 font-mono">heapq</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Documentation / Mission Brief -->
+<div class="rounded-xl border border-slate-200 dark:border-[#283039] bg-white dark:bg-[#111418] overflow-hidden">
+<div class="border-b border-slate-200 dark:border-[#283039] bg-slate-50 dark:bg-[#1c2127] px-6 py-3">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">description</span>
+                            Operational Briefing
+                         </h3>
+</div>
+<div class="p-6 text-slate-600 dark:text-slate-300 space-y-4">
+<div class="flex gap-4">
+<div class="min-w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">1</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-1">Target Acquisition</h4>
+<p class="text-sm leading-relaxed">Locate the <span class="text-primary font-medium">Blue Artifact</span> within the randomly generated maze. The artifact's coordinates are provided at runtime via the `get_target_pos()` method.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="min-w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">2</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-1">Obstacle Avoidance</h4>
+<p class="text-sm leading-relaxed">Static sentries (Red Zones) deal 25 damage upon contact. Your unit has 100 HP. Pathfinding algorithms like A* or Dijkstra are highly recommended to minimize damage.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="min-w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">3</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-1">Extraction</h4>
+<p class="text-sm leading-relaxed">Once the artifact is secured, return to the starting zone (Green) to complete the mission. Efficiency is key; completing the mission in fewer ticks yields a higher score multiplier.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Retry Policy Accordion -->
+<div class="rounded-xl border border-slate-200 dark:border-[#283039] bg-white dark:bg-[#111418] overflow-hidden">
+<div class="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-slate-50 dark:hover:bg-[#1c2127] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">replay</span>
+<span class="font-bold text-slate-900 dark:text-white">Retry &amp; Penalty Policy</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</div>
+<!-- Visible content for demonstration purposes -->
+<div class="px-6 pb-4 pt-0 border-t border-slate-200 dark:border-[#283039] bg-slate-50/50 dark:bg-[#161b22]">
+<ul class="mt-4 space-y-2 text-sm text-slate-500 dark:text-slate-400">
+<li class="flex justify-between">
+<span>1st Attempt Failed</span>
+<span class="font-mono text-slate-700 dark:text-slate-300">No Penalty</span>
+</li>
+<li class="flex justify-between">
+<span>2nd - 5th Attempt</span>
+<span class="font-mono text-orange-500">-10% XP Reward</span>
+</li>
+<li class="flex justify-between">
+<span>5+ Attempts</span>
+<span class="font-mono text-red-500">-50% XP Reward</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Preview -->
+<div class="flex flex-col w-full lg:w-[480px] shrink-0 gap-6">
+<!-- Arena Preview Card -->
+<div class="flex flex-col rounded-xl border border-slate-200 dark:border-[#283039] bg-white dark:bg-[#111418] overflow-hidden shadow-lg h-full">
+<div class="p-4 border-b border-slate-200 dark:border-[#283039] flex items-center justify-between bg-slate-50 dark:bg-[#1c2127]">
+<h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm animate-pulse">circle</span>
+                            Simulated Arena Preview
+                        </h3>
+<span class="text-xs font-mono text-slate-500 bg-slate-200 dark:bg-[#283039] px-2 py-1 rounded">LIVE FEED</span>
+</div>
+<div class="relative w-full aspect-square bg-[#0f172a] p-4 flex items-center justify-center overflow-hidden group">
+<!-- Grid Background -->
+<div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#3b4754 1px, transparent 1px), linear-gradient(90deg, #3b4754 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Map Image with Overlay -->
+<div class="relative z-10 w-full h-full rounded border border-[#3b4754] bg-[#161b22] shadow-[0_0_30px_rgba(0,0,0,0.5)] overflow-hidden">
+<!-- Scanline overlay on the map specifically -->
+<div class="absolute inset-0 z-20 scanline opacity-30 pointer-events-none"></div>
+<img alt="Top down abstract digital map with neon grid lines representing a robot arena" class="w-full h-full object-cover opacity-60 mix-blend-screen" data-alt="Digital grid map showing robot arena layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTaQ1WJv_On2DhRQ_nfxeHLP2gAYlgEIy1rYsdhrcgj-5XMAW-6ZkKKerKyapMrdMemeEN2gJLNYNYZgu-G3hZ6KsqP4bg_o4Uo-ue_IBzXgHPDtMDLaqJme3I3PQcJXn78qtNvLausJMzNfmTw6guORsbI_zuksj8MFIHOTkN9PM__LKj_GCgDcbOuPFXgRNmaV8k-VPQoP6tow9TFzbbLziUtMIyx0gXsjitwCYwrCi0yEPcQc8AZDgBQSCtwtQpLu5ANALUFg"/>
+<!-- UI Overlay Elements on Map -->
+<div class="absolute top-4 left-4 z-30">
+<div class="bg-black/60 backdrop-blur-sm border border-green-500/30 text-green-400 text-[10px] font-mono px-2 py-1 rounded mb-1 flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-green-500"></div> START ZONE
+                                </div>
+<div class="bg-black/60 backdrop-blur-sm border border-blue-500/30 text-blue-400 text-[10px] font-mono px-2 py-1 rounded flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> TARGET ARTIFACT
+                                </div>
+</div>
+<!-- Floating "Robot" Indicator -->
+<div class="absolute top-1/2 left-1/3 w-3 h-3 bg-white rounded-full shadow-[0_0_10px_white] z-30 animate-pulse"></div>
+<!-- Path Line -->
+<svg class="absolute inset-0 w-full h-full z-20 pointer-events-none opacity-60">
+<path d="M 160 160 L 200 160 L 200 200 L 250 200" fill="none" stroke="#137fec" stroke-dasharray="4 4" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Glitch Text Overlay (Static for design) -->
+<div class="absolute bottom-6 right-6 z-30 font-mono text-[10px] text-primary/70 text-right">
+                             COORD: 45.221, 12.004<br/>
+                             THREAT: LOW<br/>
+                             SENTRY_ID: 0XA1
+                         </div>
+</div>
+<!-- Footer of the preview card -->
+<div class="p-4 bg-slate-50 dark:bg-[#1c2127] border-t border-slate-200 dark:border-[#283039]">
+<h4 class="text-xs font-bold uppercase text-slate-500 mb-2">Map Parameters</h4>
+<div class="grid grid-cols-2 gap-2 text-sm">
+<div class="flex justify-between p-2 rounded bg-white dark:bg-[#111418] border border-slate-100 dark:border-[#283039]">
+<span class="text-slate-500 dark:text-slate-400">Size</span>
+<span class="font-mono font-bold text-slate-900 dark:text-white">32x32</span>
+</div>
+<div class="flex justify-between p-2 rounded bg-white dark:bg-[#111418] border border-slate-100 dark:border-[#283039]">
+<span class="text-slate-500 dark:text-slate-400">Density</span>
+<span class="font-mono font-bold text-slate-900 dark:text-white">High</span>
+</div>
+<div class="flex justify-between p-2 rounded bg-white dark:bg-[#111418] border border-slate-100 dark:border-[#283039]">
+<span class="text-slate-500 dark:text-slate-400">Seed</span>
+<span class="font-mono font-bold text-slate-900 dark:text-white">#AB902</span>
+</div>
+<div class="flex justify-between p-2 rounded bg-white dark:bg-[#111418] border border-slate-100 dark:border-[#283039]">
+<span class="text-slate-500 dark:text-slate-400">Type</span>
+<span class="font-mono font-bold text-slate-900 dark:text-white">Maze</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Leaderboard Mini-Widget -->
+<div class="rounded-xl border border-slate-200 dark:border-[#283039] bg-white dark:bg-[#111418] p-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500">trophy</span>
+                            Top Performers
+                        </h3>
+<a class="text-xs text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-3 p-2 rounded hover:bg-slate-50 dark:hover:bg-[#1c2127] transition-colors">
+<span class="text-xs font-bold text-slate-400 w-4">01</span>
+<div class="h-6 w-6 rounded-full bg-slate-700 overflow-hidden">
+<img alt="User avatar" class="h-full w-full object-cover" data-alt="Small avatar of top performer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcHzXXBQ0zeu0EBqMNKWUdnHF1ugJw7yL4wBOWRyirugD6XVG8FuNAhFA1TXEvQ8mvw7uYkfdznhzhzuoEnw0RnFt4oWf_lPv6kc92WHgcgO8UyYqPsDIVWXvs_H-K3YiAE52QWzAk3KNaJAIwzq3RYlpK8sl843BM6UT-4w8GVYJV6NA6yzIkW88W6gbAa25KMrEzTyzLlHRNnagLVSgqah1M7kP49ARtOOFMjsPRM_-v921mmJgPl0lCtyq8VpQKpJcRQ7RUQQ"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-900 dark:text-white">Sarah_C</p>
+</div>
+<span class="text-xs font-mono text-primary">98.2ms</span>
+</div>
+<div class="flex items-center gap-3 p-2 rounded hover:bg-slate-50 dark:hover:bg-[#1c2127] transition-colors">
+<span class="text-xs font-bold text-slate-400 w-4">02</span>
+<div class="h-6 w-6 rounded-full bg-slate-700 overflow-hidden">
+<img alt="User avatar" class="h-full w-full object-cover" data-alt="Small avatar of second performer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1MmfBs6s_JBSRduN99Ovel9FaCBPZOe37RMR_etw1nDzTr0I2LoTbvyIm-F3DeUvq9pX1vSiM6IUTfr6QvKghxGP2x0I9G5wzPWTudGhdZjlcPeZzseE8AY7L2foGzkXv3wN28C0FfaRkpZ_8iJ-C9eH1nT1w6Dmy7ZhRdTlC_P4W_ZrLQHboor96i3bBEF4uMkfg2bFylSrpYH-C14Irw__Wky0IWHYMyhste_onkSxIfZnNP3ArQ41hHTjlPLzIV0pOfkuZcA"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-900 dark:text-white">CyberMike</p>
+</div>
+<span class="text-xs font-mono text-primary">102.5ms</span>
+</div>
+<div class="flex items-center gap-3 p-2 rounded hover:bg-slate-50 dark:hover:bg-[#1c2127] transition-colors">
+<span class="text-xs font-bold text-slate-400 w-4">03</span>
+<div class="h-6 w-6 rounded-full bg-slate-700 overflow-hidden">
+<img alt="User avatar" class="h-full w-full object-cover" data-alt="Small avatar of third performer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm_M1rJh-nzSjDZzD5SyQo2Jpt_4zTpmCBb3BUUq2PwYCiu1jTXdmKuvSh0SvCJnloIMKqQFGnx7aw-JflfV8q-1dhlAWnOxn9gyrOB9FZvxP4-dU5ltx3l-KWaH3qJKs8QWO6hV21HVQtq5dSGls16tjaWS0go6R3klJXSN_-numwRmhuxa18c7-5sw9JzMZAEX4d7JiUFQo31knmH8X2AyAj4bdc-eLsEMKf66FqbtdC-pgCeGAS0EeN4GQWYKdCZWPfp7OxMQ"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-900 dark:text-white">J_Doe88</p>
+</div>
+<span class="text-xs font-mono text-primary">110.1ms</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

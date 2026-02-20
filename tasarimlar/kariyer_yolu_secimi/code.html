@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kariyer Yolu Seçimi</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2a8",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f2320; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1d3330; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00c2a8; 
+        }
+
+        /* Custom radio button styling */
+        .peer:checked ~ .custom-radio-ring {
+            border-color: #00c2a8;
+            background-color: rgba(0, 194, 168, 0.1);
+        }
+        .peer:checked ~ .custom-radio-ring .custom-radio-dot {
+            transform: scale(1);
+        }
+        .card-hover-effect {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0, 194, 168, 0.2);
+            border-color: rgba(0, 194, 168, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-10 py-4 bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-[32px]">school</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">TechEdu Portal</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-full size-10 bg-white/5 hover:bg-white/10 text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-full size-10 bg-white/5 hover:bg-white/10 text-white transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</div>
+<div class="h-8 w-px bg-white/10"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden md:block">
+<p class="text-sm font-bold leading-none text-white">Ali Yılmaz</p>
+<p class="text-xs text-primary/80 mt-1">Öğrenci</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCbdU1aPer1me8279XvBxVssnDBvU4L_Y7M-iy8wOFRI60RekbgtAk2eCdmwc2qhIYaNKoSmsxmSXV37JMWakp3EfhWfILFrd63lAFBdo0aDHTAfCLadbiJzv5POPkJkQQiu8ru83XhjLOTY12B8FrsAEfHa-ycd1wMV3lkuELVCEfI2guyVh4UzI8TUxheVkbFebYFPW71-BXvSJSp1Cx39G1hGn7BZF1qsYDfmeV8Fav6u1Gsulso_tbVFOME-K3besuJlBuffAeH");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col p-6 md:p-10 max-w-[1440px] mx-auto w-full gap-8">
+<!-- Hero Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div class="flex flex-col gap-3 max-w-2xl">
+<div class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-lg">route</span>
+                    Adım 2/4
+                </div>
+<h1 class="text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                    Kariyer Yolunu Belirle
+                </h1>
+<p class="text-slate-400 text-lg font-normal leading-relaxed max-w-xl">
+                    Temel modül eğitimi zorunludur ve otomatik olarak atanmıştır. Kariyer hedefine uygun bir uzmanlık alanı seçerek yolculuğuna başla.
+                </p>
+</div>
+<!-- Mandatory Module Card (Compact) -->
+<div class="w-full md:w-auto flex-shrink-0">
+<div class="bg-white/5 border border-primary/20 rounded-2xl p-4 flex items-center gap-4 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-2 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[80px]">lock</span>
+</div>
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Otomatik Seçili</span>
+<span class="material-symbols-outlined text-xs text-primary">lock</span>
+</div>
+<h3 class="text-white font-bold text-lg">Temel Modül (Zorunlu)</h3>
+<p class="text-slate-400 text-sm">Algoritmalar, İngilizce 101, Git</p>
+</div>
+<div class="ml-4 pl-4 border-l border-white/10 hidden sm:block">
+<span class="text-primary font-bold text-sm">4 Hafta</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<!-- Selection Grid Section -->
+<div class="flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<h2 class="text-2xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">school</span>
+                    Uzmanlık Alanı Seç
+                </h2>
+<span class="text-slate-400 text-sm bg-white/5 px-3 py-1 rounded-full">6 Seçecekten 1 tanesini seçin</span>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Frontend -->
+<label class="relative group cursor-pointer">
+<input class="peer sr-only" name="career_track" type="radio" value="frontend"/>
+<div class="custom-radio-ring absolute top-4 right-4 size-6 rounded-full border-2 border-slate-600 bg-background-dark z-10 flex items-center justify-center transition-all duration-300">
+<div class="custom-radio-dot size-3 bg-primary rounded-full transform scale-0 transition-transform duration-300"></div>
+</div>
+<div class="h-full bg-[#16201e] border border-white/5 rounded-2xl p-6 flex flex-col gap-5 card-hover-effect peer-checked:border-primary peer-checked:bg-[#102925] peer-checked:shadow-[0_0_20px_rgba(0,194,168,0.15)] relative overflow-hidden">
+<!-- Bg Gradient Effect -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="size-14 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-3xl text-blue-400">code</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<h3 class="text-xl font-bold text-white">Frontend Developer</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                Modern web arayüzleri tasarlayın. Kullanıcı deneyimini kodla birleştirin.
+                            </p>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2 relative z-10">
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">React</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">TypeScript</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Tailwind</span>
+</div>
+<div class="flex items-center gap-2 mt-2 text-primary/80 text-xs font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            24 Hafta
+                        </div>
+</div>
+</label>
+<!-- Card 2: Backend -->
+<label class="relative group cursor-pointer">
+<input class="peer sr-only" name="career_track" type="radio" value="backend"/>
+<div class="custom-radio-ring absolute top-4 right-4 size-6 rounded-full border-2 border-slate-600 bg-background-dark z-10 flex items-center justify-center transition-all duration-300">
+<div class="custom-radio-dot size-3 bg-primary rounded-full transform scale-0 transition-transform duration-300"></div>
+</div>
+<div class="h-full bg-[#16201e] border border-white/5 rounded-2xl p-6 flex flex-col gap-5 card-hover-effect peer-checked:border-primary peer-checked:bg-[#102925] peer-checked:shadow-[0_0_20px_rgba(0,194,168,0.15)] relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="size-14 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-3xl text-green-400">dns</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<h3 class="text-xl font-bold text-white">Backend Developer</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                Güçlü sunucu mimarileri ve veritabanı sistemleri kurun.
+                            </p>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2 relative z-10">
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Node.js</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">PostgreSQL</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Docker</span>
+</div>
+<div class="flex items-center gap-2 mt-2 text-primary/80 text-xs font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            26 Hafta
+                        </div>
+</div>
+</label>
+<!-- Card 3: Data Science -->
+<label class="relative group cursor-pointer">
+<input class="peer sr-only" name="career_track" type="radio" value="datascience"/>
+<div class="custom-radio-ring absolute top-4 right-4 size-6 rounded-full border-2 border-slate-600 bg-background-dark z-10 flex items-center justify-center transition-all duration-300">
+<div class="custom-radio-dot size-3 bg-primary rounded-full transform scale-0 transition-transform duration-300"></div>
+</div>
+<div class="h-full bg-[#16201e] border border-white/5 rounded-2xl p-6 flex flex-col gap-5 card-hover-effect peer-checked:border-primary peer-checked:bg-[#102925] peer-checked:shadow-[0_0_20px_rgba(0,194,168,0.15)] relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="size-14 rounded-xl bg-gradient-to-br from-orange-500/20 to-yellow-500/20 flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-3xl text-orange-400">query_stats</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<h3 class="text-xl font-bold text-white">Data Science</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                Verilerden anlam çıkarın, yapay zeka modelleri eğitin.
+                            </p>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2 relative z-10">
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Python</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">TensorFlow</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Pandas</span>
+</div>
+<div class="flex items-center gap-2 mt-2 text-primary/80 text-xs font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            28 Hafta
+                        </div>
+</div>
+</label>
+<!-- Card 4: Cyber Security -->
+<label class="relative group cursor-pointer">
+<input class="peer sr-only" name="career_track" type="radio" value="cybersecurity"/>
+<div class="custom-radio-ring absolute top-4 right-4 size-6 rounded-full border-2 border-slate-600 bg-background-dark z-10 flex items-center justify-center transition-all duration-300">
+<div class="custom-radio-dot size-3 bg-primary rounded-full transform scale-0 transition-transform duration-300"></div>
+</div>
+<div class="h-full bg-[#16201e] border border-white/5 rounded-2xl p-6 flex flex-col gap-5 card-hover-effect peer-checked:border-primary peer-checked:bg-[#102925] peer-checked:shadow-[0_0_20px_rgba(0,194,168,0.15)] relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="size-14 rounded-xl bg-gradient-to-br from-red-500/20 to-pink-500/20 flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-3xl text-red-400">security</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<h3 class="text-xl font-bold text-white">Cyber Security</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                Sistemleri saldırılara karşı koruyun, güvenlik protokolleri oluşturun.
+                            </p>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2 relative z-10">
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Ethical Hacking</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Network</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Linux</span>
+</div>
+<div class="flex items-center gap-2 mt-2 text-primary/80 text-xs font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            30 Hafta
+                        </div>
+</div>
+</label>
+<!-- Card 5: Mobile Dev -->
+<label class="relative group cursor-pointer">
+<input class="peer sr-only" name="career_track" type="radio" value="mobile"/>
+<div class="custom-radio-ring absolute top-4 right-4 size-6 rounded-full border-2 border-slate-600 bg-background-dark z-10 flex items-center justify-center transition-all duration-300">
+<div class="custom-radio-dot size-3 bg-primary rounded-full transform scale-0 transition-transform duration-300"></div>
+</div>
+<div class="h-full bg-[#16201e] border border-white/5 rounded-2xl p-6 flex flex-col gap-5 card-hover-effect peer-checked:border-primary peer-checked:bg-[#102925] peer-checked:shadow-[0_0_20px_rgba(0,194,168,0.15)] relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="size-14 rounded-xl bg-gradient-to-br from-indigo-500/20 to-blue-500/20 flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-3xl text-indigo-400">smartphone</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<h3 class="text-xl font-bold text-white">Mobile Developer</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                iOS ve Android için native veya cross-platform uygulamalar geliştirin.
+                            </p>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2 relative z-10">
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Flutter</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Swift</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Kotlin</span>
+</div>
+<div class="flex items-center gap-2 mt-2 text-primary/80 text-xs font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            26 Hafta
+                        </div>
+</div>
+</label>
+<!-- Card 6: Cloud Architecture -->
+<label class="relative group cursor-pointer">
+<input class="peer sr-only" name="career_track" type="radio" value="cloud"/>
+<div class="custom-radio-ring absolute top-4 right-4 size-6 rounded-full border-2 border-slate-600 bg-background-dark z-10 flex items-center justify-center transition-all duration-300">
+<div class="custom-radio-dot size-3 bg-primary rounded-full transform scale-0 transition-transform duration-300"></div>
+</div>
+<div class="h-full bg-[#16201e] border border-white/5 rounded-2xl p-6 flex flex-col gap-5 card-hover-effect peer-checked:border-primary peer-checked:bg-[#102925] peer-checked:shadow-[0_0_20px_rgba(0,194,168,0.15)] relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between relative z-10">
+<div class="size-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-sky-500/20 flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-3xl text-cyan-400">cloud</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<h3 class="text-xl font-bold text-white">Cloud Architecture</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                Bulut tabanlı sistemler tasarlayın, ölçeklenebilir altyapılar yönetin.
+                            </p>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2 relative z-10">
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">AWS</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">Azure</span>
+<span class="px-2.5 py-1 rounded-full bg-white/5 text-xs text-slate-300 border border-white/5">DevOps</span>
+</div>
+<div class="flex items-center gap-2 mt-2 text-primary/80 text-xs font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            24 Hafta
+                        </div>
+</div>
+</label>
+</div>
+</div>
+</main>
+<!-- Sticky Action Footer -->
+<div class="sticky bottom-0 z-40 bg-background-dark border-t border-white/10 p-6 md:px-10">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 text-yellow-500 bg-yellow-500/10 px-3 py-1.5 rounded-lg text-sm border border-yellow-500/20">
+<span class="material-symbols-outlined text-lg">info</span>
+<span>Değişiklikler henüz kaydedilmedi.</span>
+</div>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none h-12 px-6 rounded-full border border-white/10 bg-transparent text-white font-bold hover:bg-white/5 transition-colors">
+                    Önizle
+                </button>
+<button class="flex-1 md:flex-none h-12 px-8 rounded-full bg-primary hover:bg-[#00a08b] text-background-dark font-bold text-base transition-all shadow-[0_0_15px_rgba(0,194,168,0.4)] hover:shadow-[0_0_25px_rgba(0,194,168,0.6)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check_circle</span>
+                    Seçimi Kaydet ve Devam Et
+                </button>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PusulaOS Desktop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;family=Outfit:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f20d0d", // Electric Coral/Red variant from prompt
+                        "primary-content": "#ffffff",
+                        "accent": "#4D7CFF", // Electric Blue
+                        "success": "#00E0B8", // Neon Mint
+                        "glass-border": "rgba(255, 255, 255, 0.4)",
+                        "glass-surface": "rgba(255, 255, 255, 0.65)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Outfit", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        "liquid-gradient": "linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 50%, #CCFBF1 100%)",
+                        "glass-sheen": "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%)",
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseSlow: {
+                            '0%, 100%': { opacity: '0.6' },
+                            '50%': { opacity: '1' },
+                        },
+                        gradientShift: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        }
+                    },
+                    animation: {
+                        float: 'float 6s ease-in-out infinite',
+                        pulseSlow: 'pulseSlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        gradientShift: 'gradientShift 15s ease infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.10);
+        }
+
+        .glass-icon {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .glass-icon:hover {
+            transform: scale(1.1) translateY(-4px);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Juicy Button Styles */
+        .juicy-btn {
+            background: linear-gradient(145deg, #ff8585, #f20d0d);
+            box-shadow: 0 4px 0 #b90000, 0 8px 12px rgba(242, 13, 13, 0.3);
+            transition: all 0.1s;
+        }
+
+        .juicy-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #b90000, inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Animated Background */
+        .liquid-bg {
+            background: linear-gradient(135deg, #c4b5fd, #e0e7ff, #ccfbf1, #fbcfe8);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+        
+        /* Desktop Icon Label Shadow */
+        .text-shadow-sm {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden font-body text-slate-900 select-none liquid-bg relative">
+<!-- Desktop Environment Container -->
+<div class="absolute inset-0 z-0 flex flex-col p-6">
+<!-- Top Bar (Optional Status/Menu Bar context, kept minimal as per OS design) -->
+<div class="w-full flex justify-between items-center px-4 py-2 pointer-events-none">
+<div class="text-sm font-display font-bold text-slate-700/50 uppercase tracking-widest">Pusula OS v2.4</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-white/30 backdrop-blur-md px-3 py-1 rounded-full border border-white/40 shadow-sm pointer-events-auto cursor-help hover:bg-white/50 transition-colors">
+<span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+<span class="text-xs font-mono font-medium text-slate-700">System Stable</span>
+</div>
+</div>
+</div>
+<!-- Desktop Grid Area -->
+<div class="flex-1 w-full h-full relative grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] grid-rows-[repeat(auto-fill,minmax(100px,1fr))] gap-2 p-4 content-start items-start">
+<!-- Icon: My Computer / Pilot Profile -->
+<div class="group flex flex-col items-center gap-2 w-[100px] cursor-pointer active:opacity-70 transition-opacity">
+<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-200 shadow-lg border border-white/50 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+<div class="absolute inset-0 bg-white/20"></div>
+<!-- Image: Abstract avatar representing the user profile -->
+<img class="w-full h-full object-cover opacity-90 mix-blend-overlay" data-alt="User profile avatar close up with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_A0Tq5rMldasy_WQwImRLcsYm_GeKppu7N0aZHOJSXKnvtL9ngO7KajnauztiJlcPDY7Bumw4kfr7OR4dn6y7PoQALNvnQgitTnU5K0vgdE5fHjpJ2SGuLRL5m8dp6L5CM-zVPGl2lE2ElzI1qsZlNrxF2KMJkAti4C8pYKnNrHZkX28EkYfNixOKkYYq5ThYQ3gH0zFFwV1cKIA6L6rmusFSr3ScpCA7zz1d9mxA_v-bTSzh3TKqcKbfor0C9s5rAaPuie-b5pg"/>
+<span class="material-symbols-outlined absolute text-indigo-600/80 text-3xl drop-shadow-sm">person</span>
+</div>
+<span class="text-slate-800 text-shadow-sm font-medium text-sm bg-white/30 backdrop-blur-[2px] px-2 rounded-md group-hover:bg-white/60 transition-colors">Pilot Profile</span>
+</div>
+<!-- Icon: Archives / Folder -->
+<div class="group flex flex-col items-center gap-2 w-[100px] cursor-pointer active:opacity-70 transition-opacity">
+<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-100 to-orange-200 shadow-lg border border-white/50 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+<!-- Texture overlay -->
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+<span class="material-symbols-outlined text-orange-600/80 text-4xl drop-shadow-sm">folder_open</span>
+</div>
+<span class="text-slate-800 text-shadow-sm font-medium text-sm bg-white/30 backdrop-blur-[2px] px-2 rounded-md group-hover:bg-white/60 transition-colors">Archives</span>
+</div>
+<!-- Icon: Trash / Recycle Bin -->
+<div class="group flex flex-col items-center gap-2 w-[100px] cursor-pointer active:opacity-70 transition-opacity absolute bottom-32 right-8">
+<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-200 to-slate-300 shadow-lg border border-white/50 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-slate-600/80 text-3xl drop-shadow-sm">delete</span>
+</div>
+<span class="text-slate-800 text-shadow-sm font-medium text-sm bg-white/30 backdrop-blur-[2px] px-2 rounded-md group-hover:bg-white/60 transition-colors">Trash</span>
+</div>
+<!-- Open Window Example: Welcome/Tutorial -->
+<div class="absolute top-20 left-1/4 w-[600px] glass-panel rounded-2xl flex flex-col shadow-2xl animate-float pointer-events-auto">
+<!-- Window Header -->
+<div class="h-10 border-b border-white/30 flex items-center justify-between px-4 bg-white/20 rounded-t-2xl drag-handle cursor-grab active:cursor-grabbing">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-red-400 border border-red-500/30 hover:bg-red-500 transition-colors cursor-pointer"></div>
+<div class="w-3 h-3 rounded-full bg-amber-400 border border-amber-500/30 hover:bg-amber-500 transition-colors cursor-pointer"></div>
+<div class="w-3 h-3 rounded-full bg-green-400 border border-green-500/30 hover:bg-green-500 transition-colors cursor-pointer"></div>
+</div>
+<span class="text-xs font-display font-bold text-slate-600 tracking-wide">WELCOME.EXE</span>
+<div class="w-12"></div> <!-- Spacer for centering -->
+</div>
+<!-- Window Content -->
+<div class="p-8 flex flex-col gap-6 relative overflow-hidden">
+<!-- Decorative background blur orb -->
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
+<div>
+<h1 class="font-display text-3xl font-bold text-slate-800 mb-2">Welcome back, Pilot.</h1>
+<p class="text-slate-600 leading-relaxed font-body">
+                            Your neural link is stable. You have <span class="text-primary font-bold">3 pending protocols</span> in Mission Control waiting for execution.
+                        </p>
+</div>
+<div class="flex gap-4 items-center p-4 bg-white/40 rounded-xl border border-white/50">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="text-sm font-bold text-slate-700">Daily Streak</span>
+<span class="text-sm font-mono text-indigo-600">12 Days</span>
+</div>
+<div class="w-full h-2 bg-indigo-200/50 rounded-full overflow-hidden">
+<div class="h-full w-3/4 bg-indigo-500 rounded-full"></div>
+</div>
+</div>
+</div>
+<button class="self-start juicy-btn px-6 py-2 rounded-lg text-white font-bold font-display text-sm flex items-center gap-2 group">
+<span>Sync Data</span>
+<span class="material-symbols-outlined text-lg group-hover:rotate-180 transition-transform duration-500">sync</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Dock / Taskbar Container -->
+<div class="fixed bottom-6 left-0 right-0 flex justify-center items-end z-50 pointer-events-none">
+<!-- The Dock -->
+<div class="glass-panel px-4 py-3 rounded-2xl flex items-center gap-4 pointer-events-auto transition-all hover:scale-[1.01] duration-300">
+<!-- Start Button -->
+<button class="group relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-b from-white to-slate-50 border border-white/60 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 active:translate-y-0.5 active:shadow-sm mr-2">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-red-700 shadow-inner flex items-center justify-center relative overflow-hidden">
+<!-- Shine effect on start button -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<div class="absolute top-0 left-0 right-0 h-1/2 bg-white/20 rounded-t-full"></div>
+<span class="material-symbols-outlined text-white text-lg relative z-10 drop-shadow-md">token</span>
+</div>
+<!-- Tooltip -->
+<span class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 text-white text-xs px-2 py-1 rounded font-display tracking-wider">START</span>
+</button>
+<!-- Divider -->
+<div class="w-[1px] h-8 bg-slate-400/20 mx-1"></div>
+<!-- App: Mission Control -->
+<button class="glass-icon group relative w-12 h-12 rounded-xl flex items-center justify-center">
+<div class="relative">
+<span class="material-symbols-outlined text-indigo-600 text-3xl">rocket_launch</span>
+<!-- Notification Badge -->
+<span class="absolute -top-1 -right-1 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-primary text-[9px] text-white font-bold items-center justify-center">3</span>
+</span>
+</div>
+<!-- Tooltip -->
+<span class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 text-white text-xs px-2 py-1 rounded font-display tracking-wider whitespace-nowrap">Mission Control</span>
+</button>
+<!-- App: The Arena -->
+<button class="glass-icon group relative w-12 h-12 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-red-500 text-3xl">swords</span>
+<!-- Tooltip -->
+<span class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 text-white text-xs px-2 py-1 rounded font-display tracking-wider whitespace-nowrap">The Arena</span>
+</button>
+<!-- App: Analytics / Stats (Inactive) -->
+<button class="glass-icon group relative w-12 h-12 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-600 text-3xl">monitoring</span>
+<!-- Tooltip -->
+<span class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 text-white text-xs px-2 py-1 rounded font-display tracking-wider whitespace-nowrap">Stats</span>
+</button>
+<!-- Divider -->
+<div class="w-[1px] h-8 bg-slate-400/20 mx-1"></div>
+<!-- System Tray: Clock -->
+<div class="px-3 py-2 rounded-xl bg-white/30 border border-white/40 flex flex-col items-center justify-center min-w-[70px] hover:bg-white/50 transition-colors cursor-default">
+<span class="font-mono font-bold text-slate-800 text-sm leading-none">09:41</span>
+<span class="font-display text-[10px] text-slate-600 font-medium uppercase tracking-wider leading-none mt-1">PM</span>
+</div>
+</div>
+</div>
+</body></html>

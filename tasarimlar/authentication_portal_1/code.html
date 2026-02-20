@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Authentication Portal | Neural OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#05b7d6",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2023",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes scan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+        .scan-line {
+            animation: scan 3s linear infinite;
+        }
+        .glass-panel {
+            background: rgba(15, 32, 35, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(5, 183, 214, 0.2);
+        }
+        .glow-box {
+            box-shadow: 0 0 20px rgba(5, 183, 214, 0.15);
+        }
+        .neon-text {
+            text-shadow: 0 0 8px rgba(5, 183, 214, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-slate-100 overflow-hidden h-screen w-screen selection:bg-primary/30">
+<!-- Background Cityscape -->
+<div class="fixed inset-0 z-0">
+<img alt="Cyberpunk cityscape at night" class="object-cover w-full h-full opacity-40 mix-blend-luminosity scale-105" data-alt="Dark rainy cyberpunk cityscape with neon accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkamZrjBV0mIxHiapv2abu1q_vpsVhy0T-k2x_Ou-RGJjaYaLA9_JXKGOcxfL8fPNCzeCRvGJg4QondreCmv0BTBa2AKHXKoXXNLEUQnQd2X0RUC7k5MHceU0Lj0G_05EDDrSxfLTFFBUFQV7SSYlF5GsOGExXk3AI8J93a9LyH0U-Sfzn87WrL6-jUA2eOC347LcI0ltq1Gkcmrk5zLQzTUSWVzGxQAcEwku9GnSBXq-H8ER4WxzSJ250iSuOdWAHbuoW6buL_1t_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-transparent to-background-dark"></div>
+</div>
+<!-- Interface HUD Overlay -->
+<div class="fixed inset-0 z-10 pointer-events-none border-[32px] border-background-dark/20">
+<div class="flex justify-between p-8">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] tracking-widest text-primary/60 uppercase">System Status</span>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-xs font-mono">CONNECTION SECURE // PORT 8080</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[10px] tracking-widest text-primary/60 uppercase">Node Location</span>
+<p class="text-xs font-mono" data-location="Neo-Tokyo Sector 7">SECTOR 07 // DISTRICT B</p>
+</div>
+</div>
+<div class="absolute bottom-8 left-8 right-8 flex justify-between items-end">
+<div class="max-w-xs space-y-2">
+<div class="h-px w-32 bg-primary/30"></div>
+<p class="text-[10px] text-slate-400 font-mono leading-relaxed">
+                    NEURAL OS V2.0.7-BETA. ENCRYPTED PACKET TRANSFER ACTIVE. UNAUTHORIZED ACCESS ATTEMPT WILL TRIGGER BIOMETRIC LOCKDOWN.
+                </p>
+</div>
+<div class="flex gap-4">
+<div class="text-right">
+<span class="text-[10px] tracking-widest text-primary/60 uppercase">LATENCY</span>
+<p class="text-xs font-mono">14MS</p>
+</div>
+<div class="text-right">
+<span class="text-[10px] tracking-widest text-primary/60 uppercase">UPTIME</span>
+<p class="text-xs font-mono">1,402:12:09</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Authentication Container -->
+<main class="relative z-20 flex items-center justify-center min-h-screen p-6">
+<div class="w-full max-w-md">
+<!-- Glassmorphism Card -->
+<div class="glass-panel rounded-xl p-8 md:p-10 glow-box relative overflow-hidden">
+<!-- Scanning Line Effect -->
+<div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent scan-line"></div>
+<!-- Card Header -->
+<div class="text-center mb-10">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 border border-primary/20 mb-6 group transition-all duration-300">
+<span class="material-icons text-primary text-3xl">fingerprint</span>
+</div>
+<h1 class="text-xs tracking-[0.4em] text-primary font-semibold mb-2 uppercase neon-text">System Access Required</h1>
+<h2 class="text-2xl font-bold tracking-tight text-slate-100">AUTHENTICATION PORTAL</h2>
+</div>
+<!-- Form Fields -->
+<form class="space-y-6">
+<div class="space-y-2 group">
+<label class="text-[10px] uppercase tracking-widest text-slate-400 ml-1 group-focus-within:text-primary transition-colors" for="neural-id">Neural ID</label>
+<div class="relative">
+<span class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">person_outline</span>
+<input class="w-full bg-slate-900/50 border border-slate-700/50 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 rounded-lg py-3.5 pl-12 pr-4 text-slate-200 placeholder-slate-600 transition-all outline-none" id="neural-id" placeholder="Enter system handle..." type="text"/>
+</div>
+</div>
+<div class="space-y-2 group">
+<label class="text-[10px] uppercase tracking-widest text-slate-400 ml-1 group-focus-within:text-primary transition-colors" for="biometric-sync">Biometric Sync</label>
+<div class="relative">
+<span class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">lock_open</span>
+<input class="w-full bg-slate-900/50 border border-slate-700/50 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 rounded-lg py-3.5 pl-12 pr-4 text-slate-200 placeholder-slate-600 transition-all outline-none" id="biometric-sync" placeholder="Initialize secure sync..." type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] px-1">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 rounded border-slate-700 bg-slate-800 text-primary focus:ring-offset-background-dark focus:ring-primary/30" type="checkbox"/>
+<span class="text-slate-400 group-hover:text-slate-300 transition-colors">Remember Node</span>
+</label>
+<a class="text-primary/70 hover:text-primary transition-colors uppercase tracking-wider font-semibold" href="#">Emergency Override</a>
+</div>
+<button class="group relative w-full overflow-hidden rounded-lg bg-primary px-6 py-4 text-sm font-bold tracking-[0.2em] text-background-dark transition-all hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark" type="button">
+<div class="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-700"></div>
+<span class="relative flex items-center justify-center gap-2">
+                            SCAN TO ENTER
+                            <span class="material-icons text-sm">arrow_forward</span>
+</span>
+</button>
+</form>
+<!-- Footer Links -->
+<div class="mt-8 pt-8 border-t border-slate-800/50 flex flex-col items-center gap-4">
+<p class="text-xs text-slate-500">
+                        New entity detected? <a class="text-primary hover:underline" href="#">Register New Node</a>
+</p>
+<!-- Decorative HUD Corner Accents -->
+<div class="absolute bottom-2 right-2 opacity-20">
+<svg fill="none" height="40" viewbox="0 0 40 40" width="40" xmlns="http://www.w3.org/2000/svg">
+<path d="M38 32V38H32" stroke="#05b7d6" stroke-width="2"></path>
+<rect fill="#05b7d6" height="4" width="4" x="25" y="25"></rect>
+</svg>
+</div>
+<div class="absolute top-2 left-2 opacity-20">
+<svg fill="none" height="40" viewbox="0 0 40 40" width="40" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8V2H8" stroke="#05b7d6" stroke-width="2"></path>
+<circle cx="15" cy="15" fill="#05b7d6" r="2"></circle>
+</svg>
+</div>
+</div>
+</div>
+<!-- Technical Metadata under the card -->
+<div class="mt-6 flex justify-between items-center px-4 opacity-40">
+<div class="flex gap-2">
+<div class="w-1 h-3 bg-primary"></div>
+<div class="w-1 h-3 bg-slate-700"></div>
+<div class="w-1 h-3 bg-slate-700"></div>
+</div>
+<p class="text-[9px] font-mono tracking-widest text-slate-400">ENCRYPTION: AES-256-GCM</p>
+<div class="flex gap-2">
+<div class="w-1 h-3 bg-slate-700"></div>
+<div class="w-1 h-3 bg-slate-700"></div>
+<div class="w-1 h-3 bg-primary"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Grain/Noise Overlay -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay">
+<svg viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<filter id="noise">
+<feturbulence basefrequency="0.65" numoctaves="3" stitchtiles="stitch" type="fractalNoise"></feturbulence>
+</filter>
+<rect filter="url(#noise)" height="100%" width="100%"></rect>
+</svg>
+</div>
+</body></html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-044 Functions Micro-lab - DIGEM</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c2127",
+                        "border-dark": "#283039",
+                        "text-secondary": "#9dabb9",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex shrink-0 items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-[#111418] px-6 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">code</span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Core Programming</h2>
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span>Functions</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span>SCR-044: Micro-lab</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-surface-dark rounded-lg border border-border-dark">
+<span class="material-symbols-outlined text-green-400 text-sm">check_circle</span>
+<span class="text-xs font-medium text-text-secondary">Auto-saved 2m ago</span>
+</div>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-surface-dark border border-border-dark text-white text-sm font-bold hover:bg-[#283039] transition-colors">
+<span class="material-symbols-outlined mr-2 text-sm">book</span>
+<span>Docs</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 w-9 bg-surface-dark border border-border-dark text-white hover:bg-[#283039] transition-colors">
+<span class="material-symbols-outlined text-base">notifications</span>
+</button>
+<div class="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-purple-500 p-[2px]">
+<div class="h-full w-full rounded-full bg-surface-dark flex items-center justify-center">
+<span class="text-xs font-bold">JD</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Sidebar: Instructions -->
+<aside class="w-[320px] flex flex-col border-r border-border-dark bg-[#111418] overflow-y-auto shrink-0 hidden lg:flex">
+<div class="p-5 flex flex-col gap-6">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary">Task</span>
+<span class="text-xs text-text-secondary">Difficulty: Beginner</span>
+</div>
+<h1 class="text-2xl font-bold leading-tight mb-3">Calculate Area</h1>
+<p class="text-text-secondary text-sm leading-relaxed">
+                        Write a function named <code class="bg-[#283039] px-1 py-0.5 rounded text-primary font-mono text-xs">calculate_area</code> that takes <code class="bg-[#283039] px-1 py-0.5 rounded text-primary font-mono text-xs">width</code> and <code class="bg-[#283039] px-1 py-0.5 rounded text-primary font-mono text-xs">height</code> as arguments and returns the area of a rectangle.
+                    </p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="p-4 rounded-lg bg-surface-dark border border-border-dark">
+<div class="flex items-center gap-2 mb-2 text-white">
+<span class="material-symbols-outlined text-primary text-sm">input</span>
+<span class="text-sm font-bold">Input Constraints</span>
+</div>
+<ul class="list-disc list-inside text-xs text-text-secondary space-y-1 ml-1">
+<li>width: float or int &gt; 0</li>
+<li>height: float or int &gt; 0</li>
+</ul>
+</div>
+<div class="p-4 rounded-lg bg-surface-dark border border-border-dark">
+<div class="flex items-center gap-2 mb-2 text-white">
+<span class="material-symbols-outlined text-primary text-sm">output</span>
+<span class="text-sm font-bold">Expected Output</span>
+</div>
+<p class="text-xs text-text-secondary">
+                            Return the calculated area as a number (float or int).
+                        </p>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white mb-3">Examples</h3>
+<div class="flex flex-col gap-2">
+<div class="bg-[#0d1116] rounded-lg p-3 border border-border-dark font-mono text-xs">
+<span class="text-purple-400">&gt;&gt;&gt;</span> calculate_area(5, 10)<br/>
+<span class="text-green-400">50</span>
+</div>
+<div class="bg-[#0d1116] rounded-lg p-3 border border-border-dark font-mono text-xs">
+<span class="text-purple-400">&gt;&gt;&gt;</span> calculate_area(2.5, 4)<br/>
+<span class="text-green-400">10.0</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center: Code Editor -->
+<main class="flex-1 flex flex-col min-w-0 bg-[#1e1e1e] relative">
+<!-- Editor Tabs -->
+<div class="flex h-10 bg-[#111418] border-b border-border-dark">
+<button class="px-4 flex items-center gap-2 bg-[#1e1e1e] border-r border-border-dark text-xs text-white border-t-2 border-t-primary">
+<span class="material-symbols-outlined text-sm text-yellow-500">folder_open</span>
+                    solution.py
+                </button>
+<button class="px-4 flex items-center gap-2 hover:bg-[#1c2127] border-r border-border-dark text-xs text-text-secondary transition-colors">
+<span class="material-symbols-outlined text-sm text-blue-400">description</span>
+                    readme.md
+                </button>
+</div>
+<!-- Code Area (Mock) -->
+<div class="flex-1 relative font-mono text-sm overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-12 bg-[#1e1e1e] border-r border-[#2b3036] flex flex-col items-end py-4 pr-3 text-text-secondary select-none text-xs leading-6">
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+<div>9</div>
+</div>
+<div class="absolute left-12 top-0 right-0 bottom-0 bg-[#1e1e1e] p-4 text-[#d4d4d4] leading-6 overflow-auto outline-none" contenteditable="true" spellcheck="false">
+<div class="text-[#6A9955] italic"># Write your function here to calculate the area of a rectangle</div>
+<div><span class="text-[#569CD6]">def</span> <span class="text-[#DCDCAA]">calculate_area</span>(width, height):</div>
+<div class="pl-8"><span class="text-[#6A9955]"># TODO: Implement the logic</span></div>
+<div class="pl-8"><span class="text-[#C586C0]">if</span> <span class="text-[#9CDCFE]">width</span> &lt; 0 <span class="text-[#569CD6]">or</span> <span class="text-[#9CDCFE]">height</span> &lt; 0:</div>
+<div class="pl-16"><span class="text-[#C586C0]">return</span> <span class="text-[#CE9178]">0</span></div>
+<div class="pl-8"><span class="text-[#C586C0]">return</span> <span class="text-[#9CDCFE]">width</span> * <span class="text-[#9CDCFE]">height</span></div>
+<br/>
+<div><span class="text-[#6A9955]"># Test your function locally</span></div>
+<div><span class="text-[#9CDCFE]">print</span>(<span class="text-[#CE9178]">"Area: "</span>, <span class="text-[#DCDCAA]">calculate_area</span>(<span class="text-[#B5CEA8]">5</span>, <span class="text-[#B5CEA8]">10</span>))</div>
+</div>
+</div>
+<!-- Bottom Action Bar -->
+<div class="h-16 bg-[#111418] border-t border-border-dark flex items-center justify-between px-6 shrink-0 z-10">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-text-secondary hover:text-white transition-colors text-xs font-bold">
+<span class="material-symbols-outlined text-lg">terminal</span>
+                        Open Console
+                    </button>
+<button class="flex items-center gap-2 text-text-secondary hover:text-white transition-colors text-xs font-bold">
+<span class="material-symbols-outlined text-lg">history</span>
+                        History
+                    </button>
+</div>
+<div class="flex items-center gap-3">
+<button class="h-9 px-4 rounded-lg bg-surface-dark border border-border-dark text-white text-sm font-bold hover:bg-[#283039] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+                        Run Code
+                    </button>
+<button class="h-9 px-6 rounded-lg bg-primary text-white text-sm font-bold hover:bg-blue-600 transition-colors shadow-[0_0_15px_rgba(19,127,236,0.3)] flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">send</span>
+                        Submit Solution
+                    </button>
+</div>
+</div>
+</main>
+<!-- Right Sidebar: Tools & Feedback -->
+<aside class="w-[360px] flex flex-col border-l border-border-dark bg-[#111418] shrink-0">
+<!-- Schema Helper Section -->
+<div class="flex flex-col border-b border-border-dark p-4 bg-[#161b22]">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">schema</span>
+                        Function Schema Helper
+                    </h3>
+<button class="text-xs text-primary hover:text-blue-300 font-medium">Reset</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Parameters Table -->
+<div class="rounded-lg border border-border-dark overflow-hidden bg-surface-dark">
+<table class="w-full text-xs">
+<thead class="bg-[#212830] text-text-secondary">
+<tr>
+<th class="px-3 py-2 text-left font-medium">Parameter</th>
+<th class="px-3 py-2 text-left font-medium">Type</th>
+<th class="px-3 py-2 text-center font-medium">Req?</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark">
+<tr>
+<td class="px-3 py-2 text-white font-mono">width</td>
+<td class="px-3 py-2">
+<select class="bg-[#111418] border-none text-xs text-blue-400 rounded py-0.5 px-1 w-full focus:ring-0">
+<option>float</option>
+<option>int</option>
+<option>str</option>
+</select>
+</td>
+<td class="px-3 py-2 text-center">
+<span class="material-symbols-outlined text-green-400 text-sm">check</span>
+</td>
+</tr>
+<tr>
+<td class="px-3 py-2 text-white font-mono">height</td>
+<td class="px-3 py-2">
+<select class="bg-[#111418] border-none text-xs text-blue-400 rounded py-0.5 px-1 w-full focus:ring-0">
+<option>float</option>
+<option>int</option>
+</select>
+</td>
+<td class="px-3 py-2 text-center">
+<span class="material-symbols-outlined text-green-400 text-sm">check</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Return Value -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-border-dark bg-surface-dark">
+<span class="text-xs text-text-secondary">Return Value</span>
+<div class="flex items-center gap-2">
+<span class="text-xs font-mono text-white">area</span>
+<span class="material-symbols-outlined text-xs text-text-secondary">arrow_right_alt</span>
+<span class="bg-primary/20 text-primary px-2 py-0.5 rounded text-[10px] font-mono font-bold">float</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Test Cases Section -->
+<div class="flex flex-col flex-1 overflow-y-auto p-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-400">bug_report</span>
+                        Test Cases
+                    </h3>
+<div class="flex items-center gap-1">
+<span class="text-xs font-bold text-white">2/4</span>
+<span class="text-[10px] text-text-secondary uppercase">Passing</span>
+</div>
+</div>
+<div class="space-y-3">
+<!-- Passing Test Case -->
+<div class="group border border-green-900/50 bg-green-900/10 rounded-lg overflow-hidden transition-all hover:border-green-800">
+<div class="p-3 flex items-start gap-3">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-green-400">Test Case 01</span>
+<span class="text-[10px] text-green-500/70 font-mono">0.02ms</span>
+</div>
+<p class="text-xs text-text-secondary mb-1">Simple integer inputs</p>
+<div class="font-mono text-[10px] bg-[#111418] p-1.5 rounded text-gray-300">
+                                    in: (5, 10) → out: 50
+                                </div>
+</div>
+</div>
+</div>
+<!-- Passing Test Case -->
+<div class="group border border-green-900/50 bg-green-900/10 rounded-lg overflow-hidden transition-all hover:border-green-800">
+<div class="p-3 flex items-start gap-3">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-green-400">Test Case 02</span>
+<span class="text-[10px] text-green-500/70 font-mono">0.05ms</span>
+</div>
+<p class="text-xs text-text-secondary mb-1">Float inputs</p>
+<div class="font-mono text-[10px] bg-[#111418] p-1.5 rounded text-gray-300">
+                                    in: (2.5, 4.0) → out: 10.0
+                                </div>
+</div>
+</div>
+</div>
+<!-- Failing Test Case -->
+<div class="group border border-red-900/50 bg-red-900/10 rounded-lg overflow-hidden transition-all hover:border-red-800">
+<div class="p-3 flex items-start gap-3">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-red-500 text-lg">cancel</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-red-400">Test Case 03</span>
+<span class="text-[10px] text-red-500/70 font-mono">--</span>
+</div>
+<p class="text-xs text-text-secondary mb-1">Negative inputs handling</p>
+<div class="font-mono text-[10px] bg-[#111418] p-1.5 rounded text-gray-300 mb-1">
+                                    in: (-5, 10) → expected: 0
+                                </div>
+<div class="text-[10px] text-red-400 font-mono">
+                                    &gt; Returned: -50
+                                </div>
+</div>
+</div>
+</div>
+<!-- Pending Test Case -->
+<div class="group border border-border-dark bg-surface-dark rounded-lg overflow-hidden opacity-70">
+<div class="p-3 flex items-start gap-3">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-text-secondary text-lg">radio_button_unchecked</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-text-secondary">Test Case 04</span>
+</div>
+<p class="text-xs text-text-secondary mb-1">Large numbers</p>
+<div class="font-mono text-[10px] bg-[#111418] p-1.5 rounded text-gray-500">
+                                    in: (1e5, 1e5) → expected: 1e10
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Progress Summary -->
+<div class="p-4 border-t border-border-dark bg-[#161b22]">
+<div class="flex items-center justify-between text-xs mb-2">
+<span class="text-text-secondary">Progress</span>
+<span class="text-white font-bold">50%</span>
+</div>
+<div class="h-2 w-full bg-[#111418] rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-orange-500 to-green-500 w-1/2"></div>
+</div>
+<div class="mt-3 text-center">
+<p class="text-[10px] text-text-secondary">Fix the failing tests to submit.</p>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

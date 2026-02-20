@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirvanaBrowser: Fact-Check Laboratuvarı Modu</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1a2632",
+                        "border-dark": "#2a3b4c",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col h-screen overflow-hidden antialiased">
+<!-- Browser Header / Chrome -->
+<header class="flex-none bg-surface-dark border-b border-border-dark px-6 py-3 flex items-center justify-between z-20 shadow-md">
+<!-- Logo & Title -->
+<div class="flex items-center gap-4">
+<div class="bg-primary/20 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined text-2xl">science</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-lg font-bold tracking-tight text-white leading-tight">NirvanaBrowser</h1>
+<span class="text-xs text-slate-400 font-medium">Fact-Check Laboratuvarı</span>
+</div>
+</div>
+<!-- Address Bar Mockup -->
+<div class="flex-1 max-w-2xl mx-8 hidden md:flex items-center bg-background-dark border border-border-dark rounded-full px-4 py-2 text-sm text-slate-400 gap-2">
+<span class="material-symbols-outlined text-base">lock</span>
+<span class="text-slate-500">nirvana://</span><span class="text-white">factcheck-lab/b4-l3</span>
+</div>
+<!-- User & Status -->
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-semibold text-green-400 uppercase tracking-wider">Sistem Aktif</span>
+</div>
+<button class="flex items-center gap-2 hover:bg-white/5 px-2 py-1 rounded-lg transition-colors">
+<div class="w-8 h-8 rounded-full bg-cover bg-center border border-white/10" data-alt="User profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLssbjrNl1DIMS8O4Kj_Nz8vO3elKpyFpsrpuG9H05pYniaLbA5NH6X6sOTct5PyyqJALeYkevagsgvxPC95bQpqtPjtY9SJSsxrN6tbdgUpx9vkIHSdSmk_0bjL53OcKwYKDJahr7GnWKh1jA2bcWZccCbgfsE4RFCLfJJQmhrdNMFQ7ol6ZJ4nxOkhgdFxsnn_ZSI0nlg-waHEYIE-tRk3vHpTjzuqNz_H0qVQQS_WQDIK00Xugnz8-r5DtoNJL4yxnb3HQCSPo');"></div>
+<span class="text-sm font-medium text-slate-200 hidden sm:block">Öğrenci Profili</span>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</button>
+</div>
+</header>
+<!-- Sub-Header / Breadcrumbs -->
+<div class="flex-none bg-background-dark border-b border-border-dark px-6 py-2 flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-slate-500 text-lg">home</span>
+<span class="text-slate-500">/</span>
+<span class="text-slate-400 hover:text-primary cursor-pointer transition-colors">UNDP</span>
+<span class="text-slate-500">/</span>
+<span class="text-slate-400 hover:text-primary cursor-pointer transition-colors">PUSULA Lite v1.3</span>
+<span class="text-slate-500">/</span>
+<span class="text-white font-medium bg-primary/20 px-2 py-0.5 rounded text-xs border border-primary/30">Ders B4-L3</span>
+</div>
+<!-- Main Content Grid -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Column: Source Material (30%) -->
+<section class="flex-none w-[350px] lg:w-[400px] border-r border-border-dark bg-surface-dark flex flex-col">
+<div class="p-4 border-b border-border-dark flex items-center justify-between bg-surface-dark/50 backdrop-blur-sm sticky top-0 z-10">
+<h3 class="font-bold text-slate-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">article</span>
+                    Haber Kaynağı
+                </h3>
+<span class="text-xs bg-slate-700/50 text-slate-300 px-2 py-1 rounded">Eko-Haber</span>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+<!-- Article Header -->
+<div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-xs font-bold text-slate-300">EH</div>
+<div>
+<div class="text-xs text-slate-400">Yazar: Dr. A. Yılmaz</div>
+<div class="text-xs text-slate-500">12 Kasım 2023 • 14:30</div>
+</div>
+</div>
+<h1 class="text-2xl font-bold text-white leading-tight mb-4">İklim Değişikliği ve Kutuplar: Yeni Rapor Ne Diyor?</h1>
+<div class="w-full h-48 rounded-lg bg-cover bg-center mb-6 relative group overflow-hidden" data-alt="Polar bear on melting ice" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_y-O3cs_ZN_2SU5LnYlzT7DldqPue1eeJAWSTXSUwzF4mB37nSdJByhDH9CKWv-qYPOrIRvAO6V-N_6G1xDB2Hb_WePA0jiVwPxkWBlaqlk8ZIUIW6sgDQChXrcLCZHAxTYxeL45dXNmTCy3RovvlcSJzSGJt0wh0zMEowlweC48UaLCGkJdS2gJ-oH_HCVjhOOAty5ipQhzSKbk1IEpTAeNzJMX-HdU8ofYS_oA6XoGd71DsTGRfAQVRIe6lrS61NC6RmOgsXKM');">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<span class="bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-md">Görseli Analiz Et</span>
+</div>
+</div>
+</div>
+<!-- Article Body with interactable text -->
+<div class="prose prose-invert prose-sm max-w-none text-slate-300">
+<p class="mb-4">
+                        Son zamanlarda yayınlanan bazı raporlar, kutup bölgelerindeki ekosistem hakkında <span class="bg-yellow-500/20 text-yellow-200 px-1 rounded cursor-grab active:cursor-grabbing border-b border-dashed border-yellow-500/50 hover:bg-yellow-500/30 transition-colors" draggable="true">tartışmalı iddialar</span> ortaya atıyor.
+                    </p>
+<p class="mb-4">
+                        Özellikle "Kuzey Buz Denizi'ndeki buzulların erimesinin durduğu" yönündeki söylemler sosyal medyada hızla yayılıyor. <span class="bg-primary/20 text-blue-200 px-1 rounded cursor-grab active:cursor-grabbing border-b border-dashed border-primary/50 hover:bg-primary/30 transition-colors" draggable="true">Bazı bilim insanları, kutup ayısı popülasyonunun son 10 yılda %20 arttığını öne sürdü.</span> Bu veri, küresel ısınma karşıtı gruplar tarafından sıkça referans gösteriliyor.
+                    </p>
+<p class="mb-4">
+                        Ancak, bağımsız gözlemciler bu verilerin <span class="bg-red-500/20 text-red-200 px-1 rounded cursor-grab active:cursor-grabbing border-b border-dashed border-red-500/50 hover:bg-red-500/30 transition-colors" draggable="true">bölgesel ve mevsimsel</span> olduğunu, genel tabloyu yansıtmadığını belirtiyor.
+                    </p>
+<p class="text-slate-500 italic text-xs mt-8 pt-4 border-t border-border-dark">
+                        Bu içerik eğitim amaçlı üretilmiştir ve gerçek haber niteliği taşımaz.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Center Column: Workspace / Evidence Board (Flex-1) -->
+<section class="flex-1 bg-background-dark relative flex flex-col">
+<!-- Workspace Header -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-surface-dark/80 backdrop-blur-md border border-border-dark rounded-full px-6 py-2 shadow-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">dashboard</span>
+<span class="text-sm font-medium text-white">Kanıt Panosu</span>
+</div>
+<!-- Drag & Drop Area (Simulation) -->
+<div class="flex-1 p-8 relative overflow-hidden" style="background-image: radial-gradient(#2a3b4c 1px, transparent 1px); background-size: 24px 24px;">
+<!-- Connection Lines (SVG Overlay) -->
+<svg class="absolute inset-0 pointer-events-none w-full h-full z-0 opacity-40">
+<!-- Line from Claim to Evidence -->
+<path d="M 400 250 C 400 350, 600 350, 600 450" fill="none" stroke="#137fec" stroke-dasharray="5,5" stroke-width="2"></path>
+<!-- Circle endpoints -->
+<circle cx="400" cy="250" fill="#137fec" r="4"></circle>
+<circle cx="600" cy="450" fill="#137fec" r="4"></circle>
+</svg>
+<!-- Draggable Item: Claim -->
+<div class="absolute top-[20%] left-[20%] w-72 bg-surface-dark border border-primary/50 shadow-[0_0_15px_rgba(19,127,236,0.15)] rounded-xl p-4 cursor-move z-10 group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">İddia #1</span>
+<span class="material-symbols-outlined text-slate-500 text-sm cursor-pointer hover:text-white">close</span>
+</div>
+<p class="text-sm text-slate-200 font-medium leading-snug">"Kutup ayısı popülasyonu son 10 yılda %20 arttı."</p>
+<div class="mt-3 pt-2 border-t border-border-dark flex justify-end">
+<span class="text-[10px] text-slate-500">Kaynak: Metin Parçası</span>
+</div>
+<!-- Connector Dot -->
+<div class="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-primary rounded-full border-2 border-surface-dark"></div>
+</div>
+<!-- Draggable Item: Evidence (Empty State) -->
+<div class="absolute top-[50%] right-[20%] w-72 h-40 border-2 border-dashed border-slate-600 rounded-xl bg-slate-800/20 flex flex-col items-center justify-center text-center p-4 hover:border-slate-400 hover:bg-slate-800/40 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-3xl text-slate-500 mb-2">add_link</span>
+<p class="text-sm text-slate-400 font-medium">Kanıt Sürükle</p>
+<p class="text-xs text-slate-600 mt-1">Harici kaynak veya görsel buraya</p>
+</div>
+<!-- Draggable Item: Connected Evidence -->
+<div class="absolute top-[60%] left-[30%] w-64 bg-surface-dark border border-green-500/30 shadow-lg rounded-xl p-4 cursor-move z-10">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-green-400">Doğrulama</span>
+</div>
+<p class="text-sm text-slate-300 leading-snug">NASA verilerine göre buzullar 1980'den beri her on yılda %13 azalıyor.</p>
+<!-- Connector Dot -->
+<div class="absolute top-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-green-500 rounded-full border-2 border-surface-dark"></div>
+</div>
+</div>
+<!-- Verdict Selector (Bottom Bar) -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-lg">
+<div class="bg-surface-dark/90 backdrop-blur-lg border border-border-dark rounded-2xl p-2 shadow-2xl flex items-center justify-between gap-2">
+<span class="pl-4 text-xs font-bold text-slate-400 uppercase tracking-widest hidden sm:block">Karar:</span>
+<div class="flex flex-1 gap-2">
+<button class="flex-1 py-3 rounded-xl border border-transparent hover:bg-green-500/10 hover:border-green-500/30 text-slate-400 hover:text-green-400 font-bold transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:fill-current">check_circle</span>
+                            DOĞRU
+                        </button>
+<button class="flex-1 py-3 rounded-xl border border-red-500/50 bg-red-500/10 text-red-400 font-bold shadow-[0_0_10px_rgba(239,68,68,0.2)] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined fill-current">cancel</span>
+                            YANLIŞ
+                        </button>
+<button class="flex-1 py-3 rounded-xl border border-transparent hover:bg-slate-700/50 hover:border-slate-600 text-slate-400 hover:text-slate-200 font-bold transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined">help</span>
+                            BELİRSİZ
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: QuestDock (25%) -->
+<section class="flex-none w-[320px] bg-surface-dark border-l border-border-dark flex flex-col shadow-xl z-10">
+<div class="p-5 border-b border-border-dark bg-surface-dark">
+<h2 class="text-lg font-bold text-white mb-1">Doğrulama Raporu</h2>
+<p class="text-xs text-slate-400">Adımları tamamlayarak ilerleyin.</p>
+</div>
+<!-- Steps -->
+<div class="flex-1 overflow-y-auto p-5">
+<div class="relative">
+<!-- Vertical Line -->
+<div class="absolute left-[15px] top-4 bottom-0 w-0.5 bg-border-dark -z-10"></div>
+<!-- Step 1: Completed -->
+<div class="flex gap-4 mb-8">
+<div class="flex-none w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-black shadow-[0_0_10px_rgba(34,197,94,0.4)]">
+<span class="material-symbols-outlined text-lg font-bold">check</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-green-400 line-through decoration-green-500/50">Kaynağı Kontrol Et</h4>
+<p class="text-xs text-slate-500 mt-1">Eko-Haber sitesinin güvenilirliğini puanla.</p>
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="flex gap-4 mb-8">
+<div class="flex-none w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white ring-4 ring-primary/20 shadow-[0_0_15px_rgba(19,127,236,0.4)]">
+<span class="text-sm font-bold">2</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white">Yazarın Geçmişini Tara</h4>
+<p class="text-xs text-slate-400 mt-1">Dr. A. Yılmaz daha önce hangi makaleleri yayınladı?</p>
+<button class="mt-3 w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs py-2 px-3 rounded border border-border-dark transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">search</span>
+                                Yazarı Ara
+                            </button>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex gap-4 mb-8 opacity-50">
+<div class="flex-none w-8 h-8 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center text-slate-400">
+<span class="text-sm font-bold">3</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-300">Çapraz Okuma Yap</h4>
+<p class="text-xs text-slate-500 mt-1">İddiaları farklı kaynaklardan doğrula.</p>
+</div>
+</div>
+<!-- Step 4: Pending -->
+<div class="flex gap-4 mb-8 opacity-50">
+<div class="flex-none w-8 h-8 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center text-slate-400">
+<span class="text-sm font-bold">4</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-300">Kararı Kesinleştir</h4>
+<p class="text-xs text-slate-500 mt-1">Nihai raporu oluştur.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="p-5 border-t border-border-dark bg-background-dark/50">
+<button class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+<span>Raporu Tamamla</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<div class="mt-4 flex items-center justify-center gap-2 opacity-60 grayscale hover:grayscale-0 transition-all">
+<div class="h-6 w-6 bg-contain bg-no-repeat bg-center" data-alt="UNDP Logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmrCiqZPHkTPCJv4PLtxRrJ0qXVqQApGD05YNIBC6WaZjIHZsDWWWGiVZ_HC-QOIgTFGLHudZ5370tVaUl91luexoQ3U2Flp9_ZteR5zvRkFIa7zH2TXr9IFAznDHQzd22z5Zxq-KTUVmqVPHlZWodCWlj7IX-2GWrxv--4qpaHj1f3avZ9QvgHy7zg1qyaPXhm0aq2ImZAF_NyysYxe9ZAvytbsdLmO80qxIjKOvjFiPIx3ZjoM5Yn__hm1Yp47DemHkYLhC7pg4')"></div>
+<span class="text-[10px] font-bold text-slate-500">x</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tight">Eskişehir Digital Youth</span>
+</div>
+</div>
+</section>
+</main>
+</body></html>

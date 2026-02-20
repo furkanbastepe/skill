@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-035 Doküman Akış Simülasyonu</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1e2832",
+                        "surface-light": "#ffffff",
+                        "card-dark": "#2a3642",
+                        "border-dark": "#3b4754",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal swimlanes */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e2832;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b4754;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5a69;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden h-screen flex flex-col">
+<!-- Top Navbar -->
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-solid border-b-border-dark bg-background-dark px-10 py-3 z-20">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Core Office - Unit 1</h2>
+<div class="h-4 w-px bg-border-dark mx-2"></div>
+<span class="text-sm font-medium text-slate-400">SCR-035</span>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9 hidden lg:flex">
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium leading-normal border-b-2 border-primary pb-0.5" href="#">Simulation</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+</div>
+<div class="flex gap-2 items-center">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-dark border border-border-dark mr-4">
+<span class="material-symbols-outlined text-primary text-sm">timer</span>
+<span class="text-sm font-mono font-bold">14:32</span>
+</div>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-600 transition-colors shadow-[0_0_15px_rgba(19,127,236,0.3)]">
+<span class="truncate">Help</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-surface-dark border border-border-dark text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-card-dark transition-colors">
+<span class="truncate">Exit</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-border-dark cursor-pointer" data-alt="User profile avatar showing a man in a suit" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoPLzbk1en59jqbyrRwWSqC51c7y1pRk9OTggTV3EhuBFoVByeh8dYHowVICT73lun6BOv-kZ3kuHMXQHvPN2kaWhdEyFe5BqkegJxGnLlNLAcseDv-QmuxBakqZDS-QIf0wi1XmhguIDY8XhJ2e3HNRMfuOXgbrIqa13tWxl1RjhRlF0h3koyYiQlGltX54fk6wYYwddyTgE6B7rgSsdUwPGT-zCxVBBcujQUsRI5h6fmoQl5qf0nKZLALkyryjRgR7W9Qbh7eA");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden relative">
+<!-- Sidebar: Document Queue -->
+<aside class="w-80 flex-none flex flex-col border-r border-border-dark bg-surface-dark/50 z-10 backdrop-blur-sm">
+<div class="p-6 border-b border-border-dark">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-bold">Incoming Queue</h3>
+<span class="bg-primary/20 text-primary text-xs font-bold px-2 py-1 rounded-full">4 Pending</span>
+</div>
+<p class="text-xs text-slate-400">Drag files to the 'Drafting' swimlane to start workflow.</p>
+<div class="mt-4 relative">
+<span class="absolute left-3 top-2.5 text-slate-500 material-symbols-outlined text-[18px]">search</span>
+<input class="w-full bg-background-dark border border-border-dark rounded-lg py-2 pl-9 pr-3 text-sm text-white focus:outline-none focus:border-primary placeholder-slate-600" placeholder="Search documents..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
+<!-- Queue Item 1 -->
+<div class="group relative p-4 bg-card-dark border border-border-dark rounded-lg cursor-grab hover:border-primary/50 hover:shadow-[0_0_15px_rgba(19,127,236,0.1)] transition-all active:cursor-grabbing">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-400 text-lg">folder_open</span>
+<span class="text-xs font-bold text-orange-400 uppercase tracking-wider">Urgent</span>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">#DOC-892</span>
+</div>
+<h4 class="font-semibold text-sm mb-1 text-white group-hover:text-primary transition-colors">Annual Budget Q3</h4>
+<p class="text-xs text-slate-400 mb-3">Financial projection drafts for upcoming quarter review.</p>
+<div class="flex items-center gap-2">
+<div class="size-5 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-[10px] font-bold">FK</div>
+<span class="text-[10px] text-slate-500">Created by Finance</span>
+</div>
+</div>
+<!-- Queue Item 2 -->
+<div class="group relative p-4 bg-card-dark border border-border-dark rounded-lg cursor-grab hover:border-primary/50 hover:shadow-[0_0_15px_rgba(19,127,236,0.1)] transition-all active:cursor-grabbing">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-lg">description</span>
+<span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Standard</span>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">#DOC-901</span>
+</div>
+<h4 class="font-semibold text-sm mb-1 text-white group-hover:text-primary transition-colors">Vendor Agreement</h4>
+<p class="text-xs text-slate-400 mb-3">Renewal contract for office supply logistics.</p>
+<div class="flex items-center gap-2">
+<div class="size-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold">OP</div>
+<span class="text-[10px] text-slate-500">Created by Ops</span>
+</div>
+</div>
+<!-- Queue Item 3 -->
+<div class="group relative p-4 bg-card-dark border border-border-dark rounded-lg cursor-grab hover:border-primary/50 hover:shadow-[0_0_15px_rgba(19,127,236,0.1)] transition-all active:cursor-grabbing">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-lg">description</span>
+<span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Standard</span>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">#DOC-904</span>
+</div>
+<h4 class="font-semibold text-sm mb-1 text-white group-hover:text-primary transition-colors">Training Schedule</h4>
+<p class="text-xs text-slate-400 mb-3">Internship program timeline update.</p>
+<div class="flex items-center gap-2">
+<div class="size-5 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center text-[10px] font-bold">HR</div>
+<span class="text-[10px] text-slate-500">Created by HR</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Swimlanes Area -->
+<section class="flex-1 flex flex-col min-w-0 bg-background-dark relative">
+<!-- Header for Swimlanes -->
+<div class="flex-none px-6 py-4 flex justify-between items-end border-b border-border-dark/50">
+<div>
+<h1 class="text-2xl font-bold tracking-tight text-white mb-1">Workflow Board</h1>
+<p class="text-sm text-slate-400">Manage the document lifecycle. Resolve bottlenecks to proceed.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 text-sm text-slate-400">
+<div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+<span>Smooth</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-400">
+<div class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
+<span>Bottleneck</span>
+</div>
+</div>
+</div>
+<!-- Swimlanes Container -->
+<div class="flex-1 overflow-x-auto overflow-y-hidden p-6 custom-scrollbar">
+<div class="flex h-full gap-6 min-w-[1000px]">
+<!-- Lane 1: Drafting -->
+<div class="flex-1 min-w-[300px] flex flex-col bg-surface-dark/30 rounded-xl border border-border-dark/50">
+<div class="p-4 border-b border-border-dark/50 bg-gradient-to-r from-surface-dark to-transparent rounded-t-xl sticky top-0 z-10 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-700/50 rounded-lg text-slate-300">
+<span class="material-symbols-outlined text-xl">edit_note</span>
+</div>
+<h3 class="font-bold text-white">Drafting</h3>
+</div>
+<span class="bg-slate-700/50 text-slate-300 text-xs font-bold px-2.5 py-1 rounded">2</span>
+</div>
+<div class="flex-1 p-3 space-y-3 overflow-y-auto custom-scrollbar">
+<!-- Card -->
+<div class="p-4 bg-card-dark border border-border-dark rounded-lg shadow-sm hover:border-slate-500 transition-colors group cursor-grab">
+<div class="flex justify-between mb-2">
+<span class="text-[10px] font-mono text-slate-500">#DOC-885</span>
+<span class="w-2 h-2 rounded-full bg-slate-500"></span>
+</div>
+<h4 class="text-sm font-semibold text-white mb-2">Marketing Campaign Brief</h4>
+<div class="w-full bg-background-dark rounded-full h-1.5 mb-3 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+<div class="flex justify-between items-center text-xs text-slate-400">
+<span>Progress: 45%</span>
+<span class="material-symbols-outlined text-base hover:text-white cursor-pointer">more_horiz</span>
+</div>
+</div>
+<!-- Card -->
+<div class="p-4 bg-card-dark border border-border-dark rounded-lg shadow-sm hover:border-slate-500 transition-colors group cursor-grab">
+<div class="flex justify-between mb-2">
+<span class="text-[10px] font-mono text-slate-500">#DOC-889</span>
+<span class="w-2 h-2 rounded-full bg-slate-500"></span>
+</div>
+<h4 class="text-sm font-semibold text-white mb-2">Internal Memo: Policy Update</h4>
+<div class="w-full bg-background-dark rounded-full h-1.5 mb-3 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 10%"></div>
+</div>
+<div class="flex justify-between items-center text-xs text-slate-400">
+<span>Progress: 10%</span>
+<span class="material-symbols-outlined text-base hover:text-white cursor-pointer">more_horiz</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Lane 2: Legal Review (Bottleneck Active) -->
+<div class="flex-1 min-w-[300px] flex flex-col bg-surface-dark/30 rounded-xl border border-red-500/30 relative">
+<!-- Bottleneck Indicator Overlay -->
+<div class="absolute -top-3 -right-3 z-20">
+<span class="relative flex h-6 w-6">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-6 w-6 bg-red-500 items-center justify-center text-white text-xs font-bold">!</span>
+</span>
+</div>
+<div class="p-4 border-b border-border-dark/50 bg-gradient-to-r from-red-900/20 to-transparent rounded-t-xl sticky top-0 z-10 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-700/50 rounded-lg text-slate-300">
+<span class="material-symbols-outlined text-xl">gavel</span>
+</div>
+<h3 class="font-bold text-white">Legal Review</h3>
+</div>
+<span class="bg-slate-700/50 text-slate-300 text-xs font-bold px-2.5 py-1 rounded">1</span>
+</div>
+<div class="flex-1 p-3 space-y-3 overflow-y-auto custom-scrollbar relative">
+<!-- Problem Card -->
+<div class="relative p-4 bg-card-dark border border-red-500 rounded-lg shadow-[0_0_10px_rgba(239,68,68,0.15)] group">
+<div class="absolute inset-0 bg-red-500/5 rounded-lg pointer-events-none"></div>
+<div class="flex justify-between mb-2">
+<span class="text-[10px] font-mono text-red-400 font-bold">#DOC-880 • ISSUE</span>
+<span class="material-symbols-outlined text-red-500 text-lg">error</span>
+</div>
+<h4 class="text-sm font-semibold text-white mb-2">Partnership Agreement v2</h4>
+<p class="text-xs text-slate-300 mb-3 bg-red-950/50 p-2 rounded border border-red-900/50">
+<span class="font-bold text-red-400 block mb-1">Missing Signature</span>
+                                    Legal department cannot verify the timestamp on this contract.
+                                </p>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 py-1.5 px-3 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded transition-colors">Resolve Issue</button>
+<button class="px-3 py-1.5 border border-border-dark hover:bg-surface-dark text-slate-300 text-xs font-bold rounded transition-colors" title="Reject to Drafting">
+<span class="material-symbols-outlined text-base">undo</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Lane 3: Management Approval -->
+<div class="flex-1 min-w-[300px] flex flex-col bg-surface-dark/30 rounded-xl border border-border-dark/50">
+<div class="p-4 border-b border-border-dark/50 bg-gradient-to-r from-surface-dark to-transparent rounded-t-xl sticky top-0 z-10 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-700/50 rounded-lg text-slate-300">
+<span class="material-symbols-outlined text-xl">admin_panel_settings</span>
+</div>
+<h3 class="font-bold text-white">Approval</h3>
+</div>
+<span class="bg-slate-700/50 text-slate-300 text-xs font-bold px-2.5 py-1 rounded">1</span>
+</div>
+<div class="flex-1 p-3 space-y-3 overflow-y-auto custom-scrollbar">
+<!-- Dropzone Hint -->
+<div class="h-24 rounded-lg border-2 border-dashed border-border-dark flex items-center justify-center text-slate-500 text-sm font-medium bg-transparent opacity-50">
+                                Drop approved files here
+                            </div>
+<!-- Card -->
+<div class="p-4 bg-card-dark border border-border-dark rounded-lg shadow-sm hover:border-slate-500 transition-colors group cursor-grab">
+<div class="flex justify-between mb-2">
+<span class="text-[10px] font-mono text-slate-500">#DOC-876</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-400 text-[14px]">check_circle</span>
+<span class="text-[10px] text-emerald-400 font-bold">Legal OK</span>
+</div>
+</div>
+<h4 class="text-sm font-semibold text-white mb-2">Q4 Strategic Plan</h4>
+<div class="flex items-center gap-2 mt-3">
+<div class="size-6 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<div class="text-[10px] text-slate-400">
+                                        Waiting for <span class="text-slate-300 font-medium">CEO Sign-off</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Lane 4: Finalized -->
+<div class="flex-1 min-w-[300px] flex flex-col bg-surface-dark/30 rounded-xl border border-border-dark/50 opacity-80">
+<div class="p-4 border-b border-border-dark/50 bg-gradient-to-r from-emerald-900/10 to-transparent rounded-t-xl sticky top-0 z-10 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-emerald-900/30 rounded-lg text-emerald-400">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</div>
+<h3 class="font-bold text-white">Finalized</h3>
+</div>
+<span class="bg-slate-700/50 text-slate-300 text-xs font-bold px-2.5 py-1 rounded">12</span>
+</div>
+<div class="flex-1 p-3 space-y-3 overflow-y-auto custom-scrollbar">
+<!-- Compact Completed Card -->
+<div class="p-3 bg-surface-dark border border-border-dark rounded-lg opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center">
+<h4 class="text-xs font-medium text-slate-300 line-through decoration-slate-500">Employee Handbook 2024</h4>
+<span class="text-[10px] text-emerald-500 font-bold">DONE</span>
+</div>
+</div>
+<!-- Compact Completed Card -->
+<div class="p-3 bg-surface-dark border border-border-dark rounded-lg opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center">
+<h4 class="text-xs font-medium text-slate-300 line-through decoration-slate-500">IT Security Audit</h4>
+<span class="text-[10px] text-emerald-500 font-bold">DONE</span>
+</div>
+</div>
+<!-- Compact Completed Card -->
+<div class="p-3 bg-surface-dark border border-border-dark rounded-lg opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center">
+<h4 class="text-xs font-medium text-slate-300 line-through decoration-slate-500">Catering Invoice #4402</h4>
+<span class="text-[10px] text-emerald-500 font-bold">DONE</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Toast Notification -->
+<div class="absolute bottom-6 right-6 flex items-center gap-3 p-4 bg-surface-dark border border-border-dark rounded-lg shadow-2xl animate-bounce" style="animation-iteration-count: 1; animation-duration: 0.5s;">
+<div class="size-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white">Success</h4>
+<p class="text-xs text-slate-400">Document moved to 'Approval' queue.</p>
+</div>
+<button class="ml-2 text-slate-500 hover:text-white">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</section>
+<!-- Bottleneck Modal Overlay (Hidden by default, shown conceptually as if active) -->
+<!-- <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+            <div class="bg-card-dark border border-border-dark rounded-xl shadow-2xl max-w-md w-full p-6">
+                <div class="flex items-center gap-3 text-red-500 mb-4">
+                    <span class="material-symbols-outlined text-3xl">report_problem</span>
+                    <h2 class="text-xl font-bold text-white">Process Halted!</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                    The Legal department cannot verify the timestamp on <span class="text-white font-bold">#DOC-880 Partnership Agreement v2</span>. The digital signature appears to be corrupted or missing.
+                </p>
+                <div class="flex justify-end gap-3">
+                     <button class="px-4 py-2 bg-surface-dark hover:bg-slate-700 text-white text-sm font-medium rounded-lg border border-border-dark transition-colors">
+                        Return to Drafting
+                    </button>
+                    <button class="px-4 py-2 bg-primary hover:bg-blue-600 text-white text-sm font-bold rounded-lg transition-colors shadow-[0_0_15px_rgba(19,127,236,0.2)]">
+                        Request Signature
+                    </button>
+                </div>
+            </div>
+        </div> -->
+</main>
+</body></html>

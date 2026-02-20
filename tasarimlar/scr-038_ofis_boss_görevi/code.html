@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-038 Ofis Boss Görevi</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1a2632",
+                        "surface-hover": "#22303c",
+                        "border-dark": "#283442",
+                        "text-secondary": "#94a3b8",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283442; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4b5c; 
+        }
+        .editor-content {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation / Header -->
+<header class="flex items-center justify-between border-b border-border-dark bg-surface-dark px-6 py-3 shrink-0 z-20 shadow-md">
+<div class="flex items-center gap-4">
+<button class="text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">business_center</span>
+<h1 class="text-lg font-bold tracking-tight text-white">Ofis Boss Görevi: Q3 Finansal Raporlama</h1>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="bg-primary/20 text-primary px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider">Simülasyon</span>
+<span>Bölüm 4/12</span>
+</div>
+</div>
+</div>
+<!-- Timer Center -->
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center gap-4 bg-background-dark border border-border-dark px-4 py-1.5 rounded-full shadow-lg">
+<div class="flex items-center gap-1 text-red-400 animate-pulse">
+<span class="material-symbols-outlined text-sm">timer</span>
+<span class="font-mono font-bold text-lg leading-none">44:59</span>
+</div>
+<div class="h-4 w-px bg-border-dark"></div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-text-secondary uppercase font-semibold">Hedef Puan</span>
+<span class="font-bold text-primary">850/1000</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="h-8 w-8 rounded-full border-2 border-surface-dark bg-cover bg-center" data-alt="Team member avatar 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaSZsFgpBjEl5ljYTpW9CDb7z0qJ0ZVGDYevNmLTRQlw2AuTJ0sLKuzRPibEn3pj6JBCnB4nVn0pj_IngN27Sto93cKBg5lblez4BKH5j4IQAbNVWhYn4jo36PptbBFOITFuoYtLo7eD9_MKPMvYk0bGmzT1FAj8Y6lotgR11kmt62NLRp_Z3Vt3HY3GxFNTad0Y9mM0iLhN_lfHT1xG-6_1aQiCmY2DmcL5lGZ3XrBWIHnsRVoBu2TNvNHsdSCTw_5iDdLPF4qg');"></div>
+<div class="h-8 w-8 rounded-full border-2 border-surface-dark bg-cover bg-center" data-alt="Team member avatar 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzQMuqCosTW4sxvPpKrdkDMHOBKb1cvvD4Bej9k5d9Z0lljLJY8qQAVaUaB2iRd-bInHaRPatVRSkUTCPvZanCh5GheH0HpOYzMzPOZwVjt2I7Urv6MYuv8h-xDH6dfZpbcAqP36fPVeAbwqWt8bAvcRHvdE2nweItgZlDY8q3YU4IIzQdplMtuziEtWxTlCd1E-Vr7J-vz9wVq6cijOuUkWRd2TiFtjQqtVfIvMuziCzAZEc2T0BZ3Koquomj6A1JVBQBzwAJHw');"></div>
+<div class="flex items-center justify-center h-8 w-8 rounded-full border-2 border-surface-dark bg-surface-hover text-[10px] font-bold text-text-secondary">+2</div>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-lg font-medium text-sm transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+<span>Görevi Teslim Et</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Scenario Inbox -->
+<aside class="w-80 border-r border-border-dark bg-surface-dark flex flex-col shrink-0">
+<div class="p-4 border-b border-border-dark flex items-center justify-between">
+<h2 class="font-semibold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">inbox</span>
+                    Senaryo Kutusu
+                </h2>
+<span class="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3 Yeni</span>
+</div>
+<div class="flex-1 overflow-y-auto p-2 space-y-2">
+<!-- Message Item Active -->
+<div class="bg-surface-hover border border-primary/30 rounded-lg p-3 cursor-pointer group relative">
+<div class="absolute top-3 right-3 h-2 w-2 rounded-full bg-primary"></div>
+<div class="flex items-center gap-3 mb-2">
+<div class="h-8 w-8 rounded-full bg-cover bg-center" data-alt="CEO Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANUPLnhCI7dfYlBouytELJirfeJjDibNq30uTq6N2fhKnfTpc_TBqL06BLk7kmP2HEqWuPtmEOKPl4XF5Ejd4-zAgQVJxR-94mZ9fnTe80upepbrYvAT7wHlihc8Ac0IR_XtKr6eyrKea6Ni0zdF50YZborpvePR9j6wOK7dhTJGHH4-9jYWFW3BXdlJ7kDRRCLYSSxdHIFA8o0xcroswtR1RZLRg9rdFS_5JLvnVJkhfqiv3yxOJjPgBxd-MkQBhBsLwOVg7qYA');"></div>
+<div>
+<p class="text-sm font-bold text-white">Patron (CEO)</p>
+<p class="text-[10px] text-text-secondary">Şimdi • Yüksek Öncelik</p>
+</div>
+</div>
+<p class="text-xs text-gray-300 leading-relaxed mb-2">
+                        Acil Durum: Q3 satış rakamları revize edildi. Lütfen raporun giriş kısmına ekle ve tablodaki toplam formülünü güncelle. Sunumda en az 3 slayt olsun.
+                    </p>
+<div class="flex gap-2 mt-2">
+<span class="text-[10px] bg-background-dark border border-border-dark px-2 py-1 rounded text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">attach_file</span> satış_v2.xlsx
+                        </span>
+</div>
+</div>
+<!-- Message Item Read -->
+<div class="hover:bg-surface-hover/50 border border-transparent hover:border-border-dark rounded-lg p-3 cursor-pointer transition-colors opacity-70 hover:opacity-100">
+<div class="flex items-center gap-3 mb-2">
+<div class="h-8 w-8 rounded-full bg-purple-900 flex items-center justify-center text-xs font-bold text-purple-200">MK</div>
+<div>
+<p class="text-sm font-bold text-white">Pazarlama Müdürü</p>
+<p class="text-[10px] text-text-secondary">10 dk önce</p>
+</div>
+</div>
+<p class="text-xs text-text-secondary leading-relaxed line-clamp-2">
+                        Logo kullanımıyla ilgili marka rehberini ekte gönderiyorum. Sunumun sağ üst köşesinde logoyu mutlaka kullanmalıyız.
+                    </p>
+</div>
+<!-- Message Item Read -->
+<div class="hover:bg-surface-hover/50 border border-transparent hover:border-border-dark rounded-lg p-3 cursor-pointer transition-colors opacity-70 hover:opacity-100">
+<div class="flex items-center gap-3 mb-2">
+<div class="h-8 w-8 rounded-full bg-emerald-900 flex items-center justify-center text-xs font-bold text-emerald-200">FN</div>
+<div>
+<p class="text-sm font-bold text-white">Finans Departmanı</p>
+<p class="text-[10px] text-text-secondary">15 dk önce</p>
+</div>
+</div>
+<p class="text-xs text-text-secondary leading-relaxed line-clamp-2">
+                        Ham verileri sisteme yükledik. Tabloyu oluştururken KDV hesaplamasını %20 olarak almayı unutmayın.
+                    </p>
+</div>
+</div>
+<!-- Quick Tools / Calculator -->
+<div class="p-4 border-t border-border-dark bg-background-dark/50">
+<div class="flex items-center justify-between text-xs text-text-secondary mb-2">
+<span class="uppercase font-semibold tracking-wider">Araçlar</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="bg-surface-hover hover:bg-border-dark p-2 rounded flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">calculate</span>
+<span class="text-[9px]">Hesap</span>
+</button>
+<button class="bg-surface-hover hover:bg-border-dark p-2 rounded flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">dictionary</span>
+<span class="text-[9px]">Sözlük</span>
+</button>
+<button class="bg-surface-hover hover:bg-border-dark p-2 rounded flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">folder_shared</span>
+<span class="text-[9px]">Dosyalar</span>
+</button>
+<button class="bg-surface-hover hover:bg-border-dark p-2 rounded flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">help</span>
+<span class="text-[9px]">İpucu</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Center Panel: Workspace Editors -->
+<section class="flex-1 flex flex-col bg-background-dark relative min-w-0">
+<!-- Tabs -->
+<div class="flex items-center px-4 pt-4 gap-2 border-b border-border-dark bg-surface-dark/50">
+<button class="flex items-center gap-2 px-4 py-2 bg-background-dark border-t border-x border-border-dark rounded-t-lg text-primary text-sm font-medium relative top-[1px] z-10">
+<span class="material-symbols-outlined text-base">description</span>
+                    Rapor (Doc)
+                    <span class="h-1.5 w-1.5 rounded-full bg-green-500 ml-1"></span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-hover/30 hover:bg-surface-hover border-t border-x border-transparent hover:border-border-dark rounded-t-lg text-text-secondary hover:text-white text-sm font-medium transition-all">
+<span class="material-symbols-outlined text-base">table_chart</span>
+                    Tablo (Sheet)
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-hover/30 hover:bg-surface-hover border-t border-x border-transparent hover:border-border-dark rounded-t-lg text-text-secondary hover:text-white text-sm font-medium transition-all">
+<span class="material-symbols-outlined text-base">slideshow</span>
+                    Sunum (PPT)
+                </button>
+<div class="ml-auto flex items-center gap-2 pb-2">
+<button class="p-1.5 text-text-secondary hover:text-white hover:bg-surface-hover rounded transition-colors" title="Save Draft">
+<span class="material-symbols-outlined">save</span>
+</button>
+<button class="p-1.5 text-text-secondary hover:text-white hover:bg-surface-hover rounded transition-colors" title="Export PDF">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</button>
+</div>
+</div>
+<!-- Editor Toolbar -->
+<div class="h-12 bg-background-dark border-b border-border-dark flex items-center px-4 gap-2 shrink-0 overflow-x-auto">
+<div class="flex items-center bg-surface-dark rounded border border-border-dark p-1 gap-1">
+<button class="p-1 hover:bg-surface-hover rounded text-text-secondary hover:text-white"><span class="material-symbols-outlined text-lg">format_bold</span></button>
+<button class="p-1 hover:bg-surface-hover rounded text-text-secondary hover:text-white"><span class="material-symbols-outlined text-lg">format_italic</span></button>
+<button class="p-1 hover:bg-surface-hover rounded text-text-secondary hover:text-white"><span class="material-symbols-outlined text-lg">format_underlined</span></button>
+</div>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<div class="flex items-center bg-surface-dark rounded border border-border-dark p-1 gap-1">
+<button class="p-1 hover:bg-surface-hover rounded text-text-secondary hover:text-white"><span class="material-symbols-outlined text-lg">format_align_left</span></button>
+<button class="p-1 hover:bg-surface-hover rounded text-text-secondary hover:text-white"><span class="material-symbols-outlined text-lg">format_align_center</span></button>
+<button class="p-1 hover:bg-surface-hover rounded text-text-secondary hover:text-white"><span class="material-symbols-outlined text-lg">format_align_right</span></button>
+</div>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<div class="flex items-center gap-2">
+<select class="bg-surface-dark border border-border-dark text-white text-xs rounded px-2 py-1.5 outline-none focus:border-primary">
+<option>Normal Text</option>
+<option>Heading 1</option>
+<option>Heading 2</option>
+</select>
+<select class="bg-surface-dark border border-border-dark text-white text-xs rounded px-2 py-1.5 outline-none focus:border-primary">
+<option>Lexend</option>
+<option>Arial</option>
+<option>Times New Roman</option>
+</select>
+</div>
+</div>
+<!-- Document Canvas -->
+<div class="flex-1 overflow-y-auto p-8 flex justify-center bg-[#101922]">
+<div class="w-full max-w-[800px] bg-white text-slate-800 shadow-2xl min-h-[1000px] p-12 rounded-sm relative">
+<!-- Document Header -->
+<div class="border-b-2 border-slate-200 pb-4 mb-8 flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-bold text-slate-900">Q3 Finansal Performans Raporu</h1>
+<p class="text-slate-500 mt-1">Hazırlayan: [Öğrenci Adı]</p>
+</div>
+<div class="text-right text-xs text-slate-400">
+<p>Tarih: 24 Ekim 2023</p>
+<p>Versiyon: 1.2</p>
+</div>
+</div>
+<!-- Editable Content Area -->
+<div class="space-y-6">
+<div>
+<h2 class="text-xl font-bold text-slate-800 mb-2">1. Yönetici Özeti</h2>
+<p class="text-slate-600 leading-relaxed editor-content p-2 rounded border border-dashed border-slate-300 hover:border-primary cursor-text">
+                                Bu çeyrekte şirketimiz, hedeflenen büyüme oranlarının %15 üzerine çıkarak... (Buraya tıklayarak düzenlemeye başlayın).
+                            </p>
+</div>
+<div>
+<h2 class="text-xl font-bold text-slate-800 mb-2">2. Satış Verileri Analizi</h2>
+<div class="p-4 bg-slate-50 rounded border border-slate-200 flex items-center justify-center min-h-[200px] group cursor-pointer relative">
+<span class="material-symbols-outlined text-4xl text-slate-300 group-hover:text-primary transition-colors">bar_chart</span>
+<p class="text-slate-400 text-sm mt-2 absolute bottom-4">Tablo veya Grafik Ekle</p>
+</div>
+</div>
+<div>
+<h2 class="text-xl font-bold text-slate-800 mb-2">3. Gelecek Dönem Beklentileri</h2>
+<p class="text-slate-600 leading-relaxed editor-content p-2 rounded border border-dashed border-slate-300 hover:border-primary cursor-text min-h-[100px]">
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Quality Rubric Tracker -->
+<aside class="w-72 bg-surface-dark border-l border-border-dark flex flex-col shrink-0">
+<div class="p-4 border-b border-border-dark">
+<h2 class="font-semibold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">checklist</span>
+                    Kalite Kontrol (Rubrik)
+                </h2>
+<div class="mt-4">
+<div class="flex justify-between text-xs text-text-secondary mb-1">
+<span>Tamamlanan</span>
+<span class="text-white font-bold">3/8</span>
+</div>
+<div class="h-2 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[37%] rounded-full transition-all duration-500"></div>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<!-- Section 1 -->
+<div>
+<h3 class="text-xs font-bold text-text-secondary uppercase tracking-wider mb-3">Rapor (Word)</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 group">
+<div class="mt-0.5 h-5 w-5 rounded-full border-2 border-primary bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-xs font-bold">check</span>
+</div>
+<div>
+<p class="text-sm text-gray-300 line-through decoration-text-secondary">En az 300 kelime</p>
+<span class="text-[10px] text-green-400 font-medium">+10 Puan</span>
+</div>
+</li>
+<li class="flex items-start gap-3 group">
+<div class="mt-0.5 h-5 w-5 rounded-full border-2 border-text-secondary group-hover:border-white transition-colors flex items-center justify-center shrink-0">
+</div>
+<div>
+<p class="text-sm text-gray-300">Yönetici özeti ekle</p>
+<span class="text-[10px] text-text-secondary">Bekleniyor...</span>
+</div>
+</li>
+</ul>
+</div>
+<!-- Section 2 -->
+<div>
+<h3 class="text-xs font-bold text-text-secondary uppercase tracking-wider mb-3">Tablo (Excel)</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 group">
+<div class="mt-0.5 h-5 w-5 rounded-full border-2 border-primary bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-xs font-bold">check</span>
+</div>
+<div>
+<p class="text-sm text-gray-300 line-through decoration-text-secondary">TOPLAM formülü kullan</p>
+<span class="text-[10px] text-green-400 font-medium">+15 Puan</span>
+</div>
+</li>
+<li class="flex items-start gap-3 group">
+<div class="mt-0.5 h-5 w-5 rounded-full border-2 border-primary bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-xs font-bold">check</span>
+</div>
+<div>
+<p class="text-sm text-gray-300 line-through decoration-text-secondary">KDV %20 hesapla</p>
+<span class="text-[10px] text-green-400 font-medium">+15 Puan</span>
+</div>
+</li>
+</ul>
+</div>
+<!-- Section 3 -->
+<div>
+<h3 class="text-xs font-bold text-text-secondary uppercase tracking-wider mb-3">Sunum (PPT)</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 group">
+<div class="mt-0.5 h-5 w-5 rounded-full border-2 border-text-secondary group-hover:border-white transition-colors flex items-center justify-center shrink-0">
+</div>
+<div>
+<p class="text-sm text-gray-300">En az 3 slayt oluştur</p>
+<span class="text-[10px] text-text-secondary">Şu an: 1/3</span>
+</div>
+</li>
+<li class="flex items-start gap-3 group">
+<div class="mt-0.5 h-5 w-5 rounded-full border-2 border-text-secondary group-hover:border-white transition-colors flex items-center justify-center shrink-0">
+</div>
+<div>
+<p class="text-sm text-gray-300">Logoyu sağ üste ekle</p>
+<span class="text-[10px] text-text-secondary">Bekleniyor...</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- AI Assistant / Help -->
+<div class="p-4 bg-gradient-to-br from-primary/20 to-transparent border-t border-border-dark mt-auto">
+<div class="flex items-start gap-3">
+<div class="bg-primary p-1.5 rounded-lg shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-white">smart_toy</span>
+</div>
+<div>
+<p class="text-xs font-bold text-white mb-1">Ofis Asistanı</p>
+<p class="text-[10px] text-text-secondary leading-tight">Sunumun 2. slaytında görsel kullanımı eksik görünüyor. Bir grafik eklemeyi dene.</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Notification Toast (Positioned Absolute) -->
+<div class="fixed bottom-6 right-6 z-50 animate-bounce">
+<div class="bg-surface-dark border-l-4 border-green-500 text-white px-4 py-3 rounded shadow-xl flex items-center gap-3 max-w-sm">
+<div class="bg-green-500/20 p-1 rounded-full">
+<span class="material-symbols-outlined text-green-500 text-sm font-bold">check</span>
+</div>
+<div>
+<p class="text-sm font-bold">Harika!</p>
+<p class="text-xs text-gray-300">"KDV %20 hesapla" görevi tamamlandı.</p>
+</div>
+<button class="ml-auto text-gray-400 hover:text-white">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-039 Ofis Mastery Raporu</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c2630",
+                        "surface-dark-lighter": "#283039",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-surface-dark-lighter bg-white dark:bg-surface-dark px-6 py-3 lg:px-10">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Student Portal</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Courses</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Reports</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Community</a>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-100 dark:bg-surface-dark-lighter hover:bg-slate-200 dark:hover:bg-[#343e49] text-slate-900 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-100 dark:bg-surface-dark-lighter hover:bg-slate-200 dark:hover:bg-[#343e49] text-slate-900 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+<button class="lg:hidden flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-100 dark:bg-surface-dark-lighter text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+</header>
+<main class="flex-1 flex justify-center py-8 px-4 md:px-8">
+<div class="w-full max-w-[1024px] flex flex-col gap-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 text-sm">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-primary" href="#">Student Portal</a>
+<span class="text-slate-500 dark:text-slate-400">/</span>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-primary" href="#">Reports</a>
+<span class="text-slate-500 dark:text-slate-400">/</span>
+<span class="text-primary font-medium">Office Module</span>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-6 border-b border-slate-200 dark:border-surface-dark-lighter">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white">
+                        Ofis Mastery Raporu
+                    </h1>
+<div class="flex flex-wrap items-center gap-3 text-slate-500 dark:text-slate-400 text-sm md:text-base">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">person</span>
+<span>Student: <strong class="text-slate-700 dark:text-slate-200">Ahmet Yılmaz</strong></span>
+</div>
+<span class="hidden md:inline">|</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Completed: <strong class="text-slate-700 dark:text-slate-200">Oct 24, 2023</strong></span>
+</div>
+</div>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-blue-600 text-white font-bold py-2.5 px-5 rounded-lg transition-all shadow-lg shadow-blue-500/20 active:scale-95">
+<span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+<span>Download Certificate</span>
+</button>
+</div>
+<!-- Summary Stats Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-surface-dark-lighter shadow-sm">
+<div class="flex items-center gap-2 mb-1 text-primary">
+<span class="material-symbols-outlined text-[24px]">grade</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Score</p>
+<p class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">92<span class="text-lg text-slate-400 font-normal">/100</span></p>
+</div>
+<div class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-surface-dark-lighter shadow-sm">
+<div class="flex items-center gap-2 mb-1 text-emerald-500">
+<span class="material-symbols-outlined text-[24px]">schedule</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Time Spent</p>
+<p class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">12h 30m</p>
+</div>
+<div class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-surface-dark-lighter shadow-sm">
+<div class="flex items-center gap-2 mb-1 text-amber-500">
+<span class="material-symbols-outlined text-[24px]">folder_open</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Projects</p>
+<p class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">4 Completed</p>
+</div>
+<div class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-surface-dark-lighter shadow-sm">
+<div class="flex items-center gap-2 mb-1 text-purple-500">
+<span class="material-symbols-outlined text-[24px]">leaderboard</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Class Rank</p>
+<p class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Top 10%</p>
+</div>
+</div>
+<!-- Main Content Area: Competencies & Artifacts -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Competencies & Instructor Feedback -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Competency Breakdown -->
+<section class="bg-white dark:bg-surface-dark rounded-2xl p-6 border border-slate-200 dark:border-surface-dark-lighter shadow-sm">
+<h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">donut_large</span>
+                            Competency Breakdown
+                        </h3>
+<div class="space-y-6">
+<!-- Reporting Skill -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Reporting &amp; Documentation</span>
+<span class="text-sm font-bold text-primary">85%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-surface-dark-lighter rounded-full h-3 overflow-hidden">
+<div class="bg-primary h-3 rounded-full" style="width: 85%"></div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Excellent formatting and structure logic.</p>
+</div>
+<!-- Data Analysis Skill -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Data Analysis &amp; Spreadsheets</span>
+<span class="text-sm font-bold text-primary">95%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-surface-dark-lighter rounded-full h-3 overflow-hidden">
+<div class="bg-primary h-3 rounded-full" style="width: 95%"></div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Mastery of functions (VLOOKUP, Pivot Tables) confirmed.</p>
+</div>
+<!-- Presentation Skill -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Presentation Design</span>
+<span class="text-sm font-bold text-amber-500">70%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-surface-dark-lighter rounded-full h-3 overflow-hidden">
+<div class="bg-amber-500 h-3 rounded-full" style="width: 70%"></div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Good content, but visual hierarchy could be improved.</p>
+</div>
+</div>
+</section>
+<!-- Instructor Feedback -->
+<section class="bg-primary/5 dark:bg-primary/10 rounded-2xl p-6 border border-primary/20">
+<h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">chat_bubble</span>
+                            Instructor Feedback
+                        </h3>
+<div class="flex gap-4">
+<div class="hidden sm:block">
+<div class="size-12 rounded-full bg-slate-200 dark:bg-surface-dark-lighter overflow-hidden border-2 border-primary/30">
+<!-- Using an abstract avatar placeholder -->
+<div class="w-full h-full bg-gradient-to-br from-blue-400 to-primary flex items-center justify-center text-white text-xs font-bold" title="Instructor Avatar">
+                                        JD
+                                    </div>
+</div>
+</div>
+<div class="flex-1">
+<p class="text-slate-700 dark:text-slate-300 italic mb-3 leading-relaxed">
+                                    "Ahmet has shown exceptional growth in data handling. His final budget spreadsheet was meticulously organized and error-free. While the presentation design needs a bit more polish regarding contrast and spacing, his ability to derive insights from raw data is well above the class average. Ready for more technical challenges!"
+                                </p>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">— John Doe, Lead Mentor</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Artifacts & Next Steps -->
+<div class="flex flex-col gap-8">
+<!-- Artifacts Portfolio -->
+<section class="bg-white dark:bg-surface-dark rounded-2xl p-6 border border-slate-200 dark:border-surface-dark-lighter shadow-sm">
+<h3 class="text-lg font-bold mb-4 text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">folder_special</span>
+                            Key Artifacts
+                        </h3>
+<div class="flex flex-col gap-3">
+<!-- Artifact 1 -->
+<div class="group flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-surface-dark-lighter hover:bg-slate-100 dark:hover:bg-[#343e49] transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-600 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-[20px]">table_chart</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white leading-tight">Q3 Sales Analysis</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Spreadsheet</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-amber-400">
+<span class="text-xs font-bold text-slate-400 mr-1 hidden sm:inline">Quality:</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+</div>
+</div>
+<!-- Artifact 2 -->
+<div class="group flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-surface-dark-lighter hover:bg-slate-100 dark:hover:bg-[#343e49] transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-600 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined text-[20px]">slideshow</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white leading-tight">Year-End Deck</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Presentation</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-amber-400">
+<span class="text-xs font-bold text-slate-400 mr-1 hidden sm:inline">Quality:</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] text-slate-600">star</span>
+</div>
+</div>
+<!-- Artifact 3 -->
+<div class="group flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-surface-dark-lighter hover:bg-slate-100 dark:hover:bg-[#343e49] transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-600 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white leading-tight">Marketing Brief</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Document</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-amber-400">
+<span class="text-xs font-bold text-slate-400 mr-1 hidden sm:inline">Quality:</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star_half</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Next Steps Hero Card -->
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-dark-lighter to-black border border-slate-700 p-6 flex flex-col justify-between min-h-[280px]">
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-primary/30 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-bold uppercase tracking-wide mb-4">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                Next Module
+                            </div>
+<h2 class="text-2xl font-bold text-white mb-2 leading-tight">Programming Fundamentals</h2>
+<p class="text-slate-300 text-sm mb-6">Level up your logic. Learn Python basics, variables, and loops in this next exciting chapter.</p>
+</div>
+<div class="relative z-10 mt-auto">
+<button class="w-full group flex items-center justify-center gap-2 bg-white text-slate-900 hover:bg-slate-200 font-bold py-3 px-6 rounded-lg transition-all">
+<span>Unlock Module</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

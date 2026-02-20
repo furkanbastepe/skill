@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM - Temel Bilgisayar Modül Hub</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111418", // Matching the provided component's bg
+                        "surface-dark": "#1d232a", // Slightly lighter for cards
+                        "surface-hover": "#2a323c",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Lexend", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111418; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b4754; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a6b7c; 
+        }
+        
+        .glowing-border {
+            box-shadow: 0 0 15px rgba(19, 127, 236, 0.3);
+            border-color: #137fec;
+        }
+        
+        /* Timeline connector line */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 28px; /* Center of the icon circle (56px / 2) */
+            width: 2px;
+            background: #3b4754;
+            z-index: 0;
+        }
+        
+        .timeline-item:last-child .timeline-line::before {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-x-hidden">
+<div class="relative flex h-screen w-full bg-background-light dark:bg-background-dark overflow-hidden">
+<!-- Side Navigation -->
+<aside class="flex w-72 flex-col gap-4 border-r border-[#283039] bg-[#111418] px-4 py-6 overflow-y-auto hidden md:flex shrink-0">
+<div class="flex items-center gap-3 px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full h-10 w-10 border-2 border-primary/50" data-alt="User Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjyQkILLxrjyKASQYzqOSpPhzfDHVUJhnrXxfpDLGkI75sWfygL938P9xEgroyS5yLZEnPAnRf81a_jiiNo-2IvXTxVroBI6A40ArZ0tJY9Gl3KHprjbspRXt6EXfcU-UTiSjF0Ax6SardUb04GrWjpTIaviH3zy4DZV7xg8C24vEKTnbXLyCbsyrU9qRF_h8uj1sRP4IBVTGw-SdhZPi-7iQGkkUd4yXA5WSVRG6hKQYomR-cDTdHiCUI51ykbZmixzLrMjM71Q");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-tight">DIGEM Portal</h1>
+<p class="text-[#9dabb9] text-xs font-normal">Student Account</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#9dabb9] hover:bg-[#283039] hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-white text-[#9dabb9]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#283039] text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+<span class="text-sm font-medium">Modules</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#9dabb9] hover:bg-[#283039] hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-white text-[#9dabb9]">emoji_events</span>
+<span class="text-sm font-medium">Leaderboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#9dabb9] hover:bg-[#283039] hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-white text-[#9dabb9]">person</span>
+<span class="text-sm font-medium">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#9dabb9] hover:bg-[#283039] hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-white text-[#9dabb9]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-[#283039]">
+<div class="rounded-xl bg-gradient-to-br from-primary/20 to-transparent p-4 border border-primary/20">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-primary tracking-wider uppercase">Level 12</span>
+<span class="text-xs text-white">450/1000 XP</span>
+</div>
+<div class="h-1.5 w-full bg-[#283039] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%] rounded-full"></div>
+</div>
+<p class="text-[10px] text-[#9dabb9] mt-2">550 XP to next level</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Header -->
+<header class="flex items-center justify-between px-8 py-5 border-b border-[#283039] bg-[#111418] shrink-0 z-10">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-[#9dabb9] text-sm">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+<span>Back to Modules</span>
+</div>
+<h2 class="text-2xl font-bold text-white tracking-tight">Temel Bilgisayar (Core Computer)</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-medium text-white">Course Progress</p>
+<p class="text-xs text-[#9dabb9]">12 of 28 Labs Completed</p>
+</div>
+<div class="relative size-12 flex items-center justify-center">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<circle class="stroke-[#283039]" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="58" stroke-width="3"></circle>
+</svg>
+<span class="absolute text-xs font-bold text-white">42%</span>
+</div>
+</div>
+</header>
+<!-- Scrollable Roadmap Content -->
+<div class="flex-1 overflow-y-auto p-4 md:p-8 relative">
+<div class="max-w-4xl mx-auto pb-20">
+<div class="mb-8">
+<p class="text-[#9dabb9] text-base leading-relaxed max-w-2xl">
+                            Master the architecture, logic, and maintenance of modern computing systems. Complete all units to unlock the final SysAdmin Exam.
+                        </p>
+</div>
+<!-- Roadmap Timeline -->
+<div class="relative flex flex-col space-y-0">
+<!-- Unit 1: Completed -->
+<div class="timeline-item relative pl-20 pb-12 group">
+<!-- Connector Line -->
+<div class="timeline-line absolute inset-y-0 left-0 w-20 pointer-events-none">
+<div class="absolute left-7 top-8 bottom-[-32px] w-[2px] bg-primary group-last:hidden"></div>
+</div>
+<!-- Status Icon -->
+<div class="absolute left-0 top-0 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white border-4 border-[#111418] z-10 shadow-[0_0_15px_rgba(19,127,236,0.4)]">
+<span class="material-symbols-outlined text-2xl font-bold">check</span>
+</div>
+<!-- Card -->
+<div class="flex flex-col sm:flex-row gap-5 p-5 rounded-xl bg-[#1d232a] border border-primary/30 hover:bg-[#283039] transition-all duration-300">
+<div class="flex items-center justify-center w-16 h-16 rounded-lg bg-primary/10 text-primary shrink-0">
+<span class="material-symbols-outlined text-3xl">memory</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-white">1. Donanım (Hardware)</h3>
+<p class="text-sm text-[#9dabb9] mt-1">CPU architecture, RAM, Motherboards, and Peripherals.</p>
+</div>
+<span class="px-2 py-1 rounded text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/20">COMPLETED</span>
+</div>
+<div class="mt-4 flex items-center gap-4 text-xs font-medium text-[#9dabb9]">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-base">science</span>
+<span>4/4 Labs Done</span>
+</div>
+<div class="flex items-center gap-1.5 text-yellow-500">
+<span class="material-symbols-outlined text-base">star</span>
+<span>Score: 100%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center">
+<button class="px-4 py-2 rounded-lg bg-[#283039] text-[#9dabb9] hover:text-white text-sm font-medium transition-colors border border-transparent hover:border-[#3b4754]">
+                                        Review
+                                    </button>
+</div>
+</div>
+</div>
+<!-- Unit 2: Active / In Progress -->
+<div class="timeline-item relative pl-20 pb-12 group">
+<!-- Connector Line -->
+<div class="timeline-line absolute inset-y-0 left-0 w-20 pointer-events-none">
+<div class="absolute left-7 top-8 bottom-[-32px] w-[2px] bg-gradient-to-b from-primary to-[#3b4754] group-last:hidden"></div>
+</div>
+<!-- Status Icon -->
+<div class="absolute left-0 top-0 flex h-14 w-14 items-center justify-center rounded-full bg-[#111418] text-primary border-2 border-primary z-10 shadow-[0_0_20px_rgba(19,127,236,0.3)] animate-pulse">
+<span class="material-symbols-outlined text-2xl filled">play_arrow</span>
+</div>
+<!-- Card -->
+<div class="glowing-border flex flex-col sm:flex-row gap-5 p-6 rounded-xl bg-[#1d232a] border-2 border-primary relative overflow-hidden transition-all duration-300 transform scale-[1.01]">
+<div class="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl text-primary">window</span>
+</div>
+<div class="flex items-center justify-center w-16 h-16 rounded-lg bg-primary text-white shrink-0 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-3xl">window</span>
+</div>
+<div class="flex-1 z-10">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-xl font-bold text-white">2. İşletim Sistemleri (OS)</h3>
+<p class="text-sm text-gray-400 mt-1">Windows &amp; Linux fundamentals, kernel, and processes.</p>
+</div>
+<span class="px-2 py-1 rounded text-xs font-bold bg-primary/20 text-primary border border-primary/20 animate-pulse">IN PROGRESS</span>
+</div>
+<div class="w-full bg-[#283039] h-2 rounded-full mt-2 mb-3 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 50%"></div>
+</div>
+<div class="flex items-center gap-4 text-xs font-medium text-[#9dabb9]">
+<div class="flex items-center gap-1.5 text-white">
+<span class="material-symbols-outlined text-base">science</span>
+<span>2/4 Labs Done</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>~2h Remaining</span>
+</div>
+</div>
+</div>
+<div class="flex items-center z-10">
+<button class="px-6 py-2.5 rounded-lg bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30 hover:bg-blue-600 transition-all hover:scale-105 active:scale-95">
+                                        Resume
+                                    </button>
+</div>
+</div>
+</div>
+<!-- Unit 3: Locked -->
+<div class="timeline-item relative pl-20 pb-12 group">
+<!-- Connector Line -->
+<div class="timeline-line absolute inset-y-0 left-0 w-20 pointer-events-none">
+<div class="absolute left-7 top-8 bottom-[-32px] w-[2px] bg-[#3b4754] group-last:hidden"></div>
+</div>
+<!-- Status Icon -->
+<div class="absolute left-0 top-0 flex h-14 w-14 items-center justify-center rounded-full bg-[#1d232a] text-[#556372] border-2 border-[#3b4754] z-10">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<!-- Card -->
+<div class="flex flex-col sm:flex-row gap-5 p-5 rounded-xl bg-[#1d232a]/40 border border-[#3b4754]/50 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center w-16 h-16 rounded-lg bg-[#283039] text-[#556372] shrink-0">
+<span class="material-symbols-outlined text-3xl">folder_open</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-[#9dabb9]">3. Dosya Sistemi (File System)</h3>
+<p class="text-sm text-[#556372] mt-1">NTFS, EXT4, permissions, and hierarchy structure.</p>
+</div>
+<span class="material-symbols-outlined text-[#556372]">lock</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-xs font-medium text-red-400">
+<span class="material-symbols-outlined text-sm">info</span>
+<span>Complete Unit 2 to unlock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Unit 4: Locked -->
+<div class="timeline-item relative pl-20 pb-12 group">
+<div class="timeline-line absolute inset-y-0 left-0 w-20 pointer-events-none">
+<div class="absolute left-7 top-8 bottom-[-32px] w-[2px] bg-[#3b4754] group-last:hidden"></div>
+</div>
+<div class="absolute left-0 top-0 flex h-14 w-14 items-center justify-center rounded-full bg-[#1d232a] text-[#556372] border-2 border-[#3b4754] z-10">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 p-5 rounded-xl bg-[#1d232a]/40 border border-[#3b4754]/50 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center w-16 h-16 rounded-lg bg-[#283039] text-[#556372] shrink-0">
+<span class="material-symbols-outlined text-3xl">public</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-[#9dabb9]">4. Ağ Temelleri (Network)</h3>
+<p class="text-sm text-[#556372] mt-1">IP addresses, DNS, DHCP, and basic routing.</p>
+</div>
+<span class="material-symbols-outlined text-[#556372]">lock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Unit 5: Locked -->
+<div class="timeline-item relative pl-20 pb-12 group">
+<div class="timeline-line absolute inset-y-0 left-0 w-20 pointer-events-none">
+<div class="absolute left-7 top-8 bottom-[-32px] w-[2px] bg-[#3b4754] group-last:hidden"></div>
+</div>
+<div class="absolute left-0 top-0 flex h-14 w-14 items-center justify-center rounded-full bg-[#1d232a] text-[#556372] border-2 border-[#3b4754] z-10">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 p-5 rounded-xl bg-[#1d232a]/40 border border-[#3b4754]/50 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center w-16 h-16 rounded-lg bg-[#283039] text-[#556372] shrink-0">
+<span class="material-symbols-outlined text-3xl">security</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-[#9dabb9]">5. Güvenlik (Security)</h3>
+<p class="text-sm text-[#556372] mt-1">Firewalls, malware protection, and best practices.</p>
+</div>
+<span class="material-symbols-outlined text-[#556372]">lock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Unit 6: Locked -->
+<div class="timeline-item relative pl-20 pb-12 group">
+<div class="timeline-line absolute inset-y-0 left-0 w-20 pointer-events-none">
+<div class="absolute left-7 top-8 bottom-[-32px] w-[2px] bg-[#3b4754] group-last:hidden"></div>
+</div>
+<div class="absolute left-0 top-0 flex h-14 w-14 items-center justify-center rounded-full bg-[#1d232a] text-[#556372] border-2 border-[#3b4754] z-10">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 p-5 rounded-xl bg-[#1d232a]/40 border border-[#3b4754]/50 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center w-16 h-16 rounded-lg bg-[#283039] text-[#556372] shrink-0">
+<span class="material-symbols-outlined text-3xl">build</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-[#9dabb9]">6. Sorun Giderme (Troubleshooting)</h3>
+<p class="text-sm text-[#556372] mt-1">Diagnosis methodology, common errors, and fixes.</p>
+</div>
+<span class="material-symbols-outlined text-[#556372]">lock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Boss Mission / Mastery Gate -->
+<div class="timeline-item relative pl-20 pt-4 group">
+<!-- Status Icon (Large) -->
+<div class="absolute left-[-12px] top-0 flex h-20 w-20 items-center justify-center rounded-full bg-[#1d232a] text-[#9dabb9] border-4 border-[#3b4754] z-10">
+<span class="material-symbols-outlined text-4xl">sports_esports</span>
+</div>
+<!-- Boss Card -->
+<div class="bg-gradient-to-r from-[#283039] to-[#1d232a] rounded-2xl p-1 border-2 border-dashed border-[#3b4754] hover:border-primary/50 transition-colors group-hover:shadow-lg">
+<div class="bg-[#111418] rounded-xl p-8 flex flex-col items-center text-center gap-4 relative overflow-hidden">
+<!-- Decorative background -->
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-9xl">verified_user</span>
+</div>
+<div class="z-10 flex flex-col items-center">
+<span class="text-primary font-bold tracking-widest uppercase text-xs mb-2">Final Challenge</span>
+<h3 class="text-3xl font-black text-white mb-2">Sistem Yöneticisi Sınavı</h3>
+<p class="text-[#9dabb9] max-w-lg mb-6">Prove your mastery of Core Computing. This timed exam covers all 6 units. Pass to earn your certification.</p>
+<div class="flex items-center gap-6 mb-8 w-full justify-center">
+<div class="flex flex-col items-center p-3 rounded bg-[#283039] min-w-[100px]">
+<span class="text-xs text-[#9dabb9] uppercase font-bold">Requirement</span>
+<span class="text-white font-bold text-lg">All Units</span>
+</div>
+<div class="flex flex-col items-center p-3 rounded bg-[#283039] min-w-[100px]">
+<span class="text-xs text-[#9dabb9] uppercase font-bold">XP Cost</span>
+<span class="text-white font-bold text-lg">0 XP</span>
+</div>
+<div class="flex flex-col items-center p-3 rounded bg-[#283039] min-w-[100px]">
+<span class="text-xs text-[#9dabb9] uppercase font-bold">Reward</span>
+<span class="text-yellow-400 font-bold text-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-base">emoji_events</span> 1000
+                                                </span>
+</div>
+</div>
+<button class="flex items-center gap-3 px-8 py-4 rounded-xl bg-[#3b4754] text-gray-400 font-bold text-lg cursor-not-allowed opacity-70" disabled="">
+<span class="material-symbols-outlined">lock</span>
+<span>Locked - Complete Course First</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Sidebar (Leaderboard/Activity) - Optional, simplified for desktop view -->
+<aside class="w-80 border-l border-[#283039] bg-[#111418] hidden xl:flex flex-col p-6 overflow-y-auto">
+<h3 class="text-white text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+                Recent Activity
+            </h3>
+<div class="flex flex-col gap-6 relative">
+<!-- Activity Line -->
+<div class="absolute left-[19px] top-2 bottom-2 w-[2px] bg-[#283039]"></div>
+<!-- Activity Item -->
+<div class="flex gap-4 relative">
+<div class="w-10 h-10 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center shrink-0 border border-green-500/30 z-10">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div>
+<p class="text-white text-sm font-medium">Completed Lab: CPU Basics</p>
+<p class="text-[#9dabb9] text-xs mt-1">Yesterday, 14:30</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex gap-4 relative">
+<div class="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center shrink-0 border border-primary/30 z-10">
+<span class="material-symbols-outlined text-xl">school</span>
+</div>
+<div>
+<p class="text-white text-sm font-medium">Started Unit: Operating Systems</p>
+<p class="text-[#9dabb9] text-xs mt-1">Today, 09:15</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex gap-4 relative">
+<div class="w-10 h-10 rounded-full bg-yellow-500/20 text-yellow-500 flex items-center justify-center shrink-0 border border-yellow-500/30 z-10">
+<span class="material-symbols-outlined text-xl">star</span>
+</div>
+<div>
+<p class="text-white text-sm font-medium">Earned Badge: Hardware Hero</p>
+<p class="text-[#9dabb9] text-xs mt-1">Yesterday, 15:00</p>
+</div>
+</div>
+</div>
+<div class="mt-10 pt-6 border-t border-[#283039]">
+<h3 class="text-white text-lg font-bold mb-4">Module Stats</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-[#1d232a] p-3 rounded-lg border border-[#283039]">
+<p class="text-[#9dabb9] text-xs">Total Time</p>
+<p class="text-white font-bold text-lg">12h 45m</p>
+</div>
+<div class="bg-[#1d232a] p-3 rounded-lg border border-[#283039]">
+<p class="text-[#9dabb9] text-xs">Avg Score</p>
+<p class="text-white font-bold text-lg">94%</p>
+</div>
+</div>
+</div>
+<!-- Promo / Tip -->
+<div class="mt-auto bg-gradient-to-b from-[#1d232a] to-[#111418] border border-[#283039] rounded-xl p-4 relative overflow-hidden group cursor-pointer hover:border-primary/40 transition-colors">
+<div class="absolute -right-4 -top-4 bg-primary/20 rounded-full w-20 h-20 blur-xl group-hover:bg-primary/30 transition-all"></div>
+<div class="flex items-start gap-3 relative z-10">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<div>
+<p class="text-white font-bold text-sm mb-1">Pro Tip</p>
+<p class="text-[#9dabb9] text-xs leading-relaxed">Stuck on the Linux Terminal lab? Check the "Cheat Sheet" in the resources tab.</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

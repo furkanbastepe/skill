@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simulation OS Workspace</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#05b7d6",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#01080a",
+                        "surface": "#0f2023",
+                        "accent-dark": "#07181b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Space Mono", "monospace"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow: hidden;
+        }
+        .os-background {
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(5, 183, 214, 0.05) 0%, transparent 80%),
+                linear-gradient(rgba(5, 183, 214, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(5, 183, 214, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
+        .glass {
+            background: rgba(15, 32, 35, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(5, 183, 214, 0.2);
+        }
+        .window-shadow {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 15px rgba(5, 183, 214, 0.1);
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(5, 183, 214, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 select-none">
+<div class="relative flex h-screen w-full flex-col os-background overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-primary/20 bg-background-dark/80 px-6 py-2 backdrop-blur-md z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">terminal</span>
+</div>
+<h2 class="text-primary text-sm font-bold tracking-widest uppercase">SYMMETRY_OS_v4.2</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-primary text-xs font-medium uppercase tracking-tighter transition-colors" href="#">File</a>
+<a class="text-slate-400 hover:text-primary text-xs font-medium uppercase tracking-tighter transition-colors" href="#">Edit</a>
+<a class="text-slate-400 hover:text-primary text-xs font-medium uppercase tracking-tighter transition-colors" href="#">View</a>
+<a class="text-slate-400 hover:text-primary text-xs font-medium uppercase tracking-tighter transition-colors" href="#">System</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-4 px-3 py-1 bg-primary/5 rounded border border-primary/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xs">memory</span>
+<span class="text-[10px] text-slate-400">CPU 12%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xs">database</span>
+<span class="text-[10px] text-slate-400">RAM 4.2GB</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-1.5 hover:bg-primary/20 rounded-lg text-slate-300 transition-all">
+<span class="material-symbols-outlined text-sm">wifi</span>
+</button>
+<button class="p-1.5 hover:bg-primary/20 rounded-lg text-slate-300 transition-all">
+<span class="material-symbols-outlined text-sm">battery_full</span>
+</button>
+<button class="p-1.5 hover:bg-primary/20 rounded-lg text-slate-300 transition-all relative">
+<span class="material-symbols-outlined text-sm">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-primary rounded-full"></span>
+</button>
+<div class="h-6 w-[1px] bg-primary/20"></div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium text-slate-300">14:42</span>
+<div class="size-7 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center overflow-hidden">
+<img alt="User avatar profile picture" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHn3OPIjNb8Xu7uDPgzqvLfFX-Cb5ri9QLT6qbUKI06J-vb_LOOe0ytavQHl_e0KfwKRS5b7xf9sljcsSZhkW1g7V2mp1keJV4hKMsjz-wUhCAvXzqK0XW8_tdl8bzlAfWm0Eu1d1LKKG1mR3zUHQvL0af8vB08GmeJzEqi7aATK5tzHb3xzM53_GK27kUQaYgI_7rxtsJcZDjRxHvzmD5QNXLv7WtuG4-WlX5jr4YQSoZnfLcAl2PLIM2NnbTocqJctuInQKBdiOo"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Desktop Area -->
+<main class="relative flex-1 p-6 overflow-hidden">
+<!-- Grid Particles Layer (Simulated via overlay) -->
+<div class="absolute inset-0 pointer-events-none opacity-20">
+<div class="absolute top-1/4 left-1/4 size-2 bg-primary blur-sm rounded-full"></div>
+<div class="absolute top-2/3 left-1/2 size-1.5 bg-primary blur-sm rounded-full"></div>
+<div class="absolute top-1/3 right-1/4 size-3 bg-primary blur-md rounded-full opacity-50"></div>
+</div>
+<!-- Floating Window: File Explorer -->
+<div class="absolute top-10 left-10 w-[640px] glass rounded-lg overflow-hidden window-shadow z-20 flex flex-col max-h-[500px]">
+<div class="flex items-center justify-between px-4 py-2 bg-primary/10 border-b border-primary/20 cursor-move">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">folder_open</span>
+<span class="text-xs font-bold tracking-widest text-primary/80 uppercase">Project Files</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="size-2.5 rounded-full border border-primary/40 hover:bg-primary/40 transition-all cursor-pointer"></div>
+<div class="size-2.5 rounded-full border border-primary/40 hover:bg-primary/40 transition-all cursor-pointer"></div>
+<div class="size-2.5 rounded-full bg-primary/60 cursor-pointer"></div>
+</div>
+</div>
+<div class="flex flex-1 overflow-hidden">
+<aside class="w-48 border-r border-primary/10 p-3 flex flex-col gap-1 overflow-y-auto">
+<div class="flex items-center gap-2 px-3 py-1.5 text-xs text-primary font-medium bg-primary/10 rounded">
+<span class="material-symbols-outlined text-base">folder</span>
+<span>Root</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 text-xs text-slate-400 hover:bg-primary/5 rounded transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-base group-hover:text-primary">terminal</span>
+<span>Scripts</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 text-xs text-slate-400 hover:bg-primary/5 rounded transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-base group-hover:text-primary">archive</span>
+<span>Archives</span>
+</div>
+<div class="mt-4 px-3 text-[10px] text-primary/40 uppercase font-bold tracking-widest">Network</div>
+<div class="flex items-center gap-2 px-3 py-1.5 text-xs text-slate-400 hover:bg-primary/5 rounded transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-base group-hover:text-primary">cloud_done</span>
+<span>Node_05B</span>
+</div>
+</aside>
+<div class="flex-1 flex flex-col">
+<div class="px-4 py-2 border-b border-primary/10 flex items-center justify-between bg-black/20">
+<div class="text-[10px] text-slate-500 font-mono">/root/projects/AI-Neural-Net</div>
+<span class="material-symbols-outlined text-sm text-primary/40">search</span>
+</div>
+<div class="flex-1 overflow-y-auto">
+<table class="w-full text-left">
+<thead class="text-[10px] text-primary/60 uppercase tracking-widest sticky top-0 bg-surface/90 backdrop-blur">
+<tr>
+<th class="px-4 py-2 font-medium">Name</th>
+<th class="px-4 py-2 font-medium">Size</th>
+<th class="px-4 py-2 font-medium text-right">Modified</th>
+</tr>
+</thead>
+<tbody class="text-xs text-slate-300 font-mono">
+<tr class="border-b border-primary/5 hover:bg-primary/5 cursor-pointer">
+<td class="px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/80 text-base">javascript</span>
+                                            Neural_Core.js
+                                        </td>
+<td class="px-4 py-3 text-slate-500">12kb</td>
+<td class="px-4 py-3 text-right text-slate-500">2m ago</td>
+</tr>
+<tr class="border-b border-primary/5 hover:bg-primary/5 cursor-pointer">
+<td class="px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/80 text-base">description</span>
+                                            Arch_Final.pdf
+                                        </td>
+<td class="px-4 py-3 text-slate-500">4.5mb</td>
+<td class="px-4 py-3 text-right text-slate-500">1h ago</td>
+</tr>
+<tr class="border-b border-primary/5 hover:bg-primary/5 cursor-pointer">
+<td class="px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/80 text-base">folder</span>
+                                            Assets_v2
+                                        </td>
+<td class="px-4 py-3 text-slate-500">--</td>
+<td class="px-4 py-3 text-right text-slate-500">Yesterday</td>
+</tr>
+<tr class="border-b border-primary/5 hover:bg-primary/5 cursor-pointer">
+<td class="px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/80 text-base">markdown</span>
+                                            README.md
+                                        </td>
+<td class="px-4 py-3 text-slate-500">2kb</td>
+<td class="px-4 py-3 text-right text-slate-500">Just now</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="p-3 bg-black/40 border-t border-primary/20 flex justify-between items-center">
+<span class="text-[10px] text-slate-500">4 items selected</span>
+<button class="bg-primary/20 hover:bg-primary/30 text-primary px-3 py-1 rounded text-[10px] uppercase font-bold border border-primary/30 transition-all">New File</button>
+</div>
+</div>
+<!-- Floating Window: Terminal -->
+<div class="absolute bottom-24 right-10 w-[500px] glass rounded-lg overflow-hidden window-shadow z-30 flex flex-col">
+<div class="flex items-center justify-between px-4 py-2 bg-primary/10 border-b border-primary/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">code</span>
+<span class="text-xs font-bold tracking-widest text-primary/80 uppercase">System Terminal</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="size-2.5 rounded-full border border-primary/40"></div>
+<div class="size-2.5 rounded-full bg-primary/60"></div>
+</div>
+</div>
+<div class="p-4 bg-black/60 h-64 font-mono text-xs overflow-y-auto">
+<p class="text-primary/60 mb-2">Symmetry_OS v4.2.0-stable (node-51)</p>
+<p class="text-slate-300 mb-1">&gt; Initializing neural link...</p>
+<p class="text-slate-300 mb-1">&gt; Connection established: Node_05B7D6</p>
+<p class="text-primary mb-1">&gt; System Status: <span class="text-green-400">OPTIMAL</span></p>
+<p class="text-slate-300 mb-3">&gt; Loading project files... complete.</p>
+<div class="flex gap-2 mb-2">
+<span class="text-primary">root@simulation:~$</span>
+<span class="text-slate-100 flex items-center">
+                            execute --run-diagnostics
+                            <span class="w-2 h-4 bg-primary ml-1 animate-pulse"></span>
+</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4 p-3 bg-primary/5 border border-primary/10 rounded">
+<div class="flex flex-col">
+<span class="text-[9px] text-primary uppercase">Core Temp</span>
+<span class="text-lg font-bold text-slate-200">42°C</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[9px] text-primary uppercase">Latency</span>
+<span class="text-lg font-bold text-slate-200">12ms</span>
+</div>
+</div>
+</div>
+<div class="px-4 py-2 border-t border-primary/10 flex items-center gap-4 bg-black/40">
+<button class="text-primary/60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">history</span>
+</button>
+<button class="text-primary/60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">settings_input_component</span>
+</button>
+</div>
+</div>
+<!-- Floating Window: Comms -->
+<div class="absolute top-48 right-10 w-[320px] glass rounded-lg overflow-hidden window-shadow z-10 flex flex-col">
+<div class="flex items-center justify-between px-4 py-2 bg-primary/10 border-b border-primary/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">chat_bubble</span>
+<span class="text-xs font-bold tracking-widest text-primary/80 uppercase">Comms</span>
+</div>
+<span class="text-[10px] text-green-400 animate-pulse uppercase font-bold">Online</span>
+</div>
+<div class="p-3 flex flex-col gap-4 max-h-[400px] overflow-y-auto">
+<div class="flex gap-3">
+<div class="size-8 rounded border border-primary/20 bg-primary/10 flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold text-primary">A1</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<span class="text-[11px] font-bold text-slate-200">Ghost_Admin</span>
+<span class="text-[9px] text-slate-500">14:20</span>
+</div>
+<p class="text-[11px] text-slate-400 leading-relaxed bg-black/20 p-2 rounded">New security patch deployed. Check Node_05B logs immediately.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="size-8 rounded border border-primary/20 bg-primary/10 flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold text-primary">X</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<span class="text-[11px] font-bold text-slate-200">X-Ray_Net</span>
+<span class="text-[9px] text-slate-500">14:38</span>
+</div>
+<p class="text-[11px] text-slate-400 leading-relaxed bg-black/20 p-2 rounded">Protocol updated. Awaiting your handshake signal.</p>
+</div>
+</div>
+<div class="flex gap-3 opacity-50">
+<div class="size-8 rounded border border-slate-700 bg-slate-800 flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold text-slate-500">S</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<span class="text-[11px] font-bold text-slate-500">System_Msg</span>
+<span class="text-[9px] text-slate-600">12:10</span>
+</div>
+<p class="text-[11px] text-slate-600 leading-relaxed">Daily snapshot archived to cloud storage.</p>
+</div>
+</div>
+</div>
+<div class="p-3 border-t border-primary/10">
+<div class="relative">
+<input class="w-full bg-black/40 border border-primary/20 rounded px-3 py-2 text-[10px] focus:outline-none focus:border-primary text-slate-300 placeholder:text-slate-600" placeholder="Encrypt message..." type="text"/>
+<button class="absolute right-2 top-1.5 text-primary">
+<span class="material-symbols-outlined text-base">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Desktop Icons -->
+<div class="flex flex-col gap-8 p-4">
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-20">
+<div class="size-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-all group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl text-primary">cloud_upload</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400 tracking-tight group-hover:text-primary transition-colors text-center">Sync_Drive</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-20">
+<div class="size-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-all group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl text-primary">analytics</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400 tracking-tight group-hover:text-primary transition-colors text-center">Data_Viz</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-20">
+<div class="size-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-all group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl text-primary">lock</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400 tracking-tight group-hover:text-primary transition-colors text-center">Vault</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-20">
+<div class="size-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-all group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl text-primary">delete</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400 tracking-tight group-hover:text-primary transition-colors text-center">Trash</span>
+</div>
+</div>
+</main>
+<!-- Dynamic OS Dock -->
+<footer class="flex justify-center p-4 z-50">
+<div class="glass px-6 py-3 rounded-2xl flex items-center gap-4 border border-primary/20">
+<button class="size-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all scale-110 relative">
+<span class="material-symbols-outlined">dashboard</span>
+<div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full shadow-[0_0_5px_#05b7d6]"></div>
+</button>
+<div class="h-8 w-[1px] bg-primary/10 mx-2"></div>
+<button class="size-10 rounded-xl bg-background-dark/50 border border-primary/10 flex items-center justify-center text-slate-400 hover:text-primary transition-all group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">folder</span>
+</button>
+<button class="size-10 rounded-xl bg-background-dark/50 border border-primary/10 flex items-center justify-center text-slate-400 hover:text-primary transition-all group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">terminal</span>
+</button>
+<button class="size-10 rounded-xl bg-background-dark/50 border border-primary/10 flex items-center justify-center text-slate-400 hover:text-primary transition-all group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">alternate_email</span>
+</button>
+<button class="size-10 rounded-xl bg-background-dark/50 border border-primary/10 flex items-center justify-center text-slate-400 hover:text-primary transition-all group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">shield_person</span>
+</button>
+<div class="h-8 w-[1px] bg-primary/10 mx-2"></div>
+<button class="size-10 rounded-xl bg-background-dark/50 border border-primary/10 flex items-center justify-center text-slate-400 hover:text-primary transition-all group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform text-red-400/60">power_settings_new</span>
+</button>
+</div>
+</footer>
+<!-- HUD Layer Decorations -->
+<div class="absolute bottom-6 left-6 pointer-events-none opacity-40">
+<div class="text-[10px] text-primary font-mono tracking-widest flex flex-col gap-1">
+<span>COORD: 34.0522 N, 118.2437 W</span>
+<span>ENC: AES-256-GCM</span>
+<span>CONN: STABLE</span>
+</div>
+</div>
+</div>
+</body></html>

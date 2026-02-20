@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-052 Programming Mastery Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111418] px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">code_blocks</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM Portal</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Modules</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Profile</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Log Out</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border-2 border-slate-200 dark:border-slate-700" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmomqd2aMmjD90-upFSWTwB9068gyQxwSQQPwqOEihr3cR9HLV0svSws-5k40hM-QgUskh6xP6FX6kw-GKO4xg0pkRC90uoKGp8re6i38oToalEYzvDMvfB9mkitYTpxf5L7ASU7J9cgZ5HtRCVzhZOc6D0TmKUHQsBbshLxTZgKBc1VbffDMgdL7TosrX10gHvnlAil6FC9r3wSJ-_YU4iV3RnY87mrWt_CxDYqp2kmM0rNvdcBfuizbd87zC3E1QXkOyEWZMZA");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-4 md:px-10 lg:px-20">
+<div class="w-full max-w-[1200px] flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">DIGEM Portal</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Core Programming</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-medium">Report</span>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+<div>
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tight text-slate-900 dark:text-white">Programming Mastery Report</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-2 text-base">Core Programming Module • Student: <span class="text-slate-900 dark:text-white font-medium">Alex Chen</span></p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 h-10 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Download PDF</span>
+</button>
+<button class="flex items-center gap-2 px-6 h-10 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:bg-blue-600 transition-colors">
+<span>Celebrate Success</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column (Heatmap & Remediation) -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Concept Mastery Heatmap -->
+<section class="bg-white dark:bg-[#1e293b] rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+                                Concept Mastery Heatmap
+                            </h2>
+<div class="flex gap-4 text-xs font-medium">
+<div class="flex items-center gap-1.5"><div class="size-3 rounded-full bg-[#10b981]"></div>Mastered</div>
+<div class="flex items-center gap-1.5"><div class="size-3 rounded-full bg-[#f59e0b]"></div>Developing</div>
+<div class="flex items-center gap-1.5"><div class="size-3 rounded-full bg-[#ef4444]"></div>Review</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Syntax Block -->
+<div class="flex flex-col gap-2">
+<h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Syntax</h3>
+<div class="space-y-2">
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">Variables</span>
+<div class="size-3 rounded-sm bg-[#10b981]"></div> <!-- Green -->
+</div>
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">Operators</span>
+<div class="size-3 rounded-sm bg-[#10b981]"></div> <!-- Green -->
+</div>
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">Conditionals</span>
+<div class="size-3 rounded-sm bg-[#f59e0b]"></div> <!-- Yellow -->
+</div>
+</div>
+</div>
+<!-- Loops Block -->
+<div class="flex flex-col gap-2">
+<h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Control Flow</h3>
+<div class="space-y-2">
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">For Loops</span>
+<div class="size-3 rounded-sm bg-[#10b981]"></div> <!-- Green -->
+</div>
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">While Loops</span>
+<div class="size-3 rounded-sm bg-[#10b981]"></div> <!-- Green -->
+</div>
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group border border-[#ef4444]/30">
+<span class="text-sm font-medium">Nested Loops</span>
+<div class="size-3 rounded-sm bg-[#ef4444]"></div> <!-- Red -->
+</div>
+</div>
+</div>
+<!-- Functions Block -->
+<div class="flex flex-col gap-2">
+<h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Functions</h3>
+<div class="space-y-2">
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">Declaration</span>
+<div class="size-3 rounded-sm bg-[#10b981]"></div> <!-- Green -->
+</div>
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">Parameters</span>
+<div class="size-3 rounded-sm bg-[#f59e0b]"></div> <!-- Yellow -->
+</div>
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">Return Values</span>
+<div class="size-3 rounded-sm bg-[#10b981]"></div> <!-- Green -->
+</div>
+</div>
+</div>
+<!-- Data Structures Block -->
+<div class="flex flex-col gap-2">
+<h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Structures</h3>
+<div class="space-y-2">
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group border border-[#ef4444]/30">
+<span class="text-sm font-medium">Arrays</span>
+<div class="size-3 rounded-sm bg-[#ef4444]"></div> <!-- Red -->
+</div>
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">Objects</span>
+<div class="size-3 rounded-sm bg-[#f59e0b]"></div> <!-- Yellow -->
+</div>
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center group">
+<span class="text-sm font-medium">Methods</span>
+<div class="size-3 rounded-sm bg-[#10b981]"></div> <!-- Green -->
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Remediation List (Areas for Growth) -->
+<section class="bg-white dark:bg-[#1e293b] rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">psychology</span>
+                                Recommended Review Areas
+                            </h2>
+<span class="text-xs font-semibold px-2 py-1 bg-primary/20 text-primary rounded">3 Topics Found</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Reviewing these concepts will help solidify your foundation before advancing to the next module.</p>
+<div class="space-y-3">
+<!-- Item 1 -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 min-w-8 h-8 rounded-full bg-[#ef4444]/20 flex items-center justify-center text-[#ef4444]">
+<span class="material-symbols-outlined text-sm">priority_high</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white">Nested Loops Logic</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Failed in "Control Flow" Assessment • Difficulty with inner loop termination.</p>
+</div>
+</div>
+<a class="flex items-center gap-1 text-sm font-semibold text-primary hover:text-blue-400 whitespace-nowrap" href="#">
+                                    Review Lesson
+                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 min-w-8 h-8 rounded-full bg-[#ef4444]/20 flex items-center justify-center text-[#ef4444]">
+<span class="material-symbols-outlined text-sm">priority_high</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white">Array Manipulation</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Failed in "Data Structures" Assessment • Index out of bounds errors.</p>
+</div>
+</div>
+<a class="flex items-center gap-1 text-sm font-semibold text-primary hover:text-blue-400 whitespace-nowrap" href="#">
+                                    Review Lesson
+                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+<!-- Item 3 -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 min-w-8 h-8 rounded-full bg-[#f59e0b]/20 flex items-center justify-center text-[#f59e0b]">
+<span class="material-symbols-outlined text-sm">warning</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white">Function Scope</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Partial success in "Functions" Assessment • Variable access confusion.</p>
+</div>
+</div>
+<a class="flex items-center gap-1 text-sm font-semibold text-primary hover:text-blue-400 whitespace-nowrap" href="#">
+                                    Review Lesson
+                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column (Score & Feedback) -->
+<div class="flex flex-col gap-6">
+<!-- Overall Score Card -->
+<div class="bg-primary rounded-xl p-6 shadow-lg shadow-primary/20 relative overflow-hidden">
+<!-- Decorative bg -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center justify-center text-center py-4">
+<p class="text-white/80 text-sm font-medium uppercase tracking-wider mb-2">Overall Module Score</p>
+<div class="text-7xl font-black text-white tracking-tighter mb-2">88<span class="text-4xl align-top">%</span></div>
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 text-white text-sm font-semibold backdrop-blur-sm">
+<span class="material-symbols-outlined text-base mr-1">trending_up</span>
+                                Top 15% of class
+                            </div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6 border-t border-white/20 pt-6">
+<div class="text-center">
+<p class="text-2xl font-bold text-white">12/12</p>
+<p class="text-white/70 text-xs">Modules Done</p>
+</div>
+<div class="text-center border-l border-white/20">
+<p class="text-2xl font-bold text-white">5d</p>
+<p class="text-white/70 text-xs">Streak</p>
+</div>
+</div>
+</div>
+<!-- Coach's Feedback -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col h-full">
+<div class="flex items-center gap-4 mb-4">
+<div class="relative">
+<div class="size-14 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center border-2 border-primary" data-alt="Coach profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDF_S7Suh3ljRVYRZZ2Re-Vr6sUQTfjDfg0PLSLmIC-kqDCaDcQr3Baj3s_CN4aXAOeQo902yjCV0RgItf3h02hDgjhlIyRElB1aUv-NTaoYqvcrGStw3Nes-Wa2SgCzdwFyDgd2O47s83pyAZ9D1Ogh_Y6lOO5IEOZYKL6pNT7PTFvDEIHWSMXC7ZNL0ivosFs9o3i1WpwTpMxQGeqyQUfGdntupTn5gCS7nxZUNgmmfpHwEaLiy6Ptq26qgamA3upslYbBBpP4Q');"></div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white text-[10px] px-1.5 py-0.5 rounded border border-[#1e293b]">COACH</div>
+</div>
+<div>
+<h3 class="font-bold text-lg">Coach Sarah</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Senior Programming Instructor</p>
+</div>
+</div>
+<div class="relative bg-slate-50 dark:bg-[#111418] p-5 rounded-lg border border-slate-200 dark:border-slate-800 flex-1">
+<span class="absolute -top-3 left-6 text-4xl text-slate-300 dark:text-slate-700 font-serif leading-none">“</span>
+<p class="text-slate-700 dark:text-slate-300 italic leading-relaxed text-sm">
+                                Great job, Alex! You showed exceptionally strong logic skills in the Loops and Conditionals sections. That's usually the hardest part for beginners.
+                                <br/><br/>
+                                I noticed a slight stumble with <strong class="text-primary not-italic">Arrays</strong> and <strong class="text-primary not-italic">Nested Loops</strong>. Don't worry, this is common. Take a quick look at the recommended reviews I've pinned for you. A little polish there and you'll be unstoppable in the Advanced Module!
+                            </p>
+<div class="mt-4 flex justify-end">
+<button class="text-xs font-bold text-primary hover:text-blue-400 flex items-center gap-1">
+                                    Reply to Coach
+                                    <span class="material-symbols-outlined text-sm">reply</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Stats / Mini modules -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">Skill Breakdown</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500 dark:text-slate-400">Logic &amp; Algorithms</span>
+<span class="text-white font-semibold">92%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-[#10b981] w-[92%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500 dark:text-slate-400">Syntax Precision</span>
+<span class="text-white font-semibold">85%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500 dark:text-slate-400">Debugging</span>
+<span class="text-white font-semibold">74%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-[#f59e0b] w-[74%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Mobile CTA (Visible only on small screens) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full p-4 bg-[#1e293b] border-t border-slate-800 z-40">
+<button class="w-full flex items-center justify-center gap-2 px-6 h-12 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20">
+<span>Celebrate Success</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LMS Ana Kontrol Paneli - PUSULA Lite</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "primary-dark": "#0b5bb0",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "card-dark": "#1a2634",
+              "card-border": "#2a3b4d",
+              "accent-orange": "#f97316",
+              "accent-red": "#ef4444",
+              "accent-yellow": "#eab308",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-card-border bg-[#111a22] px-6 py-3 lg:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">school</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">PUSULA Lite <span class="text-xs font-normal text-slate-400">v1.3</span></h2>
+<p class="text-xs text-slate-400">UNDP x Eskişehir Digital Youth Center</p>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 lg:gap-8 items-center">
+<!-- Gamification Stats -->
+<div class="hidden md:flex gap-3">
+<div class="flex items-center justify-center rounded-xl h-10 bg-card-dark border border-card-border px-4 gap-2">
+<span class="material-symbols-outlined text-accent-orange fill-1">local_fire_department</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 leading-none">Seri</span>
+<span class="text-sm font-bold leading-none">12 Gün</span>
+</div>
+</div>
+<div class="flex items-center justify-center rounded-xl h-10 bg-card-dark border border-card-border px-4 gap-2">
+<span class="material-symbols-outlined text-accent-red fill-1">favorite</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 leading-none">Can</span>
+<span class="text-sm font-bold leading-none">3</span>
+</div>
+</div>
+<div class="flex items-center justify-center rounded-xl h-10 bg-card-dark border border-card-border px-4 gap-2">
+<span class="material-symbols-outlined text-accent-yellow fill-1">bolt</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 leading-none">Haftalık XP</span>
+<span class="text-sm font-bold leading-none">450 XP</span>
+</div>
+</div>
+</div>
+<!-- Profile -->
+<div class="flex items-center gap-3 pl-4 border-l border-card-border">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold">Öğrenci</p>
+<p class="text-xs text-slate-400">Seviye 4</p>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary cursor-pointer" data-alt="Student profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBx7-sfWfjGpO2zztsgGB4MuXrm2x5XAluXo1pgumQ2t3abStRy-3QJ2VTtdl8CX-N1lAIiTcJNP_WKc0PTfnBiPsMdlE1U3FzDfLC0uwtsvWDWt1_7QKj_nXUFnYa41BeXZgFtNSqWK7I2s27cPusl1esgKw5G0P51Dbx5Divhmu86DUsBpCk7tEts8SFtfL7pJgy7zFzjl-eAWyqhAOpmu3js6qW0VuNzQXAQbDX8Xo3dojzG2YwPP-iGe9JtYmcREY5ojcEt7Zs");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-4 lg:p-8 max-w-[1440px] mx-auto w-full">
+<!-- Welcome Section -->
+<div class="mb-8">
+<h1 class="text-2xl md:text-3xl font-bold text-white mb-2">Hoş geldin, Öğrenci! 👋</h1>
+<p class="text-slate-400">Bugünkü hedeflerine ulaşmak için hazırsın. Devam eden 3 modülün var.</p>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- LEFT COLUMN: Module Trackers (3 cols on large screens) -->
+<div class="lg:col-span-3 flex flex-col gap-4">
+<h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">view_module</span> Modüllerim
+                </h3>
+<!-- Module Card B -->
+<div class="bg-card-dark rounded-xl p-5 border border-card-border hover:border-primary/50 transition-colors group cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="text-6xl font-black text-white">B</span>
+</div>
+<div class="flex items-start justify-between mb-4 relative z-10">
+<div class="size-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-2 py-1 rounded">Temel</span>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 relative z-10">Beceri Geliştirme</h4>
+<p class="text-slate-400 text-xs mb-4 relative z-10">Dijital okuryazarlık ve temel yetkinlikler.</p>
+<div class="relative z-10">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-300">İlerleme</span>
+<span class="text-white font-bold">%80</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</div>
+<!-- Module Card O -->
+<div class="bg-card-dark rounded-xl p-5 border border-card-border hover:border-emerald-500/50 transition-colors group cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="text-6xl font-black text-white">O</span>
+</div>
+<div class="flex items-start justify-between mb-4 relative z-10">
+<div class="size-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+<span class="material-symbols-outlined">article</span>
+</div>
+<span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-2 py-1 rounded">Ofis</span>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 relative z-10">Ofis Uygulamaları</h4>
+<p class="text-slate-400 text-xs mb-4 relative z-10">Excel, Word ve profesyonel dökümantasyon.</p>
+<div class="relative z-10">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-300">İlerleme</span>
+<span class="text-white font-bold">%45</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-2">
+<div class="bg-emerald-500 h-2 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+<!-- Module Card L -->
+<div class="bg-card-dark rounded-xl p-5 border border-card-border hover:border-purple-500/50 transition-colors group cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="text-6xl font-black text-white">L</span>
+</div>
+<div class="flex items-start justify-between mb-4 relative z-10">
+<div class="size-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<span class="bg-purple-500/10 text-purple-400 text-xs font-bold px-2 py-1 rounded">Kodlama</span>
+</div>
+<h4 class="text-white font-bold text-lg mb-1 relative z-10">Kodlamaya Giriş</h4>
+<p class="text-slate-400 text-xs mb-4 relative z-10">Algoritma mantığı ve Python temelleri.</p>
+<div class="relative z-10">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-300">İlerleme</span>
+<span class="text-white font-bold">%10</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-2">
+<div class="bg-purple-500 h-2 rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- CENTER COLUMN: Feed & Timeline (6 cols on large screens) -->
+<div class="lg:col-span-6 flex flex-col gap-6">
+<!-- Hero: Next Lesson -->
+<div>
+<h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">play_circle</span> Sıradaki Ders
+                    </h3>
+<div class="bg-card-dark border border-card-border rounded-2xl overflow-hidden shadow-lg shadow-black/40">
+<div class="h-40 w-full bg-cover bg-center relative" data-alt="Coding screen abstract background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABFdbkRpWxg_nbQU38apvyhvV2ynovr3tm-2YI6Q1UUmMiRaoOkuqF3_rs3TXLsK_UMGZMPeY_LU06fVrkM2DWb9BBQ5CjmjXIb-MhTAgA-X_TnISGQ8-Ml_TFpX3KieTPrZVurXjo-Nm_VxVWgbH5RzwiWauSrXVzD8cIR2LTwjLDsFTzYWrDsYaYWH_Uhg7DFuLTxWNO1NYcA9U4z7jlECk4AqR-d9kl5hkoHzyfpid2o_w9VLqXTxlUwfPKLliveNM1zXvHihM');">
+<div class="absolute inset-0 bg-gradient-to-t from-card-dark to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block">Modül L</span>
+<h2 class="text-2xl font-bold text-white">Python Döngüler (Loops)</h2>
+</div>
+</div>
+<div class="p-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
+<div class="flex gap-6 text-sm text-slate-400 w-full sm:w-auto">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-base">schedule</span> 45 dk</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-base">videocam</span> Video Ders</div>
+<div class="flex items-center gap-1 text-accent-yellow"><span class="material-symbols-outlined text-base">star</span> +50 XP</div>
+</div>
+<button class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-xl w-full sm:w-auto transition-all transform active:scale-95 shadow-[0_0_20px_rgba(19,127,236,0.3)]">
+                                Derse Başla
+                            </button>
+</div>
+</div>
+</div>
+<!-- Timeline: Daily Plan -->
+<div class="bg-card-dark rounded-2xl border border-card-border p-6 flex-1">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_today</span> Günlük Plan
+                        </h3>
+<span class="text-xs text-slate-400 bg-slate-800 px-3 py-1 rounded-full">Bugün, 24 Ekim</span>
+</div>
+<div class="relative pl-4 space-y-8 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-[19px] before:w-[2px] before:bg-slate-700">
+<!-- Completed Item -->
+<div class="relative flex gap-4 opacity-50">
+<div class="z-10 mt-1 size-3 rounded-full bg-slate-500 ring-4 ring-card-dark"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="text-white font-medium line-through">Giriş Videosu İzlendi</h4>
+<span class="text-xs text-slate-400">09:00</span>
+</div>
+<p class="text-sm text-slate-500">Temel Beceriler Modülü</p>
+</div>
+</div>
+<!-- Completed Item -->
+<div class="relative flex gap-4 opacity-50">
+<div class="z-10 mt-1 size-3 rounded-full bg-slate-500 ring-4 ring-card-dark"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="text-white font-medium line-through">Haftalık Quiz Tamamlandı</h4>
+<span class="text-xs text-slate-400">10:00</span>
+</div>
+<p class="text-sm text-slate-500">Ofis Uygulamaları - Excel %85 Başarı</p>
+</div>
+</div>
+<!-- Active Item -->
+<div class="relative flex gap-4">
+<div class="z-10 mt-1 size-3 rounded-full bg-primary ring-4 ring-primary/30 ring-offset-2 ring-offset-card-dark animate-pulse"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="text-white font-bold text-lg">Mentor Görüşmesi</h4>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">14:00</span>
+</div>
+<p class="text-sm text-slate-300 mb-2">Ahmet Yılmaz ile haftalık değerlendirme.</p>
+<button class="text-xs font-medium text-white bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded transition-colors">
+                                    Toplantıya Katıl
+                                </button>
+</div>
+</div>
+<!-- Future Item -->
+<div class="relative flex gap-4">
+<div class="z-10 mt-1 size-3 rounded-full bg-card-border ring-4 ring-card-dark border border-slate-500"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="text-slate-300 font-medium">Akşam Tekrarı</h4>
+<span class="text-xs text-slate-500">20:00</span>
+</div>
+<p class="text-sm text-slate-500">Python notlarını gözden geçir.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Widgets (3 cols on large screens) -->
+<div class="lg:col-span-3 flex flex-col gap-6">
+<!-- Buddy Widget -->
+<div class="bg-card-dark rounded-xl p-5 border border-card-border">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Learning Buddy</h3>
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-12 rounded-full bg-cover bg-center border-2 border-slate-600" data-alt="Buddy Selin profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6GErWShapqQmB7ceZcQMte4q-tak-jsA3nlwG46bh6DPTIu2K8MU6Ba8Tt_fZV9wNkVM3R40qDju3rqzdvzYZGe24glibnOnUzkh-6G4N3p6AghC3_7mGkbFAjtDxzfJWNyI3yH7ffqmm-qcSDflWDQY9NiVHLTaFbXzH9SDZeoF5J7CnjMPF6Kvx9eeFuhcIGFMNFH5oSXbdC87x5BiqZRxMItx6_D1w0pLXWlko_Pt96A-5L0rYcgzLSlRC6fmQyfyPWvIXr2s');"></div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-card-dark rounded-full"></div>
+</div>
+<div>
+<h4 class="text-white font-bold">Selin K.</h4>
+<p class="text-xs text-primary mt-0.5">Çarşamba kontrolü bekleniyor</p>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium py-2 rounded-lg transition-colors">
+                            Mesaj At
+                         </button>
+<button class="flex-1 bg-primary/20 hover:bg-primary/30 text-primary text-xs font-medium py-2 rounded-lg transition-colors">
+                            Dürt 👋
+                         </button>
+</div>
+</div>
+<!-- SDG Widget -->
+<div class="bg-gradient-to-br from-[#c5192d] to-[#a21223] rounded-xl p-5 text-white relative overflow-hidden group">
+<!-- Decorative background icon -->
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-[120px] opacity-20 rotate-12">school</span>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2 opacity-90">
+<img alt="SDG 4 Icon" class="w-8 h-8 rounded bg-white p-0.5" data-alt="SDG 4 Icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGAc7VLYykDVZTXiHGQRJLzveOBCLVQKy__cuCgHJ0eujnAdFJMsEvhKrRSGYa2e4UkaMAmyZ9PqmfafMTYOspunFdI3lHJvKTsbcBBpz2RK9iDfBJjyAEFmfJ_GFQas-sZRTiDq0BMuurdged0fWiQhB52JuKXTRM493OrEc7BEWN4RXNrKNwbyyMre4ULlSJ1_QOPHGtyL_QZFU6x42fVNBO4TtR2B3oN3GonMsox5THGT4j-8TPd4PrYG0ujNU1QixdgonEtrc"/>
+<span class="text-xs font-bold uppercase tracking-wider">Hedef 4</span>
+</div>
+<h3 class="text-xl font-bold leading-tight mb-2">Nitelikli Eğitim</h3>
+<p class="text-xs opacity-90 mb-3">Herkes için kapsayıcı ve nitelikli eğitimin sağlanması.</p>
+<div class="h-1 bg-black/20 rounded-full w-full overflow-hidden">
+<div class="h-full bg-white/40 w-2/3"></div>
+</div>
+<p class="text-[10px] text-right mt-1 opacity-80">%66 Katkı</p>
+</div>
+</div>
+<!-- Mentor Reminder -->
+<div class="bg-card-dark rounded-xl p-5 border border-card-border">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Yaklaşan Etkinlikler</h3>
+<div class="space-y-3">
+<div class="flex gap-3 items-center p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex-shrink-0 bg-slate-800 text-slate-300 rounded-lg size-10 flex flex-col items-center justify-center leading-none border border-slate-700">
+<span class="text-[10px] font-bold">EKM</span>
+<span class="text-sm font-bold">25</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white">CV Hazırlama Atölyesi</h4>
+<p class="text-xs text-slate-400">18:00 • Online</p>
+</div>
+</div>
+<div class="flex gap-3 items-center p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex-shrink-0 bg-slate-800 text-slate-300 rounded-lg size-10 flex flex-col items-center justify-center leading-none border border-slate-700">
+<span class="text-[10px] font-bold">EKM</span>
+<span class="text-sm font-bold">28</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white">Girişimcilik 101</h4>
+<p class="text-xs text-slate-400">14:00 • Gençlik Merkezi</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Coach Bubble (Floating Action Button style) -->
+<div class="fixed bottom-6 right-6 z-40 flex items-end gap-3 animate-bounce-slow group">
+<div class="bg-white text-slate-900 p-4 rounded-2xl rounded-br-none shadow-2xl max-w-[250px] mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0">
+<h5 class="font-bold text-sm mb-1 text-primary">Koç İpucu:</h5>
+<p class="text-xs leading-relaxed">Kod yazarken yorum satırı eklemeyi unutma! Gelecekteki sen sana teşekkür edecek. 😉</p>
+</div>
+<div class="relative cursor-pointer hover:scale-110 transition-transform duration-200">
+<div class="absolute -top-1 -right-1 size-3 bg-red-500 rounded-full animate-ping"></div>
+<div class="absolute -top-1 -right-1 size-3 bg-red-500 rounded-full border-2 border-background-dark"></div>
+<div class="size-14 rounded-full bg-primary border-4 border-background-dark shadow-xl flex items-center justify-center overflow-hidden">
+<img alt="Coach Avatar" class="w-full h-full object-cover" data-alt="Coach Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw4_-L0OQsOAYOF7I1NTqX258227C9cD8xOEpTExTtKqfu_AQeMi5aaYY1yLr7iF4pzZ3sLh34aR3QA2_LqhnbXkwuZkwHYAMjycMra_84O56Y3h2ahQ0kMUuqKagtqa67Y5t2PRBeLh_ZUkdQ2udjNvzd4Zd7p20J_pTfFyN34tgunXA_Qu-ASKcin089KDv2Ab43SMMhajPe3hEfNA5jkb9AHpgKEn4anNwZRSZGOwJhSgU6uiSA0zFXe3mEOswwYqLG6ePCe-g"/>
+</div>
+</div>
+</div>
+</body></html>

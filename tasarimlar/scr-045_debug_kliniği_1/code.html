@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-045 Debug Kliniği | DIGEM</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c2632",
+                        "editor-bg": "#0d1117",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .code-line:hover .breakpoint-placeholder {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#283039] px-6 py-3 bg-[#111418] shrink-0">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">bug_report</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM | Kodlama Modülü</h2>
+<p class="text-[#9dabb9] text-xs font-normal">SCR-045: Debug Kliniği</p>
+</div>
+</div>
+<!-- Center Progress -->
+<div class="hidden md:flex flex-col items-center gap-1 w-1/3">
+<div class="flex justify-between w-full text-xs text-[#9dabb9]">
+<span>Hata 1 / 3</span>
+<span>33% Tamamlandı</span>
+</div>
+<div class="w-full h-1.5 bg-[#283039] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/3 rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-[#9dabb9] hover:text-white text-sm font-medium transition-colors" href="#">Dersler</a>
+<a class="text-[#9dabb9] hover:text-white text-sm font-medium transition-colors" href="#">Profil</a>
+</nav>
+<div class="h-6 w-px bg-[#283039] hidden lg:block"></div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-[#283039] hover:bg-[#323b46] text-white text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-[20px] mr-2">arrow_back</span>
+                    Önceki
+                </button>
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-primary hover:bg-blue-600 text-white text-sm font-bold transition-colors shadow-lg shadow-blue-500/20">
+                    Sonraki Hata
+                    <span class="material-symbols-outlined text-[20px] ml-2">arrow_forward</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Panel: Code Editor -->
+<section class="flex-1 flex flex-col min-w-0 border-r border-[#283039] relative">
+<!-- Toolbar -->
+<div class="h-12 border-b border-[#283039] bg-surface-dark flex items-center justify-between px-4 shrink-0">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-2 px-3 py-1 bg-[#283039] rounded text-xs text-white border border-[#3b4754]">
+<span class="material-symbols-outlined text-[16px] text-yellow-400">folder_open</span>
+                        main.py
+                    </div>
+<span class="text-[#9dabb9] text-xs ml-2">Sadece okunabilir</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 bg-green-600/20 hover:bg-green-600/30 text-green-400 rounded text-xs font-medium transition-colors border border-green-600/30">
+<span class="material-symbols-outlined text-[18px] fill-1">play_arrow</span>
+                        Çalıştır
+                    </button>
+<div class="h-4 w-px bg-[#3b4754] mx-1"></div>
+<button class="p-1.5 hover:bg-[#3b4754] rounded text-[#9dabb9] hover:text-white transition-colors" title="Step Over">
+<span class="material-symbols-outlined text-[20px]">redo</span>
+</button>
+<button class="p-1.5 hover:bg-[#3b4754] rounded text-[#9dabb9] hover:text-white transition-colors" title="Step Into">
+<span class="material-symbols-outlined text-[20px] rotate-90">south_east</span>
+</button>
+<button class="p-1.5 hover:bg-[#3b4754] rounded text-[#9dabb9] hover:text-white transition-colors" title="Stop">
+<span class="material-symbols-outlined text-[20px]">stop</span>
+</button>
+</div>
+</div>
+<!-- Editor Area -->
+<div class="flex-1 overflow-auto bg-editor-bg font-mono text-sm leading-6 relative group">
+<!-- Watermark/Background decoration -->
+<div class="absolute right-0 top-0 p-8 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-white">code</span>
+</div>
+<div class="flex min-h-full">
+<!-- Gutter -->
+<div class="w-12 bg-[#111418] border-r border-[#283039] flex flex-col items-end py-4 pr-3 text-[#4b5563] select-none shrink-0">
+<div class="h-6 leading-6 text-xs">1</div>
+<div class="h-6 leading-6 text-xs">2</div>
+<div class="h-6 leading-6 text-xs">3</div>
+<div class="h-6 leading-6 text-xs">4</div>
+<div class="h-6 leading-6 text-xs text-white font-bold relative">
+                            5
+                            <div class="absolute right-[-20px] top-1.5 w-3 h-3 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)] z-10"></div>
+</div>
+<div class="h-6 leading-6 text-xs">6</div>
+<div class="h-6 leading-6 text-xs">7</div>
+<div class="h-6 leading-6 text-xs">8</div>
+<div class="h-6 leading-6 text-xs">9</div>
+<div class="h-6 leading-6 text-xs">10</div>
+<div class="h-6 leading-6 text-xs">11</div>
+</div>
+<!-- Code Content -->
+<div class="flex-1 py-4 pl-4 text-slate-300">
+<div class="h-6 leading-6 code-line"><span class="text-purple-400">def</span> <span class="text-blue-400">calculate_average</span>(numbers):</div>
+<div class="h-6 leading-6 code-line pl-8"><span class="text-slate-500"># Toplam değişkenini başlat</span></div>
+<div class="h-6 leading-6 code-line pl-8">total = <span class="text-orange-400">0</span></div>
+<div class="h-6 leading-6 code-line pl-8"><span class="text-purple-400">for</span> num <span class="text-purple-400">in</span> numbers:</div>
+<!-- Active Debug Line -->
+<div class="h-6 leading-6 code-line pl-16 bg-[#2d333b] relative -ml-4 border-l-2 border-yellow-500 w-full flex items-center">
+<span class="ml-4">total += num</span>
+<span class="ml-auto mr-8 text-xs text-yellow-500 italic bg-yellow-500/10 px-2 rounded">Exec: total = 15</span>
+</div>
+<div class="h-6 leading-6 code-line pl-8"><span class="text-slate-500"># Bug here: dividing by a fixed number instead of len(numbers)</span></div>
+<div class="h-6 leading-6 code-line pl-8 group/error relative">
+<span class="text-purple-400">return</span> total / <span class="text-orange-400 border-b-2 border-dotted border-red-500 cursor-help">0</span>
+<div class="absolute left-[200px] top-0 bg-red-900/90 text-red-200 text-xs px-2 py-1 rounded shadow-lg border border-red-700/50 opacity-0 group-hover/error:opacity-100 transition-opacity whitespace-nowrap z-20">
+                                Sıfıra bölme hatası olası
+                            </div>
+</div>
+<div class="h-6 leading-6 code-line"><br/></div>
+<div class="h-6 leading-6 code-line"><span class="text-slate-500"># Test verisi</span></div>
+<div class="h-6 leading-6 code-line">student_scores = [<span class="text-orange-400">85</span>, <span class="text-orange-400">92</span>, <span class="text-orange-400">78</span>, <span class="text-orange-400">90</span>]</div>
+<div class="h-6 leading-6 code-line">print(<span class="text-green-400">"Ortalama:"</span>, calculate_average(student_scores))</div>
+</div>
+</div>
+</div>
+<!-- Terminal/Traceback Panel (Collapsible Bottom or Fixed Height) -->
+<div class="h-48 border-t border-[#283039] bg-[#111418] flex flex-col shrink-0">
+<div class="flex items-center px-4 py-2 bg-[#1c2229] border-b border-[#283039]">
+<span class="text-xs font-bold text-[#9dabb9] uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+                        Console / Traceback
+                    </span>
+<div class="ml-auto flex gap-2">
+<span class="w-2 h-2 rounded-full bg-red-500"></span>
+<span class="text-[10px] text-red-400">1 Hata</span>
+</div>
+</div>
+<div class="p-4 font-mono text-xs overflow-auto">
+<div class="text-slate-400 mb-1">Running main.py...</div>
+<div class="text-red-400 mb-1">Traceback (most recent call last):</div>
+<div class="text-red-400 pl-4 mb-1">File "main.py", line 7, in calculate_average</div>
+<div class="text-red-300 pl-8 mb-1">return total / 0</div>
+<div class="text-red-500 font-bold bg-red-500/10 inline-block px-1 rounded">ZeroDivisionError: division by zero</div>
+<div class="text-slate-500 mt-2 animate-pulse">_</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Instructions & Hints -->
+<aside class="w-80 md:w-96 bg-surface-dark border-l border-[#283039] flex flex-col shrink-0 overflow-hidden">
+<!-- Tabs -->
+<div class="flex border-b border-[#283039]">
+<button class="flex-1 py-3 text-sm font-medium text-white border-b-2 border-primary bg-[#111418]">Talimatlar</button>
+<button class="flex-1 py-3 text-sm font-medium text-[#9dabb9] hover:text-white hover:bg-[#283039] transition-colors">Notlar</button>
+</div>
+<div class="flex-1 overflow-y-auto p-5 scrollbar-hide">
+<h3 class="text-xl font-bold text-white mb-2">Ortalamayı Hesapla</h3>
+<p class="text-[#9dabb9] text-sm leading-relaxed mb-6">
+                    Aşağıdaki kodda, öğrenci notlarının ortalamasını hesaplamaya çalışan bir fonksiyon bulunmaktadır. Ancak kod çalıştırıldığında bir hata veriyor. <br/><br/>
+                    Hata ayıklayıcıyı (debugger) kullanarak sorunu bulun ve düzeltin.
+                </p>
+<!-- Hints Section -->
+<div class="space-y-4">
+<div class="flex items-center justify-between mb-2">
+<h4 class="text-sm font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">lightbulb</span>
+                            İpuçları
+                        </h4>
+<span class="text-xs text-[#9dabb9] bg-[#283039] px-2 py-1 rounded-full">0/3 Kullanıldı</span>
+</div>
+<!-- Hint Tier 1 -->
+<div class="border border-[#283039] rounded-xl bg-[#161b22] overflow-hidden group">
+<div class="p-4 flex gap-3 cursor-pointer hover:bg-[#1c2128] transition-colors">
+<div class="mt-0.5">
+<div class="w-6 h-6 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+<div>
+<h5 class="text-sm font-bold text-white mb-1">İpucu 1: Hata Mesajı</h5>
+<p class="text-xs text-[#9dabb9] leading-relaxed">
+                                     Konsoldaki hata mesajına dikkatlice bakın. "ZeroDivisionError" ne anlama geliyor? Matematikte bir sayıyı neye bölemezsiniz?
+                                 </p>
+</div>
+</div>
+</div>
+<!-- Hint Tier 2 (Locked) -->
+<div class="border border-[#283039] rounded-xl bg-[#161b22] overflow-hidden group">
+<div class="p-4 flex gap-3 cursor-pointer hover:bg-[#1c2128] transition-colors relative">
+<!-- Blur overlay for locked state -->
+<div class="absolute inset-0 backdrop-blur-[2px] bg-[#161b22]/60 z-10 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity">
+<button class="bg-[#283039] hover:bg-primary text-white text-xs font-bold py-1.5 px-4 rounded-full shadow-lg border border-[#3b4754] flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                                    İpucunu Aç (-5 Puan)
+                                 </button>
+</div>
+<div class="mt-0.5">
+<div class="w-6 h-6 rounded-full bg-[#283039] text-[#9dabb9] flex items-center justify-center">
+<span class="text-xs font-bold">2</span>
+</div>
+</div>
+<div>
+<h5 class="text-sm font-bold text-white mb-1">İpucu 2: Mantık Hatası</h5>
+<p class="text-xs text-[#9dabb9] leading-relaxed filter blur-sm select-none">
+                                     Döngü bittikten sonra "total" değişkenini sabit bir sayıya bölüyoruz. Bu sabit sayı nedir?
+                                 </p>
+</div>
+</div>
+</div>
+<!-- Hint Tier 3 (Locked) -->
+<div class="border border-[#283039] rounded-xl bg-[#161b22] overflow-hidden group">
+<div class="p-4 flex gap-3 cursor-pointer hover:bg-[#1c2128] transition-colors relative">
+<div class="absolute inset-0 backdrop-blur-[2px] bg-[#161b22]/80 z-10 flex items-center justify-center">
+<button class="bg-[#283039] hover:bg-primary text-white text-xs font-bold py-1.5 px-4 rounded-full shadow-lg border border-[#3b4754] flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                                    Çözümü Göster (-15 Puan)
+                                 </button>
+</div>
+<div class="mt-0.5">
+<div class="w-6 h-6 rounded-full bg-[#283039] text-[#9dabb9] flex items-center justify-center">
+<span class="text-xs font-bold">3</span>
+</div>
+</div>
+<div>
+<h5 class="text-sm font-bold text-white mb-1">Çözüm Kodu</h5>
+<p class="text-xs text-[#9dabb9] font-mono mt-1 p-2 bg-black rounded filter blur-sm">
+                                     return total / len(numbers)
+                                 </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer of Right Panel -->
+<div class="p-4 border-t border-[#283039] bg-[#111418]">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs text-[#9dabb9]">Zorluk: <span class="text-green-400 font-medium">Başlangıç</span></span>
+<span class="text-xs text-[#9dabb9]">Puan: <span class="text-yellow-400 font-medium">150 XP</span></span>
+</div>
+<button class="w-full flex items-center justify-center rounded-lg h-10 bg-primary hover:bg-blue-600 text-white text-sm font-bold transition-all shadow-[0_0_15px_rgba(19,127,236,0.3)] hover:shadow-[0_0_20px_rgba(19,127,236,0.5)]">
+<span class="material-symbols-outlined text-[20px] mr-2">check_circle</span>
+                    Çözümü Kontrol Et
+                </button>
+</div>
+</aside>
+</main>
+</body></html>

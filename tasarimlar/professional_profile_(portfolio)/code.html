@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA Lite v2.1 - Professional Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "void": "#0B1120",
+                        "panel": "#1E293B",
+                        "active-panel": "#334155",
+                        "primary": "#06B6D4", // Cyber Cyan
+                        "secondary": "#D946EF", // Neon Fuchsia
+                        "titanium": "#F8FAFC",
+                        "muted-text": "#94A3B8",
+                        "terminal-green": "#10B981",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 5px theme("colors.primary"), 0 0 20px theme("colors.primary")',
+                        'neon-fuchsia': '0 0 5px theme("colors.secondary"), 0 0 20px theme("colors.secondary")',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Hexagon Clip Path */
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-panel-employer {
+            background: rgba(248, 250, 252, 0.03); /* Lighter, cleaner for employer view */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        /* Toggle Transition */
+        .view-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-void text-titanium min-h-screen font-body selection:bg-primary selection:text-void overflow-x-hidden">
+<!-- Top Navigation (Simplified for Context) -->
+<nav class="sticky top-0 z-50 w-full border-b border-[#27373a] bg-[#111718]/90 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-3">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-2xl">diamond</span>
+</div>
+<span class="text-white font-display font-bold text-lg tracking-tight">PUSULA <span class="text-primary font-mono text-xs align-top">v2.1</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-muted-text hover:text-white text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-muted-text hover:text-white text-sm font-medium transition-colors" href="#">Simulation</a>
+<a class="text-muted-text hover:text-white text-sm font-medium transition-colors" href="#">Arena</a>
+<a class="text-primary text-sm font-bold shadow-[0_2px_0_0_#06B6D4]" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-secondary p-[1px]">
+<div class="h-full w-full rounded-full bg-void bg-cover bg-center" data-alt="User Avatar Small" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdMFxt8coDBlsXbAs5c6KY3HQoU2TOLCPx5ZPxxe35Nz7CkVcMXZiYOA4U4enMQMCukWoKIx92F_dqnWfdNy8TH-hMIDkA5fZWRKsMY1hxWjYmSEPRCBrXgPq-6B97Brwiv_0uTiNkqAjwjfpN88EUdHC6OlOZIo28jYhoQ7WbmmVJMNt-KEePtPRL_Wh8QVgMS8RRCA2KxhBfOTz5UaLHKwtM3SaC4wXrdk7HeIpY3KWCIpb91L2NN2jIdDDZq3Lm2_bzdtm77nGG');"></div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<main class="relative w-full max-w-5xl mx-auto px-4 py-8 pb-20">
+<!-- Toggle Controller (Logic handled visually via Checkbox Hack for pure CSS or assumed JS state) -->
+<!-- In a real app, this would be state-driven. Here we style the default "Gamer" state and provide visual cues for the "Employer" state. 
+             We will simulate the "Gamer" view as active, but layout components to show how they would look. -->
+<div class="flex justify-center mb-8">
+<div class="glass-panel rounded-full p-1 flex items-center relative">
+<div class="absolute left-1 w-[140px] h-[36px] bg-primary/20 border border-primary/50 rounded-full shadow-neon-cyan transition-all duration-300 pointer-events-none"></div>
+<button class="relative z-10 w-[140px] px-6 py-2 text-sm font-display font-bold text-white tracking-wide text-center">GAMER_VIEW</button>
+<button class="relative z-10 w-[140px] px-6 py-2 text-sm font-display font-medium text-muted-text hover:text-white tracking-wide text-center transition-colors">EMPLOYER_VIEW</button>
+</div>
+</div>
+<!-- Profile Header Card -->
+<div class="relative w-full rounded-xl overflow-hidden glass-panel group mb-8">
+<!-- Banner Background -->
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="Abstract digital wireframe landscape in dark blue and cyan tones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDYsrIP356vI39-MoVwIcoII5ZC-dpCQQ1zyMpqAHFUkhK_Ca0OR1o8INg7BM-FdTUURBG4mQ9SSPxcAqCe6MD5zeUoZlukkU6Uz8OiUpjgP0d6GPYWv8TGFW2nV2GU8iUnoHfYPHpSHCXQhwTnpDjEdsaN217YFByFT8Gl_EJ2PqP8f09CzhpYZZI2MZlnoPTTH-0zz4N8q7UfAZH_1J-EWFcSQWZsukrYnyAaw8j9TsDO3aePZbNTf_6iwfj8PjDsUb7SqEXGXZ04');">
+<div class="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-transparent"></div>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay"></div>
+</div>
+<!-- Profile Info Content -->
+<div class="px-8 pb-8 -mt-16 relative flex flex-col md:flex-row items-end md:items-center gap-6">
+<!-- Avatar Container -->
+<div class="relative shrink-0">
+<!-- Hexagon Border for Gamer View -->
+<div class="w-32 h-32 md:w-40 md:h-40 relative flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary rounded-xl opacity-80 blur-md group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute inset-[2px] bg-void rounded-xl z-10 flex items-center justify-center overflow-hidden border border-white/10">
+<img alt="Alara Yilmaz Profile" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuC0uJWRyLsxnOzy4hmbD-Zn8ywY1GsPKTHh4m1gUgt2At77vSWP0khFpmYt5M2DyDKJvO8D5CBfG4E2CYvnRXpdJ-3H364obHFlu3t5GveSS1JJd-xWfj0PPHTKTuQIC7o7_25Lij3U_kPo4S-9Lt5hHiv2OtE20Cfp6ftgU3rM9IsUqkNozY_txvt0Gobcp-vtJuginKhxpasVCilIdYNtk3ufacvWck2ruKry9ZqjciNcJ7roD2e850eUvN4UBF_HgQsRJddcHa"/>
+</div>
+<!-- Level Badge (Gamer Only) -->
+<div class="absolute -bottom-3 -right-3 z-20 bg-void border border-primary/50 text-primary px-3 py-1 rounded-lg font-mono text-xs font-bold shadow-neon-cyan">
+                            Lvl. 42
+                        </div>
+</div>
+</div>
+<!-- Text Info -->
+<div class="flex-1 pb-2">
+<div class="flex items-center gap-3 mb-1">
+<h1 class="text-3xl md:text-4xl font-display font-bold text-white tracking-tight">Alara Yilmaz</h1>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-secondary/20 text-secondary border border-secondary/30 tracking-wider uppercase">Pro Account</span>
+</div>
+<p class="text-primary font-mono text-sm md:text-base mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">terminal</span>
+                        Full Stack Developer <span class="text-muted-text mx-2">//</span> Istanbul, TR
+                    </p>
+<!-- Bio / Tags -->
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded bg-panel border border-white/5 text-xs text-muted-text hover:text-white transition-colors cursor-default">React.js</span>
+<span class="px-3 py-1 rounded bg-panel border border-white/5 text-xs text-muted-text hover:text-white transition-colors cursor-default">Python</span>
+<span class="px-3 py-1 rounded bg-panel border border-white/5 text-xs text-muted-text hover:text-white transition-colors cursor-default">System Architecture</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3 shrink-0 w-full md:w-auto mt-4 md:mt-0">
+<button class="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-primary hover:bg-cyan-400 text-void font-bold text-sm transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)]">
+<span class="material-symbols-outlined text-lg">edit</span>
+                        Edit Profile
+                    </button>
+<!-- Hidden in Gamer View, Visible in Employer -->
+<button class="hidden w-full md:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-panel border border-white/10 hover:border-white/30 text-white font-medium text-sm transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                        Download CV
+                    </button>
+</div>
+</div>
+</div>
+<!-- Grid Layout for Stats & Skills -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Stats (Gamer Focus) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Stat Card 1: Streak -->
+<div class="glass-panel rounded-xl p-5 relative overflow-hidden group hover:border-primary/40 transition-colors">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-primary">local_fire_department</span>
+</div>
+<div class="relative z-10">
+<p class="text-muted-text text-xs font-mono uppercase tracking-wider mb-1">Current Streak</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-display font-bold text-white shadow-primary drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]">42</span>
+<span class="text-sm font-mono text-primary">DAYS</span>
+</div>
+<div class="w-full bg-void/50 h-1 mt-3 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%] shadow-[0_0_10px_#06B6D4]"></div>
+</div>
+</div>
+</div>
+<!-- Stat Card 2: Rank -->
+<div class="glass-panel rounded-xl p-5 relative overflow-hidden group hover:border-secondary/40 transition-colors">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-secondary">military_tech</span>
+</div>
+<div class="relative z-10">
+<p class="text-muted-text text-xs font-mono uppercase tracking-wider mb-1">Global Rank</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-display font-bold text-white drop-shadow-[0_0_8px_rgba(217,70,239,0.5)]">Top 5%</span>
+</div>
+<p class="text-xs text-secondary mt-1 font-mono">Logic &amp; Algorithms</p>
+</div>
+</div>
+<!-- Stat Card 3: XP -->
+<div class="glass-panel rounded-xl p-5 relative overflow-hidden group hover:border-terminal-green/40 transition-colors">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-terminal-green">data_usage</span>
+</div>
+<div class="relative z-10">
+<p class="text-muted-text text-xs font-mono uppercase tracking-wider mb-1">Total XP</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-display font-bold text-white drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]">45.2k</span>
+</div>
+<p class="text-xs text-terminal-green mt-1 font-mono">+1.2k this week</p>
+</div>
+</div>
+</div>
+<!-- Projects / Achievements Section -->
+<div class="glass-panel rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-display font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">emoji_events</span>
+                            Recent Conquests
+                        </h3>
+<a class="text-xs font-mono text-primary hover:text-white transition-colors" href="#">VIEW_ALL_LOGS -&gt;</a>
+</div>
+<div class="space-y-4">
+<!-- Project Item 1 -->
+<div class="group flex flex-col md:flex-row gap-4 p-4 rounded-lg bg-panel/40 border border-white/5 hover:border-primary/30 transition-all hover:bg-panel/60 cursor-pointer">
+<div class="w-full md:w-32 h-24 rounded-lg bg-void border border-white/10 relative overflow-hidden shrink-0">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-100 transition-opacity" data-alt="Screenshot of a code editor interface showing python code" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAKwAhdOWmDI9hKJ76dh293igojXuiPdTqS_LMG3TT0HZh2XmlF7xgYQrqR60rYVsIvL_sPZvx2TgaqXdQL9OVrAoePAFY-OQbkit-SYZKxJNpxCJjNRJfuYzE-IipXwgjCDyJN8qgaW2iY2hU8NAy9-rFOJiiVnmvCfJODEXI_9yh_8cWjx_fBHeFkdzofEOVcftcEQKYIAT3I5TTdCixMJzmLkYaIQlue_aHRdOmMWwEu4gKzb0tIf37JZaRpPvzWVwfLkSNViygy');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-void to-transparent"></div>
+<div class="absolute bottom-2 left-2">
+<span class="text-[10px] font-mono bg-primary/20 text-primary border border-primary/30 px-1.5 py-0.5 rounded">PYTHON</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h4 class="text-white font-bold font-display text-lg group-hover:text-primary transition-colors">Bot Battle: Arena Champion</h4>
+<p class="text-sm text-muted-text mt-1 line-clamp-2">Optimized pathfinding algorithm reducing complexity by 40%. Implemented A* search with custom heuristic weighting.</p>
+</div>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1 text-xs text-secondary font-mono">
+<span class="material-symbols-outlined text-[14px]">stars</span>
+                                        +500 XP
+                                    </div>
+<div class="text-xs text-muted-text font-mono">
+                                        Completed: 2h ago
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Project Item 2 -->
+<div class="group flex flex-col md:flex-row gap-4 p-4 rounded-lg bg-panel/40 border border-white/5 hover:border-primary/30 transition-all hover:bg-panel/60 cursor-pointer">
+<div class="w-full md:w-32 h-24 rounded-lg bg-void border border-white/10 relative overflow-hidden shrink-0">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-100 transition-opacity" data-alt="Abstract data visualization chart" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARWeunOUiu894-Om8lygo8rA5ZpNW83msf6yhY2KGzhfKYvkypduboHZX9CTiwytlKZgxmxRTlr99toTjR3w47_AiqJskrOOBh88_vAWF2QkRGDMc8THFLys44WEU6_IkkWXqLzCjbzAmz-3dsvPI1JH68e1J7xK5rlEDpUVcW8mcR9LA7YiDRLBydFxosL0nkIApwafD3P3TgKKy94zwuw5KpY2XMzb8GumlXO-dHgurntN5vyNO48BR9BUVDb8rmlHlcNv1efpfF');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-void to-transparent"></div>
+<div class="absolute bottom-2 left-2">
+<span class="text-[10px] font-mono bg-secondary/20 text-secondary border border-secondary/30 px-1.5 py-0.5 rounded">DATA</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h4 class="text-white font-bold font-display text-lg group-hover:text-primary transition-colors">System Anomaly Detection</h4>
+<p class="text-sm text-muted-text mt-1 line-clamp-2">Built a real-time monitoring dashboard using React and D3.js to visualize server load simulation.</p>
+</div>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1 text-xs text-secondary font-mono">
+<span class="material-symbols-outlined text-[14px]">stars</span>
+                                        +350 XP
+                                    </div>
+<div class="text-xs text-muted-text font-mono">
+                                        Completed: 1d ago
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Badges & Skills -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Skill Badges (Hex Grid Look) -->
+<div class="glass-panel rounded-xl p-6 min-h-[400px]">
+<h3 class="text-lg font-display font-bold text-white mb-6 flex items-center justify-between">
+<span>Skill Badges</span>
+<span class="text-xs font-mono text-muted-text bg-white/5 px-2 py-1 rounded">12 Unlocked</span>
+</h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-4">
+<!-- Badge 1 -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 relative hexagon flex items-center justify-center bg-panel border border-primary/30 group-hover:border-primary transition-all shadow-[0_0_10px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+<div class="absolute inset-0 bg-primary/5 hexagon"></div>
+<span class="material-symbols-outlined text-3xl text-primary group-hover:scale-110 transition-transform">code</span>
+</div>
+<span class="mt-2 text-xs font-bold text-white text-center font-display group-hover:text-primary transition-colors">Python Slayer</span>
+<span class="text-[10px] text-muted-text font-mono">Lvl 5</span>
+</div>
+<!-- Badge 2 -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 relative hexagon flex items-center justify-center bg-panel border border-secondary/30 group-hover:border-secondary transition-all shadow-[0_0_10px_rgba(217,70,239,0.1)] group-hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]">
+<div class="absolute inset-0 bg-secondary/5 hexagon"></div>
+<span class="material-symbols-outlined text-3xl text-secondary group-hover:scale-110 transition-transform">bug_report</span>
+</div>
+<span class="mt-2 text-xs font-bold text-white text-center font-display group-hover:text-secondary transition-colors">Bug Hunter</span>
+<span class="text-[10px] text-muted-text font-mono">Elite</span>
+</div>
+<!-- Badge 3 -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-20 h-20 relative hexagon flex items-center justify-center bg-panel border border-white/10 group-hover:border-terminal-green transition-all shadow-none group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+<div class="absolute inset-0 bg-white/5 hexagon"></div>
+<span class="material-symbols-outlined text-3xl text-terminal-green group-hover:scale-110 transition-transform">school</span>
+</div>
+<span class="mt-2 text-xs font-bold text-white text-center font-display group-hover:text-terminal-green transition-colors">Scholar</span>
+<span class="text-[10px] text-muted-text font-mono">20 Lesson Streak</span>
+</div>
+<!-- Badge 4 -->
+<div class="flex flex-col items-center group cursor-pointer opacity-50 hover:opacity-100 transition-opacity">
+<div class="w-20 h-20 relative hexagon flex items-center justify-center bg-void border border-dashed border-white/20 group-hover:border-primary transition-all">
+<span class="material-symbols-outlined text-3xl text-muted-text">lock</span>
+</div>
+<span class="mt-2 text-xs font-bold text-muted-text text-center font-display">Locked</span>
+<span class="text-[10px] text-muted-text font-mono">???</span>
+</div>
+</div>
+</div>
+<!-- Klan / Social Widget (Gamer Only) -->
+<div class="glass-panel rounded-xl p-6">
+<h3 class="text-sm font-bold font-display text-muted-text uppercase tracking-wider mb-4">Klan Membership</h3>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-void flex items-center justify-center text-white font-bold">
+                            N
+                        </div>
+<div>
+<p class="text-white font-bold text-sm">Neon Raiders</p>
+<p class="text-xs text-primary font-mono">Rank #4 Global</p>
+</div>
+</div>
+<div class="w-full bg-void/50 h-1.5 rounded-full overflow-hidden mb-2">
+<div class="h-full bg-secondary w-[65%]"></div>
+</div>
+<div class="flex justify-between text-[10px] font-mono text-muted-text">
+<span>Weekly Contribution</span>
+<span>65%</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Background effects -->
+<div class="fixed inset-0 -z-10 pointer-events-none">
+<div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px]"></div>
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PCEtLSBDcmVhdGVkIHdpdGggU1ZHR28gLS0+PGc+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwaDIwdjIwSDIwVjIweiIgZmlsbD0iIzIyMjIyMiIgZmlsbC1vcGFjaXR5PSIwLjEiLz48L2c+PC9zdmc+')] opacity-20"></div>
+</div>
+</body></html>

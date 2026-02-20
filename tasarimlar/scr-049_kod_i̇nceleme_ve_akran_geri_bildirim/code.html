@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-049 Kod İnceleme ve Akran Geri Bildirim</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0b6bcb",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111418",
+                        "surface-dark": "#1b2128",
+                        "border-dark": "#283039",
+                        "code-bg": "#0d1117",
+                        "text-secondary": "#9dabb9",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for code block */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1b2128; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4a5568; 
+        }
+        
+        .syntax-def { color: #ff7b72; }
+        .syntax-func { color: #d2a8ff; }
+        .syntax-param { color: #79c0ff; }
+        .syntax-comment { color: #8b949e; font-style: italic; }
+        .syntax-operator { color: #ff7b72; }
+        .syntax-number { color: #79c0ff; }
+        .syntax-string { color: #a5d6ff; }
+        .syntax-keyword { color: #ff7b72; }
+    </style>
+</head>
+<body class="bg-background-dark text-white min-h-screen flex flex-col antialiased selection:bg-primary/30 selection:text-white">
+<!-- Header Section -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark px-6 py-3 bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 bg-primary/20 flex items-center justify-center rounded-lg text-primary">
+<span class="material-symbols-outlined">code</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DIGEM | Peer Review</h2>
+</div>
+<div class="flex gap-3">
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-surface-dark rounded-full border border-border-dark">
+<div class="size-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-medium text-text-secondary">Auto-saved</span>
+</div>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-9 w-9 bg-surface-dark text-white hover:bg-border-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="h-9 w-9 rounded-full bg-gradient-to-tr from-primary to-purple-500 p-[2px]">
+<img alt="User Profile" class="rounded-full bg-background-dark h-full w-full object-cover" data-alt="User avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDmbAZCQ5jufzL-9aWem7vzPgvhUX8hUyvbcm4VhTGwDNILfBiGLhWzTAdeiAa611z87ur3gqEkTvBg_Cap5JBVlAvnLSOb-wQ7bmgNeOLSQOmmuxumJYw1aLr9XogLiAAXWN9P5QB7utANw5ZorewNKFWANk02J8vQzuXWkfal6wf1Vq_1QVyEjELlFIzZit3OL4z8qYgP-mqQEd07XIyO0MBPan7Hre3UbYHGGc21IMRo158ZHDWkEbCfuIV-BEbLsQ9Eq5qwg"/>
+</div>
+</div>
+</header>
+<!-- Breadcrumb & Title -->
+<div class="px-6 py-4 border-b border-border-dark bg-surface-dark/30 backdrop-blur-sm">
+<div class="flex flex-wrap gap-2 items-center text-sm mb-2">
+<a class="text-text-secondary hover:text-primary transition-colors font-medium" href="#">Home</a>
+<span class="text-text-secondary font-medium">/</span>
+<a class="text-text-secondary hover:text-primary transition-colors font-medium" href="#">Python Basics</a>
+<span class="text-text-secondary font-medium">/</span>
+<span class="text-white font-medium">Project A - Peer Review</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">SCR-049: Calculator Project</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-xs font-medium border border-blue-500/20">Reviewing Student #4592</span>
+<span class="text-text-secondary text-sm">• Submitted 2 hours ago</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-dark hover:bg-border-dark text-white text-sm font-semibold transition-all border border-border-dark">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                    History
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-dark hover:bg-border-dark text-white text-sm font-semibold transition-all border border-border-dark">
+<span class="material-symbols-outlined text-[18px]">bug_report</span>
+                    Report Issue
+                </button>
+</div>
+</div>
+</div>
+<!-- Main Content Grid -->
+<main class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden h-[calc(100vh-140px)]">
+<!-- Left Pane: Code Viewer -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col border-r border-border-dark bg-code-bg relative group">
+<!-- Toolbar -->
+<div class="flex items-center justify-between px-4 py-2 border-b border-border-dark bg-code-bg text-text-secondary text-xs font-mono">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 text-white">
+<span class="material-symbols-outlined text-[16px] text-yellow-400">folder_open</span>
+                        main.py
+                    </span>
+<span class="hover:text-white cursor-pointer transition-colors">utils.py</span>
+<span class="hover:text-white cursor-pointer transition-colors">README.md</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs">Python 3.10</span>
+<span class="w-px h-3 bg-border-dark"></span>
+<span class="cursor-pointer hover:text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy
+                    </span>
+</div>
+</div>
+<!-- Code Editor Area -->
+<div class="flex-1 overflow-auto custom-scrollbar relative font-mono text-sm leading-6">
+<div class="flex min-h-full">
+<!-- Line Numbers -->
+<div class="flex flex-col items-end px-2 py-4 bg-code-bg border-r border-border-dark/50 text-text-secondary/50 select-none w-12 shrink-0 text-right">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div>
+</div>
+<!-- Code Content -->
+<div class="flex-1 py-4 px-4 text-gray-300 whitespace-pre font-mono relative">
+<!-- Code Lines -->
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text">
+<span class="syntax-keyword">import</span> math</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text">
+<span class="syntax-def">def</span> <span class="syntax-func">calculate_sum</span>(<span class="syntax-param">a</span>, <span class="syntax-param">b</span>):</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"> <span class="syntax-comment"># This function adds two numbers</span></div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"> <span class="syntax-keyword">return</span> a <span class="syntax-operator">+</span> b</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"></div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text">
+<span class="syntax-def">def</span> <span class="syntax-func">calculate_difference</span>(<span class="syntax-param">a</span>, <span class="syntax-param">b</span>):</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text bg-red-500/10 border-l-2 border-red-500"> <span class="syntax-comment"># Potential logic error here if b &gt; a and we want absolute diff</span></div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"> <span class="syntax-keyword">return</span> a <span class="syntax-operator">-</span> b</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"></div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text">
+<span class="syntax-def">def</span> <span class="syntax-func">multiply_numbers</span>(<span class="syntax-param">x</span>, <span class="syntax-param">y</span>):</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"> <span class="syntax-keyword">return</span> x <span class="syntax-operator">*</span> y</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"></div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text">
+<span class="syntax-def">def</span> <span class="syntax-func">divide_check</span>(<span class="syntax-param">numerator</span>, <span class="syntax-param">denominator</span>):</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text bg-primary/10 border-l-2 border-primary"> <span class="syntax-keyword">if</span> denominator <span class="syntax-operator">==</span> <span class="syntax-number">0</span>:</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"> <span class="syntax-keyword">return</span> <span class="syntax-string">"Error: Division by zero"</span></div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"> <span class="syntax-keyword">return</span> numerator <span class="syntax-operator">/</span> denominator</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"></div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text">
+<span class="syntax-def">def</span> <span class="syntax-func">main</span>():</div>
+<div class="group/line hover:bg-surface-dark/30 -mx-4 px-4 relative cursor-text"> <span class="syntax-func">print</span>(<span class="syntax-func">calculate_sum</span>(<span class="syntax-number">5</span>, <span class="syntax-number">3</span>))</div>
+<!-- Floating Comment Button (Mockup Interaction) -->
+<div class="absolute top-[204px] right-8 transform translate-x-2 transition-all opacity-100">
+<button class="bg-primary text-white p-1.5 rounded-full shadow-lg shadow-primary/20 hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[16px]">add_comment</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Comment Indicator (Example) -->
+<div class="absolute top-[204px] left-[55px] w-full max-w-[400px] z-10 p-3 bg-surface-dark border border-border-dark rounded-lg shadow-xl translate-x-4">
+<div class="flex items-start gap-3">
+<img class="w-6 h-6 rounded-full" data-alt="Reviewer avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEkqApgnqeA4WG826z5dBjMvFFupXM02Z5JR_mSn3B29F2ZeszdjEqNe0chxrMn-aBVBlbm-y-VzL1mTVyuggZtmpT6d0rUbjbGNlZxOv4uM5JN2-xVe2iW0mpaUkTsjKJDramQj6DVJObbCTNuOesL7BGeeSP6PzUjyocAawTxUNqhL2aUshPQSuQSVyDVtUJEh1ypcqoGp4wpfqGb6tvx2WwwdtMnyqKKlmiWbPae21aylPTv0R71lIZA8JG28MKXoWXWi3L7g"/>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="text-xs font-bold text-white">You</span>
+<span class="text-[10px] text-text-secondary">Just now</span>
+</div>
+<p class="text-xs text-gray-300 leading-relaxed">Good job handling the edge case for zero division here.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Pane: Evaluation Rubric -->
+<div class="lg:col-span-5 xl:col-span-4 bg-background-dark border-l border-border-dark overflow-y-auto custom-scrollbar flex flex-col h-full">
+<div class="p-6 pb-20">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-white">Evaluation Rubric</h3>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded border border-primary/20">Draft Mode</span>
+</div>
+<!-- Category 1: Clarity -->
+<div class="mb-6 p-4 rounded-xl border border-border-dark bg-surface-dark">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-semibold text-white">Code Clarity</h4>
+<p class="text-xs text-text-secondary mt-1">Is the code easy to read and understand?</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary text-[20px]">visibility</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4">
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="clarity" type="radio"/>
+<div class="h-10 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-secondary text-sm font-medium transition-all peer-checked:bg-red-500/10 peer-checked:border-red-500 peer-checked:text-red-400 group-hover:border-red-500/50">
+                                Unclear
+                            </div>
+</label>
+<label class="cursor-pointer group">
+<input checked="" class="peer sr-only" name="clarity" type="radio"/>
+<div class="h-10 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-secondary text-sm font-medium transition-all peer-checked:bg-yellow-500/10 peer-checked:border-yellow-500 peer-checked:text-yellow-400 group-hover:border-yellow-500/50">
+                                Adequate
+                            </div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="clarity" type="radio"/>
+<div class="h-10 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-secondary text-sm font-medium transition-all peer-checked:bg-green-500/10 peer-checked:border-green-500 peer-checked:text-green-400 group-hover:border-green-500/50">
+                                Excellent
+                            </div>
+</label>
+</div>
+</div>
+<!-- Category 2: Logic -->
+<div class="mb-6 p-4 rounded-xl border border-border-dark bg-surface-dark">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-semibold text-white">Logic &amp; Correctness</h4>
+<p class="text-xs text-text-secondary mt-1">Does the solution solve the problem correctly?</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary text-[20px]">psychology</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4">
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="logic" type="radio"/>
+<div class="h-10 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-secondary text-sm font-medium transition-all peer-checked:bg-red-500/10 peer-checked:border-red-500 peer-checked:text-red-400 group-hover:border-red-500/50">
+                                Needs Work
+                            </div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="logic" type="radio"/>
+<div class="h-10 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-secondary text-sm font-medium transition-all peer-checked:bg-yellow-500/10 peer-checked:border-yellow-500 peer-checked:text-yellow-400 group-hover:border-yellow-500/50">
+                                Good
+                            </div>
+</label>
+<label class="cursor-pointer group">
+<input checked="" class="peer sr-only" name="logic" type="radio"/>
+<div class="h-10 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-secondary text-sm font-medium transition-all peer-checked:bg-green-500/10 peer-checked:border-green-500 peer-checked:text-green-400 group-hover:border-green-500/50">
+                                Perfect
+                            </div>
+</label>
+</div>
+</div>
+<!-- Category 3: Naming -->
+<div class="mb-6 p-4 rounded-xl border border-border-dark bg-surface-dark">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-semibold text-white">Naming Conventions</h4>
+<p class="text-xs text-text-secondary mt-1">Are variable names descriptive and follow PEP8?</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary text-[20px]">badge</span>
+</div>
+<div class="w-full mt-4">
+<input class="w-full h-2 bg-background-dark rounded-lg appearance-none cursor-pointer accent-primary" max="5" min="1" type="range" value="4"/>
+<div class="flex justify-between text-xs text-text-secondary mt-2 px-1">
+<span>Poor</span>
+<span>Average</span>
+<span class="text-primary font-bold">Good</span>
+<span>Great</span>
+<span>Perfect</span>
+</div>
+</div>
+</div>
+<!-- Summary Feedback -->
+<div class="mb-8">
+<h4 class="font-semibold text-white mb-2">Overall Feedback</h4>
+<p class="text-sm text-text-secondary mb-3">Please provide constructive feedback to help your peer improve.</p>
+<textarea class="w-full h-32 bg-surface-dark border border-border-dark rounded-lg p-3 text-sm text-white placeholder-text-secondary/50 focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none" placeholder="E.g., Great use of functions! Consider adding more comments for the complex logic blocks..."></textarea>
+<div class="flex gap-2 mt-2">
+<button class="text-xs text-text-secondary bg-surface-dark hover:bg-border-dark px-2 py-1 rounded border border-border-dark transition-colors">👍 Clear logic</button>
+<button class="text-xs text-text-secondary bg-surface-dark hover:bg-border-dark px-2 py-1 rounded border border-border-dark transition-colors">👎 Missing comments</button>
+<button class="text-xs text-text-secondary bg-surface-dark hover:bg-border-dark px-2 py-1 rounded border border-border-dark transition-colors">💡 Optimize loop</button>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Action Bar -->
+<div class="mt-auto p-4 border-t border-border-dark bg-surface-dark sticky bottom-0 z-20">
+<div class="flex gap-3">
+<button class="flex-1 px-4 py-3 rounded-lg bg-transparent border border-border-dark text-white font-bold hover:bg-border-dark transition-all flex items-center justify-center gap-2">
+                         Request Changes
+                    </button>
+<button class="flex-[2] px-4 py-3 rounded-lg bg-primary hover:bg-primary-dark text-white font-bold transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                        Submit Review
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

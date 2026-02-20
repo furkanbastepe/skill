@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ders Runner - PUSULA Lite</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2df",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102221",
+                        "card-dark": "#1b2b29",
+                        "border-dark": "#2d4542",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for simulator */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1b2b29; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2d4542; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b5452; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased h-screen overflow-hidden flex flex-col">
+<!-- Top Header -->
+<header class="w-full h-16 border-b border-border-dark bg-[#111817] flex items-center justify-between px-6 z-20 shrink-0">
+<div class="flex items-center gap-4">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-sm">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Ana Sayfa</a>
+<span class="material-symbols-outlined text-slate-600 text-[16px]">chevron_right</span>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Modül B1</a>
+<span class="material-symbols-outlined text-slate-600 text-[16px]">chevron_right</span>
+<span class="text-white font-medium">Ders L3</span>
+</div>
+</div>
+<!-- Center Progress -->
+<div class="hidden md:flex flex-col items-center justify-center w-1/3 gap-1">
+<div class="flex justify-between w-full text-xs text-slate-400 font-medium">
+<span>Adım 4/7: Yapılandırılmış Üretim</span>
+<span>57%</span>
+</div>
+<div class="flex gap-1 w-full h-1.5">
+<div class="h-full w-full rounded-full bg-primary shadow-[0_0_8px_rgba(13,242,223,0.4)]"></div>
+<div class="h-full w-full rounded-full bg-primary shadow-[0_0_8px_rgba(13,242,223,0.4)]"></div>
+<div class="h-full w-full rounded-full bg-primary shadow-[0_0_8px_rgba(13,242,223,0.4)]"></div>
+<div class="h-full w-full rounded-full bg-primary shadow-[0_0_8px_rgba(13,242,223,0.4)]"></div>
+<div class="h-full w-full rounded-full bg-slate-700"></div>
+<div class="h-full w-full rounded-full bg-slate-700"></div>
+<div class="h-full w-full rounded-full bg-slate-700"></div>
+</div>
+</div>
+<!-- Right Stats -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2" title="Odak Enerjisi">
+<span class="material-symbols-outlined text-primary text-xl">bolt</span>
+<div class="w-24 h-2 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-[85%] bg-gradient-to-r from-teal-400 to-primary"></div>
+</div>
+<span class="text-xs font-bold text-primary">85%</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
+<span class="material-symbols-outlined text-yellow-400 text-lg">star</span>
+<span class="text-sm font-bold text-white">+1250 XP</span>
+</div>
+</div>
+</header>
+<!-- Main Workspace Layout -->
+<main class="flex-1 flex overflow-hidden">
+<!-- LEFT COLUMN: Learning & Simulator -->
+<section class="flex-1 flex flex-col min-w-0 border-r border-border-dark bg-[#0f1615] relative">
+<!-- Instructions Top -->
+<div class="p-8 pb-4">
+<h1 class="text-3xl font-bold text-white mb-2 tracking-tight">Yapılandırılmış Üretim</h1>
+<p class="text-slate-300 max-w-3xl leading-relaxed">
+                    Bu adımda, bilgisayarınızda düzenli bir dosya yapısı oluşturmayı öğreneceksiniz. 
+                    Karmaşık dosyaları yönetilebilir hale getirmek için hiyerarşik klasör yapısı kullanacağız.
+                    Aşağıdaki simülatörde sağdaki görevleri tamamlayın.
+                </p>
+</div>
+<!-- Simulator Container -->
+<div class="flex-1 p-6 pt-2 pb-24 overflow-y-auto custom-scrollbar">
+<!-- Fake Window Chrome -->
+<div class="w-full h-full bg-[#1e1e1e] rounded-xl border border-slate-700 shadow-2xl flex flex-col overflow-hidden max-w-[1000px] mx-auto">
+<!-- Title Bar -->
+<div class="h-10 bg-[#2d2d2d] flex items-center justify-between px-4 border-b border-[#3e3e3e] shrink-0 select-none">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span>
+<span class="w-3 h-3 rounded-full bg-[#febc2e]"></span>
+<span class="w-3 h-3 rounded-full bg-[#28c840]"></span>
+</div>
+<div class="text-xs text-slate-400 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">folder_open</span>
+                            Dosya Gezgini - Öğrenci
+                        </div>
+<div class="w-14"></div> <!-- Spacer for balance -->
+</div>
+<!-- Toolbar -->
+<div class="h-12 bg-[#252526] border-b border-[#3e3e3e] flex items-center px-4 gap-4 shrink-0">
+<div class="flex gap-2">
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined">arrow_back</span></button>
+<button class="text-slate-500 cursor-not-allowed"><span class="material-symbols-outlined">arrow_forward</span></button>
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined">arrow_upward</span></button>
+</div>
+<div class="flex-1 bg-[#1e1e1e] border border-[#3e3e3e] rounded h-8 flex items-center px-3 text-xs text-slate-300">
+                            / Kullanıcılar / Öğrenci / Belgeler
+                        </div>
+<div class="flex bg-[#1e1e1e] border border-[#3e3e3e] rounded h-8 w-48 items-center px-3 text-xs text-slate-500">
+                            Ara: Belgeler
+                        </div>
+</div>
+<!-- Main View Area -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Sidebar -->
+<div class="w-48 bg-[#252526] border-r border-[#3e3e3e] hidden sm:flex flex-col py-2">
+<div class="px-2 py-1 text-[11px] font-bold text-slate-500 uppercase tracking-wider">Sık Kullanılanlar</div>
+<div class="flex items-center gap-2 px-4 py-1.5 text-sm text-slate-300 hover:bg-[#37373d] cursor-pointer">
+<span class="material-symbols-outlined text-blue-400 text-lg">desktop_windows</span> Masaüstü
+                            </div>
+<div class="flex items-center gap-2 px-4 py-1.5 text-sm text-slate-300 hover:bg-[#37373d] cursor-pointer">
+<span class="material-symbols-outlined text-yellow-400 text-lg">download</span> İndirilenler
+                            </div>
+<div class="flex items-center gap-2 px-4 py-1.5 text-sm text-white bg-[#37373d] cursor-pointer border-l-2 border-primary">
+<span class="material-symbols-outlined text-purple-400 text-lg">description</span> Belgeler
+                            </div>
+<div class="mt-4 px-2 py-1 text-[11px] font-bold text-slate-500 uppercase tracking-wider">Bu Bilgisayar</div>
+<div class="flex items-center gap-2 px-4 py-1.5 text-sm text-slate-300 hover:bg-[#37373d] cursor-pointer">
+<span class="material-symbols-outlined text-slate-400 text-lg">hard_drive</span> Yerel Disk (C:)
+                            </div>
+</div>
+<!-- Content Grid -->
+<div class="flex-1 bg-[#1e1e1e] p-4 relative group">
+<!-- Overlay tip for simulation -->
+<div class="absolute inset-0 bg-transparent z-0 pointer-events-none"></div>
+<div class="grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-4">
+<!-- Existing Item -->
+<div class="flex flex-col items-center gap-1 p-2 rounded hover:bg-[#37373d] cursor-pointer group/item">
+<span class="material-symbols-outlined text-yellow-500 text-5xl drop-shadow-md">folder</span>
+<span class="text-xs text-slate-200 text-center truncate w-full group-hover/item:text-white">Projeler</span>
+</div>
+<!-- Existing Item -->
+<div class="flex flex-col items-center gap-1 p-2 rounded hover:bg-[#37373d] cursor-pointer group/item">
+<span class="material-symbols-outlined text-yellow-500 text-5xl drop-shadow-md">folder</span>
+<span class="text-xs text-slate-200 text-center truncate w-full group-hover/item:text-white">Resimler</span>
+</div>
+<!-- The Target Folder (Pre-created state for design) -->
+<div class="flex flex-col items-center gap-1 p-2 rounded bg-[#37373d] border border-primary/50 cursor-pointer animate-pulse">
+<span class="material-symbols-outlined text-yellow-500 text-5xl drop-shadow-md">folder</span>
+<span class="text-xs text-white font-medium text-center truncate w-full bg-primary/20 px-1 rounded">Akademik</span>
+</div>
+<!-- Loose File -->
+<div class="flex flex-col items-center gap-1 p-2 rounded hover:bg-[#37373d] cursor-pointer group/item">
+<span class="material-symbols-outlined text-slate-400 text-5xl drop-shadow-md">draft</span>
+<span class="text-xs text-slate-200 text-center truncate w-full group-hover/item:text-white">Notlar.txt</span>
+</div>
+</div>
+<!-- Context Menu Hint -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<div class="bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm border border-white/10">
+                                    Sağ tıkla → Yeni Klasör
+                                </div>
+</div>
+</div>
+</div>
+<!-- Status Bar -->
+<div class="h-6 bg-[#007acc] text-white text-[10px] flex items-center px-3 justify-between select-none">
+<span>4 öğe</span>
+<span>Seçili öğe yok</span>
+</div>
+</div>
+</div>
+<!-- Bottom Action Bar -->
+<div class="absolute bottom-0 left-0 w-full bg-[#111817]/95 backdrop-blur-md border-t border-border-dark p-4 flex justify-between items-center z-10">
+<button class="px-6 py-2.5 rounded-lg border border-slate-600 text-slate-300 font-medium hover:bg-slate-800 hover:text-white transition flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+                    Önceki Adım
+                </button>
+<button class="px-8 py-2.5 rounded-lg bg-primary text-background-dark font-bold hover:bg-teal-300 transition shadow-[0_0_15px_rgba(13,242,223,0.3)] flex items-center gap-2">
+                    Sonraki Adım
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- RIGHT COLUMN: QuestDock -->
+<aside class="w-[320px] xl:w-[380px] bg-card-dark flex flex-col border-l border-border-dark shrink-0 z-10 shadow-2xl">
+<!-- Panel Header -->
+<div class="p-6 border-b border-border-dark bg-[#15201f]">
+<h2 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">assignment</span>
+                    Görev Listesi
+                </h2>
+<p class="text-xs text-slate-400 mt-1">Bu adımı tamamlamak için aşağıdaki hedefleri gerçekleştir.</p>
+</div>
+<!-- Checklist -->
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
+<!-- Completed Task -->
+<div class="flex gap-3 group opacity-50 transition hover:opacity-80">
+<div class="relative shrink-0 mt-0.5">
+<div class="w-6 h-6 rounded border-2 border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark text-base font-bold">check</span>
+</div>
+<div class="absolute top-6 left-3 w-0.5 h-full bg-slate-700 -ml-[1px]"></div>
+</div>
+<div class="flex flex-col pb-4">
+<h3 class="text-sm font-medium text-slate-300 line-through decoration-slate-500">Dosya Gezgini'ni Başlat</h3>
+<p class="text-xs text-slate-500 mt-1">Simülatör hazır.</p>
+</div>
+</div>
+<!-- Active Task -->
+<div class="flex gap-3 group">
+<div class="relative shrink-0 mt-0.5">
+<div class="w-6 h-6 rounded border-2 border-primary bg-primary/20 flex items-center justify-center animate-pulse">
+<div class="w-2.5 h-2.5 rounded-sm bg-primary"></div>
+</div>
+<div class="absolute top-6 left-3 w-0.5 h-full bg-slate-700 -ml-[1px]"></div>
+</div>
+<div class="flex flex-col pb-4">
+<h3 class="text-sm font-bold text-white">Klasör Oluştur</h3>
+<p class="text-xs text-slate-400 mt-1 leading-relaxed">
+<code class="bg-black/30 px-1 py-0.5 rounded text-primary border border-primary/20">/Akademik/Dersler</code> yolunda yeni bir klasör oluştur.
+                        </p>
+</div>
+</div>
+<!-- Pending Task -->
+<div class="flex gap-3 group">
+<div class="relative shrink-0 mt-0.5">
+<div class="w-6 h-6 rounded border-2 border-slate-600 bg-transparent flex items-center justify-center">
+</div>
+</div>
+<div class="flex flex-col pb-4">
+<h3 class="text-sm font-medium text-slate-400">Dosya Taşı</h3>
+<p class="text-xs text-slate-500 mt-1">Notlar.txt dosyasını 'Dersler' içine sürükle.</p>
+</div>
+</div>
+</div>
+<!-- Coach Bubble (Bottom of Sidebar) -->
+<div class="p-6 mt-auto bg-gradient-to-t from-background-dark to-transparent">
+<div class="relative bg-[#233331] rounded-xl p-4 border border-primary/30 shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+<!-- Triangle pointer -->
+<div class="absolute -top-2 right-8 w-4 h-4 bg-[#233331] border-t border-l border-primary/30 transform rotate-45"></div>
+<div class="flex gap-3 items-start">
+<div class="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-blue-500 p-[2px]">
+<img alt="Coach Avatar" class="rounded-full w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjFyoZkWbiklbH_ZJp8So5U22aHxgR5vi-pP5AekV3Q9s4KSP5-pBoAsyX2LLDrh_QGkJ42QcZmGMrNXSeQsWRzt0JNF8nRXkESLRUcU2UyTFmEoUVV1t_uzEW07ETe1WEyWGjk5z7J8ISWOpc_Z9_LGgw63t-VsA673sF4mFKwPSTLIHbU5BxCOwJhUcLLKBKlVkm8d17mp6i7wDrEUEBz-bHBPeUTFHX6jyeWYPD9rYUTjVP2cgEUgqQUPLSHtOKZXIZH-XK8ok"/>
+</div>
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-primary uppercase tracking-wider">İpucu</span>
+<button class="text-slate-500 hover:text-white"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+<p class="text-sm text-white font-medium leading-snug">
+                                Harika gidiyorsun! <span class="text-primary">Sağ tıklayarak</span> boş alanda menüyü açabilir ve 'Yeni Klasör' seçeneğini bulabilirsin.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Background Pattern/Effect for Depth -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-20" style="background-image: radial-gradient(#2d4542 1px, transparent 1px); background-size: 24px 24px;"></div>
+</body></html>

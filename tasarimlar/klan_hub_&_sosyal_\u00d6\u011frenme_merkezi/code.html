@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Klan Hub &amp; Sosyal Öğrenme Merkezi - PUSULA Lite</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#111318",
+                        "surface-dark": "#1e232e", // Slightly lighter than bg-dark for cards
+                        "surface-border": "#2e3646", // Border color for dark mode
+                        "accent-teal": "#0ea5e9", // For specific squad accents
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom Scrollbar for better dark mode look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111318; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e3646; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display antialiased selection:bg-primary selection:text-white">
+<!-- Top Navigation (Adapted from provided component) -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#282e39] bg-white dark:bg-[#111318] px-4 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">PUSULA Lite</h2>
+</div>
+<!-- Search -->
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-none">
+<div class="text-slate-500 dark:text-[#9ca6ba] flex border-none bg-slate-50 dark:bg-[#282e39] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-50 dark:bg-[#282e39] focus:border-none h-full placeholder:text-slate-400 dark:placeholder:text-[#9ca6ba] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Ara..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden lg:flex items-center gap-9">
+<a class="text-slate-900 dark:text-white text-sm font-bold border-b-2 border-primary pb-0.5 leading-normal" href="#">Klan Hub</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Öğrenme Yolu</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Atölyeler</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Profilim</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-[#282e39] text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-[#282e39] text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-4 md:px-10 py-6 max-w-[1440px] mx-auto w-full">
+<!-- Breadcrumbs & Header -->
+<div class="mb-8">
+<div class="flex flex-wrap gap-2 items-center mb-4 text-sm">
+<a class="text-slate-500 dark:text-[#9ca6ba] hover:text-primary transition-colors font-medium" href="#">Ana Sayfa</a>
+<span class="text-slate-500 dark:text-[#9ca6ba] font-medium">/</span>
+<span class="text-slate-900 dark:text-white font-medium">Klan Hub</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[28px]">explore</span>
+</div>
+<div>
+<h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Dijital Kaşifler</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Yazılım Geliştirme Takımı • Seviye 4</p>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-green-500/10 border border-green-500/20 px-4 py-2 rounded-full">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</div>
+<span class="text-green-700 dark:text-green-400 text-sm font-semibold">Klan Sağlık Durumu: İyi</span>
+</div>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start h-full">
+<!-- LEFT COLUMN: CLAN ROSTER (3 cols) -->
+<div class="lg:col-span-3 flex flex-col gap-6">
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-surface-border rounded-xl p-5 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">groups</span>
+                            Klan Üyeleri
+                        </h3>
+<span class="text-xs font-medium text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">5/5</span>
+</div>
+<!-- Member List -->
+<div class="flex flex-col gap-3">
+<!-- Member 1: Captain -->
+<div class="group flex flex-col gap-2 p-3 rounded-lg bg-slate-50 dark:bg-[#282e39]/50 border border-slate-100 dark:border-surface-border hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Portrait of Elif Y." class="w-10 h-10 rounded-full object-cover ring-2 ring-primary ring-offset-2 ring-offset-white dark:ring-offset-[#282e39]" data-alt="Portrait of a young woman smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNvEv3yLby7Zc_x5DnsxAtDmRcWZI3ZB3irbwzYQXycBQvToWUESCg7HyLcMvGCgdZMfLd29jMW7rCU8gAZarvj3DLiXH-fOpF2CMOOGHnWshyxh2B0V0ZWFfuF9WO234t1LfS6Kuad2CzBgflqUlt4dmvimytW1ZI-Zl1dSyUYnIihfzjmCO1ulmxhKVWK1vrt-oYuGhiJpNzJrnb2OSpUFNmLe7AFQ-LM7Bq1YvV5Op2Bwh22Lr5f0EyYk6VuKDc38i7jeYXMss"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-[#282e39] rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Elif Y.</p>
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-1.5 py-0.5 rounded">Kaptan</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Atölye notlarını inceliyor...</p>
+</div>
+</div>
+<!-- Weekly Rhythm -->
+<div class="flex items-center justify-between pt-2 mt-1 border-t border-slate-200 dark:border-white/5">
+<span class="text-[10px] font-medium text-slate-400 uppercase">Haftalık Ritim</span>
+<div class="flex gap-1.5">
+<div class="flex flex-col items-center gap-0.5" title="Pazartesi: Tamamlandı">
+<span class="text-[9px] text-slate-500">Pzt</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-0.5" title="Çarşamba: Tamamlandı">
+<span class="text-[9px] text-slate-500">Çrş</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-0.5" title="Cuma: Bekliyor">
+<span class="text-[9px] text-slate-500">Cum</span>
+<span class="material-symbols-outlined text-[14px] text-slate-600">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="group flex flex-col gap-2 p-3 rounded-lg bg-slate-50 dark:bg-[#282e39]/50 border border-slate-100 dark:border-surface-border hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Portrait of Can T." class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a young man with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-iZcuI1dK951JGlgVcsM00-jMd251twzhnuKlxHHLwGKszekkHTGYmCpBvnd5g2O2LrguXVwLS18X3rBIvhSH4H61l4v-H0DIBdbD0H9KxFmk58mQhO0AU-jfivcOnkkJQHm0_8CAruKNweOBOzo0MEpf2G13ZNLHs8cdNE3XOf8ow8udAUtAZQtnDcrk5wzJEAE-Ai_AF9aIJNwKe4OykNtVUPYdymqRD6-vEtzjzvA_37fg3JmY4_9CJRqs5Ox2rCusVWJ2980"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-amber-500 border-2 border-white dark:border-[#282e39] rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Can T.</p>
+<span class="text-[10px] font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-1.5 py-0.5 rounded">Destekçi</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Kodlama yapıyor</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 mt-1 border-t border-slate-200 dark:border-white/5">
+<span class="text-[10px] font-medium text-slate-400 uppercase">Haftalık Ritim</span>
+<div class="flex gap-1.5">
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Pzt</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Çrş</span>
+<span class="material-symbols-outlined text-[14px] text-slate-600">radio_button_unchecked</span>
+</div>
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Cum</span>
+<span class="material-symbols-outlined text-[14px] text-slate-600">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Member 3 -->
+<div class="group flex flex-col gap-2 p-3 rounded-lg bg-slate-50 dark:bg-[#282e39]/50 border border-slate-100 dark:border-surface-border hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Portrait of Mert A." class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a smiling young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtDXx9rykeGtU7j86Zcomhi0GVb5fQHX0pKi5Z9pB2-Hv_peF0mbxGB2kJzeB1NQmU4qAHWd2phEI3nX0_H4O8noMDvQLQ6cjgtEXRtTeDZUGjkx3blj0oq9IF5RaZYiljsd_T3R6W85Q5qPSh1m4ZE4IS2S9HyQBqvh7gcxCBKkjTBWwPdmVHYYRd5qt9xgD7m-KH-9avW8N5RH5mKmKeLDUwFRTPMi-JfoK4paP8RiNmBLV9wp3Q_WfI6GmgBunAkVJPuLkrNY4"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-gray-500 border-2 border-white dark:border-[#282e39] rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Mert A.</p>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-500/10 px-1.5 py-0.5 rounded">Üye</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Çevrimdışı - 2s önce</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 mt-1 border-t border-slate-200 dark:border-white/5">
+<span class="text-[10px] font-medium text-slate-400 uppercase">Haftalık Ritim</span>
+<div class="flex gap-1.5">
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Pzt</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Çrş</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Cum</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Member 4 -->
+<div class="group flex flex-col gap-2 p-3 rounded-lg bg-slate-50 dark:bg-[#282e39]/50 border border-slate-100 dark:border-surface-border hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Portrait of Zeynep K." class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a young woman with curly hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLtpbvqjmDSVP78uEV6gOCIHzu9Tj1qupbf45JQlUiBAjMLddUFYigoSkR5o7dt7EGnVfHdF3PbzYMRMnwz0hFI-v-9fQnesBXs4ZEAQc789mpnWni8FSUnGX4yjBxPv-UfQs2qALuhx5B5-B0ss23cN40ep8gNG_CLbPkl_OUDvQqi9jsMEyS7KCJX0fvPhFE-l972K8H71BHrbeZ26Uvv9_iZdo2XkdRj7ya-IBlpBdle9K13oSAiYkLbP2WzRTvuBdD0vfCx7c"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-[#282e39] rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Zeynep K.</p>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-500/10 px-1.5 py-0.5 rounded">Üye</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Atölye hazırlığı</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 mt-1 border-t border-slate-200 dark:border-white/5">
+<span class="text-[10px] font-medium text-slate-400 uppercase">Haftalık Ritim</span>
+<div class="flex gap-1.5">
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Pzt</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Çrş</span>
+<span class="material-symbols-outlined text-[14px] text-slate-600">radio_button_unchecked</span>
+</div>
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Cum</span>
+<span class="material-symbols-outlined text-[14px] text-slate-600">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Member 5 -->
+<div class="group flex flex-col gap-2 p-3 rounded-lg bg-slate-50 dark:bg-[#282e39]/50 border border-slate-100 dark:border-surface-border hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Portrait of Burak S." class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a young man in a business suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpQvvmUjiY4sNUEBc8qauNSRx-3MmAY0PZultxRmQazDnVRZewHtfJ7mNffUuFY1-P47zdr4iXIbeoHkPjHpwag0HT-woCeFDxHbxGfGGj-OAqI1sasmLihkaIjm7AlNyuzPY7ua-QOzww4eopLGg-uw1mdnYDtyLXkf7BJ6r1a0Hh5vc6RmHn3H-O281I93U-8h5cGdwzN2VaCxIf94JqxRaMzb7OCKm_MGcnhVO34nNbzYGVCEg5KpY09LBxQoOFishsShikdN8"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-gray-500 border-2 border-white dark:border-[#282e39] rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Burak S.</p>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-500/10 px-1.5 py-0.5 rounded">Üye</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Çevrimdışı - 1g önce</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 mt-1 border-t border-slate-200 dark:border-white/5">
+<span class="text-[10px] font-medium text-slate-400 uppercase">Haftalık Ritim</span>
+<div class="flex gap-1.5">
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Pzt</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Çrş</span>
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-0.5">
+<span class="text-[9px] text-slate-500">Cum</span>
+<span class="material-symbols-outlined text-[14px] text-slate-600">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CENTER COLUMN: WORKSHOP BOARD (6 cols) -->
+<div class="lg:col-span-6 flex flex-col gap-6">
+<!-- Main Board Container -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-surface-border rounded-xl p-6 shadow-sm flex-1 flex flex-col min-h-[600px]">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-indigo-500/10 rounded-lg text-indigo-500">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white font-bold text-xl">Cuma Atölyesi Hazırlığı</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Son güncelleme: 14 dk önce</p>
+</div>
+</div>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                            Not Ekle
+                        </button>
+</div>
+<!-- Problem Statement Card -->
+<div class="mb-6 rounded-lg overflow-hidden border border-slate-200 dark:border-surface-border bg-gradient-to-r from-slate-50 to-white dark:from-[#282e39] dark:to-surface-dark relative">
+<div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold uppercase tracking-wider text-indigo-500">Haftalık Yerel Sorun</span>
+<span class="material-symbols-outlined text-slate-400 text-[18px]">push_pin</span>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Mahalle Bazlı Atık Yönetimi ve Geri Dönüşüm</h4>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Yerel belediyenin atık toplama verimliliğini artırmak için vatandaşların geri bildirim verebileceği ve toplama saatlerini izleyebileceği bir mikro-uygulama prototipi tasarlanacak.
+                            </p>
+<div class="mt-4 flex gap-2">
+<span class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">#Sürdürülebilirlik</span>
+<span class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">#MobilUygulama</span>
+</div>
+</div>
+</div>
+<!-- Collaborative Notes Area -->
+<div class="flex-1 bg-slate-50 dark:bg-[#111318]/50 rounded-xl p-4 border border-dashed border-slate-300 dark:border-slate-700">
+<h5 class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">sticky_note_2</span>
+                            Ekip Notları
+                        </h5>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Note 1 -->
+<div class="bg-yellow-100 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800/30 p-4 rounded-lg transform hover:-translate-y-1 transition-transform cursor-pointer relative group">
+<p class="text-sm text-slate-800 dark:text-yellow-100 font-medium">Belediye açık veri portalından geçen yılın atık verilerini indirdim. CSV formatında drive'a yükledim.</p>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<img alt="Can T." class="w-5 h-5 rounded-full" data-alt="Avatar of Can T." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXqVJ4cFSLYRdPQV9hjG8jLeQ7wWU0tVCGU4uhZeq8ub8k7ic9KeCKapFa5IuPrBkugL8t78TX24EzMhPKAvYQEiOPQq5ThxIEI5mHcxrqP3KdcxS1M92Gc2uXx_CHOygaC3ccnmmt_0Nrx4Pr8qQYBDwYVzkxKKJmMBWbDzsVdPzypbefhvTGxxWkNhlfjnHOxvwT5mFzN0myQqI3bZcW6TCck6hBPqvzXydhsZk_dIJwvJ9AGzM1O9gtRtl5lwNH-MzNj59jfNI"/>
+<span class="text-xs text-yellow-700 dark:text-yellow-500/80">Can T.</span>
+</div>
+<span class="text-[10px] text-yellow-600/70">10:30</span>
+</div>
+</div>
+<!-- Note 2 -->
+<div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/30 p-4 rounded-lg transform hover:-translate-y-1 transition-transform cursor-pointer">
+<p class="text-sm text-slate-800 dark:text-blue-100 font-medium">Figma'da wireframe taslaklarını oluşturdum. Renk paleti için oylama yapalım mı?</p>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<img alt="Zeynep K." class="w-5 h-5 rounded-full" data-alt="Avatar of Zeynep K." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC12EW5AY78bxmLXtZMKkZaqKEx-s92YOSzdW309WHsFdvkG3XgZkDgLVs8QzUm6UFWYNjH-tJNrS3ezuqSnZVDal-tQaUWC5rWPguxmvrVWDfMmp1RKlJidLHPkt0Rusqz2RDm2q6X7vzdzuc3TyvIfPh-d_VReqgWahRJN98gjWAoOwr8ODXP_9-oUoqpqyvcn7lbsLb9DN5CmDwJFUOD4Xa-tiBaCkssHYiZ_RHZTqCxIjF740FQnrQPpQkp6wiPQTg0oKDgksI"/>
+<span class="text-xs text-blue-700 dark:text-blue-500/80">Zeynep K.</span>
+</div>
+<span class="text-[10px] text-blue-600/70">11:15</span>
+</div>
+</div>
+<!-- Note 3 -->
+<div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800/30 p-4 rounded-lg transform hover:-translate-y-1 transition-transform cursor-pointer">
+<p class="text-sm text-slate-800 dark:text-purple-100 font-medium">Sunum akışı için giriş kısmını hazırladım. Sorun tanımını netleştirmemiz gerek.</p>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<img alt="Elif Y." class="w-5 h-5 rounded-full" data-alt="Avatar of Elif Y." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPdc7AW11atSfXb50i6dWZCSu-UuYgyqK76jRfzHVC9neUtVoujSkDthzqhkv6t7NPQfcYZ0loKHKvnwXOLJGD-lYoghH6nHcpDyU7xx5HeWgvrh_Qerb_sxBLBlBhR9NpTYiT_KC8BgiEAcvjxj1oRrdQCMO9h__xVrjxuHz_5K3xJ9Y6NY1C_RzDwfaSkfDuai2bKtJLB7IUp9WvJryRgKRKsGoOGPmwbsPKs7KaqeeKhN-bj1mL6ebYrq712fwn1AlJgffdPMA"/>
+<span class="text-xs text-purple-700 dark:text-purple-500/80">Elif Y.</span>
+</div>
+<span class="text-[10px] text-purple-600/70">14:00</span>
+</div>
+</div>
+<!-- Add Note Placeholder -->
+<div class="border border-dashed border-slate-300 dark:border-slate-600 rounded-lg flex flex-col items-center justify-center p-4 text-slate-400 hover:text-primary hover:border-primary hover:bg-slate-50 dark:hover:bg-[#282e39] cursor-pointer transition-all">
+<span class="material-symbols-outlined mb-1">add_circle</span>
+<span class="text-sm font-medium">Yeni Not Ekle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: TKP & FEEDBACK (3 cols) -->
+<div class="lg:col-span-3 flex flex-col gap-6">
+<!-- Total TKP Widget -->
+<div class="bg-primary bg-gradient-to-br from-primary to-blue-700 rounded-xl p-6 text-white shadow-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]">military_tech</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2 text-blue-100">
+<span class="material-symbols-outlined text-[20px]">stars</span>
+<span class="text-sm font-medium uppercase tracking-wider">TKP Merkezi</span>
+</div>
+<h2 class="text-4xl font-extrabold tracking-tight mb-1">1,250</h2>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-sm font-medium opacity-90">Toplam Topluluk Katkı Puanı</span>
+<span class="bg-white/20 px-1.5 py-0.5 rounded text-xs font-bold">+12%</span>
+</div>
+<div class="w-full bg-black/20 rounded-full h-2 mb-2">
+<div class="bg-white h-2 rounded-full" style="width: 65%"></div>
+</div>
+<p class="text-xs text-blue-200">Sonraki seviye için 250 puan kaldı</p>
+</div>
+</div>
+<!-- Leaderboard Mini -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-surface-border rounded-xl p-5 shadow-sm">
+<h3 class="text-slate-900 dark:text-white font-bold text-sm mb-4 uppercase tracking-wider text-opacity-80">Haftanın Liderleri</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-sm font-bold text-yellow-500 w-4">1</div>
+<img alt="Can T." class="w-8 h-8 rounded-full" data-alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgtTQVU4Se_9B_KvQko7l4tVjae7tT-CmlanIhMTypywVcsCir5O-e91ggortDUqtwjHYEzYhsjRv8ikn-Z0r8WaEUQyF5w7Wo7SxIEq63NmItuOvuY1CTlWygAvhIqDrScQLrDpuWuYxTU8bfKarUw1sK05oCnOOKXiyt5707oJ18OAODSGO3k94CF7N2wCet6ED3TXUEcnbXxGdcPCfcWGrIT4d1rBkOvYEQ1lKeS-4vrc8jtZou5afdPe5Y-Pgz9-6QlwAt9yM"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">Can T.</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">450 TKP</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-sm font-bold text-slate-400 w-4">2</div>
+<img alt="Elif Y." class="w-8 h-8 rounded-full" data-alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfi60gP3KSG-Wf8eiDUnqXbWZqzBa40wL98Tr0inxVMp1wBnqTAjdSq9Qc6oDV1XHwjK-f6eUAOQjvPGLcCAEXKe2MDVcCyX0PIdZgGpHLkNUBIIZNM_h7G-vQFO6QDmxskgkWHA9jH9W_E4--ey9IAFkpzgRhqbMyCRn2Vj1gBRmEsQEv9thnYI0LGLEf2hcjzScFCvpJgiQF06HQFLRZGWmhW_CzyaJLGIC8OKN8gWT8GQkUd92fVEkWBiFMKIaDPPIOWajdN8E"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">Elif Y.</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">380 TKP</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-sm font-bold text-orange-700 dark:text-orange-400 w-4">3</div>
+<img alt="Zeynep K." class="w-8 h-8 rounded-full" data-alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTjTFmt6HM7Z8p_JbkNNDDuyd6x5LCcTUzFPRimyon2B3r3YvjXeyDLi_f8wD_NTV9Zj-vIAyqa1UP-0wP6bR2b-iYYFkk44Zqjam8lt1ZKxrxQkJUZHqEewy1iDm_U0xNT8rI3RjmJH5k4Dji66u6Ps4L-TSNqWiuUhQRZM1CpLxf3NzsbrVtfTXFPaKAmydpmE1lH-qlOaL8JI5CCv4f57sGGG61iy2zcNdFX55bSh_1xUxhjpEChB3UIGr74msmznS1QV1VA_U"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">Zeynep K.</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">310 TKP</span>
+</div>
+</div>
+</div>
+<!-- Review Queue -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-surface-border rounded-xl p-5 shadow-sm flex-1">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-slate-900 dark:text-white font-bold text-sm uppercase tracking-wider text-opacity-80">Klan Review Sırası</h3>
+<span class="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">2</span>
+</div>
+<div class="flex flex-col gap-3">
+<div class="p-3 bg-slate-50 dark:bg-[#282e39] rounded-lg border-l-4 border-l-orange-500 border border-slate-100 dark:border-surface-border hover:bg-slate-100 dark:hover:bg-[#2e3646] transition-colors cursor-pointer group">
+<div class="flex justify-between mb-1">
+<span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Tasarım</span>
+<span class="text-[10px] text-slate-400">2s önce</span>
+</div>
+<p class="text-sm font-medium text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">Ana Sayfa Mockup Revizyonu</p>
+<div class="flex items-center gap-2">
+<img alt="User" class="w-5 h-5 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9DsQT8RsahYyrakzO64M__XWKJ5_vPLZ866O3AQVV6RGifaCH-XVK7cXH7dqtf8paRGtoU0abZeT2cvb70wuKcoW1bjFUXIczkMRwvJIuL3-9CiqmwdC7_sNh5YH4_TSX6FXNry-iIAPs15n1SM2qlPRtbD7twbvy8IzWRL0gWTEGmZv8AYqjVQ803yVjRt-3MaXkpsXxkHoF74jqn29LgrePEbiRmr7rcekm10B09jde9zgOuAz-__PSBDrs6HkS1mZ0sbHs73E"/>
+<span class="text-xs text-slate-500 dark:text-slate-400">Zeynep K.</span>
+</div>
+<button class="mt-3 w-full py-1.5 rounded bg-white dark:bg-black/20 text-xs font-bold text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary dark:hover:text-primary transition-all">İncele</button>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-[#282e39] rounded-lg border-l-4 border-l-blue-500 border border-slate-100 dark:border-surface-border hover:bg-slate-100 dark:hover:bg-[#2e3646] transition-colors cursor-pointer group">
+<div class="flex justify-between mb-1">
+<span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Yazılım</span>
+<span class="text-[10px] text-slate-400">4s önce</span>
+</div>
+<p class="text-sm font-medium text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">API Entegrasyonu PR</p>
+<div class="flex items-center gap-2">
+<img alt="User" class="w-5 h-5 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyTkgDc1AqnmMwmjYg-4YsCips7AFXmsNtrnoZh0Sg3aa6KuKkFMDzcQee6nGoy3K-H_0AtP893tYDjiuwwFEi5nj_zw7fFsRXrUbrV7mb9jeX4La4Qdz-6HAAq3ZRSkev3nxk3s1HYclEpeODo_XZBnWmsBAKyAWjuwi-5UNQi0JZX0gHBG6S-hUuxWhR2wHtuTX3QCaEiUZ1ULcYj4TdgRwaJeyV3h2C7Ya8ml5VghuajQilhNVxQtvnAxlYwL5KozfxDv_uA8M"/>
+<span class="text-xs text-slate-500 dark:text-slate-400">Can T.</span>
+</div>
+<button class="mt-3 w-full py-1.5 rounded bg-white dark:bg-black/20 text-xs font-bold text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary dark:hover:text-primary transition-all">Kod İncele</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

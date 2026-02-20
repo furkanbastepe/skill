@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGEM - Profil ve Beceri Pasaportu</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#137fec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            "surface-dark": "#1b2733",
+            "surface-light": "#ffffff",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"],
+            "body": ["Noto Sans", "sans-serif"],
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom Spider Chart Drawing using CSS Conic Gradients and Clip Paths could be complex, 
+       simulating it with simple CSS shapes or SVGs is better for a static mockup */
+    .spider-web-bg {
+      background-image: 
+        radial-gradient(circle, transparent 19%, #3b4754 20%, transparent 21%),
+        radial-gradient(circle, transparent 39%, #3b4754 40%, transparent 41%),
+        radial-gradient(circle, transparent 59%, #3b4754 60%, transparent 61%),
+        radial-gradient(circle, transparent 79%, #3b4754 80%, transparent 81%);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50 font-display min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-slate-200 dark:border-b-[#283039] px-6 lg:px-10 py-3 bg-surface-light dark:bg-[#111418] sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">DIGEM</h2>
+</div>
+<div class="hidden md:flex items-center bg-slate-100 dark:bg-[#283039] rounded-lg px-3 py-2 w-64">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+<input class="bg-transparent border-none outline-none text-sm ml-2 w-full text-slate-700 dark:text-white placeholder:text-slate-400 focus:ring-0" placeholder="Search courses, skills..."/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#">Courses</a>
+<a class="text-primary text-sm font-bold" href="#">Passport</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#">Community</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-surface-light dark:border-[#111418]"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border-2 border-slate-200 dark:border-slate-700 cursor-pointer" data-alt="User profile avatar thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7kmY4qNVynvjAIRRnnPBvJyHheqbcmwR8-wu_vcyt5lbtmiII5ejVxiY8anvOtoBBzqIWCrkaAUhVZl21xDWvxsZMn9Fi2DQ2FeONRW2s0aWkucDPYEpNbfR0Jrc4aK7xJT7au6b3YUndSzM732UIzWQPWfe0PdbRgpzPuDEOU0g39X9dJYqSrMwCARUKfuVFb0YO3ajEJBdH0_7fFA6-gckTRLJwPNaYa5PSzkm8PbHx-Ha0agNm8N4U0hLZHrIDpy2Qq7KkTw");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-[1280px] flex flex-col gap-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-2">Competency Passport</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base">Your digital learning identity and skill verification matrix.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-dark dark:bg-[#283039] hover:bg-slate-700 text-white text-sm font-bold transition-all border border-slate-700">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                Download CV
+            </button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                Share Profile
+            </button>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+<!-- Left Column: Profile & Stats (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Profile Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col items-center text-center relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-blue-900 via-primary to-blue-500 opacity-20"></div>
+<div class="relative mt-8 mb-4">
+<div class="size-28 rounded-full border-4 border-white dark:border-surface-dark shadow-xl bg-cover bg-center" data-alt="Portrait of student Ahmet Yılmaz" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYa02puiXCqpJi5mHy-kRWw0vAzulCmd9rk1f3XeoDFB66o-mnhwYwSpUsfAvnXINqMXV0MNbPO4lH8XbJtc2-EpbYH-ApAdO9s6CN6F1CpwQ8dJeCXbUQ0b6chw7vr2QV_hZm3YXF8GxNdZoGLIySu22fUg-Kt0h3dpsCe6eMhINkN_usyPE-Py4jLKgxAwmFvy6HLAQVqCaO0MEqOAjqaIa4aF47Nc5mtmSZCsdq5lLX9MZtDuGm8Ou7AcJPKYUcP3Gl42WtpQ");'></div>
+<div class="absolute bottom-1 right-1 bg-green-500 rounded-full p-1 border-2 border-white dark:border-surface-dark" title="Verified Student">
+<span class="material-symbols-outlined text-white text-[14px] font-bold block">check</span>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Ahmet Yılmaz</h2>
+<p class="text-primary font-medium text-sm mb-4">Digital Explorer Lvl 4 • Ankara Youth Center</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                    Aspiring game developer and robotics enthusiast with a passion for creative problem solving. Currently mastering Python and Unity 3D.
+                </p>
+<div class="w-full flex flex-col gap-2">
+<div class="flex justify-between items-center text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
+<span>Level Progress</span>
+<span>85%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<!-- Stats Grid (Ticker) -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-4 flex flex-col gap-1">
+<div class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Hours Learned</div>
+<div class="text-3xl font-bold text-slate-900 dark:text-white">124</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-4 flex flex-col gap-1">
+<div class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Projects</div>
+<div class="text-3xl font-bold text-slate-900 dark:text-white">12</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-4 flex flex-col gap-1">
+<div class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Badges</div>
+<div class="text-3xl font-bold text-slate-900 dark:text-white">8</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-4 flex flex-col gap-1">
+<div class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Global Rank</div>
+<div class="text-3xl font-bold text-primary">Top 5%</div>
+</div>
+</div>
+<!-- Verified Skills -->
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Verified Skills</h3>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+<span class="material-symbols-outlined text-[14px]">code</span> Python
+                    </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+<span class="material-symbols-outlined text-[14px]">view_in_ar</span> 3D Modeling
+                    </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+<span class="material-symbols-outlined text-[14px]">groups</span> Team Lead
+                    </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span> Robotics
+                    </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">
+                        +4 More
+                    </span>
+</div>
+</div>
+</div>
+<!-- Right Column: Visualization & Portfolio (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Competency Matrix (Spider Chart Visualization) -->
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6 md:p-8">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Competency Matrix</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Skill distribution across core learning vectors.</p>
+</div>
+<div class="hidden sm:flex gap-4 text-xs font-medium">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-primary"></span> Current
+                        </div>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-slate-300 dark:bg-slate-600"></span> Class Avg
+                        </div>
+</div>
+</div>
+<!-- Abstract Spider Chart Implementation with SVG -->
+<div class="relative w-full aspect-[16/9] md:aspect-[2/1] flex items-center justify-center spider-web-bg rounded-lg overflow-hidden bg-slate-50 dark:bg-[#151f29]">
+<!-- Labels positioned absolutely -->
+<span class="absolute top-4 font-bold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-white/80 dark:bg-black/50 px-2 py-1 rounded">Problem Solving</span>
+<span class="absolute bottom-4 font-bold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-white/80 dark:bg-black/50 px-2 py-1 rounded">Creativity</span>
+<span class="absolute left-4 font-bold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-white/80 dark:bg-black/50 px-2 py-1 rounded">Technical</span>
+<span class="absolute right-4 font-bold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-white/80 dark:bg-black/50 px-2 py-1 rounded">Communication</span>
+<svg class="w-full h-full max-w-lg mx-auto" preserveaspectratio="none" viewbox="0 0 200 100">
+<!-- Grid Lines -->
+<path d="M100 10 L100 90 M20 50 L180 50" stroke="#3b4754" stroke-dasharray="2,2" stroke-width="0.5"></path>
+<polygon fill="none" opacity="0.5" points="100,10 180,50 100,90 20,50" stroke="#3b4754" stroke-width="0.5"></polygon>
+<polygon fill="none" opacity="0.5" points="100,30 140,50 100,70 60,50" stroke="#3b4754" stroke-width="0.5"></polygon>
+<!-- Data Shape: Current User (Blue) -->
+<polygon class="drop-shadow-lg" fill="rgba(19, 127, 236, 0.4)" points="100,15 160,50 100,80 40,50" stroke="#137fec" stroke-width="2"></polygon>
+<circle cx="100" cy="15" fill="#137fec" r="2"></circle>
+<circle cx="160" cy="50" fill="#137fec" r="2"></circle>
+<circle cx="100" cy="80" fill="#137fec" r="2"></circle>
+<circle cx="40" cy="50" fill="#137fec" r="2"></circle>
+<!-- Data Shape: Average (Gray) - behind -->
+<polygon fill="none" opacity="0.6" points="100,35 130,50 100,75 50,50" stroke="#64748b" stroke-dasharray="2,1" stroke-width="1"></polygon>
+</svg>
+</div>
+</div>
+<!-- Artifacts Portfolio Grid -->
+<div>
+<div class="flex items-center justify-between mb-4 mt-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Artifacts &amp; Evidence</h3>
+<div class="flex gap-2">
+<button class="p-1.5 rounded-lg bg-white dark:bg-surface-dark text-slate-500 hover:text-primary border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</button>
+<button class="p-1.5 rounded-lg bg-transparent text-slate-500 hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">list</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+<!-- Artifact Card 1 -->
+<div class="group relative bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10">
+<div class="aspect-video w-full bg-slate-800 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Retro computer game screen with colorful pixels" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKCVMQsEv6yPteYPZJ7SDRcYqtjuIyVI9dYqYBKJf3wUtvelZARn7pUg7LBLUPwuhToNi-3RzPmIX7AY6Q0BFyjKQLBOsUdelAfpWWh1V65l5VnW2dUICyJ8NYnXwc6dxTiXA7g-xxKRLUgRL1Bf9N-CGlVf6ohpq-bu9M-NlSZtzGksYbhSsbRrY7UdZA3g__O3Ov8wzlVb33Zpl4nST2_eXxYcmWpopIlprWSHjARkvUrdz7rNbhHmx-_YcnxVO7tigTBd9qGw");'></div>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">sports_esports</span> Game Dev
+                            </div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Unity Space Shooter</h4>
+<span class="material-symbols-outlined text-green-500 text-[18px]" title="Verified Output">verified</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3">
+                                A 2D arcade shooter built with C# and Unity. Implements physics engine and custom particle systems.
+                            </p>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-700">
+<span class="text-xs font-medium text-slate-400">Oct 24, 2023</span>
+<button class="text-xs font-bold text-primary hover:text-blue-400">View Project</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 2 -->
+<div class="group relative bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10">
+<div class="aspect-video w-full bg-slate-800 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Industrial robot arm in a manufacturing setting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6qNfwcdKfAMSpWBJgkUvgfLxfNWRPhHQAzT5IEhXrbpZQzaFTQhaqmYZmNSejVIxEgxiQIRgxp8rroykrILTiBKF_dOkPdqJkg-PyaItvheyvHzHX1M5vvbNfPJ5NXo5w-gv6gH1fyYD28FJ0g609jIjGehzMnSFhQXDZhqXoJQ6_Wg8Pc8-95F160GICfusrt16sifu7zxF9DwAZcR0kwDxZb-cC996dNS_FtJYvjTrf04URzfTmGB4EefT6e5riEwO8GMSHTw");'></div>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">precision_manufacturing</span> Robotics
+                            </div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Arduino Servo Arm</h4>
+<span class="material-symbols-outlined text-green-500 text-[18px]" title="Verified Output">verified</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3">
+                                4-DOF robotic arm prototype controlled via potentiometer inputs. Programmed in C++.
+                            </p>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-700">
+<span class="text-xs font-medium text-slate-400">Nov 12, 2023</span>
+<button class="text-xs font-bold text-primary hover:text-blue-400">View Project</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 3 (Certificate) -->
+<div class="group relative bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10">
+<div class="aspect-video w-full bg-slate-800 relative overflow-hidden">
+<!-- Abstract pattern for certificate -->
+<div class="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-slate-600">workspace_premium</span>
+</div>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">card_membership</span> Certificate
+                            </div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Cybersecurity Basics</h4>
+<span class="material-symbols-outlined text-green-500 text-[18px]" title="Verified Output">verified</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3">
+                                Completion certificate for the intro to network security and ethical hacking module.
+                            </p>
+<div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-700">
+<span class="text-xs font-medium text-slate-400">Dec 05, 2023</span>
+<button class="text-xs font-bold text-primary hover:text-blue-400">View Certificate</button>
+</div>
+</div>
+</div>
+<!-- Add New / Placeholder -->
+<button class="group flex flex-col items-center justify-center gap-3 bg-slate-50 dark:bg-transparent rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-primary hover:bg-slate-100 dark:hover:bg-[#151f29] transition-all min-h-[260px]">
+<div class="bg-slate-200 dark:bg-[#283039] rounded-full p-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-3xl">add</span>
+</div>
+<span class="text-sm font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary">Add New Artifact</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-[#111418] py-8 mt-12">
+<div class="max-w-[960px] mx-auto px-4 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">DIGEM Student Passport System v2.4</p>
+<p class="text-slate-400 dark:text-slate-600 text-xs">Last updated: Today at 14:32</p>
+</div>
+</footer>
+</body></html>

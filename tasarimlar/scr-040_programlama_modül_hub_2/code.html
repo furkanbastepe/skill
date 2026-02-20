@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-040 Programlama Modül Hub</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c242c",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col text-slate-900 dark:text-white overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-[#283039] bg-background-light/80 dark:bg-[#111418]/90 backdrop-blur-md">
+<div class="px-4 md:px-10 py-3 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl filled">terminal</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">DIGEM | Programlama</h2>
+</div>
+<div class="flex items-center gap-4 md:gap-8">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Ana Sayfa</a>
+<a class="text-sm font-medium text-primary" href="#">Modüller</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Liderlik Tablosu</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Kaynaklar</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-lg size-10 hover:bg-slate-200 dark:hover:bg-[#283039] transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<div aria-label="User avatar showing a young person smiling" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-[#283039]" role="img" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDC64T5g1DNXO-HQNdyqc59PXr3TvPq9qLOd9bUFUEyVs-_C7FA3NPIIyez-pbYCwY4E3LhFPuIDvpGaFxCEkpMq1Dfj1pLtX3v65AhIS-_HZ5NJrT6DNb6P4gJneCqDFGolLwQxnd3V3Yf5unkQ2dWWpi2FPGBoR0wNGblMnVFfSm2hu16255-C-BRbAMx2sMt53HAN-qhyqMRP3tm6pVYVEUFGweY-gy26ysfB-OfzSK3cIb5NvCm_QkQl_IJqJK_qMJyID3k1A");'>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 flex-col lg:flex-row max-w-[1440px] mx-auto w-full p-4 md:p-8 gap-8">
+<!-- Sidebar Stats Area (Mobile: Top, Desktop: Left Sticky) -->
+<aside class="w-full lg:w-80 flex flex-col gap-6 shrink-0">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 text-sm text-slate-500 dark:text-[#9dabb9]">
+<a class="hover:text-primary" href="#">Ana Sayfa</a>
+<span>/</span>
+<a class="hover:text-primary" href="#">Programlama</a>
+<span>/</span>
+<span class="text-slate-900 dark:text-white font-medium">SCR-040</span>
+</div>
+<!-- Header Info -->
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    Temel Programlama
+                </h1>
+<p class="text-slate-500 dark:text-[#9dabb9]">
+                    Python sözdizimi, mantık ve robotik kodlama temellerini öğrenin.
+                </p>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-2 lg:grid-cols-1 gap-4">
+<!-- Streak -->
+<div class="group relative overflow-hidden rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#3b4754] p-5 shadow-sm transition-all hover:border-primary/50">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-orange-500">local_fire_department</span>
+</div>
+<div class="flex flex-col gap-1 relative z-10">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-orange-500 filled">local_fire_department</span>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Kodlama Serisi</h3>
+</div>
+<span class="text-2xl font-bold">12 Gün</span>
+<p class="text-xs text-slate-500 dark:text-slate-400">Harika gidiyorsun! 🔥</p>
+</div>
+</div>
+<!-- XP -->
+<div class="group relative overflow-hidden rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#3b4754] p-5 shadow-sm transition-all hover:border-primary/50">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-yellow-400">bolt</span>
+</div>
+<div class="flex flex-col gap-1 relative z-10">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-yellow-400 filled">bolt</span>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Toplam XP</h3>
+</div>
+<span class="text-2xl font-bold">1250 XP</span>
+<p class="text-xs text-slate-500 dark:text-slate-400">Sonraki seviyeye: 250 XP</p>
+</div>
+</div>
+<!-- Overall Progress -->
+<div class="col-span-2 lg:col-span-1 rounded-xl bg-primary/10 border border-primary/20 p-5">
+<div class="flex justify-between items-end mb-2">
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-primary">Genel İlerleme</h3>
+<span class="text-2xl font-bold text-slate-900 dark:text-white">35%</span>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 35%"></div>
+</div>
+</div>
+</div>
+<!-- Mentor Contact -->
+<div class="mt-auto hidden lg:flex items-center gap-3 p-4 rounded-lg bg-slate-100 dark:bg-[#1c2127]">
+<div aria-label="Mentor avatar showing a man with glasses" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" role="img" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQo4-3BZ0VMJrgGazceqscfNv4_TYICgOd2IFuepNJFMFOXkfOSdP71RJtCVbFT7bKIzx6NLuK1RLiw_IvB0ucgDVdElj647bV8d1VbvWBOf2tCP4eMBGR8eLVQVdDfOalG7ErIkZ_ArmEz_K9dr-mU1gYd-Ck6pgssbYEjy9dZT4SdaoBNYgflhz901Av6oAdXNwiuGqnKMbY08UUeC-FWFZVCJ-reO1qFnKYwYDMJcqN09wZOKL_Em4wPcWm7oO6siAFeYyohA");'>
+</div>
+<div>
+<p class="text-xs font-medium text-slate-500 dark:text-[#9dabb9]">Eğitmen</p>
+<p class="text-sm font-bold">Ahmet Yılmaz</p>
+</div>
+<button class="ml-auto text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Grid -->
+<main class="flex-1 flex flex-col gap-8">
+<!-- Filter / Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200 dark:border-[#283039]">
+<button class="px-4 py-2 text-sm font-medium text-primary border-b-2 border-primary">Tüm Birimler</button>
+<button class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-[#9dabb9] hover:text-primary hover:border-b-2 hover:border-primary/50 transition-all">Tamamlananlar</button>
+<button class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-[#9dabb9] hover:text-primary hover:border-b-2 hover:border-primary/50 transition-all">Devam Edenler</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Card 1: Completed -->
+<div class="group relative flex flex-col h-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#3b4754] rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300">
+<div class="h-32 w-full bg-gradient-to-br from-emerald-500/20 to-emerald-900/20 relative overflow-hidden">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-500 text-6xl opacity-20 transform -rotate-12 group-hover:scale-110 transition-transform">code</span>
+</div>
+<div class="absolute top-3 right-3 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                            Tamamlandı
+                        </div>
+</div>
+<div class="p-5 flex flex-col flex-1 gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-emerald-500/10 p-2 rounded-lg text-emerald-500">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">Python Sözdizimi</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Ünite 1</p>
+</div>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-[#9dabb9] line-clamp-2">
+                            Değişkenler, veri tipleri ve temel yazdırma komutlarını öğrenin.
+                        </p>
+<div class="mt-auto">
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mb-2">
+<div class="bg-emerald-500 h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+<button class="w-full py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                               Tekrar Et
+                           </button>
+</div>
+</div>
+</div>
+<!-- Card 2: Active / In Progress -->
+<div class="group relative flex flex-col h-full bg-white dark:bg-surface-dark border-2 border-primary rounded-xl overflow-hidden shadow-lg shadow-primary/10 hover:-translate-y-1 transition-all duration-300 ring-2 ring-primary/20 ring-offset-2 ring-offset-[#111418]">
+<div class="h-32 w-full bg-gradient-to-br from-primary/20 to-blue-900/20 relative overflow-hidden">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl opacity-20 transform group-hover:scale-110 transition-transform">calculate</span>
+</div>
+<div class="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1 animate-pulse">
+<span class="material-symbols-outlined text-[14px]">play_circle</span>
+                            Devam Ediyor
+                        </div>
+</div>
+<div class="p-5 flex flex-col flex-1 gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">functions</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary">Mantıksal Operatörler</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Ünite 2</p>
+</div>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-[#9dabb9] line-clamp-2">
+                            AND, OR, NOT operatörleri ile karar mekanizmaları oluşturun.
+                        </p>
+<div class="mt-auto">
+<div class="flex justify-between text-xs mb-1 text-slate-500">
+<span>İlerleme</span>
+<span>60%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mb-4">
+<div class="bg-primary h-1.5 rounded-full" style="width: 60%"></div>
+</div>
+<button class="w-full py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-blue-600 transition-colors shadow-md shadow-primary/30">
+                               Devam Et
+                           </button>
+</div>
+</div>
+</div>
+<!-- Card 3: Locked -->
+<div class="group relative flex flex-col h-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#3b4754] rounded-xl overflow-hidden opacity-75 hover:opacity-100 transition-all duration-300">
+<div class="h-32 w-full bg-slate-100 dark:bg-[#151b23] relative overflow-hidden grayscale">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-6xl opacity-20">repeat</span>
+</div>
+<div class="absolute top-3 right-3 bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-300 text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                            Kilitli
+                        </div>
+</div>
+<div class="p-5 flex flex-col flex-1 gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg text-slate-400">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-500 dark:text-slate-400">Döngüler</h3>
+<p class="text-xs text-slate-400 dark:text-slate-500">Ünite 3</p>
+</div>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-500 line-clamp-2">
+                            For ve While döngüleri ile kodunuzu tekrarlayın.
+                        </p>
+<div class="mt-auto">
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mb-2">
+<div class="bg-slate-300 dark:bg-slate-600 h-1.5 rounded-full" style="width: 0%"></div>
+</div>
+<button class="w-full py-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-600 text-slate-400 text-sm font-medium cursor-not-allowed" disabled="">
+                                Önce Ünite 2'yi Bitir
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 4: Locked -->
+<div class="group relative flex flex-col h-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#3b4754] rounded-xl overflow-hidden opacity-75 hover:opacity-100 transition-all duration-300">
+<div class="h-32 w-full bg-slate-100 dark:bg-[#151b23] relative overflow-hidden grayscale">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-6xl opacity-20">data_object</span>
+</div>
+<div class="absolute top-3 right-3 bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-300 text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                            Kilitli
+                        </div>
+</div>
+<div class="p-5 flex flex-col flex-1 gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg text-slate-400">
+<span class="material-symbols-outlined">data_object</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-500 dark:text-slate-400">Fonksiyonlar</h3>
+<p class="text-xs text-slate-400 dark:text-slate-500">Ünite 4</p>
+</div>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-500 line-clamp-2">
+                            Yeniden kullanılabilir kod blokları oluşturma.
+                        </p>
+<div class="mt-auto">
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mb-2">
+<div class="bg-slate-300 dark:bg-slate-600 h-1.5 rounded-full" style="width: 0%"></div>
+</div>
+<button class="w-full py-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-600 text-slate-400 text-sm font-medium cursor-not-allowed" disabled="">
+                                Kilitli
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 5: Locked -->
+<div class="group relative flex flex-col h-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#3b4754] rounded-xl overflow-hidden opacity-75 hover:opacity-100 transition-all duration-300">
+<div class="h-32 w-full bg-slate-100 dark:bg-[#151b23] relative overflow-hidden grayscale">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-6xl opacity-20">bug_report</span>
+</div>
+<div class="absolute top-3 right-3 bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-300 text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                            Kilitli
+                        </div>
+</div>
+<div class="p-5 flex flex-col flex-1 gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg text-slate-400">
+<span class="material-symbols-outlined">pest_control</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-500 dark:text-slate-400">Hata Ayıklama</h3>
+<p class="text-xs text-slate-400 dark:text-slate-500">Ünite 5</p>
+</div>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-500 line-clamp-2">
+                            Kodunuzdaki hataları bulma ve düzeltme teknikleri.
+                        </p>
+<div class="mt-auto">
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mb-2">
+<div class="bg-slate-300 dark:bg-slate-600 h-1.5 rounded-full" style="width: 0%"></div>
+</div>
+<button class="w-full py-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-600 text-slate-400 text-sm font-medium cursor-not-allowed" disabled="">
+                                Kilitli
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 6: Locked -->
+<div class="group relative flex flex-col h-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#3b4754] rounded-xl overflow-hidden opacity-75 hover:opacity-100 transition-all duration-300">
+<div class="h-32 w-full bg-slate-100 dark:bg-[#151b23] relative overflow-hidden grayscale">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-6xl opacity-20">science</span>
+</div>
+<div class="absolute top-3 right-3 bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-300 text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                            Kilitli
+                        </div>
+</div>
+<div class="p-5 flex flex-col flex-1 gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg text-slate-400">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-500 dark:text-slate-400">Robot Lab</h3>
+<p class="text-xs text-slate-400 dark:text-slate-500">Ünite 6</p>
+</div>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-500 line-clamp-2">
+                            Öğrendiklerinizi sanal robot üzerinde test edin.
+                        </p>
+<div class="mt-auto">
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mb-2">
+<div class="bg-slate-300 dark:bg-slate-600 h-1.5 rounded-full" style="width: 0%"></div>
+</div>
+<button class="w-full py-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-600 text-slate-400 text-sm font-medium cursor-not-allowed" disabled="">
+                                Kilitli
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Boss Mission Card (Full Width) -->
+<div class="relative w-full rounded-2xl overflow-hidden border border-red-900/50 bg-[#1c1212] mt-4 group cursor-not-allowed">
+<!-- Background Image with Overlay -->
+<div aria-label="Abstract futuristic robot arena background" class="absolute inset-0 bg-cover bg-center opacity-30 grayscale group-hover:grayscale-0 transition-all duration-700" role="img" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA3g0uwuh9RD9OkWw0CoxSgeqtGD1-rV7pcGSl5aQEJdY1RJfDT7-KMzvu3Z5Gpw3NczYbh0KDy6roN_GLHKb9CMz8w11mRIg7SqjG-MG3KCtgdLMvgSwUSzMdTd_y9kOqy10TrBeWV7zu-qc72pRTQGhyzS1mY5lLBjLwQWiM_8Wa_JXMz6tzyUXvsosRVr6j1BW4Vys9ASeN8T3zK85EkMOvDW8rl1lI8d2zgnzuP8xU_NNWL353GficvXg1Z8QMrv4KG58GWlQ");'>
+</div>
+<!-- Content -->
+<div class="relative z-10 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex flex-col gap-4 text-center md:text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 text-xs font-bold uppercase tracking-widest w-fit mx-auto md:mx-0">
+<span class="material-symbols-outlined text-sm">lock</span>
+                            Final Görevi
+                        </div>
+<h2 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
+                            🤖 Robot Arenası
+                        </h2>
+<p class="text-slate-300 max-w-xl">
+                            Tüm programlama yeteneklerini sergileyeceğin büyük final. Kendi otonom robotunu kodla ve arenada hayatta kal!
+                        </p>
+</div>
+<div class="flex flex-col items-center gap-3 min-w-[200px]">
+<div class="size-20 rounded-full bg-red-950/80 border-2 border-red-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.3)]">
+<span class="material-symbols-outlined text-4xl text-red-500 opacity-50">smart_toy</span>
+</div>
+<span class="text-red-400 text-sm font-medium bg-black/40 px-3 py-1 rounded backdrop-blur-sm">
+                            Gereksinim: Tüm Modülleri Bitir
+                        </span>
+</div>
+</div>
+<!-- Hover Tooltip Hint (Using CSS only) -->
+<div class="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-20">
+<div class="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="material-symbols-outlined text-red-500 text-5xl mb-4">lock_clock</span>
+<h3 class="text-2xl font-bold text-white mb-2">Erişim Engellendi</h3>
+<p class="text-slate-300">Robot Arenasına girmek için önceki 6 modülü %100 tamamlamalısın.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

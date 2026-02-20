@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atölye Showcase: Sunum ve Geri Bildirim</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622", // Deep charcoal/almost black
+                        "surface-dark": "#1b1f27", // Slightly lighter for cards
+                        "surface-darker": "#161920", // Even darker for contrast
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#282e39] bg-white dark:bg-[#111318] px-6 py-3 shrink-0 z-20 relative">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-6 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<h2 class="text-base font-bold leading-tight tracking-[-0.015em]">PUSULA Lite</h2>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Cuma Atölyesi Showcase</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Mentor Status Badge -->
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span class="text-xs font-bold uppercase tracking-wide">Mentor Gözlemi Bekleniyor</span>
+</div>
+<div class="h-6 w-px bg-slate-200 dark:bg-[#282e39] mx-1"></div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-9 w-9 bg-slate-100 dark:bg-[#282e39] text-slate-600 dark:text-white hover:bg-slate-200 dark:hover:bg-[#323946] transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-9 w-9 bg-slate-100 dark:bg-[#282e39] text-slate-600 dark:text-white hover:bg-slate-200 dark:hover:bg-[#323946] transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="flex flex-1 overflow-hidden h-full relative">
+<!-- Center Stage: Presentation & Feedback -->
+<section class="flex-1 flex flex-col h-full overflow-y-auto custom-scrollbar relative z-10">
+<!-- Top Presentation Header -->
+<div class="px-6 pt-6 pb-2 flex flex-wrap justify-between items-end gap-4">
+<div class="flex min-w-72 flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider">CANLI SUNUM</span>
+<span class="text-slate-400 text-sm font-medium">14:30 - 15:00</span>
+</div>
+<h1 class="text-2xl md:text-[32px] font-bold leading-tight text-slate-900 dark:text-white">Klan 12 - Sürdürülebilirlik Çözümü</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="group flex items-center justify-center gap-2 h-9 px-4 rounded-lg bg-slate-200 dark:bg-[#282e39] text-slate-700 dark:text-white hover:bg-slate-300 dark:hover:bg-[#363d4b] transition-all text-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="hidden sm:inline">Slaytı İndir</span>
+</button>
+<button class="group flex items-center justify-center gap-2 h-9 px-4 rounded-lg bg-primary text-white hover:bg-blue-600 transition-all text-sm font-bold shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+<span>Tam Ekran</span>
+</button>
+</div>
+</div>
+<!-- Presentation Viewer -->
+<div class="px-6 py-4">
+<div class="w-full aspect-video bg-surface-darker rounded-xl overflow-hidden relative shadow-2xl border border-slate-200 dark:border-[#282e39] group">
+<!-- Slide Image -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Slide showing sustainability data charts and graphs" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrTWvhKNTKNaPe34f6GU39LAGOw3Tt6ZxPzM10tk99L5dWLZ6MNNKyl0_FdSL3NpCxG2YoMPMbvZ0wL2w0HGQuQbqPieaxBNicTFfODgpy3qMD5HM6zmFcEsvbRdDCRPlx2am9JP4QK3RC95p5T0dZ9ubix-Jd5vdaCqNnu3w9kE6CkoUK_8AAs2Qs0gO9Ez__2RslrVAGt920aArtcdhdwxPRyqCY7Mk1bN7JD5mGm8IeLsVgNOUovtNF1mvkmKCaBc5Fw4xSFWw');">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+</div>
+<!-- Slide Overlay Controls -->
+<div class="absolute bottom-0 left-0 right-0 p-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="text-white">
+<p class="text-sm font-medium opacity-80">Slayt 4 / 12</p>
+<h3 class="text-lg font-bold">Problem Tanımı &amp; Analiz</h3>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-10 w-10 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="h-10 w-10 rounded-full bg-primary hover:bg-blue-600 flex items-center justify-center text-white shadow-lg transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feedback Panel -->
+<div class="flex-1 bg-white dark:bg-[#161920] border-t border-slate-200 dark:border-[#282e39] p-6 mt-4">
+<div class="max-w-5xl mx-auto w-full">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">rate_review</span>
+                            Değerlendirme Paneli
+                        </h3>
+<div class="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-surface-dark px-3 py-1 rounded-full">
+                            Kalan Süre: <span class="font-mono font-bold text-slate-900 dark:text-white">04:12</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Score Slider (Left) -->
+<div class="lg:col-span-4 flex flex-col gap-6 p-5 rounded-xl bg-slate-50 dark:bg-[#1b1f27] border border-slate-200 dark:border-[#282e39]">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-slate-700 dark:text-slate-300">Genel Puan</label>
+<div class="flex items-center gap-1 text-amber-400">
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined opacity-30">star</span>
+<span class="ml-2 text-slate-900 dark:text-white font-bold text-lg">4/5</span>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs font-medium text-slate-500 mb-1">
+<span>Sunum Tekniği</span>
+<span>8/10</span>
+</div>
+<div class="h-2 w-full bg-slate-200 dark:bg-[#282e39] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[80%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-medium text-slate-500 mb-1">
+<span>İçerik Kalitesi</span>
+<span>9/10</span>
+</div>
+<div class="h-2 w-full bg-slate-200 dark:bg-[#282e39] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[90%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Qualitative Feedback (Right) -->
+<div class="lg:col-span-8 flex flex-col gap-4">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">Güçlü Yön 1</label>
+<input class="w-full bg-slate-50 dark:bg-[#1b1f27] border border-slate-200 dark:border-[#282e39] rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 text-slate-900 dark:text-white" placeholder="Örn: Etkileyici veri görselleştirme..." type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">Güçlü Yön 2</label>
+<input class="w-full bg-slate-50 dark:bg-[#1b1f27] border border-slate-200 dark:border-[#282e39] rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 text-slate-900 dark:text-white" placeholder="Örn: Güçlü hikaye anlatımı..." type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">Güçlü Yön 3</label>
+<input class="w-full bg-slate-50 dark:bg-[#1b1f27] border border-slate-200 dark:border-[#282e39] rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 text-slate-900 dark:text-white" placeholder="Örn: Takım uyumu..." type="text"/>
+</div>
+</div>
+<div class="mt-2 space-y-1.5">
+<label class="text-xs font-bold text-rose-500 dark:text-rose-400 uppercase tracking-wide">Gelişim Alanı</label>
+<div class="flex gap-4">
+<input class="flex-1 bg-slate-50 dark:bg-[#1b1f27] border border-slate-200 dark:border-[#282e39] rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 text-slate-900 dark:text-white" placeholder="Bu ekip bir sonraki sunumda neyi daha iyi yapabilir?" type="text"/>
+<button class="bg-primary hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition-colors flex items-center gap-2 shadow-lg shadow-primary/25 whitespace-nowrap">
+<span>Puanı Gönder</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Leaderboard -->
+<aside class="w-80 border-l border-slate-200 dark:border-[#282e39] bg-slate-50 dark:bg-[#111318] flex flex-col shrink-0 hidden xl:flex z-20">
+<div class="p-4 border-b border-slate-200 dark:border-[#282e39]">
+<h3 class="text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">Sunum Sıralaması</h3>
+<p class="text-xs text-slate-400 dark:text-slate-500">Cuma Atölyesi Katılımcıları</p>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-3">
+<!-- Active Item -->
+<div class="relative bg-white dark:bg-[#1b1f27] p-3 rounded-lg border border-primary ring-1 ring-primary/30 shadow-lg shadow-primary/10 group cursor-pointer">
+<div class="absolute -left-[13px] top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-full"></div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-[10px] font-bold uppercase text-primary tracking-wide mb-1 block">ŞU AN YAYINDA</span>
+<h4 class="font-bold text-slate-900 dark:text-white">Klan 12</h4>
+</div>
+<span class="material-symbols-outlined text-primary animate-pulse">podcasts</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">Sürdürülebilirlik Çözümü</p>
+</div>
+<!-- Finished Item (Showcase Finalist) -->
+<div class="relative bg-white dark:bg-[#1b1f27] p-3 rounded-lg border border-transparent hover:border-slate-300 dark:hover:border-[#282e39] transition-colors group cursor-pointer opacity-80 hover:opacity-100">
+<div class="flex justify-between items-start mb-1">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-bold uppercase text-emerald-500 tracking-wide block">TAMAMLANDI</span>
+<span class="bg-amber-400/10 text-amber-500 text-[9px] px-1.5 py-0.5 rounded border border-amber-400/20 font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">trophy</span>
+                                    FİNALİST
+                                </span>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white">Klan 08 - Alpha</h4>
+</div>
+<div class="text-right">
+<span class="block text-lg font-bold text-emerald-500">94</span>
+<span class="block text-[10px] text-slate-500">Puan</span>
+</div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">Akıllı Şehir Entegrasyonu</p>
+</div>
+<!-- Finished Item -->
+<div class="relative bg-white dark:bg-[#1b1f27] p-3 rounded-lg border border-transparent hover:border-slate-300 dark:hover:border-[#282e39] transition-colors group cursor-pointer opacity-70 hover:opacity-100">
+<div class="flex justify-between items-start mb-1">
+<div>
+<span class="text-[10px] font-bold uppercase text-emerald-500 tracking-wide mb-1 block">TAMAMLANDI</span>
+<h4 class="font-bold text-slate-900 dark:text-white">Klan 05 - Omega</h4>
+</div>
+<div class="text-right">
+<span class="block text-lg font-bold text-slate-400">82</span>
+<span class="block text-[10px] text-slate-500">Puan</span>
+</div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">E-Ticaret Lojistik Botu</p>
+</div>
+<!-- Pending Item -->
+<div class="relative bg-transparent p-3 rounded-lg border border-dashed border-slate-300 dark:border-[#282e39] group cursor-pointer hover:bg-slate-100 dark:hover:bg-[#1b1f27] transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1 block">SIRADAKİ</span>
+<h4 class="font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Klan 15</h4>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-[20px]">schedule</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">Finansal Okuryazarlık App</p>
+</div>
+<!-- Pending Item -->
+<div class="relative bg-transparent p-3 rounded-lg border border-dashed border-slate-300 dark:border-[#282e39] group cursor-pointer hover:bg-slate-100 dark:hover:bg-[#1b1f27] transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1 block">BEKLEMEDE</span>
+<h4 class="font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Klan 03</h4>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-[20px]">schedule</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">Tarım Teknolojileri</p>
+</div>
+</div>
+<!-- Sidebar Footer -->
+<div class="p-4 border-t border-slate-200 dark:border-[#282e39] bg-slate-100 dark:bg-[#161920]">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-[#282e39] flex items-center justify-center text-slate-500 overflow-hidden shrink-0">
+<!-- User Avatar -->
+<img class="w-full h-full object-cover" data-alt="User profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7Y_SfToje5KVNhYSHcdYFJ0Dw4PkSuaJoqI0vH4nMCw1Bal41E92iRVFN0Z5XmAehSCj7a3UsOoaiBUSMCIEDC4QPUHctjCzJZu2k7RDfEmx3fWunz-4IQmfhY3LISQWOr0xhNvde1PER6OjGDJj9jobh7l_CB8ZAn_EMuHT99YJPe2-iE9N6maWSMtinm6dOyzVvQYj3E23nJ9Y694RcEEGWMqjXX_2DmrzEt1sJJ7sJJdbpnT8g6nuQc7WxN4_Hj9p-qvq7opc"/>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Ahmet Yılmaz</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Mentör Gözlemci</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<style>
+        /* Custom Scrollbar for sleek look */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.3);
+            border-radius: 20px;
+        }
+        .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5);
+        }
+    </style>
+</body></html>

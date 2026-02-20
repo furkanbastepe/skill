@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCR-026 Computer Boss Briefing</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0b5cb5",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1c2630",
+                        "surface-dark-lighter": "#283442",
+                        "success": "#22c55e",
+                        "warning": "#eab308",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#283442] px-6 py-4 bg-surface-dark w-full z-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">token</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-wider">DIGEM</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-dark-lighter text-white hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-dark-lighter text-white hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex justify-center p-6 md:p-10">
+<div class="w-full max-w-7xl flex flex-col gap-8">
+<!-- Breadcrumbs & Title -->
+<div class="flex flex-col gap-4">
+<div class="flex flex-wrap gap-2 items-center text-sm font-medium opacity-70">
+<a class="hover:text-primary transition-colors" href="#">DIGEM</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Unit 4</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary">Boss Briefing</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#283442] pb-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-warning/20 text-warning px-2 py-0.5 rounded text-xs font-bold tracking-widest uppercase border border-warning/30">PENDING AUTHORIZATION</span>
+<span class="text-gray-400 text-xs font-mono tracking-widest">ID: SCR-026</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight uppercase">Mission: Server Restoration</h1>
+<p class="text-gray-400 mt-2 text-lg">Briefing for Unit 4 Boss Fight. Pay attention to specific restoration protocols.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-dark-lighter hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/50 border border-transparent rounded-lg text-sm font-bold transition-all text-gray-300">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+                        EXIT BRIEFING
+                    </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Media & Rubric (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Video Feed -->
+<div class="group relative rounded-xl overflow-hidden bg-black border border-[#283442] shadow-2xl">
+<!-- Header Overlay -->
+<div class="absolute top-0 left-0 w-full p-4 z-10 flex justify-between items-start bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-red-500 animate-pulse"></div>
+<span class="text-xs font-mono text-red-400 tracking-widest">LIVE FEED // DIGEM REHBERI</span>
+</div>
+<span class="text-xs font-mono text-white/50">SECURE CHANNEL 04</span>
+</div>
+<!-- Video Content Placeholder -->
+<div class="aspect-video w-full bg-surface-dark-lighter relative flex items-center justify-center bg-cover bg-center" data-alt="Dark cyberpunk server room with blue neon lights" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBwWqA3lLn0d4MrJpUCnnX9ESP3UDAkIeblQdcBsM4d57w_hpIISa1yvm8akSY7nizdXMnyRObSBhW7IlDV_7pijhQ2TWTaZkMgb6BA2oY5qNGyz8ULBbAXg92E_BJpUlX7vKyjql5cHyfAW8bKSWnxz_FPEYl0i-UN8jyMWTXO72uaMNp1uOoen_Ha3PBedMhsVcguiyR_A4WcyOrdpL8z2-5l1HuLhKw_U5KCZCWMk2jnTRlgQVppzXeS3_C80XZ803T6BIJ3Q');">
+<div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+<button class="group/play relative z-20 flex flex-col items-center gap-4 transition-transform hover:scale-105">
+<div class="size-20 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center backdrop-blur-sm group-hover/play:bg-primary group-hover/play:border-primary transition-all shadow-[0_0_30px_rgba(19,127,236,0.3)]">
+<span class="material-symbols-outlined text-4xl text-primary group-hover/play:text-white ml-1">play_arrow</span>
+</div>
+<span class="text-sm font-bold tracking-widest text-primary group-hover/play:text-white uppercase">Play Briefing</span>
+</button>
+</div>
+<!-- Scanlines Effect -->
+<div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 pointer-events-none bg-[length:100%_4px,3px_100%]"></div>
+</div>
+<!-- Rubric & Intel -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Rubric Card -->
+<div class="bg-surface-dark border border-[#283442] rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-8xl">assignment_turned_in</span>
+</div>
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                                SCORING RUBRIC
+                            </h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-[#283442] pb-2">
+<span class="text-gray-400 text-sm">Command Accuracy</span>
+<span class="font-mono font-bold text-primary">50 PTS</span>
+</div>
+<div class="flex justify-between items-center border-b border-[#283442] pb-2">
+<span class="text-gray-400 text-sm">System Stability</span>
+<span class="font-mono font-bold text-primary">30 PTS</span>
+</div>
+<div class="flex justify-between items-center border-b border-[#283442] pb-2">
+<span class="text-gray-400 text-sm">Completion Time</span>
+<span class="font-mono font-bold text-primary">20 PTS</span>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="text-white font-bold text-sm uppercase">Total Potential</span>
+<span class="font-mono font-black text-xl text-white">100 PTS</span>
+</div>
+</div>
+</div>
+<!-- Mission Brief Text -->
+<div class="bg-surface-dark border border-[#283442] rounded-xl p-6">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-warning">warning</span>
+                                THREAT INTEL
+                            </h3>
+<p class="text-sm text-gray-400 leading-relaxed mb-4">
+                                The central server has been compromised by a rogue script. Several dependencies are broken, and the DNS routing table is corrupted.
+                            </p>
+<div class="bg-surface-dark-lighter rounded p-3 border-l-4 border-warning">
+<p class="text-xs font-mono text-warning font-bold mb-1">ADVISORY:</p>
+<p class="text-xs text-gray-300">
+                                    Do not restart the core service until DNS paths are verified. Data loss may occur.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Objectives & Readiness (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Objectives List -->
+<div class="bg-surface-dark border border-[#283442] rounded-xl p-6 flex flex-col h-full">
+<h3 class="text-lg font-bold mb-6 tracking-wide uppercase">Mission Objectives</h3>
+<div class="flex flex-col gap-4 mb-8">
+<!-- Objective 1 -->
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0 text-primary font-bold text-sm">
+                                    01
+                                </div>
+<div>
+<h4 class="font-bold text-white group-hover:text-primary transition-colors">Restore Server Access</h4>
+<p class="text-xs text-gray-400 mt-1">Re-establish SSH connection via port 22.</p>
+</div>
+</div>
+<!-- Objective 2 -->
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0 text-primary font-bold text-sm">
+                                    02
+                                </div>
+<div>
+<h4 class="font-bold text-white group-hover:text-primary transition-colors">Fix DNS Configuration</h4>
+<p class="text-xs text-gray-400 mt-1">Repair the A Records in the zone file.</p>
+</div>
+</div>
+<!-- Objective 3 -->
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0 text-primary font-bold text-sm">
+                                    03
+                                </div>
+<div>
+<h4 class="font-bold text-white group-hover:text-primary transition-colors">Secure Data Pipelines</h4>
+<p class="text-xs text-gray-400 mt-1">Encrypt the backup stream.</p>
+</div>
+</div>
+</div>
+<div class="w-full h-px bg-[#283442] my-4"></div>
+<!-- Readiness Check -->
+<div class="flex-1">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-400">System Readiness</h3>
+<div class="flex items-center gap-1">
+<span class="size-2 rounded-full bg-success animate-pulse"></span>
+<span class="text-[10px] font-mono text-success uppercase">Verifying...</span>
+</div>
+</div>
+<div class="space-y-3">
+<label class="flex items-center p-3 rounded-lg border border-primary/30 bg-primary/5 cursor-pointer hover:bg-primary/10 transition-colors group">
+<div class="relative flex items-center">
+<input checked="" class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-primary/50 bg-surface-dark checked:bg-primary checked:border-primary transition-all" disabled="" type="checkbox"/>
+<span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-sm opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+</div>
+<span class="ml-3 text-sm font-medium text-white group-hover:text-white">VPN Connection Stable</span>
+</label>
+<label class="flex items-center p-3 rounded-lg border border-primary/30 bg-primary/5 cursor-pointer hover:bg-primary/10 transition-colors group">
+<div class="relative flex items-center">
+<input checked="" class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-primary/50 bg-surface-dark checked:bg-primary checked:border-primary transition-all" disabled="" type="checkbox"/>
+<span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-sm opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+</div>
+<span class="ml-3 text-sm font-medium text-white group-hover:text-white">Terminal Environment Loaded</span>
+</label>
+<label class="flex items-center p-3 rounded-lg border border-[#283442] bg-surface-dark-lighter cursor-pointer hover:border-primary/50 transition-colors group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-600 bg-surface-dark checked:bg-primary checked:border-primary transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-sm opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+</div>
+<span class="ml-3 text-sm font-medium text-gray-400 group-hover:text-white transition-colors">User Authorization</span>
+</label>
+</div>
+</div>
+<!-- Start Button -->
+<div class="mt-8 pt-4 border-t border-[#283442]">
+<button class="w-full relative group overflow-hidden rounded-lg bg-surface-dark-lighter p-[1px] cursor-not-allowed opacity-70 hover:opacity-100 transition-all">
+<!-- Disabled Visual State simulated, in a real app would toggle classes based on JS -->
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite]"></div>
+<div class="relative rounded-lg bg-[#283442] px-6 py-4 flex items-center justify-center gap-3 group-hover:bg-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-white transition-colors">lock</span>
+<span class="text-base font-bold tracking-widest text-gray-400 group-hover:text-white transition-colors">START BOSS MISSION</span>
+</div>
+</button>
+<p class="text-center text-[10px] text-gray-500 mt-2 font-mono uppercase">Confirm all readiness checks to unlock</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Status Bar -->
+<footer class="mt-4 border-t border-[#283442] py-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-mono">
+<div class="flex gap-6">
+<span>SERVER: EU-CENTRAL-1</span>
+<span>LATENCY: 24ms</span>
+<span>UPTIME: 99.9%</span>
+</div>
+<div class="mt-2 md:mt-0">
+                    DIGEM SYSTEM v2.4.0 // ENCRYPTED
+                </div>
+</footer>
+</div>
+</main>
+</body></html>

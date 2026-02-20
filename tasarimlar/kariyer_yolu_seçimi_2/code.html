@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PUSULA - Yol Seçimi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#10b77f",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#10221c",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #10221c;
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(16, 183, 127, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .topo-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100Q100 50 200 100T400 100T600 150T800 100' fill='none' stroke='rgba(16, 183, 127, 0.1)' stroke-width='1'/%3E%3Cpath d='M0 200Q150 150 300 250T600 200T800 250' fill='none' stroke='rgba(16, 183, 127, 0.08)' stroke-width='1'/%3E%3Cpath d='M0 400Q200 350 400 450T800 400' fill='none' stroke='rgba(16, 183, 127, 0.12)' stroke-width='1'/%3E%3Cpath d='M0 600Q100 650 300 550T600 650T800 600' fill='none' stroke='rgba(16, 183, 127, 0.05)' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        .glass-card {
+            background: rgba(16, 34, 28, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(16, 183, 127, 0.2);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 20px rgba(16, 183, 127, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen topo-pattern">
+<!-- Top Navigation Bar -->
+<nav class="border-b border-primary/20 bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(16,183,127,0.4)]">
+<span class="material-symbols-outlined text-background-dark font-bold">explore</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tighter text-white">PUSULA</h1>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-primary font-medium hover:text-primary/80 transition-colors" href="#">Yol Seçimi</a>
+<a class="text-white/60 font-medium hover:text-white transition-colors" href="#">Yolculuğum</a>
+<a class="text-white/60 font-medium hover:text-white transition-colors" href="#">Topluluk</a>
+<a class="text-white/60 font-medium hover:text-white transition-colors" href="#">Ayarlar</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right mr-2 hidden sm:block">
+<p class="text-xs text-white/50 uppercase tracking-widest font-bold">Seviye 01</p>
+<div class="w-24 h-1.5 bg-white/10 rounded-full mt-1 overflow-hidden">
+<div class="bg-primary h-full w-1/4"></div>
+</div>
+</div>
+<img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-primary/30" data-alt="Professional user avatar profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUBscKPd12uXC7YRLQ1dlpP1xOLLGZ4Y8aPWF5wUsgNPDCfFdsbHZpvKsD5fWQnTX5SNt1zoMY3yGLyYH8LUQnWqg47H6ChS2J62uCs8aQiDeSTyT_KP5WHXDjbhPpy4goUO-allicRCWj2t3myobqIbxJW9qhQjuTXlbLeas-ESqpJ_LEDFF34tG7VdeBQ61dDRDJtpT7DtBdRtaovdtGWOHMW_faySbZFZNxTeWpyp4uKr5rmkg6ydnnnBTt5EP6D_ZncAqve55S"/>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<!-- Hero Section -->
+<div class="mb-16 text-center">
+<h2 class="text-5xl font-bold mb-4 tracking-tight">Geleceğini <span class="text-primary italic">Şekillendir</span></h2>
+<p class="text-white/60 text-lg max-w-2xl mx-auto">
+                Kariyer yolunu seçmeden önce temel yetkinliklerini tamamlamalısın. <br/>
+                Zorunlu modüller, profesyonel hayatının köklerini oluşturur.
+            </p>
+</div>
+<!-- Central Core Logic Panel -->
+<div class="relative mb-20">
+<div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+<div class="w-[80%] h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-3xl mx-auto glass-card rounded-xl p-8 border-2 border-primary/40 glow-emerald">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<div class="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center border border-primary/30 shrink-0">
+<span class="material-symbols-outlined text-primary text-5xl">lock_open</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 bg-primary/20 text-primary text-[10px] font-bold rounded uppercase tracking-wider">Kritik Aşama</span>
+<h3 class="text-xl font-bold">Zorunlu Temel Modüller</h3>
+</div>
+<p class="text-white/70 mb-6 text-sm leading-relaxed">
+                            Algoritmalar, Etik ve Dijital Okuryazarlık eğitimlerini tamamlayarak uzmanlık yollarının kilidini açın.
+                        </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+<div class="flex items-center gap-2 text-xs text-white/60 bg-white/5 p-2 rounded">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                Algoritma Temelleri
+                            </div>
+<div class="flex items-center gap-2 text-xs text-white/60 bg-white/5 p-2 rounded">
+<span class="material-symbols-outlined text-white/20 text-sm">radio_button_unchecked</span>
+                                Dijital Etik
+                            </div>
+<div class="flex items-center gap-2 text-xs text-white/60 bg-white/5 p-2 rounded">
+<span class="material-symbols-outlined text-white/20 text-sm">radio_button_unchecked</span>
+                                Veri Güvenliği
+                            </div>
+</div>
+<button class="w-full sm:w-auto bg-primary text-background-dark font-bold py-3 px-8 rounded-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2 group">
+                            Eğitime Başla
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Career Tracks Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Track 1: Veri Analisti -->
+<div class="glass-card rounded-xl p-6 border border-white/10 group grayscale opacity-60 relative overflow-hidden">
+<div class="absolute top-4 right-4 text-white/40">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="w-14 h-14 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white/60 text-3xl">analytics</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Veri Analisti</h4>
+<p class="text-white/50 text-sm mb-6">Büyük veri yığınlarını anlamlı hikayelere ve stratejik içgörülere dönüştürün.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs font-medium text-white/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 12 Hafta
+                    </span>
+<button class="text-white/20 font-bold text-sm cursor-not-allowed">Kilitli</button>
+</div>
+</div>
+<!-- Track 2: Yazılım Uzmanı -->
+<div class="glass-card rounded-xl p-6 border border-white/10 group grayscale opacity-60 relative overflow-hidden">
+<div class="absolute top-4 right-4 text-white/40">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="w-14 h-14 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white/60 text-3xl">code</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Yazılım Uzmanı</h4>
+<p class="text-white/50 text-sm mb-6">Modern web ve mobil mimarileri inşa ederek geleceğin dünyasını kodlayın.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs font-medium text-white/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 16 Hafta
+                    </span>
+<button class="text-white/20 font-bold text-sm cursor-not-allowed">Kilitli</button>
+</div>
+</div>
+<!-- Track 3: Siber Güvenlik -->
+<div class="glass-card rounded-xl p-6 border border-white/10 group grayscale opacity-60 relative overflow-hidden">
+<div class="absolute top-4 right-4 text-white/40">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="w-14 h-14 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white/60 text-3xl">security</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Siber Güvenlik</h4>
+<p class="text-white/50 text-sm mb-6">Dijital varlıkları koruyun, siber saldırıları engelleyin ve güvenliği sağlayın.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs font-medium text-white/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 14 Hafta
+                    </span>
+<button class="text-white/20 font-bold text-sm cursor-not-allowed">Kilitli</button>
+</div>
+</div>
+<!-- Track 4: Bulut Mühendisi -->
+<div class="glass-card rounded-xl p-6 border border-white/10 group grayscale opacity-60 relative overflow-hidden">
+<div class="absolute top-4 right-4 text-white/40">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="w-14 h-14 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white/60 text-3xl">cloud</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Bulut Mühendisi</h4>
+<p class="text-white/50 text-sm mb-6">Ölçeklenebilir sistemler tasarlayın ve altyapıları buluta taşıyın.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs font-medium text-white/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 10 Hafta
+                    </span>
+<button class="text-white/20 font-bold text-sm cursor-not-allowed">Kilitli</button>
+</div>
+</div>
+<!-- Track 5: Yapay Zeka -->
+<div class="glass-card rounded-xl p-6 border border-white/10 group grayscale opacity-60 relative overflow-hidden">
+<div class="absolute top-4 right-4 text-white/40">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="w-14 h-14 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white/60 text-3xl">psychology</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Yapay Zeka</h4>
+<p class="text-white/50 text-sm mb-6">Makine öğrenmesi modelleri geliştirin ve akıllı sistemler tasarlayın.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs font-medium text-white/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 20 Hafta
+                    </span>
+<button class="text-white/20 font-bold text-sm cursor-not-allowed">Kilitli</button>
+</div>
+</div>
+<!-- Track 6: Dijital Tasarım -->
+<div class="glass-card rounded-xl p-6 border border-white/10 group grayscale opacity-60 relative overflow-hidden">
+<div class="absolute top-4 right-4 text-white/40">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="w-14 h-14 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white/60 text-3xl">palette</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Dijital Tasarım</h4>
+<p class="text-white/50 text-sm mb-6">Kullanıcı deneyimini önceliklendiren estetik ve fonksiyonel arayüzler yaratın.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs font-medium text-white/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 8 Hafta
+                    </span>
+<button class="text-white/20 font-bold text-sm cursor-not-allowed">Kilitli</button>
+</div>
+</div>
+</div>
+<!-- Tooltip / Legend -->
+<div class="mt-12 flex justify-center">
+<div class="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+<span class="material-symbols-outlined text-primary text-lg">info</span>
+<p class="text-xs text-primary/80 font-medium">Uzmanlık yolları, temel modüller %100 tamamlandığında aktif olacaktır.</p>
+</div>
+</div>
+</main>
+<footer class="border-t border-white/5 mt-20 bg-background-dark/50 py-10">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary/30 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[14px]">explore</span>
+</div>
+<span class="text-white/40 text-sm font-medium">© 2024 PUSULA Eğitim Platformu</span>
+</div>
+<div class="flex gap-8">
+<a class="text-white/40 text-sm hover:text-white transition-colors" href="#">Kullanım Koşulları</a>
+<a class="text-white/40 text-sm hover:text-white transition-colors" href="#">Gizlilik Politikası</a>
+<a class="text-white/40 text-sm hover:text-white transition-colors" href="#">Yardım Merkezi</a>
+</div>
+</div>
+</footer>
+</body></html>
